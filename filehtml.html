@@ -1,0 +1,3184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Da Nang Museum Smart Guide - Hướng dẫn viên Số Bảo tàng Đà Nẵng</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- QRCode.js CDN for Crisp Scannable QR Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', '"Be Vietnam Pro"', 'sans-serif'],
+          },
+          colors: {
+            museum: {
+              navy: '#1C2536',
+              bronze: '#B85D3B',
+              ivory: '#F8F5F0',
+              card: '#FFFFFF',
+              gold: '#D4A359',
+              border: '#E6DFD3',
+              muted: '#64748B'
+            }
+          },
+          boxShadow: {
+            'device': '0 20px 50px -12px rgba(28, 37, 54, 0.25)',
+            'soft': '0 4px 18px -2px rgba(28, 37, 54, 0.06)',
+            'bronze': '0 8px 22px -4px rgba(184, 93, 59, 0.32)',
+            'nav': '0 -4px 20px rgba(28, 37, 54, 0.08)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --navy: #1C2536;
+      --bronze: #B85D3B;
+      --ivory: #F8F5F0;
+      --gold: #D4A359;
+    }
+
+    html, body {
+      font-family: 'Be Vietnam Pro', 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      background-color: #E8E2D7;
+      color: #1C2536;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+
+    /* Hide scrollbar for horizontal chips */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* AR Camera Laser Scan Animation */
+    @keyframes scanLaser {
+      0% { top: 8%; opacity: 0.35; }
+      50% { top: 88%; opacity: 1; }
+      100% { top: 8%; opacity: 0.35; }
+    }
+    .laser-line {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #D4A359, #FEF3C7, #B85D3B, transparent);
+      box-shadow: 0 0 14px 3px rgba(212, 163, 89, 0.85);
+      border-radius: 999px;
+      animation: scanLaser 2.5s ease-in-out infinite;
+    }
+
+    /* Animated Wayfinding Path */
+    @keyframes dashFlow {
+      to {
+        stroke-dashoffset: -24;
+      }
+    }
+    .route-animated {
+      stroke-dasharray: 8 4;
+      animation: dashFlow 0.85s linear infinite;
+    }
+
+    /* Pulse Ping for Map Markers */
+    @keyframes pulseRing {
+      0% { transform: scale(0.85); opacity: 0.9; }
+      70% { transform: scale(1.85); opacity: 0; }
+      100% { transform: scale(1.85); opacity: 0; }
+    }
+    .pin-pulse {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: pulseRing 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+
+    /* Smooth View Entrance */
+    .fade-in {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex justify-center items-start">
+
+  <!-- Mobile-First App Shell: 100% width on mobile, max-w-[430px] centered with subtle device shadow on desktop -->
+  <div id="app-shell" class="w-full max-w-[430px] min-h-screen bg-museum-ivory shadow-device relative flex flex-col sm:border-x sm:border-museum-border">
+
+    <!-- ===================================================================== -->
+    <!-- 1. MÀN HÌNH CHÀO MỪNG & CHỌN NGÔN NGỮ / TÊN KHÁCH (ONBOARDING)        -->
+    <!-- ===================================================================== -->
+    <section id="onboarding-screen" class="min-h-screen flex flex-col justify-between p-5 bg-gradient-to-b from-museum-navy via-[#232F44] to-[#131926] text-white relative overflow-hidden">
+      <!-- Subtle Heritage Geometric Pattern -->
+      <div class="absolute inset-0 opacity-10 pointer-events-none">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="citadel-pattern" width="44" height="44" patternUnits="userSpaceOnUse">
+              <path d="M22 0L44 22L22 44L0 22Z" fill="none" stroke="#D4A359" stroke-width="1"/>
+              <circle cx="22" cy="22" r="3.5" fill="none" stroke="#D4A359" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#citadel-pattern)"/>
+        </svg>
+      </div>
+
+      <!-- Top Bar with Prominent "Mã QR Webapp" Button -->
+      <div class="relative z-10 flex items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-semibold text-museum-gold">
+          <span class="w-2 h-2 rounded-full bg-museum-gold animate-pulse"></span>
+          <span>Smart Museum Guide</span>
+        </span>
+        <button onclick="openQrModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-95 transition text-xs font-bold text-white shadow-md border border-amber-300/30">
+          <i data-lucide="qr-code" class="w-4 h-4 text-amber-200"></i>
+          <span data-i18n="qr_btn">Mã QR Webapp</span>
+        </button>
+      </div>
+
+      <!-- Museum Emblem & Welcoming Title -->
+      <div class="relative z-10 my-5 text-center">
+        <div class="w-22 h-22 w-[88px] h-[88px] mx-auto mb-3.5 rounded-3xl bg-gradient-to-br from-museum-gold to-museum-bronze p-0.5 shadow-lg">
+          <div class="w-full h-full rounded-[22px] bg-museum-navy flex items-center justify-center">
+            <!-- Custom SVG Emblem: Da Nang Museum & Dien Hai Citadel -->
+            <svg viewBox="0 0 80 80" class="w-14 h-14">
+              <defs>
+                <linearGradient id="goldEmblem" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#F3D19E"/>
+                  <stop offset="100%" stop-color="#D4A359"/>
+                </linearGradient>
+              </defs>
+              <path d="M12 61 H68 L64 51 H16 Z" fill="#B85D3B"/>
+              <rect x="20" y="32" width="6" height="19" rx="1" fill="#F8F5F0"/>
+              <rect x="31" y="32" width="6" height="19" rx="1" fill="#F8F5F0"/>
+              <rect x="43" y="32" width="6" height="19" rx="1" fill="#F8F5F0"/>
+              <rect x="54" y="32" width="6" height="19" rx="1" fill="#F8F5F0"/>
+              <path d="M14 32 L40 16 L66 32 Z" fill="url(#goldEmblem)"/>
+              <path d="M24 21 L40 11 L56 21 Z" fill="#B85D3B"/>
+              <path d="M10 68 Q25 64 40 68 T70 68" fill="none" stroke="#D4A359" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <span class="inline-block px-3 py-0.5 rounded-full bg-museum-gold/20 border border-museum-gold/40 text-museum-gold text-[11px] font-bold tracking-wider uppercase mb-1.5">
+          Di tích Quốc gia Đặc biệt Thành Điện Hải
+        </span>
+        <h1 class="text-2xl font-extrabold tracking-tight text-white leading-snug" data-i18n="welcome_title">
+          Chào mừng đến với Bảo tàng Đà Nẵng
+        </h1>
+        <p class="text-slate-300 text-xs mt-1.5 flex items-center justify-center gap-1">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-museum-gold shrink-0"></i>
+          <span>31 Trần Phú, Hải Châu, TP. Đà Nẵng</span>
+        </p>
+      </div>
+
+      <!-- Language & Visitor Name Form Card -->
+      <div class="relative z-10 bg-museum-card text-museum-navy rounded-3xl p-5 shadow-xl border border-museum-border">
+        <!-- Language Dropdown (15 Languages) -->
+        <div class="mb-4">
+          <label for="language-select" class="block text-sm font-bold text-museum-navy mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="globe" class="w-4 h-4 text-museum-bronze"></i>
+            <span data-i18n="select_lang_label">Chọn ngôn ngữ / Select Language</span>
+          </label>
+          <div class="relative">
+            <select id="language-select" onchange="handleOnboardingLangChange(this.value)" class="w-full appearance-none bg-museum-ivory border border-museum-border rounded-2xl px-4 py-3 pr-10 text-[15px] font-semibold text-museum-navy focus:outline-none focus:ring-2 focus:ring-museum-bronze focus:border-museum-bronze transition cursor-pointer">
+              <option value="vi" selected>🇻🇳 Tiếng Việt (Mặc định)</option>
+              <option value="en">🇺🇸 English (Tiếng Anh)</option>
+              <option value="ko">🇰🇷 한국어 (Korean)</option>
+              <option value="ja">🇯🇵 日本語 (Japanese)</option>
+              <option value="zh">🇨🇳 中文 (Chinese)</option>
+              <option value="fr">🇫🇷 Français (French)</option>
+              <option value="es">🇪🇸 Español (Spanish)</option>
+              <option value="de">🇩🇪 Deutsch (German)</option>
+              <option value="th">🇹🇭 ภาษาไทย (Thai)</option>
+              <option value="ru">🇷🇺 Русский (Russian)</option>
+              <option value="id">🇮🇩 Bahasa Indonesia</option>
+              <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+              <option value="ar">🇸🇦 العربية (Arabic)</option>
+              <option value="pt">🇵🇹 Português (Portuguese)</option>
+              <option value="it">🇮🇹 Italiano (Italian)</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-museum-muted absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Visitor Name Input -->
+        <div class="mb-5">
+          <label for="visitor-name-input" class="block text-sm font-bold text-museum-navy mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="user-round" class="w-4 h-4 text-museum-bronze"></i>
+            <span data-i18n="visitor_name_label">Nhập tên của bạn / Enter your name</span>
+          </label>
+          <input type="text" id="visitor-name-input" placeholder="Ví dụ: Minh Anh, Alex..." class="w-full bg-museum-ivory border border-museum-border rounded-2xl px-4 py-3 text-[15px] text-museum-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-museum-bronze focus:border-museum-bronze transition" />
+
+          <!-- Quick Suggested Name Chips -->
+          <div class="flex items-center gap-1.5 mt-2 overflow-x-auto no-scrollbar">
+            <span class="text-xs text-museum-muted shrink-0" data-i18n="quick_suggest">Gợi ý:</span>
+            <button type="button" onclick="fillSuggestedName('Minh Anh')" class="px-2.5 py-1 rounded-full bg-museum-ivory hover:bg-amber-100/70 text-museum-navy text-xs font-semibold border border-museum-border transition shrink-0">Minh Anh</button>
+            <button type="button" onclick="fillSuggestedName('Alex')" class="px-2.5 py-1 rounded-full bg-museum-ivory hover:bg-amber-100/70 text-museum-navy text-xs font-semibold border border-museum-border transition shrink-0">Alex</button>
+            <button type="button" onclick="fillSuggestedName('Jisoo')" class="px-2.5 py-1 rounded-full bg-museum-ivory hover:bg-amber-100/70 text-museum-navy text-xs font-semibold border border-museum-border transition shrink-0">Jisoo</button>
+            <button type="button" onclick="fillSuggestedName('Kenji')" class="px-2.5 py-1 rounded-full bg-museum-ivory hover:bg-amber-100/70 text-museum-navy text-xs font-semibold border border-museum-border transition shrink-0">Kenji</button>
+          </div>
+        </div>
+
+        <!-- Start Tour Button -->
+        <button onclick="startTour()" class="w-full py-3.5 px-5 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-[0.99] text-white font-bold text-base shadow-bronze flex items-center justify-center gap-2 transition">
+          <span data-i18n="start_tour_btn">Bắt đầu tham quan / Start Tour</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <p class="relative z-10 text-center text-[11px] text-slate-400 mt-4">
+        Da Nang Museum Smart Guide • 31 Trần Phú, Đà Nẵng
+      </p>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 2. GIAO DIỆN CHÍNH (MAIN DASHBOARD)                                   -->
+    <!-- ===================================================================== -->
+    <div id="main-app" class="hidden flex-col min-h-screen pb-24">
+
+      <!-- Sticky Top Header with Personalized Greeting & Quick Action Buttons -->
+      <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-museum-border px-3.5 py-2.5 flex items-center justify-between gap-2 shadow-sm">
+        <div class="flex items-center gap-2 min-w-0">
+          <div class="w-9 h-9 rounded-xl bg-museum-navy flex items-center justify-center text-museum-gold shrink-0 shadow-sm">
+            <i data-lucide="landmark" class="w-4 h-4"></i>
+          </div>
+          <div class="min-w-0">
+            <p id="header-greeting" class="text-[14px] font-bold text-museum-navy truncate">
+              Xin chào, Quý khách!
+            </p>
+            <p class="text-[11px] text-museum-muted truncate flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+              <span data-i18n="museum_short_title">Bảo tàng Đà Nẵng • 31 Trần Phú</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Buttons: Hỗ trợ khách hàng, Mã QR, Đổi ngôn ngữ -->
+        <div class="flex items-center gap-1 shrink-0">
+          <button onclick="openSupportModal()" class="p-2 rounded-xl bg-museum-ivory hover:bg-amber-50 text-museum-bronze border border-museum-border transition" title="Hỗ trợ khách hàng">
+            <i data-lucide="headset" class="w-4 h-4"></i>
+          </button>
+
+          <button onclick="openQrModal()" class="p-2 rounded-xl bg-museum-ivory hover:bg-amber-50 text-museum-navy border border-museum-border transition" title="Mã QR Webapp">
+            <i data-lucide="qr-code" class="w-4 h-4"></i>
+          </button>
+
+          <button onclick="openLangModal()" class="inline-flex items-center gap-1 px-2 py-1.5 rounded-xl bg-museum-navy text-white text-xs font-bold transition" title="Đổi ngôn ngữ">
+            <span id="header-lang-flag">🇻🇳</span>
+            <span id="header-lang-code" class="uppercase">VI</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- =================================================================== -->
+      <!-- TAB 1: KHÁM PHÁ & THÔNG TIN BẢO TÀNG (MUSEUM INFO & 3-FLOOR GUIDE)  -->
+      <!-- =================================================================== -->
+      <main id="tab-info" class="tab-content p-4 space-y-5 fade-in">
+        <!-- Hero Overview Card -->
+        <div class="rounded-3xl overflow-hidden bg-museum-navy text-white shadow-soft border border-slate-800">
+          <div class="p-4 pb-2.5">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-museum-gold/20 border border-museum-gold/40 text-museum-gold text-[11px] font-bold">
+                Cơ sở 1 • Thành Điện Hải
+              </span>
+              <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span data-i18n="open_status">08:00 – 17:00</span>
+              </span>
+            </div>
+            <h2 class="text-lg font-extrabold leading-snug" data-i18n="hero_title">
+              Khám phá Dòng chảy Lịch sử & Văn hóa Đà Nẵng
+            </h2>
+            <p class="text-slate-300 text-xs mt-1.5 leading-relaxed" data-i18n="hero_desc">
+              Hành trình tham quan thông minh qua 3 tầng trưng bày với trợ lý AI, thuyết minh tự động đa ngôn ngữ và bản đồ định vị trực quan.
+            </p>
+          </div>
+
+          <!-- Bespoke SVG Illustration of Da Nang Museum -->
+          <div class="px-3.5 pt-1">
+            <svg viewBox="0 0 380 120" class="w-full h-auto rounded-t-2xl bg-slate-900">
+              <defs>
+                <linearGradient id="skyHero" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1C2536"/>
+                  <stop offset="100%" stop-color="#2D3B55"/>
+                </linearGradient>
+                <linearGradient id="roofGold" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#B85D3B"/>
+                  <stop offset="50%" stop-color="#D4A359"/>
+                  <stop offset="100%" stop-color="#B85D3B"/>
+                </linearGradient>
+              </defs>
+              <rect width="380" height="120" fill="url(#skyHero)"/>
+              <path d="M0 95 Q60 48 130 76 T270 62 T380 84 L380 120 L0 120 Z" fill="#161E2C"/>
+              <circle cx="315" cy="30" r="14" fill="#D4A359" opacity="0.25"/>
+              <circle cx="315" cy="30" r="8" fill="#D4A359" opacity="0.9"/>
+              <!-- Museum Facade -->
+              <rect x="85" y="48" width="210" height="52" rx="3" fill="#F8F5F0"/>
+              <rect x="80" y="42" width="220" height="7" rx="2" fill="url(#roofGold)"/>
+              <polygon points="108,42 190,20 272,42" fill="#B85D3B"/>
+              <polygon points="124,42 190,25 256,42" fill="#D4A359"/>
+              <g fill="#1C2536">
+                <rect x="102" y="56" width="14" height="32" rx="2"/>
+                <rect x="128" y="56" width="14" height="32" rx="2"/>
+                <rect x="154" y="56" width="14" height="32" rx="2"/>
+                <rect x="181" y="54" width="18" height="46" rx="2" fill="#B85D3B"/>
+                <rect x="212" y="56" width="14" height="32" rx="2"/>
+                <rect x="238" y="56" width="14" height="32" rx="2"/>
+                <rect x="264" y="56" width="14" height="32" rx="2"/>
+              </g>
+              <!-- Dien Hai Citadel Rampart -->
+              <path d="M20 100 L38 86 H342 L360 100 Z" fill="#8C4327"/>
+              <rect x="10" y="100" width="360" height="20" fill="#5A2815"/>
+            </svg>
+          </div>
+
+          <!-- Quick Shortcuts Bar -->
+          <div class="grid grid-cols-3 divide-x divide-slate-700/80 bg-[#141B29] border-t border-slate-800">
+            <button onclick="switchTab('camera')" class="py-2.5 px-2 flex flex-col items-center justify-center gap-1 hover:bg-slate-800/80 transition">
+              <i data-lucide="scan-line" class="w-4 h-4 text-museum-gold"></i>
+              <span class="text-[11px] font-semibold text-slate-200" data-i18n="quick_scan">Quét hiện vật</span>
+            </button>
+            <button onclick="switchTab('map')" class="py-2.5 px-2 flex flex-col items-center justify-center gap-1 hover:bg-slate-800/80 transition">
+              <i data-lucide="compass" class="w-4 h-4 text-museum-gold"></i>
+              <span class="text-[11px] font-semibold text-slate-200" data-i18n="quick_map">Tìm đường đi</span>
+            </button>
+            <button onclick="openSupportModal()" class="py-2.5 px-2 flex flex-col items-center justify-center gap-1 hover:bg-slate-800/80 transition">
+              <i data-lucide="headset" class="w-4 h-4 text-museum-gold"></i>
+              <span class="text-[11px] font-semibold text-slate-200" data-i18n="quick_support">Hỗ trợ khách</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Overview Info Card -->
+        <div class="bg-museum-card rounded-2xl p-4 shadow-soft border border-museum-border space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-museum-navy flex items-center gap-2">
+              <i data-lucide="info" class="w-4 h-4 text-museum-bronze"></i>
+              <span data-i18n="general_info_title">Thông tin Bảo tàng Đà Nẵng</span>
+            </h3>
+            <button onclick="openSupportModal()" class="text-xs font-bold text-museum-bronze hover:underline">Chi tiết →</button>
+          </div>
+
+          <div class="space-y-2.5 text-sm">
+            <div class="flex items-start gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-museum-ivory text-museum-bronze flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-museum-navy text-xs uppercase tracking-wide" data-i18n="address_label">Địa chỉ</p>
+                <p class="text-slate-700 text-sm">Cơ sở 1: 31 Trần Phú, phường Hải Châu, TP. Đà Nẵng (Khuôn viên Thành Điện Hải)</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-museum-ivory text-museum-bronze flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-museum-navy text-xs uppercase tracking-wide" data-i18n="hours_label">Giờ mở cửa</p>
+                <p class="text-slate-700 text-sm">08h00 – 17h00 hằng ngày (Mở cửa xuyên trưa)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Structured 3-Floor Exhibition Guide (Tầng 3 -> Tầng 2 -> Tầng 1) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-extrabold text-museum-navy" data-i18n="floors_route_title">Lộ trình tham quan 3 Tầng</h3>
+              <p class="text-xs text-museum-muted" data-i18n="floors_route_sub">Hành trình chuẩn: Tầng 3 → Tầng 2 → Tầng 1</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-museum-navy text-museum-gold text-[11px] font-bold">3F → 2F → 1F</span>
+          </div>
+
+          <div id="floors-list-container" class="space-y-4"></div>
+        </div>
+
+        <!-- Featured Artifacts Gallery (Real Artifacts from baotangdanang.vn) -->
+        <div class="space-y-3 pt-1">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-base font-extrabold text-museum-navy" data-i18n="featured_artifacts_title">Hiện vật tiêu biểu</h3>
+            <div class="flex gap-1 bg-white p-1 rounded-xl border border-museum-border text-xs font-bold">
+              <button onclick="filterArtifacts('all')" id="filter-all" class="px-2 py-1 rounded-lg bg-museum-bronze text-white transition">Tất cả</button>
+              <button onclick="filterArtifacts(3)" id="filter-3" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition">T3</button>
+              <button onclick="filterArtifacts(2)" id="filter-2" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition">T2</button>
+              <button onclick="filterArtifacts(1)" id="filter-1" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition">T1</button>
+            </div>
+          </div>
+
+          <div id="artifacts-grid" class="grid grid-cols-2 gap-3"></div>
+        </div>
+      </main>
+
+      <!-- =================================================================== -->
+      <!-- TAB 2: MÁY ẢNH QUÉT DI TÍCH (CAMERA ARTIFACT SCANNER)               -->
+      <!-- =================================================================== -->
+      <main id="tab-camera" class="tab-content hidden p-4 space-y-4 fade-in">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-extrabold text-museum-navy" data-i18n="scanner_title">Máy ảnh Quét Di tích</h2>
+            <p class="text-xs text-museum-muted" data-i18n="scanner_subtitle">Hướng camera vào hiện vật hoặc mã QR trưng bày</p>
+          </div>
+          <button onclick="initCamera()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-museum-ivory text-museum-navy border border-museum-border text-xs font-bold flex items-center gap-1 transition">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-museum-bronze"></i>
+            <span>Bật Cam</span>
+          </button>
+        </div>
+
+        <!-- Live Camera Viewfinder -->
+        <div class="relative w-full aspect-[4/3] max-h-[300px] rounded-3xl overflow-hidden bg-museum-navy border-2 border-museum-gold/70 shadow-lg">
+          <video id="camera-video" autoplay playsinline muted class="w-full h-full object-cover"></video>
+
+          <!-- Graceful Fallback if Camera Permission Denied / Desktop -->
+          <div id="camera-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-museum-navy via-[#243046] to-[#141A26] flex flex-col items-center justify-center p-5 text-center text-white">
+            <div class="w-14 h-14 rounded-2xl bg-museum-gold/20 border border-museum-gold/40 flex items-center justify-center mb-2.5">
+              <i data-lucide="camera" class="w-7 h-7 text-museum-gold"></i>
+            </div>
+            <p class="font-bold text-sm">Chế độ Mô phỏng Ống kính AR</p>
+            <p class="text-xs text-slate-300 mt-1">
+              Trình duyệt chưa cấp quyền camera hoặc đang dùng máy tính. Chạm vào 1 trong 8 hiện vật bên dưới để quét ngay!
+            </p>
+          </div>
+
+          <!-- Animated AR Targeting Reticle & Scanning Laser Line -->
+          <div class="absolute inset-0 pointer-events-none p-5 flex flex-col justify-between">
+            <div class="flex justify-between">
+              <div class="w-8 h-8 border-t-4 border-l-4 border-museum-gold rounded-tl-xl"></div>
+              <div class="w-8 h-8 border-t-4 border-r-4 border-museum-gold rounded-tr-xl"></div>
+            </div>
+            <div class="laser-line"></div>
+            <div class="flex justify-between">
+              <div class="w-8 h-8 border-b-4 border-l-4 border-museum-gold rounded-bl-xl"></div>
+              <div class="w-8 h-8 border-b-4 border-r-4 border-museum-gold rounded-br-xl"></div>
+            </div>
+          </div>
+
+          <!-- Status Pill -->
+          <div class="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-museum-navy/85 backdrop-blur-md text-white text-[11px] font-semibold flex items-center gap-1.5 border border-white/15 whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-museum-gold animate-ping"></span>
+            <span id="scanner-status-text">Đang quét nhận diện hiện vật...</span>
+          </div>
+
+          <!-- Manual Snap & Identify Trigger -->
+          <button onclick="triggerRandomOrCurrentScan()" class="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-museum-bronze hover:bg-[#A34E2F] active:scale-95 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-amber-200/40 transition">
+            <i data-lucide="aperture" class="w-4 h-4"></i>
+            <span>Chụp & Nhận diện ngay</span>
+          </button>
+        </div>
+
+        <!-- Quick Scan Artifact Selector (8 Artifacts/Zones) -->
+        <div class="bg-museum-card rounded-2xl p-3.5 border border-museum-border shadow-soft">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-museum-bronze flex items-center gap-1">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Mô phỏng quét nhanh hiện vật (8 mẫu)</span>
+            </p>
+            <span class="text-[11px] text-museum-muted">Chạm chọn</span>
+          </div>
+          <div id="quick-scan-list" class="grid grid-cols-2 gap-2"></div>
+        </div>
+
+        <!-- Post-Scan Result Sheet with 2 Prominent Side-by-Side Action Choices -->
+        <div id="scan-result-card" class="hidden bg-museum-card rounded-3xl p-4 border-2 border-museum-bronze shadow-bronze space-y-3.5 fade-in">
+          <div class="flex items-center justify-between border-b border-museum-border pb-2.5">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+              <span>Đã nhận diện di tích / hiện vật</span>
+            </span>
+            <button onclick="closeScanResult()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-400">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="flex gap-3 items-center">
+            <div id="scan-result-svg" class="w-20 h-20 rounded-2xl bg-museum-ivory border border-museum-border p-1.5 shrink-0 flex items-center justify-center"></div>
+            <div class="min-w-0 flex-1">
+              <span id="scan-result-floor" class="inline-block px-2 py-0.5 rounded bg-amber-100 text-museum-navy text-[10px] font-bold mb-1">Tầng 3</span>
+              <h3 id="scan-result-title" class="text-base font-extrabold text-museum-navy leading-snug">Tên hiện vật</h3>
+              <p id="scan-result-era" class="text-xs font-semibold text-museum-bronze mt-0.5">Niên đại</p>
+              <p id="scan-result-short" class="text-xs text-museum-muted mt-1 line-clamp-2">Mô tả ngắn...</p>
+            </div>
+          </div>
+
+          <!-- 2 PROMINENT SIDE-BY-SIDE ACTION CHOICES -->
+          <div class="grid grid-cols-2 gap-2.5 pt-1">
+            <button onclick="openScannedInChatbot()" class="w-full py-3 px-3 rounded-2xl bg-museum-navy hover:bg-slate-900 active:scale-[0.98] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 transition">
+              <div class="w-7 h-7 rounded-xl bg-museum-gold/20 text-museum-gold flex items-center justify-center shrink-0">
+                <i data-lucide="message-square-text" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left">
+                <div class="leading-tight font-extrabold">Chatbot</div>
+                <div class="text-[10px] font-normal text-slate-300">Hỏi đáp & Hình ảnh</div>
+              </div>
+            </button>
+
+            <button onclick="openScannedInAudioGuide()" class="w-full py-3 px-3 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-[0.98] text-white font-bold text-xs shadow-bronze flex items-center justify-center gap-2 transition">
+              <div class="w-7 h-7 rounded-xl bg-white/20 text-white flex items-center justify-center shrink-0">
+                <i data-lucide="headphones" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left">
+                <div class="leading-tight font-extrabold">Audio Guide</div>
+                <div class="text-[10px] font-normal text-amber-100">Thuyết minh tự động</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- =================================================================== -->
+      <!-- TAB 3: TRỢ LÝ CHATBOT & TRÒ CHƠI ĐỐ VUI (AI CHATBOT & QUICK QUIZ)   -->
+      <!-- =================================================================== -->
+      <main id="tab-chatbot" class="tab-content hidden flex-1 flex flex-col p-4 fade-in">
+        <!-- Segmented Switcher -->
+        <div class="bg-museum-card p-1.5 rounded-2xl border border-museum-border shadow-soft grid grid-cols-2 gap-1.5 mb-3.5">
+          <button id="subtab-chat-btn" onclick="switchChatSubtab('chat')" class="py-2.5 px-2.5 rounded-xl bg-museum-navy text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-sm transition">
+            <i data-lucide="bot" class="w-4 h-4 text-museum-gold"></i>
+            <span data-i18n="mode_chat">Trợ lý Chatbot</span>
+          </button>
+          <button id="subtab-quiz-btn" onclick="switchChatSubtab('quiz')" class="py-2.5 px-2.5 rounded-xl text-museum-muted hover:text-museum-navy font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="trophy" class="w-4 h-4 text-museum-bronze"></i>
+            <span data-i18n="mode_quiz">Đố vui có thưởng</span>
+          </button>
+        </div>
+
+        <!-- SUB-VIEW 3A: AI CHATBOT ASSISTANT -->
+        <div id="chat-subview" class="flex-1 flex flex-col bg-museum-card rounded-3xl border border-museum-border shadow-soft overflow-hidden min-h-[470px]">
+          <!-- Chat Header -->
+          <div class="px-4 py-3 bg-museum-ivory border-b border-museum-border flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-full bg-museum-navy text-museum-gold flex items-center justify-center font-bold shadow-sm">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-extrabold text-museum-navy">Hướng dẫn viên AI Bảo tàng</h3>
+                <p class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Hỏi đáp, hình ảnh & thuyết minh Audio
+                </p>
+              </div>
+            </div>
+            <button onclick="resetChatHistory()" class="p-2 rounded-xl hover:bg-amber-100/60 text-museum-muted hover:text-museum-bronze transition" title="Làm mới hội thoại">
+              <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Chat Messages Feed -->
+          <div id="chat-messages" class="flex-1 p-3.5 space-y-3.5 overflow-y-auto max-h-[370px]"></div>
+
+          <!-- Quick Question Chips -->
+          <div class="px-3 py-2 bg-museum-ivory/80 border-t border-museum-border flex gap-2 overflow-x-auto no-scrollbar">
+            <button onclick="sendQuickPrompt('Hình ảnh Súng thần công Thành Điện Hải 1858')" class="px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-museum-border text-xs font-semibold text-museum-navy whitespace-nowrap shrink-0 transition">
+              🖼️ Súng thần công 1858
+            </button>
+            <button onclick="sendQuickPrompt('Khuyên tai hai đầu thú Sa Huỳnh')" class="px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-museum-border text-xs font-semibold text-museum-navy whitespace-nowrap shrink-0 transition">
+              ✨ Khuyên tai Sa Huỳnh
+            </button>
+            <button onclick="sendQuickPrompt('Văn hóa người Cơ Tu ở tầng 2')" class="px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-museum-border text-xs font-semibold text-museum-navy whitespace-nowrap shrink-0 transition">
+              🏛️ Văn hóa Cơ Tu
+            </button>
+            <button onclick="sendQuickPrompt('Ghe bầu xứ Quảng ở tầng mấy?')" class="px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-museum-border text-xs font-semibold text-museum-navy whitespace-nowrap shrink-0 transition">
+              ⛵ Ghe bầu xứ Quảng
+            </button>
+            <button onclick="sendQuickPrompt('Giờ mở cửa và giá vé tham quan')" class="px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border border-museum-border text-xs font-semibold text-museum-navy whitespace-nowrap shrink-0 transition">
+              🕒 Giờ mở cửa & Giá vé
+            </button>
+          </div>
+
+          <!-- Input Form -->
+          <form onsubmit="handleChatSubmit(event)" class="p-3 bg-white border-t border-museum-border flex items-center gap-2">
+            <input type="text" id="chat-input" placeholder="Nhập câu hỏi về hiện vật, lịch sử..." class="flex-1 bg-museum-ivory border border-museum-border rounded-2xl px-3.5 py-2.5 text-sm text-museum-navy focus:outline-none focus:ring-2 focus:ring-museum-bronze" />
+            <button type="submit" class="w-11 h-11 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-95 text-white flex items-center justify-center shrink-0 shadow-sm transition">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- SUB-VIEW 3B: QUICK QUIZ GAME (8 QUESTIONS, 15S TIMER, CERTIFICATE BADGE) -->
+        <div id="quiz-subview" class="hidden flex-1 flex flex-col bg-museum-card rounded-3xl border border-museum-border shadow-soft p-5">
+          <!-- Start Screen -->
+          <div id="quiz-start-screen" class="my-auto text-center py-3 space-y-4">
+            <div class="w-20 h-20 mx-auto rounded-3xl bg-museum-ivory border-2 border-museum-gold flex items-center justify-center text-museum-bronze shadow-sm">
+              <i data-lucide="award" class="w-10 h-10"></i>
+            </div>
+            <div>
+              <span class="px-3 py-1 rounded-full bg-amber-100 text-museum-navy text-xs font-bold">8 Câu hỏi Trả lời nhanh</span>
+              <h3 class="text-xl font-extrabold text-museum-navy mt-2">Thử thách Nhà Khám Phá Di Sản</h3>
+              <p class="text-sm text-museum-muted mt-1">
+                Trả lời nhanh 8 câu hỏi về Bảo tàng Đà Nẵng (15 giây/câu) để nhận chứng nhận điện tử mang tên bạn!
+              </p>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <div class="p-2.5 rounded-2xl bg-museum-ivory border border-museum-border">
+                <div class="font-extrabold text-museum-bronze text-base">8</div>
+                <div class="text-museum-muted">Câu hỏi</div>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-museum-ivory border border-museum-border">
+                <div class="font-extrabold text-museum-bronze text-base">15s</div>
+                <div class="text-museum-muted">Mỗi câu</div>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-museum-ivory border border-museum-border">
+                <div class="font-extrabold text-museum-bronze text-base">Chứng nhận</div>
+                <div class="text-museum-muted">Danh dự</div>
+              </div>
+            </div>
+            <button onclick="startQuizGame()" class="w-full py-3.5 px-5 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] text-white font-bold text-base shadow-bronze flex items-center justify-center gap-2 transition">
+              <i data-lucide="play" class="w-5 h-5"></i>
+              <span>Bắt đầu thử thách</span>
+            </button>
+          </div>
+
+          <!-- Active Question Screen -->
+          <div id="quiz-active-screen" class="hidden space-y-3.5">
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span id="quiz-progress-label" class="px-2.5 py-1 rounded-full bg-museum-ivory text-museum-navy border border-museum-border">Câu 1 / 8</span>
+              <span id="quiz-score-label" class="px-2.5 py-1 rounded-full bg-amber-50 text-museum-bronze border border-amber-200">Điểm: 0</span>
+              <span id="quiz-timer-label" class="px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1">
+                <i data-lucide="timer" class="w-3.5 h-3.5"></i>
+                <span id="quiz-timer-sec">15s</span>
+              </span>
+            </div>
+
+            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div id="quiz-timer-bar" class="h-full bg-gradient-to-r from-museum-gold to-museum-bronze transition-all duration-200" style="width: 100%"></div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-museum-ivory border border-museum-border">
+              <h4 id="quiz-question-text" class="text-base font-bold text-museum-navy leading-snug">Câu hỏi...</h4>
+            </div>
+
+            <div id="quiz-options-container" class="space-y-2"></div>
+
+            <div id="quiz-explanation-box" class="hidden p-3.5 rounded-2xl bg-blue-50/90 border border-blue-200 text-sm text-museum-navy space-y-2 fade-in">
+              <p class="font-bold text-blue-950 flex items-center gap-1.5 text-xs">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-museum-bronze"></i>
+                <span>Giải thích lịch sử:</span>
+              </p>
+              <p id="quiz-explanation-text" class="text-xs leading-relaxed text-slate-700"></p>
+              <button onclick="nextQuizQuestion()" class="w-full py-2.5 rounded-xl bg-museum-navy hover:bg-slate-900 text-white font-bold text-xs transition mt-1">
+                Tiếp tục →
+              </button>
+            </div>
+          </div>
+
+          <!-- Completion Certificate / Badge Screen -->
+          <div id="quiz-summary-screen" class="hidden my-auto text-center py-2 space-y-3.5 fade-in">
+            <div class="p-4 rounded-3xl bg-gradient-to-b from-museum-navy to-[#131926] text-white border-2 border-museum-gold shadow-lg space-y-2">
+              <div class="w-20 h-20 mx-auto">
+                <svg viewBox="0 0 120 120" class="w-full h-full">
+                  <circle cx="60" cy="60" r="54" fill="#F8F5F0" stroke="#D4A359" stroke-width="4"/>
+                  <circle cx="60" cy="60" r="45" fill="#1C2536" stroke="#B85D3B" stroke-width="2.5" stroke-dasharray="4 3"/>
+                  <polygon points="60,22 69,43 92,45 74,60 80,82 60,70 40,82 46,60 28,45 51,43" fill="#D4A359"/>
+                  <rect x="20" y="84" width="80" height="18" rx="9" fill="#B85D3B"/>
+                  <text x="60" y="96" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="bold">ĐÀ NẴNG HERITAGE</text>
+                </svg>
+              </div>
+              <p class="text-[10px] uppercase tracking-widest text-museum-gold font-bold">Chứng nhận Danh dự Bảo tàng Đà Nẵng</p>
+              <h3 class="text-lg font-extrabold text-white">Nhà Khám Phá Di Sản Đà Nẵng</h3>
+              <p id="quiz-winner-name" class="text-base font-bold text-museum-gold">Chúc mừng Quý khách!</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div class="p-3 rounded-2xl bg-museum-ivory border border-museum-border">
+                <div id="quiz-final-score" class="text-2xl font-extrabold text-museum-bronze">0</div>
+                <div class="text-xs text-museum-muted">Tổng điểm</div>
+              </div>
+              <div class="p-3 rounded-2xl bg-museum-ivory border border-museum-border">
+                <div id="quiz-final-correct" class="text-2xl font-extrabold text-emerald-600">0/8</div>
+                <div class="text-xs text-museum-muted">Câu đúng</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button onclick="startQuizGame()" class="flex-1 py-3 px-3 rounded-2xl bg-museum-ivory hover:bg-amber-100/70 border border-museum-border text-museum-navy font-bold text-xs transition">
+                Chơi lại
+              </button>
+              <button onclick="shareQuizScore()" class="flex-1 py-3 px-3 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] text-white font-bold text-xs shadow-sm transition">
+                Chia sẻ thành tích
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- =================================================================== -->
+      <!-- TAB 4: BẢN ĐỒ ĐỊNH VỊ & LỘ TRÌNH (3-FLOOR MAP & WAYFINDING)         -->
+      <!-- =================================================================== -->
+      <main id="tab-map" class="tab-content hidden p-4 space-y-4 fade-in">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-extrabold text-museum-navy" data-i18n="map_title">Bản đồ Định vị & Lộ trình</h2>
+            <p class="text-xs text-museum-muted" data-i18n="map_subtitle">Sơ đồ mặt bằng 3 tầng & dẫn đường từng bước</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-xl bg-museum-navy text-museum-gold text-xs font-bold">3 Tầng</span>
+        </div>
+
+        <!-- Route Planner Card ("Định vị lộ trình đường đi") -->
+        <div class="bg-museum-card rounded-3xl p-4 border border-museum-border shadow-soft space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-extrabold text-museum-navy flex items-center gap-1.5">
+              <i data-lucide="navigation" class="w-4 h-4 text-museum-bronze"></i>
+              <span data-i18n="wayfinding_title">Định vị lộ trình đường đi</span>
+            </h3>
+            <button onclick="swapWayfindingPoints()" class="px-2 py-1 rounded-lg bg-museum-ivory hover:bg-amber-100/70 text-museum-bronze border border-museum-border text-xs font-bold flex items-center gap-1 transition">
+              <i data-lucide="arrow-up-down" class="w-3 h-3"></i>
+              <span>Đảo chiều</span>
+            </button>
+          </div>
+
+          <div class="space-y-2">
+            <div>
+              <label class="block text-[11px] font-bold text-museum-muted uppercase tracking-wider mb-1">
+                Điểm hiện tại của bạn
+              </label>
+              <select id="map-origin-select" class="w-full bg-museum-ivory border border-museum-border rounded-xl px-3 py-2.5 text-sm font-semibold text-museum-navy focus:outline-none focus:ring-2 focus:ring-museum-bronze"></select>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-museum-muted uppercase tracking-wider mb-1">
+                Điểm muốn đến
+              </label>
+              <select id="map-dest-select" class="w-full bg-museum-ivory border border-museum-border rounded-xl px-3 py-2.5 text-sm font-semibold text-museum-navy focus:outline-none focus:ring-2 focus:ring-museum-bronze"></select>
+            </div>
+
+            <button onclick="calculateAndDrawRoute()" class="w-full py-3 px-4 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-[0.99] text-white font-bold text-sm shadow-bronze flex items-center justify-center gap-2 transition">
+              <i data-lucide="route" class="w-4 h-4"></i>
+              <span data-i18n="find_route_btn">Tìm đường đi</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Floor Switcher (Tầng 3, Tầng 2, Tầng 1) -->
+        <div class="grid grid-cols-3 gap-1.5 bg-museum-card p-1.5 rounded-2xl border border-museum-border shadow-soft">
+          <button onclick="selectMapFloor(3)" id="map-floor-btn-3" class="py-2 px-1.5 rounded-xl bg-museum-navy text-white font-bold text-xs transition">
+            Tầng 3 <span class="block text-[10px] font-normal text-museum-gold">Điểm bắt đầu</span>
+          </button>
+          <button onclick="selectMapFloor(2)" id="map-floor-btn-2" class="py-2 px-1.5 rounded-xl text-museum-muted hover:text-museum-navy font-bold text-xs transition">
+            Tầng 2 <span class="block text-[10px] font-normal">Văn hóa & Trầm</span>
+          </button>
+          <button onclick="selectMapFloor(1)" id="map-floor-btn-1" class="py-2 px-1.5 rounded-xl text-museum-muted hover:text-museum-navy font-bold text-xs transition">
+            Tầng 1 <span class="block text-[10px] font-normal">Cổ vật & Lối vào</span>
+          </button>
+        </div>
+
+        <!-- Interactive SVG Floor Plan Map -->
+        <div class="bg-museum-card rounded-3xl p-3.5 border border-museum-border shadow-soft space-y-2.5">
+          <div class="flex items-center justify-between gap-1 px-0.5">
+            <div class="min-w-0">
+              <h4 id="map-current-floor-title" class="text-xs font-extrabold text-museum-navy truncate">Sơ đồ Mặt bằng Tầng 3</h4>
+              <p class="text-[10px] text-museum-muted">Chạm vào ghim trên bản đồ để dẫn đường tới đó</p>
+            </div>
+            <div id="route-floor-switcher" class="hidden flex gap-1 shrink-0"></div>
+          </div>
+
+          <div id="svg-floorplan-wrapper" class="w-full rounded-2xl overflow-hidden border border-museum-border bg-museum-ivory"></div>
+
+          <!-- Legend -->
+          <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] font-semibold text-museum-muted pt-1 border-t border-museum-border">
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Xuất phát</span>
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span> Đích đến</span>
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-museum-bronze"></span> Khu trưng bày</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-1 bg-orange-600 rounded"></span> Lộ trình</span>
+          </div>
+        </div>
+
+        <!-- Step-by-Step Walking Directions Panel -->
+        <div id="route-instructions-panel" class="hidden bg-museum-card rounded-3xl p-4 border-2 border-museum-bronze shadow-soft space-y-3 fade-in">
+          <div class="flex items-center justify-between border-b border-museum-border pb-2">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-xl bg-museum-ivory text-museum-bronze flex items-center justify-center font-bold">
+                <i data-lucide="footprints" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-extrabold text-museum-navy">Hướng dẫn chỉ đường từng bước</h4>
+                <p id="route-summary-meta" class="text-xs text-emerald-700 font-bold">Ước tính: ~2 phút đi bộ • 45m</p>
+              </div>
+            </div>
+            <button onclick="clearRoute()" class="text-xs font-bold text-museum-muted hover:text-rose-600">Xóa</button>
+          </div>
+          <ol id="route-steps-list" class="space-y-2.5 text-sm"></ol>
+        </div>
+      </main>
+
+      <!-- =================================================================== -->
+      <!-- FIXED 4-TAB BOTTOM NAVIGATION BAR (WITH CENTER CAMERA SCAN BUTTON)  -->
+      <!-- =================================================================== -->
+      <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white/95 backdrop-blur-md border-t border-museum-border shadow-nav z-40 px-1.5 py-1.5">
+        <div class="grid grid-cols-5 items-center">
+          <button onclick="switchTab('info')" id="nav-btn-info" class="nav-tab flex flex-col items-center justify-center py-1 text-museum-bronze font-bold transition">
+            <i data-lucide="landmark" class="w-5 h-5 mb-0.5"></i>
+            <span class="text-[11px]" data-i18n="nav_info">Khám phá</span>
+          </button>
+
+          <button onclick="switchTab('map')" id="nav-btn-map" class="nav-tab flex flex-col items-center justify-center py-1 text-museum-muted hover:text-museum-navy font-semibold transition">
+            <i data-lucide="map" class="w-5 h-5 mb-0.5"></i>
+            <span class="text-[11px]" data-i18n="nav_map">Bản đồ</span>
+          </button>
+
+          <!-- Prominent Center Camera Scanner Button -->
+          <div class="flex flex-col items-center justify-center -mt-6">
+            <button onclick="switchTab('camera')" id="nav-btn-camera" class="w-14 h-14 rounded-full bg-gradient-to-br from-museum-bronze to-museum-navy text-white shadow-bronze border-4 border-white flex items-center justify-center active:scale-95 transition">
+              <i data-lucide="scan-line" class="w-6 h-6 text-museum-gold"></i>
+            </button>
+            <span class="text-[11px] font-extrabold text-museum-navy mt-0.5" data-i18n="nav_scan">Quét AI</span>
+          </div>
+
+          <button onclick="switchTab('chatbot'); switchChatSubtab('chat');" id="nav-btn-chatbot" class="nav-tab flex flex-col items-center justify-center py-1 text-museum-muted hover:text-museum-navy font-semibold transition">
+            <i data-lucide="message-circle-question" class="w-5 h-5 mb-0.5"></i>
+            <span class="text-[11px]" data-i18n="nav_chat">Chatbot</span>
+          </button>
+
+          <button onclick="openQuizMode()" id="nav-btn-quiz" class="nav-tab flex flex-col items-center justify-center py-1 text-museum-muted hover:text-museum-navy font-semibold transition">
+            <i data-lucide="trophy" class="w-5 h-5 mb-0.5"></i>
+            <span class="text-[11px]" data-i18n="nav_quiz">Đố vui</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 1: MÃ QR WEBAPP & TÙY CHỈNH LINK TRIỂN KHAI (QR CODE MODAL)      -->
+    <!-- ===================================================================== -->
+    <div id="qr-modal" class="hidden fixed inset-0 z-50 bg-museum-navy/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-[380px] rounded-3xl p-5 shadow-2xl border border-museum-border text-center space-y-3.5 fade-in max-h-[92vh] overflow-y-auto">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-1 rounded-full bg-museum-ivory text-museum-bronze text-xs font-extrabold border border-museum-border">QR Webapp Link</span>
+          <button onclick="closeQrModal()" class="p-1.5 rounded-xl hover:bg-slate-100 text-slate-500">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-extrabold text-museum-navy">Mã QR Truy Cập Trên Google</h3>
+          <p class="text-xs text-museum-muted mt-1">
+            Quét bằng Camera điện thoại hoặc Google Lens để mở trực tiếp Webapp trên trình duyệt Google Chrome
+          </p>
+        </div>
+
+        <!-- QR Code Canvas Container -->
+        <div class="p-3.5 bg-museum-ivory rounded-2xl border-2 border-dashed border-museum-gold flex flex-col items-center justify-center">
+          <div id="qrcode-container" class="bg-white p-2.5 rounded-xl shadow-sm"></div>
+          <p id="qr-url-display" class="text-[11px] text-museum-muted mt-2 break-all line-clamp-2 font-mono"></p>
+        </div>
+
+        <!-- Editable Public Deployment Link Box -->
+        <div class="text-left bg-museum-ivory/70 p-3 rounded-2xl border border-museum-border">
+          <label class="block text-[11px] font-bold text-museum-navy mb-1">
+            Dán link công khai (Vercel / Firebase / GitHub Pages):
+          </label>
+          <div class="flex gap-1.5">
+            <input type="text" id="qr-custom-url-input" placeholder="https://baotangdanang-guide.vercel.app" class="flex-1 bg-white border border-museum-border rounded-xl px-2.5 py-1.5 text-xs text-museum-navy focus:outline-none focus:ring-1 focus:ring-museum-bronze" />
+            <button onclick="regenerateCustomQr()" class="px-3 py-1.5 rounded-xl bg-museum-navy text-white text-xs font-bold hover:bg-slate-800 transition shrink-0">Tạo QR</button>
+          </div>
+        </div>
+
+        <!-- Download PNG & Copy Link -->
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="downloadQrPng()" class="py-3 px-3 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Tải ảnh mã QR (PNG)</span>
+          </button>
+          <button onclick="copyCurrentWebappLink()" class="py-3 px-3 rounded-2xl bg-museum-ivory hover:bg-amber-100/70 border border-museum-border text-museum-navy font-bold text-xs flex items-center justify-center gap-1.5 transition">
+            <i data-lucide="link" class="w-4 h-4 text-museum-bronze"></i>
+            <span>Sao chép liên kết</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 2: HỖ TRỢ KHÁCH HÀNG (CUSTOMER SUPPORT MODAL)                   -->
+    <!-- ===================================================================== -->
+    <div id="support-modal" class="hidden fixed inset-0 z-50 bg-museum-navy/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-[410px] rounded-t-3xl sm:rounded-3xl p-5 shadow-2xl border border-museum-border space-y-4 fade-in max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between border-b border-museum-border pb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-xl bg-museum-ivory text-museum-bronze flex items-center justify-center">
+              <i data-lucide="headset" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-museum-navy">Hỗ trợ Khách tham quan</h3>
+              <p class="text-[11px] text-museum-muted">Bảo tàng Đà Nẵng • 31 Trần Phú</p>
+            </div>
+          </div>
+          <button onclick="closeSupportModal()" class="p-1.5 rounded-xl hover:bg-slate-100 text-slate-500">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Quick Museum Service Info -->
+        <div class="space-y-2.5 text-sm">
+          <div class="p-3 rounded-2xl bg-museum-ivory border border-museum-border flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="phone-call" class="w-4 h-4 text-museum-bronze shrink-0"></i>
+              <div>
+                <div class="text-xs font-bold text-museum-navy">Hotline Quầy Lễ tân</div>
+                <div class="text-sm font-extrabold text-museum-bronze">0236 3886236</div>
+              </div>
+            </div>
+            <button onclick="copyTextToClipboard('02363886236', 'Đã sao chép Hotline: 0236 3886236')" class="px-3 py-1.5 rounded-xl bg-white border border-museum-border text-xs font-bold text-museum-navy hover:bg-amber-50 transition">
+              Sao chép
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="p-3 rounded-2xl bg-museum-ivory border border-museum-border">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-museum-navy mb-1">
+                <i data-lucide="clock" class="w-3.5 h-3.5 text-museum-bronze"></i>
+                <span>Giờ mở cửa</span>
+              </div>
+              <p class="text-xs text-slate-700">08:00 – 17:00 hằng ngày (Mở xuyên trưa)</p>
+            </div>
+
+            <div class="p-3 rounded-2xl bg-museum-ivory border border-museum-border">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-museum-navy mb-1">
+                <i data-lucide="ticket" class="w-3.5 h-3.5 text-museum-bronze"></i>
+                <span>Thông tin vé</span>
+              </div>
+              <p class="text-xs text-slate-700">20.000đ/lượt • Miễn phí người Đà Nẵng, HSSV</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-museum-ivory border border-museum-border flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="wifi" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <div>
+                <div class="text-xs font-bold text-museum-navy">Wi-Fi Miễn phí toàn khu vực</div>
+                <div class="text-xs text-slate-600 font-mono">SSID: DaNangMuseum_FreeWiFi (Không mật khẩu)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visitor Feedback Form -->
+        <form onsubmit="submitVisitorFeedback(event)" class="space-y-2.5 pt-2 border-t border-museum-border">
+          <label class="block text-xs font-extrabold uppercase tracking-wide text-museum-navy">
+            Gửi góp ý / Yêu cầu hỗ trợ tại chỗ
+          </label>
+          <textarea id="feedback-textarea" rows="2" placeholder="Nhập góp ý trải nghiệm tham quan hoặc yêu cầu hướng dẫn viên..." class="w-full bg-museum-ivory border border-museum-border rounded-2xl p-3 text-sm text-museum-navy focus:outline-none focus:ring-2 focus:ring-museum-bronze"></textarea>
+          <button type="submit" class="w-full py-3 rounded-2xl bg-museum-navy hover:bg-slate-900 text-white font-bold text-sm transition">
+            Gửi phản hồi tới Bảo tàng
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 3: AUDIO GUIDE THUYẾT MINH TỰ ĐỘNG (WEB SPEECH API TTS)         -->
+    <!-- ===================================================================== -->
+    <div id="audio-modal" class="hidden fixed inset-0 z-50 bg-museum-navy/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-[410px] rounded-t-3xl sm:rounded-3xl p-5 shadow-2xl border border-museum-border space-y-3.5 fade-in max-h-[90vh] flex flex-col">
+        <div class="flex items-center justify-between border-b border-museum-border pb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-museum-ivory text-museum-bronze flex items-center justify-center">
+              <i data-lucide="headphones" class="w-4 h-4"></i>
+            </span>
+            <div>
+              <h3 class="text-sm font-extrabold text-museum-navy">Audio Guide Tự Động</h3>
+              <p id="audio-lang-badge" class="text-[11px] text-museum-bronze font-bold">Ngôn ngữ: Tiếng Việt</p>
+            </div>
+          </div>
+          <button onclick="closeAudioModal()" class="p-1.5 rounded-xl hover:bg-slate-100 text-slate-500">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 bg-museum-ivory p-3 rounded-2xl border border-museum-border">
+          <div id="audio-artwork-svg" class="w-16 h-16 rounded-xl bg-white border border-museum-border p-1.5 shrink-0 flex items-center justify-center"></div>
+          <div class="min-w-0">
+            <span id="audio-floor-tag" class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-museum-navy">Tầng 3</span>
+            <h4 id="audio-title" class="text-sm font-extrabold text-museum-navy truncate mt-0.5">Tiêu đề thuyết minh</h4>
+            <p id="audio-subtitle" class="text-xs text-museum-muted truncate">Bảo tàng Đà Nẵng</p>
+          </div>
+        </div>
+
+        <!-- Audio Controls & Progress Bar -->
+        <div class="bg-museum-navy text-white rounded-2xl p-4 space-y-3">
+          <div class="space-y-1">
+            <div class="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
+              <div id="audio-progress-bar" class="h-full bg-museum-gold transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-[11px] text-slate-300 font-mono">
+              <span id="audio-time-current">00:00</span>
+              <span id="audio-status-pill" class="text-museum-gold">Đang phát...</span>
+              <span id="audio-time-total">00:40</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between gap-2">
+            <!-- Speed Buttons (0.8x, 1.0x, 1.25x) -->
+            <div class="flex items-center gap-1 bg-slate-800 p-1 rounded-xl text-xs font-bold">
+              <button onclick="setAudioSpeed(0.8)" id="speed-btn-0.8" class="speed-btn px-2 py-1 rounded-lg text-slate-300 hover:text-white">0.8x</button>
+              <button onclick="setAudioSpeed(1.0)" id="speed-btn-1" class="speed-btn px-2 py-1 rounded-lg bg-museum-bronze text-white">1.0x</button>
+              <button onclick="setAudioSpeed(1.25)" id="speed-btn-1.25" class="speed-btn px-2 py-1 rounded-lg text-slate-300 hover:text-white">1.25x</button>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <button onclick="restartAudioGuide()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition" title="Nghe lại">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+              </button>
+              <button onclick="togglePlayPauseAudio()" id="audio-play-pause-btn" class="px-4 py-2.5 rounded-xl bg-museum-gold hover:bg-amber-400 text-museum-navy font-extrabold text-xs flex items-center gap-1.5 shadow-md transition">
+                <i data-lucide="pause" class="w-4 h-4"></i>
+                <span id="audio-play-label">Tạm dừng</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Readable Transcript -->
+        <div class="flex-1 overflow-y-auto bg-museum-ivory rounded-2xl p-3.5 border border-museum-border space-y-1">
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-museum-bronze flex items-center gap-1">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Nội dung thuyết minh (Transcript)</span>
+          </p>
+          <p id="audio-transcript-text" class="text-sm text-museum-navy leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 4: CHI TIẾT HIỆN VẬT (ARTIFACT DETAIL MODAL)                    -->
+    <!-- ===================================================================== -->
+    <div id="artifact-modal" class="hidden fixed inset-0 z-50 bg-museum-navy/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-[410px] rounded-t-3xl sm:rounded-3xl p-5 shadow-2xl border border-museum-border space-y-3.5 fade-in max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between">
+          <span id="modal-art-floor" class="px-3 py-1 rounded-full bg-museum-ivory text-museum-bronze border border-museum-border text-xs font-extrabold">Tầng 3</span>
+          <button onclick="closeArtifactModal()" class="p-1.5 rounded-xl hover:bg-slate-100 text-slate-500">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div id="modal-art-svg" class="w-full h-40 rounded-2xl bg-museum-ivory border border-museum-border p-3 flex items-center justify-center"></div>
+
+        <div>
+          <h3 id="modal-art-title" class="text-lg font-extrabold text-museum-navy leading-snug">Tên hiện vật</h3>
+          <p id="modal-art-meta" class="text-xs font-bold text-museum-bronze mt-0.5">Niên đại</p>
+        </div>
+
+        <p id="modal-art-desc" class="text-sm text-slate-700 leading-relaxed"></p>
+
+        <div class="grid grid-cols-3 gap-2 pt-1">
+          <button onclick="modalActionChat()" class="py-2.5 px-2 rounded-2xl bg-museum-navy hover:bg-slate-900 text-white font-bold text-xs flex flex-col items-center gap-1 transition">
+            <i data-lucide="message-square" class="w-4 h-4 text-museum-gold"></i>
+            <span>Hỏi Chatbot</span>
+          </button>
+          <button onclick="modalActionAudio()" class="py-2.5 px-2 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] text-white font-bold text-xs flex flex-col items-center gap-1 transition">
+            <i data-lucide="headphones" class="w-4 h-4"></i>
+            <span>Nghe Audio</span>
+          </button>
+          <button onclick="modalActionMap()" class="py-2.5 px-2 rounded-2xl bg-museum-ivory hover:bg-amber-100/70 border border-museum-border text-museum-navy font-bold text-xs flex flex-col items-center gap-1 transition">
+            <i data-lucide="map-pin" class="w-4 h-4 text-museum-bronze"></i>
+            <span>Chỉ đường</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 5: ĐỔI NHANH NGÔN NGỮ (QUICK LANGUAGE MODAL)                    -->
+    <!-- ===================================================================== -->
+    <div id="lang-modal" class="hidden fixed inset-0 z-50 bg-museum-navy/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-[360px] rounded-3xl p-5 shadow-2xl border border-museum-border space-y-3 fade-in max-h-[82vh] flex flex-col">
+        <div class="flex items-center justify-between border-b border-museum-border pb-2.5">
+          <h3 class="text-base font-extrabold text-museum-navy flex items-center gap-2">
+            <i data-lucide="globe" class="w-4 h-4 text-museum-bronze"></i>
+            <span>Chọn ngôn ngữ / Language</span>
+          </h3>
+          <button onclick="closeLangModal()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-500">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div id="quick-lang-list" class="overflow-y-auto space-y-1.5 pr-1"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast-banner" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-[60] px-4 py-2.5 rounded-2xl bg-museum-navy/95 text-white text-xs font-semibold shadow-xl border border-museum-gold/50 flex items-center gap-2 max-w-[90vw]">
+      <i data-lucide="check-circle" class="w-4 h-4 text-museum-gold shrink-0"></i>
+      <span id="toast-message">Thông báo</span>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- SELF-CONTAINED JAVASCRIPT APPLICATION LOGIC                             -->
+  <!-- ======================================================================= -->
+  <script>
+    // =========================================================================
+    // 1. 15 WORLD LANGUAGES & UI TRANSLATIONS
+    // =========================================================================
+    const LANGUAGES = [
+      { code: 'vi', flag: '🇻🇳', name: 'Tiếng Việt', speechLang: 'vi-VN' },
+      { code: 'en', flag: '🇺🇸', name: 'English', speechLang: 'en-US' },
+      { code: 'ko', flag: '🇰🇷', name: '한국어 (Korean)', speechLang: 'ko-KR' },
+      { code: 'ja', flag: '🇯🇵', name: '日本語 (Japanese)', speechLang: 'ja-JP' },
+      { code: 'zh', flag: '🇨🇳', name: '中文 (Chinese)', speechLang: 'zh-CN' },
+      { code: 'fr', flag: '🇫🇷', name: 'Français (French)', speechLang: 'fr-FR' },
+      { code: 'es', flag: '🇪🇸', name: 'Español (Spanish)', speechLang: 'es-ES' },
+      { code: 'de', flag: '🇩🇪', name: 'Deutsch (German)', speechLang: 'de-DE' },
+      { code: 'th', flag: '🇹🇭', name: 'ภาษาไทย (Thai)', speechLang: 'th-TH' },
+      { code: 'ru', flag: '🇷🇺', name: 'Русский (Russian)', speechLang: 'ru-RU' },
+      { code: 'id', flag: '🇮🇩', name: 'Bahasa Indonesia', speechLang: 'id-ID' },
+      { code: 'hi', flag: '🇮🇳', name: 'हिन्दी (Hindi)', speechLang: 'hi-IN' },
+      { code: 'ar', flag: '🇸🇦', name: 'العربية (Arabic)', speechLang: 'ar-SA' },
+      { code: 'pt', flag: '🇵🇹', name: 'Português (Portuguese)', speechLang: 'pt-PT' },
+      { code: 'it', flag: '🇮🇹', name: 'Italiano (Italian)', speechLang: 'it-IT' }
+    ];
+
+    const UI_STRINGS = {
+      vi: {
+        greeting: 'Xin chào, {name}!',
+        qr_btn: 'Mã QR Webapp',
+        welcome_title: 'Chào mừng đến với Bảo tàng Đà Nẵng',
+        select_lang_label: 'Chọn ngôn ngữ / Select Language',
+        visitor_name_label: 'Nhập tên của bạn / Enter your name',
+        quick_suggest: 'Gợi ý:',
+        start_tour_btn: 'Bắt đầu tham quan / Start Tour',
+        museum_short_title: 'Bảo tàng Đà Nẵng • 31 Trần Phú',
+        open_status: '08:00 – 17:00',
+        hero_title: 'Khám phá Dòng chảy Lịch sử & Văn hóa Đà Nẵng',
+        hero_desc: 'Hành trình tham quan thông minh qua 3 tầng trưng bày với trợ lý AI, thuyết minh tự động đa ngôn ngữ và bản đồ định vị trực quan.',
+        quick_scan: 'Quét hiện vật',
+        quick_map: 'Tìm đường đi',
+        quick_support: 'Hỗ trợ khách',
+        general_info_title: 'Thông tin Bảo tàng Đà Nẵng',
+        address_label: 'Địa chỉ',
+        hours_label: 'Giờ mở cửa',
+        floors_route_title: 'Lộ trình tham quan 3 Tầng',
+        floors_route_sub: 'Hành trình chuẩn: Tầng 3 → Tầng 2 → Tầng 1',
+        featured_artifacts_title: 'Hiện vật tiêu biểu',
+        scanner_title: 'Máy ảnh Quét Di tích',
+        scanner_subtitle: 'Hướng camera vào hiện vật hoặc mã QR trưng bày',
+        mode_chat: 'Trợ lý Chatbot',
+        mode_quiz: 'Đố vui có thưởng',
+        map_title: 'Bản đồ Định vị & Lộ trình',
+        map_subtitle: 'Sơ đồ mặt bằng 3 tầng & dẫn đường từng bước',
+        wayfinding_title: 'Định vị lộ trình đường đi',
+        find_route_btn: 'Tìm đường đi',
+        nav_info: 'Khám phá',
+        nav_map: 'Bản đồ',
+        nav_scan: 'Quét AI',
+        nav_chat: 'Chatbot',
+        nav_quiz: 'Đố vui',
+        route_to_floor: 'Chỉ đường tới tầng này',
+        listen_floor_audio: 'Nghe thuyết minh tầng'
+      },
+      en: {
+        greeting: 'Hello, {name}!',
+        qr_btn: 'Webapp QR',
+        welcome_title: 'Welcome to Da Nang Museum',
+        select_lang_label: 'Select Language',
+        visitor_name_label: 'Enter your name',
+        quick_suggest: 'Suggest:',
+        start_tour_btn: 'Start Tour',
+        museum_short_title: 'Da Nang Museum • 31 Tran Phu',
+        open_status: '08:00 – 17:00',
+        hero_title: 'Discover the History & Culture of Da Nang',
+        hero_desc: 'Smart 3-floor exhibition journey with AI assistant, multilingual audio guide, and interactive indoor wayfinding.',
+        quick_scan: 'Scan Artifact',
+        quick_map: 'Wayfinding',
+        quick_support: 'Support',
+        general_info_title: 'Da Nang Museum Overview',
+        address_label: 'Address',
+        hours_label: 'Opening Hours',
+        floors_route_title: '3-Floor Exhibition Guide',
+        floors_route_sub: 'Recommended route: Floor 3 → Floor 2 → Floor 1',
+        featured_artifacts_title: 'Featured Artifacts',
+        scanner_title: 'Camera Artifact Scanner',
+        scanner_subtitle: 'Point camera at an exhibit or QR label',
+        mode_chat: 'AI Chatbot',
+        mode_quiz: 'Quick Quiz',
+        map_title: '3-Floor Map & Wayfinding',
+        map_subtitle: 'Interactive floor plans & step-by-step directions',
+        wayfinding_title: 'Indoor Route Planner',
+        find_route_btn: 'Find Route',
+        nav_info: 'Explore',
+        nav_map: 'Map',
+        nav_scan: 'AI Scan',
+        nav_chat: 'Chatbot',
+        nav_quiz: 'Quiz',
+        route_to_floor: 'Route to this floor',
+        listen_floor_audio: 'Floor Audio Guide'
+      },
+      ko: {
+        greeting: '안녕하세요, {name}님!',
+        qr_btn: '웹앱 QR',
+        welcome_title: '다낭 박물관에 오신 것을 환영합니다',
+        select_lang_label: '언어 선택',
+        visitor_name_label: '방문객 성함 입력',
+        quick_suggest: '추천:',
+        start_tour_btn: '관람 시작하기',
+        museum_short_title: '다낭 박물관 • 31 Tran Phu',
+        open_status: '08:00 – 17:00',
+        hero_title: '다낭의 역사와 문화를 탐험하세요',
+        hero_desc: 'AI 도슨트, 다국어 오디오 가이드 및 실내 길찾기로 3개 층 전시를 스마트하게 관람하세요.',
+        quick_scan: '유물 스캔',
+        quick_map: '길찾기',
+        quick_support: '고객 지원',
+        general_info_title: '다낭 박물관 정보',
+        address_label: '주소',
+        hours_label: '운영 시간',
+        floors_route_title: '3개 층 관람 안내',
+        floors_route_sub: '추천 동선: 3층 → 2층 → 1층',
+        featured_artifacts_title: '주요 전시 유물',
+        scanner_title: '유물 스캐너',
+        scanner_subtitle: '유물이나 QR 코드에 카메라를 비춰주세요',
+        mode_chat: 'AI 챗봇',
+        mode_quiz: '스피드 퀴즈',
+        map_title: '3층 지도 및 길찾기',
+        map_subtitle: '실내 평면도 및 단계별 경로 안내',
+        wayfinding_title: '실내 경로 탐색',
+        find_route_btn: '경로 찾기',
+        nav_info: '탐색',
+        nav_map: '지도',
+        nav_scan: 'AI 스캔',
+        nav_chat: '챗봇',
+        nav_quiz: '퀴즈',
+        route_to_floor: '이 층으로 길찾기',
+        listen_floor_audio: '층별 오디오 가이드'
+      },
+      ja: {
+        greeting: 'こんにちは、{name}様！',
+        qr_btn: 'WebアプリQR',
+        welcome_title: 'ダナン博物館へようこそ',
+        select_lang_label: '言語を選択',
+        visitor_name_label: 'お名前を入力',
+        quick_suggest: '候補:',
+        start_tour_btn: '見学を始める',
+        museum_short_title: 'ダナン博物館 • 31 Tran Phu',
+        open_status: '08:00 – 17:00',
+        hero_title: 'ダナンの歴史と文化の流れを発見',
+        hero_desc: 'AIガイド、多言語音声ガイド、館内ナビゲーションで3フロアの展示をスマートに体験。',
+        quick_scan: '展示物スキャン',
+        quick_map: 'ルート案内',
+        quick_support: 'サポート',
+        general_info_title: 'ダナン博物館の基本情報',
+        address_label: '所在地',
+        hours_label: '開館時間',
+        floors_route_title: '3フロア見学ガイド',
+        floors_route_sub: '推奨ルート: 3階 → 2階 → 1階',
+        featured_artifacts_title: '代表的な展示品',
+        scanner_title: '展示品スキャナー',
+        scanner_subtitle: '展示品またはQRコードにカメラを向けてください',
+        mode_chat: 'AIチャット',
+        mode_quiz: '早押しクイズ',
+        map_title: '館内マップ＆ルート案内',
+        map_subtitle: '3フロア平面図とステップ案内',
+        wayfinding_title: '館内ルート検索',
+        find_route_btn: 'ルートを検索',
+        nav_info: '案内',
+        nav_map: '地図',
+        nav_scan: 'AIスキャン',
+        nav_chat: 'チャット',
+        nav_quiz: 'クイズ',
+        route_to_floor: 'この階へ案内',
+        listen_floor_audio: 'フロア音声ガイド'
+      },
+      zh: {
+        greeting: '您好，{name}！',
+        qr_btn: '网页二维码',
+        welcome_title: '欢迎来到岘港博物馆',
+        select_lang_label: '选择语言',
+        visitor_name_label: '请输入您的姓名',
+        quick_suggest: '推荐:',
+        start_tour_btn: '开始参观',
+        museum_short_title: '岘港博物馆 • 31 Tran Phu',
+        open_status: '08:00 – 17:00',
+        hero_title: '探索岘港历史与文化长河',
+        hero_desc: '通过AI助手、多语言语音导览和室内导航，开启三层展厅的智慧参观之旅。',
+        quick_scan: '扫描文物',
+        quick_map: '路线导航',
+        quick_support: '游客服务',
+        general_info_title: '岘港博物馆概况',
+        address_label: '地址',
+        hours_label: '开放时间',
+        floors_route_title: '三层参观指南',
+        floors_route_sub: '建议路线：3楼 → 2楼 → 1楼',
+        featured_artifacts_title: '馆藏精品文物',
+        scanner_title: '文物扫描仪',
+        scanner_subtitle: '将摄像头对准展品或二维码',
+        mode_chat: 'AI智能问答',
+        mode_quiz: '快问快答',
+        map_title: '三层地图与路线导航',
+        map_subtitle: '平面图与分步步行指引',
+        wayfinding_title: '室内路线规划',
+        find_route_btn: '查找路线',
+        nav_info: '探索',
+        nav_map: '地图',
+        nav_scan: 'AI扫描',
+        nav_chat: '问答',
+        nav_quiz: '闯关',
+        route_to_floor: '导航至该楼层',
+        listen_floor_audio: '收听楼层讲解'
+      },
+      fr: {
+        greeting: 'Bonjour, {name} !',
+        qr_btn: 'Code QR Web',
+        welcome_title: 'Bienvenue au Musée de Da Nang',
+        select_lang_label: 'Choisir la langue',
+        visitor_name_label: 'Entrez votre nom',
+        quick_suggest: 'Suggestions:',
+        start_tour_btn: 'Commencer la visite',
+        museum_short_title: 'Musée de Da Nang • 31 Tran Phu',
+        open_status: '08:00 – 17:00',
+        hero_title: 'Découvrez l’Histoire et la Culture de Da Nang',
+        hero_desc: 'Parcours intelligent sur 3 étages avec assistant IA, audioguide multilingue et orientation interactive.',
+        quick_scan: 'Scanner',
+        quick_map: 'Itinéraire',
+        quick_support: 'Assistance',
+        general_info_title: 'Informations Générales',
+        address_label: 'Adresse',
+        hours_label: 'Horaires',
+        floors_route_title: 'Guide des 3 Étages',
+        floors_route_sub: 'Itinéraire conseillé : 3e → 2e → 1er étage',
+        featured_artifacts_title: 'Œuvres Majeures',
+        scanner_title: 'Scanner d’Artéfacts',
+        scanner_subtitle: 'Pointez la caméra vers un objet ou code QR',
+        mode_chat: 'Chatbot IA',
+        mode_quiz: 'Jeu Quiz',
+        map_title: 'Plan 3 Étages & Orientation',
+        map_subtitle: 'Plans interactifs et guidage pas à pas',
+        wayfinding_title: 'Calculateur d’Itinéraire',
+        find_route_btn: 'Trouver le chemin',
+        nav_info: 'Explorer',
+        nav_map: 'Plan',
+        nav_scan: 'Scan IA',
+        nav_chat: 'Chatbot',
+        nav_quiz: 'Quiz',
+        route_to_floor: 'Aller à cet étage',
+        listen_floor_audio: 'Audioguide étage'
+      }
+    };
+
+    // =========================================================================
+    // 2. BESPOKE SVG ILLUSTRATIONS & MUSEUM DATA (3 FLOORS + 8 REAL ARTIFACTS)
+    // =========================================================================
+    function getSvgArtwork(type) {
+      const svgs = {
+        floor3: `
+          <svg viewBox="0 0 320 105" class="w-full h-full rounded-xl">
+            <rect width="320" height="105" fill="#1C2536"/>
+            <path d="M0 78 Q80 40 165 68 T320 52 L320 105 L0 105 Z" fill="#2B374E"/>
+            <rect x="20" y="72" width="280" height="33" fill="#3B4963"/>
+            <!-- 1858 Dien Hai Cannon -->
+            <g transform="translate(72, 38)">
+              <rect x="10" y="22" width="44" height="11" rx="3" fill="#B85D3B"/>
+              <path d="M8 14 L64 8 L66 19 L8 23 Z" fill="#D4A359"/>
+              <circle cx="24" cy="33" r="9.5" fill="#5A2815" stroke="#D4A359" stroke-width="2"/>
+              <circle cx="46" cy="33" r="9.5" fill="#5A2815" stroke="#D4A359" stroke-width="2"/>
+            </g>
+            <!-- Victory Flag -->
+            <line x1="210" y1="20" x2="210" y2="72" stroke="#D4A359" stroke-width="2.5"/>
+            <polygon points="210,20 250,30 210,40" fill="#B85D3B"/>
+            <circle cx="223" cy="30" r="3.5" fill="#FDE68A"/>
+            <text x="160" y="96" text-anchor="middle" fill="#F8F5F0" font-size="9.5" font-weight="bold">TẦNG 3 • LỊCH SỬ ĐÔ THỊ & CHỨNG TÍCH CHIẾN TRANH</text>
+          </svg>`,
+        floor2: `
+          <svg viewBox="0 0 320 105" class="w-full h-full rounded-xl">
+            <rect width="320" height="105" fill="#3B2318"/>
+            <!-- Co Tu Traditional Roof -->
+            <path d="M40 72 L95 20 L150 72 Z" fill="#B85D3B" stroke="#D4A359" stroke-width="1.5"/>
+            <path d="M72 24 Q95 9 118 24" fill="none" stroke="#F8F5F0" stroke-width="2.5"/>
+            <rect x="65" y="72" width="60" height="16" fill="#5A2815"/>
+            <!-- Antique Lamp & Agarwood -->
+            <g transform="translate(195, 34)">
+              <ellipse cx="32" cy="34" rx="22" ry="13" fill="#D4A359"/>
+              <rect x="18" y="16" width="28" height="8" rx="3" fill="#B85D3B"/>
+              <path d="M32 12 Q24 5 34 -1 Q42 -6 30 -12" fill="none" stroke="#F8F5F0" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <text x="160" y="97" text-anchor="middle" fill="#F8F5F0" font-size="9.5" font-weight="bold">TẦNG 2 • VĂN HÓA CÁC DÂN TỘC & TRẦM HƯƠNG XỨ QUẢNG</text>
+          </svg>`,
+        floor1: `
+          <svg viewBox="0 0 320 105" class="w-full h-full rounded-xl">
+            <rect width="320" height="105" fill="#232B38"/>
+            <rect x="46" y="60" width="54" height="28" rx="3" fill="#475569"/>
+            <rect x="133" y="60" width="54" height="28" rx="3" fill="#475569"/>
+            <rect x="220" y="60" width="54" height="28" rx="3" fill="#475569"/>
+            <!-- Chu Dau Vase -->
+            <ellipse cx="73" cy="45" rx="13" ry="15" fill="#F8F5F0" stroke="#1D4ED8" stroke-width="2"/>
+            <rect x="67" y="25" width="12" height="6" fill="#1D4ED8"/>
+            <!-- Sa Huynh Jade Earring -->
+            <path d="M150 45 A11 11 0 1 1 170 45" fill="none" stroke="#10B981" stroke-width="4" stroke-linecap="round"/>
+            <!-- Champa Kendy -->
+            <circle cx="247" cy="47" r="12" fill="#B85D3B"/>
+            <rect x="243" y="26" width="8" height="11" fill="#D4A359"/>
+            <text x="160" y="98" text-anchor="middle" fill="#F8F5F0" font-size="9.5" font-weight="bold">TẦNG 1 • SƯU TẬP CỔ VẬT CHU ĐẬU, SA HUỲNH & CHAMPA</text>
+          </svg>`,
+        sahuynh: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#ECFDF5"/>
+            <defs>
+              <linearGradient id="jadeSaHuynh" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#34D399"/>
+                <stop offset="50%" stop-color="#059669"/>
+                <stop offset="100%" stop-color="#065F46"/>
+              </linearGradient>
+            </defs>
+            <path d="M44,56 C44,84 96,84 96,56" fill="none" stroke="url(#jadeSaHuynh)" stroke-width="14" stroke-linecap="round"/>
+            <path d="M36,54 L26,40 L42,44 L48,32 L52,50 Z" fill="#059669"/>
+            <circle cx="38" cy="50" r="2" fill="#FEF3C7"/>
+            <path d="M104,54 L114,40 L98,44 L92,32 L88,50 Z" fill="#059669"/>
+            <circle cx="102" cy="50" r="2" fill="#FEF3C7"/>
+            <path d="M70,18 V32 M63,25 H77" stroke="#10B981" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>`,
+        kendy: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#FFF7ED"/>
+            <ellipse cx="70" cy="94" rx="22" ry="6" fill="#78350F"/>
+            <ellipse cx="68" cy="67" rx="27" ry="23" fill="#B85D3B"/>
+            <ellipse cx="63" cy="63" rx="17" ry="14" fill="#D4A359" opacity="0.45"/>
+            <rect x="60" y="26" width="16" height="21" fill="#8C4327"/>
+            <ellipse cx="68" cy="26" rx="14" ry="4" fill="#FDBA74"/>
+            <path d="M92,59 L113,45 L116,51 L93,71 Z" fill="#9A3412"/>
+            <path d="M42,67 Q68,75 94,67" fill="none" stroke="#FDE68A" stroke-width="2" stroke-dasharray="3 3"/>
+          </svg>`,
+        cannon: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#FEF3C7"/>
+            <circle cx="24" cy="92" r="5.5" fill="#1C2536"/>
+            <circle cx="34" cy="92" r="5.5" fill="#334155"/>
+            <polygon points="36,88 104,88 96,65 44,65" fill="#B85D3B"/>
+            <path d="M22,50 L114,40 L117,56 L24,64 Z" fill="#1C2536"/>
+            <line x1="48" y1="47" x2="50" y2="61" stroke="#D4A359" stroke-width="3"/>
+            <line x1="84" y1="43" x2="86" y2="58" stroke="#D4A359" stroke-width="3"/>
+            <circle cx="52" cy="86" r="13" fill="#5A2815" stroke="#D4A359" stroke-width="3"/>
+            <circle cx="88" cy="86" r="13" fill="#5A2815" stroke="#D4A359" stroke-width="3"/>
+          </svg>`,
+        hondadame: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#F0F9FF"/>
+            <circle cx="36" cy="80" r="15" fill="#1C2536" stroke="#94A3B8" stroke-width="3"/>
+            <circle cx="104" cy="80" r="15" fill="#1C2536" stroke="#94A3B8" stroke-width="3"/>
+            <path d="M36,80 L54,55 L76,72 L96,44" fill="none" stroke="#0284C7" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M84,46 L96,46 L88,74 L78,74 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+            <rect x="38" y="47" width="24" height="7.5" rx="3.5" fill="#1C2536"/>
+            <circle cx="99" cy="38" r="5.5" fill="#D4A359" stroke="#0284C7" stroke-width="2"/>
+          </svg>`,
+        ghebau: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#EFF6FF"/>
+            <!-- Sea Waves -->
+            <path d="M12 88 Q35 80 58 88 T104 88 T130 88" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+            <!-- Ghe Bau Hull -->
+            <path d="M22,68 Q70,92 118,68 L108,82 Q70,98 32,82 Z" fill="#B85D3B"/>
+            <!-- Masts & Sails -->
+            <line x1="56" y1="24" x2="56" y2="74" stroke="#1C2536" stroke-width="2.5"/>
+            <polygon points="58,26 84,54 58,64" fill="#F8F5F0" stroke="#D4A359" stroke-width="1.5"/>
+            <line x1="88" y1="32" x2="88" y2="74" stroke="#1C2536" stroke-width="2"/>
+            <polygon points="90,34 110,56 90,64" fill="#FEF3C7" stroke="#D4A359" stroke-width="1.5"/>
+          </svg>`,
+        cotu: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#FEF2F2"/>
+            <path d="M22,56 L70,22 L118,56 Z" fill="#B85D3B" stroke="#D4A359" stroke-width="2"/>
+            <path d="M52,24 Q70,8 88,24" fill="none" stroke="#1C2536" stroke-width="4" stroke-linecap="round"/>
+            <rect x="38" y="56" width="8" height="34" fill="#5A2815"/>
+            <rect x="94" y="56" width="8" height="34" fill="#5A2815"/>
+            <rect x="62" y="52" width="16" height="38" rx="5" fill="#8C4327"/>
+            <circle cx="70" cy="46" r="7.5" fill="#D4A359"/>
+            <rect x="26" y="90" width="88" height="9" rx="3" fill="#1C2536"/>
+          </svg>`,
+        chudau: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#F8F5F0"/>
+            <!-- Chu Dau Vase -->
+            <path d="M36,92 L32,65 Q30,44 44,38 L44,26 L60,26 L60,38 Q74,44 72,65 L68,92 Z" fill="#FFFFFF" stroke="#1E40AF" stroke-width="2"/>
+            <circle cx="52" cy="61" r="8.5" fill="none" stroke="#2563EB" stroke-width="2"/>
+            <circle cx="52" cy="61" r="3.5" fill="#1D4ED8"/>
+            <!-- Lime Pot (Binh Voi) -->
+            <circle cx="96" cy="73" r="18" fill="#A7F3D0" stroke="#047857" stroke-width="2"/>
+            <path d="M82,59 Q96,36 110,59" fill="none" stroke="#059669" stroke-width="5" stroke-linecap="round"/>
+          </svg>`,
+        denco: `
+          <svg viewBox="0 0 140 115" class="w-full h-full">
+            <rect width="140" height="115" rx="16" fill="#FFFBEB"/>
+            <ellipse cx="70" cy="92" rx="25" ry="6.5" fill="#5A2815"/>
+            <rect x="64" y="61" width="12" height="31" fill="#B85D3B"/>
+            <ellipse cx="70" cy="57" rx="21" ry="7.5" fill="#D4A359"/>
+            <path d="M70,22 Q82,40 70,51 Q58,40 70,22 Z" fill="#F59E0B"/>
+            <path d="M70,32 Q76,42 70,48 Q64,42 70,32 Z" fill="#FEF08A"/>
+          </svg>`
+      };
+      return svgs[type] || svgs.cannon;
+    }
+
+    const FLOORS_DATA = [
+      {
+        floor: 3,
+        badge: 'Điểm bắt đầu tham quan',
+        title: 'Tầng 3: Tổng quan Đà Nẵng & Lịch sử Đấu tranh (1858–1975)',
+        desc: 'Tổng quan về thành phố, thiên nhiên và con người Đà Nẵng; Lịch sử Đô thị; Đấu tranh bảo vệ nền độc lập dân tộc (1858–1975) & Đà Nẵng – Chứng tích chiến tranh.',
+        expandedDetails: 'Chuyến tham quan bắt đầu tại Tầng 3 với bức tranh toàn cảnh về địa lý, cảng biển và con người Đà Nẵng, tiếp nối qua hai cuộc kháng chiến hào hùng với bộ sưu tập Súng thần công Thành Điện Hải (1858), Sắc phong triều Nguyễn, Xe Honda Dame và Bom CBU 55.',
+        highlights: ['Thiên nhiên & Con người', 'Lịch sử Đô thị', 'Súng thần công 1858', 'Xe Honda Dame & Bom CBU 55'],
+        svgKey: 'floor3',
+        mapNodeId: 'f3_cannon',
+        audioText: {
+          vi: 'Chào mừng quý khách đến với Tầng 3, điểm bắt đầu hành trình tham quan Bảo tàng Đà Nẵng. Không gian này giới thiệu tổng quan về thiên nhiên, con người, lịch sử đô thị Đà Nẵng và cuộc đấu tranh bảo vệ nền độc lập dân tộc giai đoạn 1858 đến 1975 cùng chuyên đề Đà Nẵng chứng tích chiến tranh.',
+          en: 'Welcome to Floor 3, the starting point of your Da Nang Museum tour. This gallery introduces Da Nang’s nature, people, urban history, and the struggle for national independence from 1858 to 1975 alongside wartime relics.'
+        }
+      },
+      {
+        floor: 2,
+        badge: 'Chặng 2 • Văn hóa & Trầm hương',
+        title: 'Tầng 2: Văn hóa Các Dân tộc & Trầm hương Xứ Quảng',
+        desc: 'Không gian trưng bày Đèn cổ và trầm hương xứ Quảng; Nghiên cứu và phát triển; Văn hóa các dân tộc ít người ở Đà Nẵng (Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor...).',
+        expandedDetails: 'Tầng 2 tôn vinh sắc màu văn hóa cộng đồng các dân tộc thiểu số ở Đà Nẵng như Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor qua kiến trúc Nhà mồ, tượng cổng làng, kèn Tơghêy, cùng bộ sưu tập Đèn cổ và trầm hương quý giá xứ Quảng.',
+        highlights: ['Đèn cổ & Trầm hương', 'Nghiên cứu & Phát triển', 'Tượng cổng làng Cơ Tu', 'Kèn Tơghêy & Ghe bầu'],
+        svgKey: 'floor2',
+        mapNodeId: 'f2_cotu',
+        audioText: {
+          vi: 'Quý khách đang ở Tầng 2 của Bảo tàng Đà Nẵng. Nơi đây trưng bày không gian nghệ thuật Đèn cổ và trầm hương xứ Quảng, khu Nghiên cứu và phát triển, cùng di sản văn hóa đặc sắc của các dân tộc ít người ở Đà Nẵng như Cơ Tu, Xơ Đăng, Giẻ Triêng và Cor.',
+          en: 'You are now on Floor 2 of Da Nang Museum, featuring antique lamps and Quang Nam agarwood, the Research and Development zone, and the rich heritage of ethnic minority groups including the Co Tu, Xo Dang, Gie Trieng, and Cor.'
+        }
+      },
+      {
+        floor: 1,
+        badge: 'Chặng 3 • Sưu tập Cổ vật',
+        title: 'Tầng 1: Không gian Sưu tập Cổ vật Bảo tàng Đà Nẵng',
+        desc: 'Không gian sưu tập cổ vật của Bảo tàng Đà Nẵng bao gồm: Gốm Chu Đậu, Gốm sứ thời Nguyễn, Bình vôi của người Việt, Gốm cổ các tỉnh Trung bộ.',
+        expandedDetails: 'Kết thúc lộ trình tại Tầng 1, du khách chiêm ngưỡng các bảo vật khảo cổ và mỹ thuật cổ truyền: Khuyên tai hai đầu thú văn hóa Sa Huỳnh, Bình gốm Kendy Champa, Gốm hoa lam Chu Đậu, Gốm sứ thời Nguyễn và bộ sưu tập Bình vôi của người Việt.',
+        highlights: ['Gốm Chu Đậu', 'Gốm sứ thời Nguyễn', 'Bình vôi người Việt', 'Sa Huỳnh & Champa'],
+        svgKey: 'floor1',
+        mapNodeId: 'f1_chudau',
+        audioText: {
+          vi: 'Tầng 1 là không gian sưu tập cổ vật của Bảo tàng Đà Nẵng. Tại đây trưng bày những hiện vật quý hiếm gồm Gốm Chu Đậu, Gốm sứ thời Nguyễn, Bình vôi của người Việt, Gốm cổ các tỉnh Trung bộ cùng bảo vật văn hóa Sa Huỳnh và Champa.',
+          en: 'Floor 1 houses the antiquities collection of Da Nang Museum, showcasing Chu Dau ceramics, Nguyen Dynasty porcelain, traditional Vietnamese lime pots, Central Vietnam ancient pottery, and Sa Huynh and Champa treasures.'
+        }
+      }
+    ];
+
+    const ARTIFACTS_DATA = [
+      {
+        id: 'cannon',
+        shortName: 'Súng thần công 1858',
+        title: 'Súng thần công Thành Điện Hải (1858–1860)',
+        era: 'Thế kỷ XIX (Triều Nguyễn)',
+        floor: 3,
+        room: 'Phòng Lịch sử Đấu tranh - Tầng 3',
+        mapNodeId: 'f3_cannon',
+        svgKey: 'cannon',
+        shortDesc: 'Vũ khí phòng thủ chủ lực của quân dân Đà Nẵng trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha.',
+        fullDesc: 'Bộ sưu tập súng thần công Thành Điện Hải được đúc bằng gang và đồng dưới triều Nguyễn. Trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha mở đầu năm 1858–1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, những khẩu thần công này đã lập nên chiến công oanh liệt bảo vệ cửa biển Đà Nẵng.',
+        audio: {
+          vi: 'Súng thần công Thành Điện Hải, niên đại thế kỷ 19. Trong cuộc kháng chiến chống liên quân Pháp Tây Ban Nha từ năm 1858 đến 1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, bộ sưu tập súng thần công này đã góp phần đánh bại âm mưu xâm lược của địch tại cửa biển Đà Nẵng.',
+          en: 'The Dien Hai Citadel Cannon from the 19th-century Nguyen Dynasty played a decisive role under General Nguyen Tri Phuong during the 1858–1860 resistance against the Franco-Spanish coalition.'
+        },
+        followUps: ['Súng thần công gắn với vị Danh tướng nào?', 'Thành Điện Hải nằm ở đâu?', 'Xem vị trí Súng thần công trên bản đồ']
+      },
+      {
+        id: 'sahuynh',
+        shortName: 'Khuyên tai Sa Huỳnh',
+        title: 'Khuyên tai hai đầu thú (Văn hóa Sa Huỳnh)',
+        era: 'Tiền sơ sử (Cách ngày nay ~2.000–2.500 năm)',
+        floor: 1,
+        room: 'Không gian Cổ vật - Tầng 1',
+        mapNodeId: 'f1_sahuynh',
+        svgKey: 'sahuynh',
+        shortDesc: 'Trang sức ngọc bích tạc hình hai đầu thú đối xứng tinh xảo thuộc nền văn hóa Sa Huỳnh.',
+        fullDesc: 'Khuyên tai hai đầu thú là hiện vật tiêu biểu bậc nhất của nền văn hóa Sa Huỳnh thời kỳ Tiền sơ sử. Được chế tác thủ công từ đá ngọc bích (nephrite) xanh ngọc với tạo hình hai đầu thú có sừng cong đối xứng, hiện vật minh chứng cho kỹ nghệ chế tác đá quý đỉnh cao và giao thương biển của cư dân cổ miền Trung.',
+        audio: {
+          vi: 'Khuyên tai hai đầu thú thuộc nền văn hóa Sa Huỳnh thời kỳ tiền sơ sử, có niên đại khoảng 2.000 đến 2.500 năm trước. Được tạc từ đá ngọc bích nguyên khối với đường nét cân xứng tinh xảo, đây là biểu tượng nghệ thuật trang sức cổ đại Việt Nam.',
+          en: 'The two-headed animal earring of the protohistoric Sa Huynh culture dates back 2,000 to 2,500 years. Carved from nephrite jade, it exemplifies ancient jewelry craftsmanship in Central Vietnam.'
+        },
+        followUps: ['Chất liệu làm nên khuyên tai hai đầu thú là gì?', 'Văn hóa Sa Huỳnh có niên đại bao nhiêu năm?', 'Tầng 1 còn những cổ vật nào?']
+      },
+      {
+        id: 'kendy',
+        shortName: 'Bình gốm Kendy',
+        title: 'Bình gốm Kendy (Văn hóa Champa)',
+        era: 'Thế kỷ X – XII',
+        floor: 1,
+        room: 'Không gian Cổ vật - Tầng 1',
+        mapNodeId: 'f1_sahuynh',
+        svgKey: 'kendy',
+        shortDesc: 'Bình nghi lễ có vòi rót bên hông đặc trưng dùng trong nghi thức tôn giáo Champa.',
+        fullDesc: 'Bình gốm Kendy thuộc nền văn hóa Champa cổ, có dáng thân tròn đầy đặn, cổ cao miệng loe và một vòi rót nhô ra ở vai bình. Trong các nghi lễ tôn giáo và sinh hoạt cung đình Champa xưa, bình Kendy được dùng để đựng và rưới nước thanh khiết ban phước lành.',
+        audio: {
+          vi: 'Bình gốm Kendy thuộc văn hóa Champa, niên đại thế kỷ 10 đến thế kỷ 12. Với phần thân tròn đầy, cổ cao và vòi rót tinh tế bên vai bình, đây là vật phẩm nghi lễ thiêng liêng dùng để rưới nước thanh khiết trong văn hóa Champa.',
+          en: 'This Champa Kendy ritual vessel from the 10th to 12th centuries features a bulbous body, tall flared neck, and side spout used for pouring sacred water in purification ceremonies.'
+        },
+        followUps: ['Bình gốm Kendy được dùng để làm gì?', 'Gốm cổ các tỉnh Trung bộ có gì đặc sắc?', 'Chỉ đường tới khu Cổ vật Tầng 1']
+      },
+      {
+        id: 'hondadame',
+        shortName: 'Xe Honda Dame & Bom CBU',
+        title: 'Xe Honda Dame & Bom CBU 55 (Chứng tích chiến tranh)',
+        era: 'Kháng chiến chống Mỹ (1968–1975)',
+        floor: 3,
+        room: 'Chứng tích Chiến tranh - Tầng 3',
+        mapNodeId: 'f3_war',
+        svgKey: 'hondadame',
+        shortDesc: 'Phương tiện hoạt động bí mật của Biệt động Đà Nẵng cùng vỏ bom CBU 55 minh chứng lịch sử.',
+        fullDesc: 'Tại chuyên đề Đà Nẵng – Chứng tích chiến tranh (Tầng 3), chiếc xe gắn máy Honda Dame từng được chiến sĩ Biệt động thành Đà Nẵng sử dụng để vận chuyển tài liệu mật và trinh sát ngay trong lòng địch, đặt cạnh vỏ bom CBU 55 khắc họa khát vọng hòa bình của nhân dân Đà Nẵng.',
+        audio: {
+          vi: 'Xe Honda Dame và vỏ bom CBU 55 tại khu trưng bày Chứng tích chiến tranh Tầng 3. Chiếc xe Honda Dame là phương tiện gắn liền với chiến công thầm lặng của lực lượng Biệt động thành Đà Nẵng trước ngày giải phóng 29 tháng 3 năm 1975.',
+          en: 'Displayed in the Floor 3 War Relics gallery, the Honda Dame moped used by Da Nang special commandos and the CBU 55 bomb casing serve as poignant reminders of wartime history and peace.'
+        },
+        followUps: ['Đà Nẵng giải phóng vào ngày nào?', 'Lực lượng Biệt động Đà Nẵng dùng xe Honda Dame làm gì?', 'Chỉ đường tới khu Chứng tích chiến tranh']
+      },
+      {
+        id: 'cotu',
+        shortName: 'Tượng cổng làng & Kèn Tơghêy',
+        title: 'Tượng cổng làng & Kèn Tơghêy người Cơ Tu',
+        era: 'Thế kỷ XX',
+        floor: 2,
+        room: 'Văn hóa Các Dân tộc - Tầng 2',
+        mapNodeId: 'f2_cotu',
+        svgKey: 'cotu',
+        shortDesc: 'Điêu khắc gỗ tâm linh và nhạc cụ truyền thống đặc sắc của đồng bào Cơ Tu tại Đà Nẵng.',
+        fullDesc: 'Không gian văn hóa các dân tộc ít người tại Tầng 2 giới thiệu Tượng cổng làng chạm khắc thủ công mang ý nghĩa bảo vệ sự bình yên cho buôn làng Cơ Tu, cùng chiếc Kèn Tơghêy ngân vang trong các lễ hội mừng lúa mới và nghi lễ cộng đồng vùng núi phía Tây Đà Nẵng.',
+        audio: {
+          vi: 'Tượng cổng làng và Kèn Tơghêy của người Cơ Tu trưng bày tại Tầng 2. Những tác phẩm điêu khắc gỗ mộc mạc mà sống động cùng âm thanh kèn Tơghêy phản ánh đời sống tâm linh phong phú và tình yêu đại ngàn của đồng bào Cơ Tu ở Đà Nẵng.',
+          en: 'On Floor 2, the Co Tu village gate wooden sculptures and traditional Toghey wind instrument reflect the spiritual life and mountain heritage of the Co Tu people in Da Nang.'
+        },
+        followUps: ['Người Cơ Tu ở Đà Nẵng sinh sống ở đâu?', 'Ngoài người Cơ Tu, Tầng 2 còn giới thiệu dân tộc nào?', 'Tìm đường tới khu văn hóa Cơ Tu']
+      },
+      {
+        id: 'ghebau',
+        shortName: 'Ghe bầu xứ Quảng',
+        title: 'Mô hình Ghe bầu xứ Quảng',
+        era: 'Thế kỷ XVIII – XIX',
+        floor: 2,
+        room: 'Nghiên cứu & Phát triển - Tầng 2',
+        mapNodeId: 'f2_rnd',
+        svgKey: 'ghebau',
+        shortDesc: 'Loại thuyền buồm truyền thống nổi tiếng giúp giao thương đường biển sầm uất vùng Quảng Nam – Đà Nẵng.',
+        fullDesc: 'Ghe bầu xứ Quảng có phần bụng phình tròn như quả bầu, mũi và lái nhọn cao giúp vượt sóng lớn cực tốt. Đây là phương tiện vận tải đường biển chủ lực kết nối thương cảng Đà Nẵng – Hội An với khắp các vùng duyên hải trong và ngoài nước suốt nhiều thế kỷ.',
+        audio: {
+          vi: 'Mô hình Ghe bầu xứ Quảng tại Tầng 2. Với thiết kế bụng phình tròn vững chãi và cánh buồm no gió, ghe bầu từng là biểu tượng của nghề đi biển và giao thương hàng hải sầm uất của cư dân Quảng Nam Đà Nẵng xưa.',
+          en: 'The Quang Nam Ghe Bau sailboat model on Floor 2 highlights the maritime trading heritage that connected Da Nang and Hoi An ports across the East Sea.'
+        },
+        followUps: ['Vì sao thuyền được gọi là Ghe bầu?', 'Ghe bầu có vai trò gì trong thương mại Đà Nẵng xưa?', 'Xem vị trí Ghe bầu trên bản đồ']
+      },
+      {
+        id: 'chudau',
+        shortName: 'Gốm Chu Đậu & Bình vôi',
+        title: 'Gốm Chu Đậu, Gốm thời Nguyễn & Bình vôi Việt',
+        era: 'Thế kỷ XV – XIX',
+        floor: 1,
+        room: 'Sưu tập Cổ vật - Tầng 1',
+        mapNodeId: 'f1_chudau',
+        svgKey: 'chudau',
+        shortDesc: 'Bộ sưu tập gốm hoa lam Chu Đậu, gốm sứ thời Nguyễn và Bình vôi gắn với văn hóa trầu cau Việt.',
+        fullDesc: 'Không gian sưu tập cổ vật Tầng 1 quy tụ các dòng gốm danh tiếng: Gốm Chu Đậu men ngà vẽ lam tinh xảo, Gốm sứ thời Nguyễn, Gốm cổ các tỉnh Trung bộ và bộ sưu tập Bình vôi của người Việt—vật dụng thân thuộc trong phong tục ăn trầu truyền thống.',
+        audio: {
+          vi: 'Bộ sưu tập Gốm Chu Đậu, Gốm sứ thời Nguyễn và Bình vôi của người Việt tại Tầng 1. Mỗi hiện vật là một tác phẩm nghệ thuật gốm sứ tinh xảo, lưu giữ hồn cốt văn hóa truyền thống của dân tộc Việt qua nhiều thế kỷ.',
+          en: 'Floor 1 exhibits Chu Dau blue-and-white ceramics, Nguyen Dynasty porcelain, and traditional Vietnamese lime pots tied to the time-honored betel-chewing custom.'
+        },
+        followUps: ['Bình vôi gắn với phong tục gì của người Việt?', 'Tầng 1 trưng bày những dòng gốm nào?', 'Chỉ đường tới phòng Gốm Chu Đậu']
+      },
+      {
+        id: 'denco',
+        shortName: 'Đèn cổ & Trầm hương',
+        title: 'Đèn cổ và Trầm hương xứ Quảng',
+        era: 'Thế kỷ XVII – XX',
+        floor: 2,
+        room: 'Đèn cổ & Trầm hương - Tầng 2',
+        mapNodeId: 'f2_agarwood',
+        svgKey: 'denco',
+        shortDesc: 'Không gian thưởng lãm tinh hoa trầm hương Quảng Nam – Đà Nẵng và bộ sưu tập đèn cổ độc đáo.',
+        fullDesc: 'Xứ Quảng nổi tiếng từ ngàn xưa với sản vật Trầm hương quý hiếm. Tại Tầng 2, không gian Đèn cổ và trầm hương xứ Quảng kết hợp ánh sáng ấm áp từ các cây đèn đồng, đèn gốm cổ với hương trầm thanh khiết tạo nên trải nghiệm văn hóa sâu lắng.',
+        audio: {
+          vi: 'Không gian Đèn cổ và trầm hương xứ Quảng tại Tầng 2 tôn vinh nghề khai thác, chế tác trầm hương truyền thống của vùng đất Quảng Nam Đà Nẵng cùng bộ sưu tập đèn cổ qua các thời kỳ.',
+          en: 'The Antique Lamps and Quang Nam Agarwood gallery on Floor 2 celebrates the region’s prized agarwood heritage alongside historic bronze and ceramic lamps.'
+        },
+        followUps: ['Trầm hương xứ Quảng nổi tiếng như thế nào?', 'Tầng 2 có những chủ đề trưng bày nào?', 'Chỉ đường tới phòng Đèn cổ & Trầm hương']
+      }
+    ];
+
+    // =========================================================================
+    // 3. QUIZ QUESTIONS (8 FAST-RESPONSE QUESTIONS)
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      {
+        q: 'Lộ trình tham quan Bảo tàng Đà Nẵng được khuyến nghị bắt đầu từ tầng nào?',
+        options: ['Tầng 1 (Sưu tập cổ vật)', 'Tầng 2 (Văn hóa các dân tộc)', 'Tầng 3 (Tổng quan & Lịch sử)', 'Khu sân vườn'],
+        correct: 2,
+        explain: 'Chuyến tham quan chuẩn bắt đầu từ Tầng 3 (Tổng quan Đà Nẵng & Lịch sử đấu tranh), sau đó xuống Tầng 2 và kết thúc ở Tầng 1.'
+      },
+      {
+        q: 'Bảo tàng Đà Nẵng (Cơ sở 1) tọa lạc tại địa chỉ nào?',
+        options: ['31 Trần Phú, Hải Châu, Đà Nẵng', '02 Bạch Đằng, Hải Châu, Đà Nẵng', '15 Lê Duẩn, Thanh Khê, Đà Nẵng', '99 Nguyễn Văn Linh, Đà Nẵng'],
+        correct: 0,
+        explain: 'Bảo tàng Đà Nẵng (Cơ sở 1) nằm tại số 31 Trần Phú, phường Hải Châu, trong khuôn viên Di tích Quốc gia đặc biệt Thành Điện Hải.'
+      },
+      {
+        q: 'Khuyên tai hai đầu thú trưng bày tại Tầng 1 thuộc nền văn hóa khảo cổ nào?',
+        options: ['Văn hóa Đông Sơn', 'Văn hóa Sa Huỳnh', 'Văn hóa Óc Eo', 'Văn hóa Phùng Nguyên'],
+        correct: 1,
+        explain: 'Khuyên tai hai đầu thú bằng đá ngọc bích là bảo vật trang sức tiêu biểu nhất của nền văn hóa Sa Huỳnh (cách ngày nay ~2.000–2.500 năm).'
+      },
+      {
+        q: 'Không gian Đèn cổ và trầm hương xứ Quảng cùng văn hóa người Cơ Tu nằm ở tầng mấy?',
+        options: ['Tầng 1', 'Tầng 2', 'Tầng 3', 'Tầng thượng'],
+        correct: 1,
+        explain: 'Tầng 2 trưng bày Đèn cổ và trầm hương xứ Quảng, Nghiên cứu và phát triển, cùng văn hóa các dân tộc Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor...'
+      },
+      {
+        q: 'Bộ sưu tập Súng thần công Thành Điện Hải (1858–1860) gắn liền với vị Danh tướng nào?',
+        options: ['Nguyễn Tri Phương', 'Trần Hưng Đạo', 'Lý Thường Kiệt', 'Võ Nguyên Giáp'],
+        correct: 0,
+        explain: 'Danh tướng Nguyễn Tri Phương đã chỉ huy quân dân Đà Nẵng tại Thành Điện Hải (1858–1860) đánh bại cuộc tấn công của liên quân Pháp – Tây Ban Nha.'
+      },
+      {
+        q: 'Bình gốm Kendy trưng bày ở Tầng 1 là loại hình gốm nghi lễ của nền văn hóa nào?',
+        options: ['Văn hóa Champa', 'Gốm Chu Đậu', 'Gốm Bát Tràng', 'Gốm Biên Hòa'],
+        correct: 0,
+        explain: 'Bình gốm Kendy với thân phình tròn, cổ cao và vòi rót bên hông là vật phẩm nghi lễ thiêng liêng của văn hóa Champa.'
+      },
+      {
+        q: 'Gốm Chu Đậu, Gốm sứ thời Nguyễn và Bình vôi của người Việt được trưng bày tại tầng nào?',
+        options: ['Tầng 1', 'Tầng 2', 'Tầng 3', 'Ngoài trời'],
+        correct: 0,
+        explain: 'Không gian sưu tập cổ vật của Bảo tàng Đà Nẵng thuộc Tầng 1, bao gồm Gốm Chu Đậu, Gốm sứ thời Nguyễn, Bình vôi Việt và Gốm cổ Trung bộ.'
+      },
+      {
+        q: 'Phương tiện nào của chiến sĩ Biệt động thành Đà Nẵng được trưng bày tại khu Chứng tích chiến tranh Tầng 3?',
+        options: ['Xe Honda Dame', 'Xe đạp Phượng Hoàng', 'Xe Jeep', 'Thuyền thúng'],
+        correct: 0,
+        explain: 'Chiếc xe Honda Dame được chiến sĩ Biệt động thành Đà Nẵng dùng để vận chuyển tài liệu mật và hoạt động ngay trong lòng địch trước ngày 29/3/1975.'
+      }
+    ];
+
+    // =========================================================================
+    // 4. INDOOR MAP NODES & WAYFINDING COORDINATES (3 FLOORS)
+    // =========================================================================
+    const MAP_NODES = [
+      // Floor 1
+      { id: 'f1_entrance', floor: 1, name: 'Cổng chính & Quầy Lễ tân (Tầng 1)', short: 'Cổng chính / Lễ tân', x: 180, y: 215, type: 'service' },
+      { id: 'f1_chudau', floor: 1, name: 'Khu Gốm Chu Đậu & Bình vôi Việt (Tầng 1)', short: 'Gốm Chu Đậu', x: 85, y: 120, type: 'exhibit' },
+      { id: 'f1_sahuynh', floor: 1, name: 'Khu Sa Huỳnh & Gốm Kendy Champa (Tầng 1)', short: 'Sa Huỳnh & Champa', x: 275, y: 120, type: 'exhibit' },
+      { id: 'f1_elevator', floor: 1, name: 'Thang máy & Cầu thang bộ (Tầng 1)', short: 'Thang máy / Thang bộ', x: 180, y: 56, type: 'transit' },
+
+      // Floor 2
+      { id: 'f2_elevator', floor: 2, name: 'Thang máy & Cầu thang bộ (Tầng 2)', short: 'Thang máy / Thang bộ', x: 180, y: 56, type: 'transit' },
+      { id: 'f2_cotu', floor: 2, name: 'Văn hóa Dân tộc Cơ Tu, Xơ Đăng (Tầng 2)', short: 'Văn hóa Cơ Tu', x: 85, y: 132, type: 'exhibit' },
+      { id: 'f2_agarwood', floor: 2, name: 'Phòng Đèn cổ & Trầm hương xứ Quảng (Tầng 2)', short: 'Đèn cổ & Trầm hương', x: 275, y: 132, type: 'exhibit' },
+      { id: 'f2_rnd', floor: 2, name: 'Khu Nghiên cứu & Phát triển / Ghe bầu (Tầng 2)', short: 'Nghiên cứu & PT', x: 180, y: 205, type: 'exhibit' },
+
+      // Floor 3
+      { id: 'f3_elevator', floor: 3, name: 'Thang máy & Cầu thang bộ (Tầng 3)', short: 'Thang máy / Thang bộ', x: 180, y: 56, type: 'transit' },
+      { id: 'f3_history', floor: 3, name: 'Tổng quan Đà Nẵng & Lịch sử Đô thị (Tầng 3)', short: 'Tổng quan Đà Nẵng', x: 85, y: 125, type: 'exhibit' },
+      { id: 'f3_cannon', floor: 3, name: 'Khu Súng thần công Thành Điện Hải (Tầng 3)', short: 'Súng thần công 1858', x: 275, y: 112, type: 'exhibit' },
+      { id: 'f3_war', floor: 3, name: 'Chứng tích Chiến tranh & Xe Honda Dame (Tầng 3)', short: 'Chứng tích chiến tranh', x: 245, y: 205, type: 'exhibit' }
+    ];
+
+    // =========================================================================
+    // 5. GLOBAL APPLICATION STATE
+    // =========================================================================
+    const state = {
+      lang: 'vi',
+      visitorName: 'Quý khách',
+      activeTab: 'info',
+      activeChatSubtab: 'chat',
+      currentScannedArtifact: ARTIFACTS_DATA[0],
+      modalArtifact: null,
+      cameraStream: null,
+      // Audio Guide
+      audioUtterance: null,
+      audioPlaying: false,
+      audioRate: 1.0,
+      audioProgress: 0,
+      audioTimerInterval: null,
+      currentAudioConfig: null,
+      // Map & Wayfinding
+      currentMapFloor: 3,
+      activeRoute: null,
+      // Quiz
+      quizIndex: 0,
+      quizScore: 0,
+      quizCorrectCount: 0,
+      quizTimer: 15,
+      quizInterval: null,
+      quizAnswered: false
+    };
+
+    // =========================================================================
+    // 6. INITIALIZATION & ONBOARDING FLOW
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderFloorsList();
+      renderArtifactsGrid('all');
+      renderQuickScanList();
+      populateWayfindingDropdowns();
+      renderFloorPlanSvg(3);
+      populateQuickLangModal();
+      initWelcomeChatMessage();
+    });
+
+    function fillSuggestedName(name) {
+      const input = document.getElementById('visitor-name-input');
+      input.value = name;
+      input.focus();
+    }
+
+    function handleOnboardingLangChange(langCode) {
+      state.lang = langCode;
+      applyTranslations();
+    }
+
+    function startTour() {
+      const nameInput = document.getElementById('visitor-name-input').value.trim();
+      const langSelect = document.getElementById('language-select').value;
+      state.lang = langSelect || 'vi';
+      state.visitorName = nameInput || (state.lang === 'vi' ? 'Quý khách' : 'Guest');
+
+      document.getElementById('onboarding-screen').classList.add('hidden');
+      const mainApp = document.getElementById('main-app');
+      mainApp.classList.remove('hidden');
+      mainApp.classList.add('flex');
+
+      applyTranslations();
+      initWelcomeChatMessage();
+      showToast(getTranslatedGreeting());
+      lucide.createIcons();
+    }
+
+    function getTranslatedGreeting() {
+      const dict = UI_STRINGS[state.lang] || UI_STRINGS.vi;
+      return dict.greeting.replace('{name}', state.visitorName);
+    }
+
+    function applyTranslations() {
+      const dict = UI_STRINGS[state.lang] || UI_STRINGS.vi;
+      const langObj = LANGUAGES.find(l => l.code === state.lang) || LANGUAGES[0];
+
+      const headerGreeting = document.getElementById('header-greeting');
+      if (headerGreeting) headerGreeting.textContent = getTranslatedGreeting();
+
+      const flagEl = document.getElementById('header-lang-flag');
+      const codeEl = document.getElementById('header-lang-code');
+      if (flagEl) flagEl.textContent = langObj.flag;
+      if (codeEl) codeEl.textContent = langObj.code.toUpperCase();
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      renderFloorsList();
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // 7. QR CODE MODAL & CUSTOMER SUPPORT MODAL
+    // =========================================================================
+    function openQrModal() {
+      const modal = document.getElementById('qr-modal');
+      modal.classList.remove('hidden');
+      const currentUrl = window.location.href;
+      document.getElementById('qr-custom-url-input').value = currentUrl;
+      generateQrCode(currentUrl);
+      lucide.createIcons();
+    }
+
+    function closeQrModal() {
+      document.getElementById('qr-modal').classList.add('hidden');
+    }
+
+    function generateQrCode(urlText) {
+      const container = document.getElementById('qrcode-container');
+      container.innerHTML = '';
+      document.getElementById('qr-url-display').textContent = urlText;
+      try {
+        new QRCode(container, {
+          text: urlText,
+          width: 180,
+          height: 180,
+          colorDark: '#1C2536',
+          colorLight: '#FFFFFF',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      } catch (e) {
+        container.innerHTML = '<p class="text-xs text-rose-600">URL quá dài để mã hóa QR, hãy nhập link rút gọn.</p>';
+      }
+    }
+
+    function regenerateCustomQr() {
+      const customUrl = document.getElementById('qr-custom-url-input').value.trim();
+      if (!customUrl) {
+        showToast('Vui lòng nhập đường dẫn URL!');
+        return;
+      }
+      generateQrCode(customUrl);
+      showToast('Đã tạo lại mã QR theo liên kết mới!');
+    }
+
+    function downloadQrPng() {
+      const container = document.getElementById('qrcode-container');
+      const canvas = container.querySelector('canvas');
+      const img = container.querySelector('img');
+      const dataUrl = canvas ? canvas.toDataURL('image/png') : (img ? img.src : '');
+
+      if (!dataUrl) {
+        showToast('Đang tạo ảnh QR, vui lòng thử lại sau 1 giây.');
+        return;
+      }
+
+      const link = document.createElement('a');
+      link.download = 'QR-Da-Nang-Museum-Smart-Guide.png';
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Đã tải xuống hình ảnh Mã QR (PNG)!');
+    }
+
+    function copyCurrentWebappLink() {
+      const url = document.getElementById('qr-custom-url-input').value || window.location.href;
+      copyTextToClipboard(url, 'Đã sao chép liên kết Webapp!');
+    }
+
+    function openSupportModal() {
+      document.getElementById('support-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeSupportModal() {
+      document.getElementById('support-modal').classList.add('hidden');
+    }
+
+    function submitVisitorFeedback(e) {
+      e.preventDefault();
+      const textarea = document.getElementById('feedback-textarea');
+      if (!textarea.value.trim()) {
+        showToast('Vui lòng nhập nội dung góp ý hoặc yêu cầu.');
+        return;
+      }
+      textarea.value = '';
+      closeSupportModal();
+      showToast(`Cảm ơn ${state.visitorName}! Phản hồi đã được gửi tới Bảo tàng.`);
+    }
+
+    // =========================================================================
+    // 8. TAB NAVIGATION & CAMERA ARTIFACT SCANNER
+    // =========================================================================
+    function switchTab(tabName) {
+      state.activeTab = tabName;
+      document.querySelectorAll('.tab-content').forEach(sec => sec.classList.add('hidden'));
+
+      ['info', 'map', 'chatbot', 'quiz'].forEach(id => {
+        const btn = document.getElementById(`nav-btn-${id}`);
+        if (btn) {
+          btn.classList.remove('text-museum-bronze', 'font-bold');
+          btn.classList.add('text-museum-muted', 'font-semibold');
+        }
+      });
+
+      if (tabName === 'camera') {
+        document.getElementById('tab-camera').classList.remove('hidden');
+        initCamera();
+      } else {
+        stopCamera();
+        const targetSec = document.getElementById(`tab-${tabName}`);
+        if (targetSec) targetSec.classList.remove('hidden');
+
+        const activeNavId = (tabName === 'chatbot' && state.activeChatSubtab === 'quiz') ? 'quiz' : tabName;
+        const activeBtn = document.getElementById(`nav-btn-${activeNavId}`);
+        if (activeBtn) {
+          activeBtn.classList.remove('text-museum-muted', 'font-semibold');
+          activeBtn.classList.add('text-museum-bronze', 'font-bold');
+        }
+      }
+
+      if (tabName === 'map') {
+        renderFloorPlanSvg(state.currentMapFloor);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lucide.createIcons();
+    }
+
+    function openQuizMode() {
+      state.activeChatSubtab = 'quiz';
+      switchTab('chatbot');
+      switchChatSubtab('quiz');
+    }
+
+    async function initCamera() {
+      const video = document.getElementById('camera-video');
+      const fallback = document.getElementById('camera-fallback');
+      const statusText = document.getElementById('scanner-status-text');
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        video.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        statusText.textContent = 'Chế độ mô phỏng AR sẵn sàng';
+        return;
+      }
+
+      try {
+        stopCamera();
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' },
+          audio: false
+        });
+        state.cameraStream = stream;
+        video.srcObject = stream;
+        video.classList.remove('hidden');
+        fallback.classList.add('hidden');
+        statusText.textContent = 'Đang quét nhận diện hiện vật...';
+      } catch (err) {
+        video.classList.add('hidden');
+        fallback.classList.remove('hidden');
+        statusText.textContent = 'Chế độ mô phỏng AR (Chọn hiện vật bên dưới)';
+      }
+    }
+
+    function stopCamera() {
+      if (state.cameraStream) {
+        state.cameraStream.getTracks().forEach(track => track.stop());
+        state.cameraStream = null;
+      }
+    }
+
+    function renderQuickScanList() {
+      const container = document.getElementById('quick-scan-list');
+      container.innerHTML = ARTIFACTS_DATA.map(art => `
+        <button onclick="simulateScanArtifact('${art.id}')" class="flex items-center gap-2 p-2 rounded-xl bg-museum-ivory hover:bg-amber-100/60 border border-museum-border hover:border-museum-bronze text-left transition active:scale-95">
+          <div class="w-9 h-9 rounded-lg bg-white border border-museum-border p-1 shrink-0">
+            ${getSvgArtwork(art.svgKey)}
+          </div>
+          <div class="min-w-0">
+            <div class="text-[11px] font-bold text-museum-navy truncate">${art.shortName}</div>
+            <div class="text-[10px] text-museum-bronze font-bold">Tầng ${art.floor}</div>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    function triggerRandomOrCurrentScan() {
+      const randomArt = ARTIFACTS_DATA[Math.floor(Math.random() * ARTIFACTS_DATA.length)];
+      simulateScanArtifact(randomArt.id);
+    }
+
+    function simulateScanArtifact(artifactId) {
+      const art = ARTIFACTS_DATA.find(a => a.id === artifactId);
+      if (!art) return;
+
+      state.currentScannedArtifact = art;
+      document.getElementById('scanner-status-text').textContent = `Đã khớp: ${art.shortName}`;
+
+      document.getElementById('scan-result-svg').innerHTML = getSvgArtwork(art.svgKey);
+      document.getElementById('scan-result-floor').textContent = `Tầng ${art.floor} • ${art.room}`;
+      document.getElementById('scan-result-title').textContent = art.title;
+      document.getElementById('scan-result-era').textContent = `Niên đại: ${art.era}`;
+      document.getElementById('scan-result-short').textContent = art.shortDesc;
+
+      const card = document.getElementById('scan-result-card');
+      card.classList.remove('hidden');
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showToast(`Đã nhận diện: ${art.shortName}`);
+      lucide.createIcons();
+    }
+
+    function closeScanResult() {
+      document.getElementById('scan-result-card').classList.add('hidden');
+    }
+
+    function openScannedInChatbot() {
+      const art = state.currentScannedArtifact;
+      if (!art) return;
+      switchTab('chatbot');
+      switchChatSubtab('chat');
+      injectArtifactCardToChat(art);
+    }
+
+    function openScannedInAudioGuide() {
+      const art = state.currentScannedArtifact;
+      if (!art) return;
+      openAudioGuideForArtifact(art);
+    }
+
+    // =========================================================================
+    // 9. TAB 1: 3-FLOOR EXHIBITION GUIDE & ARTIFACTS GALLERY
+    // =========================================================================
+    function renderFloorsList() {
+      const container = document.getElementById('floors-list-container');
+      const dict = UI_STRINGS[state.lang] || UI_STRINGS.vi;
+
+      container.innerHTML = FLOORS_DATA.map(f => `
+        <div class="bg-museum-card rounded-3xl overflow-hidden border border-museum-border shadow-soft">
+          <div class="p-3 pb-0">
+            ${getSvgArtwork(f.svgKey)}
+          </div>
+          <div class="p-4 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-museum-ivory text-museum-bronze border border-museum-border text-[11px] font-extrabold">${f.badge}</span>
+              <span class="text-xs font-extrabold text-museum-navy">Tầng ${f.floor}</span>
+            </div>
+            <h4 class="text-base font-extrabold text-museum-navy leading-snug">${f.title}</h4>
+            <p class="text-sm text-slate-700 leading-relaxed">${f.desc}</p>
+
+            <!-- Expandable Details -->
+            <details class="group bg-museum-ivory/70 rounded-xl border border-museum-border px-3 py-2 text-xs text-slate-700">
+              <summary class="font-bold text-museum-navy cursor-pointer list-none flex items-center justify-between">
+                <span>Xem chi tiết không gian trưng bày</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-museum-bronze group-open:rotate-180 transition"></i>
+              </summary>
+              <p class="mt-2 leading-relaxed text-slate-600">${f.expandedDetails}</p>
+            </details>
+
+            <!-- Highlight Chips -->
+            <div class="flex flex-wrap gap-1.5 pt-0.5">
+              ${f.highlights.map(h => `<span class="px-2 py-0.5 rounded-lg bg-museum-ivory border border-museum-border text-[11px] font-semibold text-museum-navy">${h}</span>`).join('')}
+            </div>
+
+            <!-- Action Buttons: Audio Guide & Route to Floor -->
+            <div class="grid grid-cols-2 gap-2 pt-1.5">
+              <button onclick="openAudioGuideForFloor(${f.floor})" class="py-2.5 px-2.5 rounded-xl bg-museum-navy hover:bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                <i data-lucide="volume-2" class="w-3.5 h-3.5 text-museum-gold"></i>
+                <span>${dict.listen_floor_audio}</span>
+              </button>
+              <button onclick="jumpToFloorOnMap(${f.floor}, '${f.mapNodeId}')" class="py-2.5 px-2.5 rounded-xl bg-museum-ivory hover:bg-amber-100/70 border border-museum-border text-museum-navy font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                <i data-lucide="navigation" class="w-3.5 h-3.5 text-museum-bronze"></i>
+                <span>${dict.route_to_floor}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderArtifactsGrid(floorFilter) {
+      const container = document.getElementById('artifacts-grid');
+      const list = floorFilter === 'all'
+        ? ARTIFACTS_DATA
+        : ARTIFACTS_DATA.filter(a => a.floor === floorFilter);
+
+      container.innerHTML = list.map(art => `
+        <div onclick="openArtifactModal('${art.id}')" class="bg-museum-card rounded-2xl p-2.5 border border-museum-border shadow-soft hover:border-museum-bronze cursor-pointer transition flex flex-col justify-between group">
+          <div>
+            <div class="w-full h-26 h-[104px] rounded-xl bg-museum-ivory p-1.5 mb-2 flex items-center justify-center overflow-hidden group-hover:scale-[1.02] transition">
+              ${getSvgArtwork(art.svgKey)}
+            </div>
+            <span class="inline-block px-2 py-0.5 rounded bg-museum-ivory text-museum-bronze border border-museum-border text-[10px] font-extrabold mb-1">
+              Tầng ${art.floor}
+            </span>
+            <h4 class="text-xs font-extrabold text-museum-navy leading-snug line-clamp-2">${art.title}</h4>
+          </div>
+          <p class="text-[11px] text-museum-muted mt-1 line-clamp-2">${art.shortDesc}</p>
+        </div>
+      `).join('');
+    }
+
+    function filterArtifacts(floorVal) {
+      ['all', 3, 2, 1].forEach(k => {
+        const btn = document.getElementById(`filter-${k}`);
+        if (btn) {
+          btn.className = (k === floorVal)
+            ? 'px-2 py-1 rounded-lg bg-museum-bronze text-white transition'
+            : 'px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition';
+        }
+      });
+      renderArtifactsGrid(floorVal);
+    }
+
+    function openArtifactModal(artifactId) {
+      const art = ARTIFACTS_DATA.find(a => a.id === artifactId);
+      if (!art) return;
+      state.modalArtifact = art;
+
+      document.getElementById('modal-art-floor').textContent = `Tầng ${art.floor} • ${art.room}`;
+      document.getElementById('modal-art-svg').innerHTML = getSvgArtwork(art.svgKey);
+      document.getElementById('modal-art-title').textContent = art.title;
+      document.getElementById('modal-art-meta').textContent = `Niên đại: ${art.era}`;
+      document.getElementById('modal-art-desc').textContent = art.fullDesc;
+
+      document.getElementById('artifact-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeArtifactModal() {
+      document.getElementById('artifact-modal').classList.add('hidden');
+    }
+
+    function modalActionChat() {
+      const art = state.modalArtifact;
+      closeArtifactModal();
+      if (!art) return;
+      switchTab('chatbot');
+      switchChatSubtab('chat');
+      injectArtifactCardToChat(art);
+    }
+
+    function modalActionAudio() {
+      const art = state.modalArtifact;
+      closeArtifactModal();
+      if (!art) return;
+      openAudioGuideForArtifact(art);
+    }
+
+    function modalActionMap() {
+      const art = state.modalArtifact;
+      closeArtifactModal();
+      if (!art) return;
+      jumpToFloorOnMap(art.floor, art.mapNodeId);
+    }
+
+    // =========================================================================
+    // 10. AUDIO GUIDE ENGINE (WEB SPEECH API TTS + PLAY/PAUSE + SPEED + BAR)
+    // =========================================================================
+    function openAudioGuideForArtifact(art) {
+      const langObj = LANGUAGES.find(l => l.code === state.lang) || LANGUAGES[0];
+      const text = art.audio[state.lang] || (state.lang === 'vi' ? art.audio.vi : art.audio.en);
+
+      state.currentAudioConfig = {
+        title: art.title,
+        subtitle: `${art.era} • ${art.room}`,
+        floorTag: `Tầng ${art.floor}`,
+        svgKey: art.svgKey,
+        text: text,
+        speechLang: langObj.speechLang,
+        langName: `${langObj.flag} ${langObj.name}`
+      };
+      launchAudioModal();
+    }
+
+    function openAudioGuideForFloor(floorNum) {
+      const floorData = FLOORS_DATA.find(f => f.floor === floorNum);
+      if (!floorData) return;
+      const langObj = LANGUAGES.find(l => l.code === state.lang) || LANGUAGES[0];
+      const text = floorData.audioText[state.lang] || (state.lang === 'vi' ? floorData.audioText.vi : floorData.audioText.en);
+
+      state.currentAudioConfig = {
+        title: floorData.title,
+        subtitle: 'Bảo tàng Đà Nẵng • Thuyết minh không gian tầng',
+        floorTag: `Tầng ${floorData.floor}`,
+        svgKey: floorData.svgKey,
+        text: text,
+        speechLang: langObj.speechLang,
+        langName: `${langObj.flag} ${langObj.name}`
+      };
+      launchAudioModal();
+    }
+
+    function playCustomTextAudio(title, plainText) {
+      const langObj = LANGUAGES.find(l => l.code === state.lang) || LANGUAGES[0];
+      state.currentAudioConfig = {
+        title: title || 'Thuyết minh Trợ lý AI',
+        subtitle: 'Bảo tàng Đà Nẵng Smart Guide',
+        floorTag: 'AI Audio',
+        svgKey: 'cannon',
+        text: plainText,
+        speechLang: langObj.speechLang,
+        langName: `${langObj.flag} ${langObj.name}`
+      };
+      launchAudioModal();
+    }
+
+    function launchAudioModal() {
+      const cfg = state.currentAudioConfig;
+      if (!cfg) return;
+
+      document.getElementById('audio-lang-badge').textContent = `Ngôn ngữ: ${cfg.langName}`;
+      document.getElementById('audio-artwork-svg').innerHTML = getSvgArtwork(cfg.svgKey);
+      document.getElementById('audio-floor-tag').textContent = cfg.floorTag;
+      document.getElementById('audio-title').textContent = cfg.title;
+      document.getElementById('audio-subtitle').textContent = cfg.subtitle;
+      document.getElementById('audio-transcript-text').textContent = cfg.text;
+
+      document.getElementById('audio-modal').classList.remove('hidden');
+      startSpeechPlayback();
+      lucide.createIcons();
+    }
+
+    function closeAudioModal() {
+      stopSpeechPlayback();
+      document.getElementById('audio-modal').classList.add('hidden');
+    }
+
+    function startSpeechPlayback() {
+      stopSpeechPlayback();
+      const cfg = state.currentAudioConfig;
+      if (!cfg) return;
+
+      state.audioPlaying = true;
+      state.audioProgress = 0;
+      updateAudioUiState();
+
+      const estSeconds = Math.max(10, Math.round(cfg.text.length / (13 * state.audioRate)));
+      document.getElementById('audio-time-total').textContent = formatSeconds(estSeconds);
+
+      if ('speechSynthesis' in window) {
+        try {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(cfg.text);
+          utterance.lang = cfg.speechLang;
+          utterance.rate = state.audioRate;
+
+          const voices = window.speechSynthesis.getVoices();
+          const matchedVoice = voices.find(v => v.lang.toLowerCase().startsWith(cfg.speechLang.slice(0, 2).toLowerCase()));
+          if (matchedVoice) utterance.voice = matchedVoice;
+
+          utterance.onend = () => {
+            state.audioPlaying = false;
+            state.audioProgress = 100;
+            clearInterval(state.audioTimerInterval);
+            updateAudioUiState();
+          };
+          utterance.onerror = () => {};
+          state.audioUtterance = utterance;
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {}
+      }
+
+      const stepMs = 250;
+      const increment = (100 / (estSeconds * 1000)) * stepMs;
+      state.audioTimerInterval = setInterval(() => {
+        if (!state.audioPlaying) return;
+        state.audioProgress = Math.min(100, state.audioProgress + increment);
+        document.getElementById('audio-progress-bar').style.width = `${state.audioProgress}%`;
+        const currentSec = Math.round((state.audioProgress / 100) * estSeconds);
+        document.getElementById('audio-time-current').textContent = formatSeconds(currentSec);
+
+        if (state.audioProgress >= 100) {
+          state.audioPlaying = false;
+          clearInterval(state.audioTimerInterval);
+          updateAudioUiState();
+        }
+      }, stepMs);
+    }
+
+    function stopSpeechPlayback() {
+      state.audioPlaying = false;
+      clearInterval(state.audioTimerInterval);
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch (e) {}
+      }
+    }
+
+    function togglePlayPauseAudio() {
+      if (state.audioPlaying) {
+        state.audioPlaying = false;
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.pause(); } catch (e) {}
+        }
+      } else {
+        if (state.audioProgress >= 100) {
+          startSpeechPlayback();
+          return;
+        }
+        state.audioPlaying = true;
+        if ('speechSynthesis' in window) {
+          try {
+            if (window.speechSynthesis.paused) {
+              window.speechSynthesis.resume();
+            } else {
+              startSpeechPlayback();
+              return;
+            }
+          } catch (e) {}
+        }
+      }
+      updateAudioUiState();
+    }
+
+    function restartAudioGuide() {
+      startSpeechPlayback();
+    }
+
+    function setAudioSpeed(rate) {
+      state.audioRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(btn => {
+        btn.className = 'speed-btn px-2 py-1 rounded-lg text-slate-300 hover:text-white';
+      });
+      const activeId = rate === 1.0 ? 'speed-btn-1' : `speed-btn-${rate}`;
+      const activeBtn = document.getElementById(activeId);
+      if (activeBtn) {
+        activeBtn.className = 'speed-btn px-2 py-1 rounded-lg bg-museum-bronze text-white';
+      }
+      if (state.audioPlaying) {
+        startSpeechPlayback();
+      }
+    }
+
+    function updateAudioUiState() {
+      const statusPill = document.getElementById('audio-status-pill');
+      const playLabel = document.getElementById('audio-play-label');
+      if (state.audioPlaying) {
+        statusPill.textContent = 'Đang phát thuyết minh...';
+        playLabel.textContent = 'Tạm dừng';
+      } else if (state.audioProgress >= 100) {
+        statusPill.textContent = 'Đã phát xong';
+        playLabel.textContent = 'Nghe lại';
+      } else {
+        statusPill.textContent = 'Đã tạm dừng';
+        playLabel.textContent = 'Tiếp tục';
+      }
+    }
+
+    function formatSeconds(sec) {
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = (sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    // =========================================================================
+    // 11. CHATBOT AI ASSISTANT (RICH TEXT, ILLUSTRATION CARDS & "NGHE AUDIO")
+    // =========================================================================
+    function switchChatSubtab(subtab) {
+      state.activeChatSubtab = subtab;
+      const chatBtn = document.getElementById('subtab-chat-btn');
+      const quizBtn = document.getElementById('subtab-quiz-btn');
+      const chatView = document.getElementById('chat-subview');
+      const quizView = document.getElementById('quiz-subview');
+
+      if (subtab === 'chat') {
+        chatBtn.className = 'py-2.5 px-2.5 rounded-xl bg-museum-navy text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-sm transition';
+        quizBtn.className = 'py-2.5 px-2.5 rounded-xl text-museum-muted hover:text-museum-navy font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition';
+        chatView.classList.remove('hidden');
+        quizView.classList.add('hidden');
+      } else {
+        quizBtn.className = 'py-2.5 px-2.5 rounded-xl bg-museum-navy text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-sm transition';
+        chatBtn.className = 'py-2.5 px-2.5 rounded-xl text-museum-muted hover:text-museum-navy font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition';
+        quizView.classList.remove('hidden');
+        chatView.classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    function initWelcomeChatMessage() {
+      const container = document.getElementById('chat-messages');
+      if (!container) return;
+      container.innerHTML = '';
+      const welcomePlain = `Xin chào ${state.visitorName}! Tôi là Trợ lý AI của Bảo tàng Đà Nẵng. Bạn có thể hỏi thông tin chi tiết về các hiện vật, xem hình ảnh minh họa, nghe Audio thuyết minh hoặc tìm lộ trình đường đi qua 3 tầng trưng bày.`;
+      appendBotMessage(
+        `Xin chào <strong>${escapeHtml(state.visitorName)}</strong>! Tôi là Trợ lý AI của <strong>Bảo tàng Đà Nẵng</strong>. Bạn có thể hỏi thông tin chi tiết về các hiện vật, xem hình ảnh minh họa, nghe Audio thuyết minh hoặc tìm lộ trình đường đi qua 3 tầng trưng bày.`,
+        welcomePlain
+      );
+    }
+
+    function resetChatHistory() {
+      initWelcomeChatMessage();
+      showToast('Đã làm mới cuộc trò chuyện!');
+    }
+
+    function injectArtifactCardToChat(art) {
+      appendUserMessage(`Tìm hiểu chi tiết & hình ảnh: ${art.title}`);
+      appendBotArtifactCard(art);
+    }
+
+    function sendQuickPrompt(text) {
+      document.getElementById('chat-input').value = text;
+      processUserChatQuery(text);
+      document.getElementById('chat-input').value = '';
+    }
+
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const query = input.value.trim();
+      if (!query) return;
+      input.value = '';
+      processUserChatQuery(query);
+    }
+
+    async function processUserChatQuery(query) {
+      appendUserMessage(query);
+      const qLower = query.toLowerCase();
+
+      // 1. Direct artifact match -> returns illustrated card + audio button + follow-ups
+      const matchedArtifact = findMatchingArtifact(qLower);
+      if (matchedArtifact) {
+        setTimeout(() => {
+          appendBotArtifactCard(matchedArtifact);
+        }, 250);
+        return;
+      }
+
+      // 2. Local museum knowledge -> returns text + Nghe Audio button
+      const localKnowledge = getLocalMuseumReply(qLower);
+      if (localKnowledge) {
+        setTimeout(() => {
+          appendBotMessage(localKnowledge.html, localKnowledge.plain, localKnowledge.extraBtn);
+        }, 250);
+        return;
+      }
+
+      // 3. Gemini API call with graceful fallback
+      const typingId = appendTypingIndicator();
+      try {
+        const aiText = await callGeminiMuseumAssistant(query);
+        removeElementById(typingId);
+        appendBotMessage(aiText.replace(/\n/g, '<br>'), aiText);
+      } catch (err) {
+        removeElementById(typingId);
+        const fallbackPlain = 'Bảo tàng Đà Nẵng tại 31 Trần Phú trưng bày hơn 2.500 tài liệu và hiện vật quý giá qua 3 tầng. Bạn có thể hỏi về Súng thần công 1858, Khuyên tai Sa Huỳnh, Bình gốm Kendy Champa, Xe Honda Dame, Ghe bầu xứ Quảng hoặc mở tab Bản đồ để định vị lộ trình.';
+        appendBotMessage(
+          'Bảo tàng Đà Nẵng tại <strong>31 Trần Phú</strong> trưng bày hơn 2.500 tài liệu và hiện vật quý giá qua <strong>3 tầng</strong>. Bạn có thể hỏi về <em>Súng thần công 1858, Khuyên tai Sa Huỳnh, Bình gốm Kendy Champa, Xe Honda Dame, Ghe bầu xứ Quảng</em> hoặc mở tab <strong>Bản đồ</strong> để định vị lộ trình.',
+          fallbackPlain
+        );
+      }
+    }
+
+    function findMatchingArtifact(q) {
+      if (q.includes('súng') || q.includes('thần công') || q.includes('1858') || q.includes('điện hải')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'cannon');
+      }
+      if (q.includes('sa huỳnh') || q.includes('khuyên tai') || q.includes('hai đầu thú')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'sahuynh');
+      }
+      if (q.includes('kendy') || q.includes('champa')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'kendy');
+      }
+      if (q.includes('honda') || q.includes('bom') || q.includes('cbu') || q.includes('biệt động')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'hondadame');
+      }
+      if (q.includes('cơ tu') || q.includes('tơghêy') || q.includes('cổng làng') || q.includes('dân tộc')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'cotu');
+      }
+      if (q.includes('ghe bầu') || q.includes('thuyền')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'ghebau');
+      }
+      if (q.includes('chu đậu') || q.includes('bình vôi') || q.includes('gốm')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'chudau');
+      }
+      if (q.includes('đèn cổ') || q.includes('trầm hương')) {
+        return ARTIFACTS_DATA.find(a => a.id === 'denco');
+      }
+      return null;
+    }
+
+    function getLocalMuseumReply(q) {
+      if (q.includes('giờ') || q.includes('mở cửa') || q.includes('vé') || q.includes('địa chỉ') || q.includes('hotline')) {
+        const plain = 'Bảo tàng Đà Nẵng tọa lạc tại Cơ sở 1: 31 Trần Phú, Hải Châu, Đà Nẵng. Giờ mở cửa từ 8 giờ sáng đến 17 giờ chiều hằng ngày, mở xuyên trưa. Giá vé 20.000 đồng một lượt, miễn phí cho công dân Đà Nẵng, học sinh và sinh viên. Hotline hỗ trợ: 0236 3886236.';
+        return {
+          html: `📍 <strong>Địa chỉ:</strong> Cơ sở 1 – 31 Trần Phú, Hải Châu, Đà Nẵng (Thành Điện Hải).<br>⏰ <strong>Giờ mở cửa:</strong> 08:00 – 17:00 hằng ngày (Mở xuyên trưa).<br>🎟️ <strong>Giá vé:</strong> 20.000đ/lượt (Miễn phí người Đà Nẵng, HSSV).<br>📞 <strong>Hotline:</strong> 0236 3886236.`,
+          plain: plain
+        };
+      }
+      if (q.includes('lộ trình') || q.includes('tầng 3') || q.includes('tầng 2') || q.includes('tầng 1')) {
+        const plain = 'Lộ trình tham quan Bảo tàng Đà Nẵng gồm 3 tầng: Bắt đầu từ Tầng 3 với Tổng quan Đà Nẵng và Lịch sử đấu tranh 1858 đến 1975. Tiếp theo xuống Tầng 2 khám phá Đèn cổ, trầm hương xứ Quảng và Văn hóa các dân tộc Cơ Tu, Xơ Đăng. Kết thúc tại Tầng 1 với Không gian sưu tập cổ vật Gốm Chu Đậu, Gốm thời Nguyễn và Bình vôi Việt.';
+        return {
+          html: `🏛️ <strong>Lộ trình tham quan 3 tầng chuẩn:</strong><br>• <strong>Tầng 3 (Điểm bắt đầu):</strong> Tổng quan Đà Nẵng, Lịch sử Đô thị & Đấu tranh 1858–1975.<br>• <strong>Tầng 2:</strong> Đèn cổ, trầm hương xứ Quảng & Văn hóa các dân tộc Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor.<br>• <strong>Tầng 1:</strong> Không gian sưu tập cổ vật (Gốm Chu Đậu, Gốm sứ thời Nguyễn, Bình vôi Việt).`,
+          plain: plain,
+          extraBtn: `<button onclick="switchTab('map')" class="mt-2 px-3 py-1.5 rounded-xl bg-museum-bronze text-white text-xs font-bold inline-flex items-center gap-1">Mở Bản đồ định vị →</button>`
+        };
+      }
+      return null;
+    }
+
+    async function callGeminiMuseumAssistant(userQuery) {
+      const apiKey = "";
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+      const systemInstruction = `Bạn là Hướng dẫn viên AI của Bảo tàng Đà Nẵng (31 Trần Phú, Hải Châu, Đà Nẵng). Trả lời ngắn gọn, thân thiện, chuẩn xác bằng ngôn ngữ '${state.lang}'. Kiến thức cốt lõi: Tầng 3 (điểm bắt đầu: tổng quan Đà Nẵng, lịch sử đô thị, súng thần công Thành Điện Hải 1858–1860, xe Honda Dame & bom CBU 55), Tầng 2 (đèn cổ & trầm hương xứ Quảng, nghiên cứu & phát triển, ghe bầu xứ Quảng, văn hóa dân tộc Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor, tượng cổng làng & kèn Tơghêy), Tầng 1 (sưu tập cổ vật: gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi Việt, khuyên tai hai đầu thú Sa Huỳnh, bình gốm Kendy Champa).`;
+
+      const payload = {
+        contents: [{ parts: [{ text: userQuery }] }],
+        systemInstruction: { parts: [{ text: systemInstruction }] }
+      };
+
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (text) return text;
+        }
+        await new Promise(r => setTimeout(r, 900 * (attempt + 1)));
+      }
+      throw new Error('Offline fallback');
+    }
+
+    function appendUserMessage(text) {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'flex justify-end fade-in';
+      div.innerHTML = `
+        <div class="max-w-[82%] rounded-2xl rounded-tr-sm bg-museum-navy text-white px-3.5 py-2.5 text-sm shadow-sm">
+          ${escapeHtml(text)}
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function appendBotMessage(htmlText, plainSpeechText, extraHtml = '') {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'flex items-start gap-2 fade-in';
+      const safeSpeech = (plainSpeechText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-museum-ivory border border-museum-border text-museum-bronze flex items-center justify-center shrink-0 mt-0.5 font-extrabold text-[11px]">AI</div>
+        <div class="max-w-[86%] rounded-2xl rounded-tl-sm bg-museum-ivory border border-museum-border text-museum-navy px-3.5 py-2.5 text-sm leading-relaxed shadow-sm space-y-2">
+          <div>${htmlText}</div>
+          ${extraHtml ? `<div>${extraHtml}</div>` : ''}
+          <div class="pt-1 border-t border-museum-border/70 flex items-center justify-between">
+            <button onclick="playCustomTextAudio('Thuyết minh Trợ lý AI', '${safeSpeech}')" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white hover:bg-amber-50 border border-museum-border text-[11px] font-bold text-museum-bronze transition">
+              <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              <span>Nghe Audio</span>
+            </button>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function appendBotArtifactCard(art) {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'flex items-start gap-2 fade-in';
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-museum-ivory border border-museum-border text-museum-bronze flex items-center justify-center shrink-0 mt-0.5 font-extrabold text-[11px]">AI</div>
+        <div class="max-w-[88%] rounded-2xl rounded-tl-sm bg-museum-ivory border border-museum-bronze/60 text-museum-navy p-3 text-sm space-y-2 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded bg-amber-100 text-museum-navy text-[10px] font-extrabold">Tầng ${art.floor} • ${art.room}</span>
+          </div>
+          <!-- Illustrated Artifact Card inside Chat Bubble -->
+          <div class="w-full h-32 rounded-xl bg-white border border-museum-border p-2 flex items-center justify-center">
+            ${getSvgArtwork(art.svgKey)}
+          </div>
+          <div>
+            <h4 class="font-extrabold text-sm text-museum-navy">${art.title}</h4>
+            <p class="text-[11px] font-bold text-museum-bronze">Niên đại: ${art.era}</p>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">${art.fullDesc}</p>
+
+          <!-- "Nghe Audio" & Map Buttons -->
+          <div class="flex gap-1.5 pt-1">
+            <button onclick="openAudioGuideForArtifactById('${art.id}')" class="flex-1 py-2 px-2 rounded-xl bg-museum-bronze hover:bg-[#A34E2F] text-white text-xs font-bold flex items-center justify-center gap-1 transition">
+              <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
+              <span>Nghe Audio</span>
+            </button>
+            <button onclick="jumpToFloorOnMap(${art.floor}, '${art.mapNodeId}')" class="flex-1 py-2 px-2 rounded-xl bg-white hover:bg-amber-50 border border-museum-border text-museum-navy text-xs font-bold flex items-center justify-center gap-1 transition">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-museum-bronze"></i>
+              <span>Vị trí Tầng ${art.floor}</span>
+            </button>
+          </div>
+
+          <!-- Clickable Follow-up Question Chips -->
+          <div class="pt-1.5 border-t border-museum-border space-y-1">
+            <p class="text-[10px] font-extrabold uppercase text-museum-muted">Hỏi tiếp về hiện vật này:</p>
+            <div class="flex flex-wrap gap-1">
+              ${art.followUps.map(q => `
+                <button onclick="sendQuickPrompt('${q.replace(/'/g, "\\'")}')" class="px-2 py-1 rounded-lg bg-white hover:bg-amber-50 border border-museum-border text-[11px] font-semibold text-museum-navy text-left transition">
+                  ${q}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function openAudioGuideForArtifactById(id) {
+      const art = ARTIFACTS_DATA.find(a => a.id === id);
+      if (art) openAudioGuideForArtifact(art);
+    }
+
+    function appendTypingIndicator() {
+      const container = document.getElementById('chat-messages');
+      const id = 'typing-' + Date.now();
+      const div = document.createElement('div');
+      div.id = id;
+      div.className = 'flex items-center gap-2';
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-museum-ivory border border-museum-border text-museum-bronze flex items-center justify-center text-[11px] font-extrabold">AI</div>
+        <div class="px-3.5 py-2 rounded-2xl bg-museum-ivory border border-museum-border text-xs text-museum-muted flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-museum-bronze animate-bounce"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-museum-bronze animate-bounce" style="animation-delay:0.15s"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-museum-bronze animate-bounce" style="animation-delay:0.3s"></span>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      return id;
+    }
+
+    function removeElementById(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    // =========================================================================
+    // 12. QUICK QUIZ GAME (8 QUESTIONS, 15S TIMER, CERTIFICATE BADGE)
+    // =========================================================================
+    function startQuizGame() {
+      state.quizIndex = 0;
+      state.quizScore = 0;
+      state.quizCorrectCount = 0;
+      state.quizAnswered = false;
+
+      document.getElementById('quiz-start-screen').classList.add('hidden');
+      document.getElementById('quiz-summary-screen').classList.add('hidden');
+      document.getElementById('quiz-active-screen').classList.remove('hidden');
+
+      renderCurrentQuizQuestion();
+    }
+
+    function renderCurrentQuizQuestion() {
+      clearInterval(state.quizInterval);
+      state.quizAnswered = false;
+      state.quizTimer = 15;
+
+      const qObj = QUIZ_QUESTIONS[state.quizIndex];
+      document.getElementById('quiz-progress-label').textContent = `Câu ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`;
+      document.getElementById('quiz-score-label').textContent = `Điểm: ${state.quizScore}`;
+      document.getElementById('quiz-question-text').textContent = qObj.q;
+      document.getElementById('quiz-explanation-box').classList.add('hidden');
+
+      const optionsContainer = document.getElementById('quiz-options-container');
+      const letters = ['A', 'B', 'C', 'D'];
+      optionsContainer.innerHTML = qObj.options.map((opt, idx) => `
+        <button onclick="selectQuizOption(${idx})" id="quiz-opt-${idx}" class="w-full p-3 rounded-2xl bg-museum-ivory hover:bg-amber-100/60 border border-museum-border text-left text-sm font-semibold text-museum-navy flex items-center gap-2.5 transition active:scale-[0.99]">
+          <span class="w-7 h-7 rounded-lg bg-white border border-museum-border flex items-center justify-center text-xs font-extrabold text-museum-bronze shrink-0">${letters[idx]}</span>
+          <span class="flex-1">${opt}</span>
+        </button>
+      `).join('');
+
+      updateQuizTimerUi();
+      state.quizInterval = setInterval(() => {
+        if (state.quizAnswered) return;
+        state.quizTimer--;
+        updateQuizTimerUi();
+        if (state.quizTimer <= 0) {
+          clearInterval(state.quizInterval);
+          handleQuizTimeout();
+        }
+      }, 1000);
+      lucide.createIcons();
+    }
+
+    function updateQuizTimerUi() {
+      document.getElementById('quiz-timer-sec').textContent = `${state.quizTimer}s`;
+      document.getElementById('quiz-timer-bar').style.width = `${(state.quizTimer / 15) * 100}%`;
+    }
+
+    function selectQuizOption(selectedIdx) {
+      if (state.quizAnswered) return;
+      state.quizAnswered = true;
+      clearInterval(state.quizInterval);
+
+      const qObj = QUIZ_QUESTIONS[state.quizIndex];
+      const isCorrect = selectedIdx === qObj.correct;
+
+      if (isCorrect) {
+        state.quizScore += (100 + state.quizTimer * 4);
+        state.quizCorrectCount++;
+        document.getElementById('quiz-score-label').textContent = `Điểm: ${state.quizScore}`;
+      }
+
+      qObj.options.forEach((_, idx) => {
+        const btn = document.getElementById(`quiz-opt-${idx}`);
+        btn.disabled = true;
+        if (idx === qObj.correct) {
+          btn.className = 'w-full p-3 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-left text-sm font-bold text-emerald-950 flex items-center gap-2.5';
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.className = 'w-full p-3 rounded-2xl bg-rose-50 border-2 border-rose-500 text-left text-sm font-bold text-rose-950 flex items-center gap-2.5';
+        } else {
+          btn.className = 'w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-left text-sm text-slate-400 flex items-center gap-2.5 opacity-60';
+        }
+      });
+
+      document.getElementById('quiz-explanation-text').textContent = qObj.explain;
+      document.getElementById('quiz-explanation-box').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function handleQuizTimeout() {
+      state.quizAnswered = true;
+      const qObj = QUIZ_QUESTIONS[state.quizIndex];
+      qObj.options.forEach((_, idx) => {
+        const btn = document.getElementById(`quiz-opt-${idx}`);
+        btn.disabled = true;
+        if (idx === qObj.correct) {
+          btn.className = 'w-full p-3 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-left text-sm font-bold text-emerald-950 flex items-center gap-2.5';
+        }
+      });
+      document.getElementById('quiz-explanation-text').textContent = `Hết giờ! ${qObj.explain}`;
+      document.getElementById('quiz-explanation-box').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function nextQuizQuestion() {
+      state.quizIndex++;
+      if (state.quizIndex >= QUIZ_QUESTIONS.length) {
+        showQuizSummary();
+      } else {
+        renderCurrentQuizQuestion();
+      }
+    }
+
+    function showQuizSummary() {
+      document.getElementById('quiz-active-screen').classList.add('hidden');
+      document.getElementById('quiz-summary-screen').classList.remove('hidden');
+
+      document.getElementById('quiz-winner-name').textContent = `Vinh danh: ${state.visitorName}`;
+      document.getElementById('quiz-final-score').textContent = state.quizScore;
+      document.getElementById('quiz-final-correct').textContent = `${state.quizCorrectCount}/${QUIZ_QUESTIONS.length}`;
+      lucide.createIcons();
+    }
+
+    function shareQuizScore() {
+      const msg = `${state.visitorName} vừa đạt ${state.quizScore} điểm (${state.quizCorrectCount}/8 câu đúng) và nhận Chứng nhận "Nhà Khám Phá Di Sản Đà Nẵng" tại Da Nang Museum Smart Guide!`;
+      copyTextToClipboard(msg, 'Đã sao chép chứng nhận & điểm số!');
+    }
+
+    // =========================================================================
+    // 13. 3-FLOOR INTERACTIVE MAP & WAYFINDING ENGINE
+    // =========================================================================
+    function populateWayfindingDropdowns() {
+      const originSelect = document.getElementById('map-origin-select');
+      const destSelect = document.getElementById('map-dest-select');
+
+      const optionsHtml = MAP_NODES.map(n => `<option value="${n.id}">${n.name}</option>`).join('');
+      originSelect.innerHTML = optionsHtml;
+      destSelect.innerHTML = optionsHtml;
+
+      originSelect.value = 'f1_entrance';
+      destSelect.value = 'f3_cannon';
+    }
+
+    function swapWayfindingPoints() {
+      const originSelect = document.getElementById('map-origin-select');
+      const destSelect = document.getElementById('map-dest-select');
+      const temp = originSelect.value;
+      originSelect.value = destSelect.value;
+      destSelect.value = temp;
+      calculateAndDrawRoute();
+    }
+
+    function jumpToFloorOnMap(floorNum, targetNodeId) {
+      switchTab('map');
+      selectMapFloor(floorNum);
+      if (targetNodeId) {
+        const destSelect = document.getElementById('map-dest-select');
+        if (destSelect) destSelect.value = targetNodeId;
+        calculateAndDrawRoute();
+      }
+    }
+
+    function selectMapFloor(floorNum) {
+      state.currentMapFloor = floorNum;
+      [3, 2, 1].forEach(f => {
+        const btn = document.getElementById(`map-floor-btn-${f}`);
+        if (f === floorNum) {
+          btn.className = 'py-2 px-1.5 rounded-xl bg-museum-navy text-white font-bold text-xs transition shadow-sm';
+        } else {
+          btn.className = 'py-2 px-1.5 rounded-xl text-museum-muted hover:text-museum-navy font-bold text-xs transition';
+        }
+      });
+
+      const titles = {
+        3: 'Sơ đồ Mặt bằng Tầng 3 (Điểm bắt đầu)',
+        2: 'Sơ đồ Mặt bằng Tầng 2 (Văn hóa & Trầm hương)',
+        1: 'Sơ đồ Mặt bằng Tầng 1 (Sưu tập Cổ vật & Lối vào)'
+      };
+      document.getElementById('map-current-floor-title').textContent = titles[floorNum];
+      renderFloorPlanSvg(floorNum);
+    }
+
+    function calculateAndDrawRoute() {
+      const originId = document.getElementById('map-origin-select').value;
+      const destId = document.getElementById('map-dest-select').value;
+      const origin = MAP_NODES.find(n => n.id === originId);
+      const dest = MAP_NODES.find(n => n.id === destId);
+
+      if (!origin || !dest) return;
+      if (origin.id === dest.id) {
+        showToast('Bạn đang đứng ngay tại điểm đến này!');
+        selectMapFloor(origin.floor);
+        return;
+      }
+
+      const segmentsByFloor = { 1: [], 2: [], 3: [] };
+      const steps = [];
+      let totalDistance = 0;
+
+      if (origin.floor === dest.floor) {
+        const corridorPt = { x: 180, y: 130 };
+        segmentsByFloor[origin.floor] = [
+          { x: origin.x, y: origin.y },
+          corridorPt,
+          { x: dest.x, y: dest.y }
+        ];
+        totalDistance = Math.round((Math.abs(origin.x - corridorPt.x) + Math.abs(origin.y - corridorPt.y) + Math.abs(corridorPt.x - dest.x) + Math.abs(corridorPt.y - dest.y)) * 0.22);
+
+        steps.push(`Xuất phát từ <strong>${origin.name}</strong>, tiến ra hành lang trung tâm Tầng ${origin.floor}.`);
+        steps.push(`Đi thẳng theo vạch dẫn đường màu cam tới <strong>${dest.name}</strong>.`);
+      } else {
+        const originElevator = MAP_NODES.find(n => n.floor === origin.floor && n.type === 'transit');
+        const destElevator = MAP_NODES.find(n => n.floor === dest.floor && n.type === 'transit');
+
+        segmentsByFloor[origin.floor] = [
+          { x: origin.x, y: origin.y },
+          { x: 180, y: 118 },
+          { x: originElevator.x, y: originElevator.y }
+        ];
+        segmentsByFloor[dest.floor] = [
+          { x: destElevator.x, y: destElevator.y },
+          { x: 180, y: 118 },
+          { x: dest.x, y: dest.y }
+        ];
+
+        const directionWord = dest.floor > origin.floor ? 'lên' : 'xuống';
+        totalDistance = Math.abs(dest.floor - origin.floor) * 24 + 34;
+
+        steps.push(`<strong>Chặng 1 (Tầng ${origin.floor}):</strong> Từ <strong>${origin.short}</strong>, đi theo lối dẫn tới <strong>Thang máy / Cầu thang bộ</strong>.`);
+        steps.push(`<strong>Chặng 2 (Chuyển tầng):</strong> Đi thang máy hoặc cầu thang bộ ${directionWord} <strong>Tầng ${dest.floor}</strong>.`);
+        steps.push(`<strong>Chặng 3 (Tầng ${dest.floor}):</strong> Ra khỏi sảnh thang máy, rẽ vào khu vực <strong>${dest.name}</strong>.`);
+      }
+
+      state.activeRoute = {
+        origin,
+        dest,
+        segmentsByFloor,
+        steps
+      };
+
+      const switcher = document.getElementById('route-floor-switcher');
+      if (origin.floor !== dest.floor) {
+        switcher.classList.remove('hidden');
+        switcher.innerHTML = `
+          <button onclick="selectMapFloor(${origin.floor})" class="px-2 py-1 rounded-lg bg-emerald-100 text-emerald-900 text-[10px] font-extrabold">T${origin.floor}</button>
+          <button onclick="selectMapFloor(${dest.floor})" class="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 text-[10px] font-extrabold">T${dest.floor}</button>
+        `;
+      } else {
+        switcher.classList.add('hidden');
+      }
+
+      const estMins = Math.max(1, Math.round(totalDistance / 35));
+      document.getElementById('route-summary-meta').textContent = `Ước tính: ~${estMins} phút đi bộ • ${totalDistance}m`;
+      document.getElementById('route-steps-list').innerHTML = steps.map((s, idx) => `
+        <li class="flex items-start gap-2.5">
+          <span class="w-5 h-5 rounded-full bg-museum-bronze text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+          <span class="text-slate-700 text-xs sm:text-sm leading-snug">${s}</span>
+        </li>
+      `).join('');
+      document.getElementById('route-instructions-panel').classList.remove('hidden');
+
+      selectMapFloor(origin.floor);
+      showToast(`Đã tìm thấy lộ trình tới ${dest.short}!`);
+      lucide.createIcons();
+    }
+
+    function clearRoute() {
+      state.activeRoute = null;
+      document.getElementById('route-instructions-panel').classList.add('hidden');
+      document.getElementById('route-floor-switcher').classList.add('hidden');
+      renderFloorPlanSvg(state.currentMapFloor);
+    }
+
+    function renderFloorPlanSvg(floorNum) {
+      const wrapper = document.getElementById('svg-floorplan-wrapper');
+      const floorNodes = MAP_NODES.filter(n => n.floor === floorNum);
+
+      const roomConfigs = {
+        3: [
+          { x: 22, y: 80, w: 125, h: 95, label: 'Tổng quan & Lịch sử Đô thị', fill: '#FEF3C7' },
+          { x: 213, y: 76, w: 125, h: 72, label: 'Súng thần công 1858', fill: '#FFEDD5' },
+          { x: 185, y: 162, w: 153, h: 76, label: 'Chứng tích Chiến tranh', fill: '#FEE2E2' }
+        ],
+        2: [
+          { x: 22, y: 84, w: 125, h: 98, label: 'Văn hóa Cơ Tu & Dân tộc', fill: '#FEF3C7' },
+          { x: 213, y: 84, w: 125, h: 98, label: 'Đèn cổ & Trầm hương', fill: '#FFEDD5' },
+          { x: 115, y: 175, w: 130, h: 62, label: 'Nghiên cứu & Phát triển', fill: '#E0F2FE' }
+        ],
+        1: [
+          { x: 22, y: 80, w: 125, h: 88, label: 'Gốm Chu Đậu & Bình vôi', fill: '#DBEAFE' },
+          { x: 213, y: 80, w: 125, h: 88, label: 'Sa Huỳnh & Champa', fill: '#D1FAE5' },
+          { x: 115, y: 182, w: 130, h: 56, label: 'Cổng chính & Quầy Lễ tân', fill: '#FEF3C7' }
+        ]
+      };
+
+      const rooms = roomConfigs[floorNum] || [];
+      let routeSvgMarkup = '';
+
+      if (state.activeRoute && state.activeRoute.segmentsByFloor[floorNum]?.length > 1) {
+        const pts = state.activeRoute.segmentsByFloor[floorNum];
+        const pointsStr = pts.map(p => `${p.x},${p.y}`).join(' ');
+        routeSvgMarkup = `
+          <polyline points="${pointsStr}" fill="none" stroke="#EA580C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="route-animated"/>
+        `;
+      }
+
+      const nodesSvgMarkup = floorNodes.map(node => {
+        const isOrigin = state.activeRoute?.origin?.id === node.id;
+        const isDest = state.activeRoute?.dest?.id === node.id;
+        let pinColor = '#B85D3B';
+        let badgeText = '';
+
+        if (isOrigin) {
+          pinColor = '#10B981';
+          badgeText = 'Xuất phát';
+        } else if (isDest) {
+          pinColor = '#E11D48';
+          badgeText = 'Đích đến';
+        }
+
+        return `
+          <g onclick="handleMapNodeClick('${node.id}')" class="cursor-pointer">
+            ${(isOrigin || isDest) ? `<circle cx="${node.x}" cy="${node.y}" r="14" fill="${pinColor}" class="pin-pulse"/>` : ''}
+            <circle cx="${node.x}" cy="${node.y}" r="9" fill="${pinColor}" stroke="#FFFFFF" stroke-width="2.5"/>
+            <rect x="${node.x - 46}" y="${node.y + 12}" width="92" height="17" rx="5" fill="#1C2536" opacity="0.92"/>
+            <text x="${node.x}" y="${node.y + 23}" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="bold">${node.short}</text>
+            ${badgeText ? `
+              <rect x="${node.x - 30}" y="${node.y - 26}" width="60" height="14" rx="7" fill="${pinColor}"/>
+              <text x="${node.x}" y="${node.y - 16}" text-anchor="middle" fill="#FFFFFF" font-size="8" font-weight="bold">${badgeText}</text>
+            ` : ''}
+          </g>
+        `;
+      }).join('');
+
+      wrapper.innerHTML = `
+        <svg viewBox="0 0 360 250" class="w-full h-auto select-none">
+          <rect x="10" y="10" width="340" height="230" rx="16" fill="#FFFFFF" stroke="#1C2536" stroke-width="3"/>
+          <rect x="148" y="34" width="64" height="146" fill="#F8F5F0"/>
+          <!-- Elevator & Stairs -->
+          <rect x="132" y="20" width="96" height="44" rx="8" fill="#E2E8F0" stroke="#64748B" stroke-width="1.5"/>
+          <text x="180" y="35" text-anchor="middle" fill="#1C2536" font-size="8" font-weight="bold">THANG MÁY / CẦU THANG BỘ</text>
+          <!-- WC -->
+          <rect x="24" y="20" width="46" height="26" rx="6" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1"/>
+          <text x="47" y="36" text-anchor="middle" fill="#475569" font-size="8.5" font-weight="bold">WC</text>
+          <!-- Floor Label -->
+          <text x="315" y="39" text-anchor="middle" fill="#CBD5E1" font-size="16" font-weight="800">TẦNG ${floorNum}</text>
+
+          ${rooms.map(r => `
+            <g>
+              <rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="10" fill="${r.fill}" stroke="#D4A359" stroke-width="1.5" opacity="0.88"/>
+              <text x="${r.x + r.w / 2}" y="${r.y + 16}" text-anchor="middle" fill="#5A2815" font-size="8.5" font-weight="bold">${r.label}</text>
+            </g>
+          `).join('')}
+
+          ${routeSvgMarkup}
+          ${nodesSvgMarkup}
+        </svg>
+      `;
+    }
+
+    function handleMapNodeClick(nodeId) {
+      const node = MAP_NODES.find(n => n.id === nodeId);
+      if (!node) return;
+      document.getElementById('map-dest-select').value = nodeId;
+      calculateAndDrawRoute();
+    }
+
+    // =========================================================================
+    // 14. QUICK LANGUAGE MODAL & UTILITY HELPERS
+    // =========================================================================
+    function populateQuickLangModal() {
+      const list = document.getElementById('quick-lang-list');
+      list.innerHTML = LANGUAGES.map(l => `
+        <button onclick="selectQuickLanguage('${l.code}')" class="w-full p-2.5 rounded-xl hover:bg-museum-ivory border border-transparent hover:border-museum-border flex items-center justify-between text-left transition">
+          <span class="flex items-center gap-2.5 text-sm font-semibold text-museum-navy">
+            <span class="text-lg">${l.flag}</span>
+            <span>${l.name}</span>
+          </span>
+          <span class="text-xs font-extrabold text-museum-bronze uppercase">${l.code}</span>
+        </button>
+      `).join('');
+    }
+
+    function openLangModal() {
+      document.getElementById('lang-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeLangModal() {
+      document.getElementById('lang-modal').classList.add('hidden');
+    }
+
+    function selectQuickLanguage(code) {
+      state.lang = code;
+      const onboardingSelect = document.getElementById('language-select');
+      if (onboardingSelect) onboardingSelect.value = code;
+      applyTranslations();
+      closeLangModal();
+      const langObj = LANGUAGES.find(l => l.code === code);
+      showToast(`Đã chuyển ngôn ngữ: ${langObj ? langObj.name : code}`);
+    }
+
+    function copyTextToClipboard(text, successMsg) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg || 'Đã sao chép!');
+      } catch (e) {
+        showToast('Không thể sao chép tự động.');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    let toastTimeout = null;
+    function showToast(message) {
+      const banner = document.getElementById('toast-banner');
+      const msgEl = document.getElementById('toast-message');
+      msgEl.textContent = message;
+      banner.classList.remove('hidden');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 2800);
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
