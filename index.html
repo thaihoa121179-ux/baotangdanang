@@ -337,42 +337,10 @@
             </p>
           </div>
 
-          <!-- Bespoke SVG Illustration of Da Nang Museum -->
           <div class="px-3.5 pt-1">
-            <svg viewBox="0 0 380 120" class="w-full h-auto rounded-t-2xl bg-slate-900">
-              <defs>
-                <linearGradient id="skyHero" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#1C2536"/>
-                  <stop offset="100%" stop-color="#2D3B55"/>
-                </linearGradient>
-                <linearGradient id="roofGold" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#B85D3B"/>
-                  <stop offset="50%" stop-color="#D4A359"/>
-                  <stop offset="100%" stop-color="#B85D3B"/>
-                </linearGradient>
-              </defs>
-              <rect width="380" height="120" fill="url(#skyHero)"/>
-              <path d="M0 95 Q60 48 130 76 T270 62 T380 84 L380 120 L0 120 Z" fill="#161E2C"/>
-              <circle cx="315" cy="30" r="14" fill="#D4A359" opacity="0.25"/>
-              <circle cx="315" cy="30" r="8" fill="#D4A359" opacity="0.9"/>
-              <!-- Museum Facade -->
-              <rect x="85" y="48" width="210" height="52" rx="3" fill="#F8F5F0"/>
-              <rect x="80" y="42" width="220" height="7" rx="2" fill="url(#roofGold)"/>
-              <polygon points="108,42 190,20 272,42" fill="#B85D3B"/>
-              <polygon points="124,42 190,25 256,42" fill="#D4A359"/>
-              <g fill="#1C2536">
-                <rect x="102" y="56" width="14" height="32" rx="2"/>
-                <rect x="128" y="56" width="14" height="32" rx="2"/>
-                <rect x="154" y="56" width="14" height="32" rx="2"/>
-                <rect x="181" y="54" width="18" height="46" rx="2" fill="#B85D3B"/>
-                <rect x="212" y="56" width="14" height="32" rx="2"/>
-                <rect x="238" y="56" width="14" height="32" rx="2"/>
-                <rect x="264" y="56" width="14" height="32" rx="2"/>
-              </g>
-              <!-- Dien Hai Citadel Rampart -->
-              <path d="M20 100 L38 86 H342 L360 100 Z" fill="#8C4327"/>
-              <rect x="10" y="100" width="360" height="20" fill="#5A2815"/>
-            </svg>
+            <img src="./images/facade.webp" alt="Mặt tiền Bảo tàng Đà Nẵng tại 31 Trần Phú"
+                 width="1600" height="1063" decoding="async"
+                 class="block w-full aspect-[2/1] object-cover rounded-t-2xl" />
           </div>
 
           <!-- Quick Shortcuts Bar -->
@@ -451,6 +419,9 @@
           </div>
 
           <div id="artifacts-grid" class="grid grid-cols-2 gap-3"></div>
+          <p class="text-xs text-museum-muted">
+            Nguồn ảnh: <a href="https://baotangdanang.vn/" class="underline">Bảo tàng Đà Nẵng</a>
+          </p>
         </div>
       </main>
 
@@ -460,32 +431,28 @@
       <main id="tab-camera" class="tab-content hidden p-4 space-y-4 fade-in">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-lg font-extrabold text-museum-navy" data-i18n="scanner_title">Máy ảnh Quét Di tích</h2>
-            <p class="text-xs text-museum-muted" data-i18n="scanner_subtitle">Hướng camera vào hiện vật hoặc mã QR trưng bày</p>
+            <h2 class="text-lg font-extrabold text-museum-navy" data-i18n="scanner_title">Quét hiện vật</h2>
+            <p class="text-xs text-museum-muted" data-i18n="scanner_subtitle">Đưa một hiện vật vào giữa khung để thử nhận diện.</p>
           </div>
-          <button onclick="initCamera()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-museum-ivory text-museum-navy border border-museum-border text-xs font-bold flex items-center gap-1 transition">
+          <button onclick="initCamera()" class="shrink-0 px-3 py-1.5 rounded-xl bg-white hover:bg-museum-ivory text-museum-navy border border-museum-border text-xs font-bold flex items-center gap-1 transition">
             <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-museum-bronze"></i>
-            <span>Bật Cam</span>
+            <span>Bật camera</span>
           </button>
         </div>
 
         <!-- Live Camera Viewfinder -->
         <div class="relative w-full aspect-[4/3] max-h-[300px] rounded-3xl overflow-hidden bg-museum-navy border-2 border-museum-gold/70 shadow-lg">
-          <video id="camera-video" autoplay playsinline muted class="w-full h-full object-cover"></video>
+          <video id="camera-video" autoplay playsinline muted class="hidden w-full h-full object-cover"></video>
 
-          <!-- Graceful Fallback if Camera Permission Denied / Desktop -->
-          <div id="camera-fallback" class="hidden absolute inset-0 bg-gradient-to-br from-museum-navy via-[#243046] to-[#141A26] flex flex-col items-center justify-center p-5 text-center text-white">
+          <div id="camera-fallback" class="absolute inset-0 bg-gradient-to-br from-museum-navy via-[#243046] to-[#141A26] flex flex-col items-center justify-center p-5 text-center text-white">
             <div class="w-14 h-14 rounded-2xl bg-museum-gold/20 border border-museum-gold/40 flex items-center justify-center mb-2.5">
               <i data-lucide="camera" class="w-7 h-7 text-museum-gold"></i>
             </div>
-            <p class="font-bold text-sm">Chế độ Mô phỏng Ống kính AR</p>
-            <p class="text-xs text-slate-300 mt-1">
-              Trình duyệt chưa cấp quyền camera hoặc đang dùng máy tính. Chạm vào 1 trong 8 hiện vật bên dưới để quét ngay!
-            </p>
+            <p id="camera-fallback-message" class="text-sm font-semibold">Bật camera hoặc chọn ảnh ở bên dưới.</p>
           </div>
 
           <!-- Animated AR Targeting Reticle & Scanning Laser Line -->
-          <div class="absolute inset-0 pointer-events-none p-5 flex flex-col justify-between">
+          <div id="camera-reticle" class="hidden absolute inset-0 pointer-events-none p-5 flex flex-col justify-between">
             <div class="flex justify-between">
               <div class="w-8 h-8 border-t-4 border-l-4 border-museum-gold rounded-tl-xl"></div>
               <div class="w-8 h-8 border-t-4 border-r-4 border-museum-gold rounded-tr-xl"></div>
@@ -498,28 +465,9 @@
           </div>
 
           <!-- Status Pill -->
-          <div class="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-museum-navy/85 backdrop-blur-md text-white text-[11px] font-semibold flex items-center gap-1.5 border border-white/15 whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-museum-gold animate-ping"></span>
-            <span id="scanner-status-text">Đang quét nhận diện hiện vật...</span>
+          <div role="status" class="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-museum-navy/85 backdrop-blur-md text-white text-[11px] font-semibold border border-white/15 w-max max-w-[90%] text-center">
+            <span id="scanner-status-text">Quét thử 3 hiện vật</span>
           </div>
-
-          <!-- Manual Snap & Identify Trigger -->
-          <button onclick="triggerRandomOrCurrentScan()" class="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-museum-bronze hover:bg-[#A34E2F] active:scale-95 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-amber-200/40 transition">
-            <i data-lucide="aperture" class="w-4 h-4"></i>
-            <span>Chụp & Nhận diện ngay</span>
-          </button>
-        </div>
-
-        <!-- Quick Scan Artifact Selector (8 Artifacts/Zones) -->
-        <div class="bg-museum-card rounded-2xl p-3.5 border border-museum-border shadow-soft">
-          <div class="flex items-center justify-between mb-2">
-            <p class="text-[11px] font-extrabold uppercase tracking-wider text-museum-bronze flex items-center gap-1">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-              <span>Mô phỏng quét nhanh hiện vật (8 mẫu)</span>
-            </p>
-            <span class="text-[11px] text-museum-muted">Chạm chọn</span>
-          </div>
-          <div id="quick-scan-list" class="grid grid-cols-2 gap-2"></div>
         </div>
 
         <!-- Post-Scan Result Sheet with 2 Prominent Side-by-Side Action Choices -->
@@ -527,9 +475,9 @@
           <div class="flex items-center justify-between border-b border-museum-border pb-2.5">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
               <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
-              <span>Đã nhận diện di tích / hiện vật</span>
+              <span>Ảnh khớp với mẫu</span>
             </span>
-            <button onclick="closeScanResult()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-400">
+            <button onclick="closeScanResult()" aria-label="Đóng kết quả" class="p-1 rounded-lg hover:bg-slate-100 text-slate-400">
               <i data-lucide="x" class="w-4 h-4"></i>
             </button>
           </div>
@@ -551,7 +499,7 @@
                 <i data-lucide="message-square-text" class="w-4 h-4"></i>
               </div>
               <div class="text-left">
-                <div class="leading-tight font-extrabold">Chatbot</div>
+                <div class="leading-tight font-extrabold">Hỏi chatbot</div>
                 <div class="text-[10px] font-normal text-slate-300">Hỏi đáp & Hình ảnh</div>
               </div>
             </button>
@@ -561,11 +509,22 @@
                 <i data-lucide="headphones" class="w-4 h-4"></i>
               </div>
               <div class="text-left">
-                <div class="leading-tight font-extrabold">Audio Guide</div>
+                <div class="leading-tight font-extrabold">Nghe audio</div>
                 <div class="text-[10px] font-normal text-amber-100">Thuyết minh tự động</div>
               </div>
             </button>
           </div>
+        </div>
+
+        <div class="bg-museum-card rounded-2xl p-3.5 border border-museum-border shadow-soft space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-sm font-bold text-museum-navy">Thử bằng ảnh</h3>
+            <button type="button" onclick="document.getElementById('scanner-file').click()" class="px-3 py-1.5 rounded-xl bg-museum-ivory border border-museum-border text-xs font-bold text-museum-bronze">
+              Chọn ảnh
+            </button>
+            <input type="file" id="scanner-file" accept="image/*" hidden onchange="scanUploadedPhoto(this)" />
+          </div>
+          <div id="quick-scan-list" class="grid grid-cols-1 gap-2"></div>
         </div>
       </main>
 
@@ -863,7 +822,7 @@
             <button onclick="switchTab('camera')" id="nav-btn-camera" class="w-14 h-14 rounded-full bg-gradient-to-br from-museum-bronze to-museum-navy text-white shadow-bronze border-4 border-white flex items-center justify-center active:scale-95 transition">
               <i data-lucide="scan-line" class="w-6 h-6 text-museum-gold"></i>
             </button>
-            <span class="text-[11px] font-extrabold text-museum-navy mt-0.5" data-i18n="nav_scan">Quét AI</span>
+            <span class="text-[11px] font-extrabold text-museum-navy mt-0.5" data-i18n="nav_scan">Quét thử</span>
           </div>
 
           <button onclick="switchTab('chatbot'); switchChatSubtab('chat');" id="nav-btn-chatbot" class="nav-tab flex flex-col items-center justify-center py-1 text-museum-muted hover:text-museum-navy font-semibold transition">
@@ -1189,8 +1148,8 @@
         floors_route_title: 'Lộ trình tham quan 3 Tầng',
         floors_route_sub: 'Hành trình chuẩn: Tầng 3 → Tầng 2 → Tầng 1',
         featured_artifacts_title: 'Hiện vật tiêu biểu',
-        scanner_title: 'Máy ảnh Quét Di tích',
-        scanner_subtitle: 'Hướng camera vào hiện vật hoặc mã QR trưng bày',
+        scanner_title: 'Quét hiện vật',
+        scanner_subtitle: 'Đưa một hiện vật vào giữa khung để thử nhận diện.',
         mode_chat: 'Trợ lý Chatbot',
         mode_quiz: 'Đố vui có thưởng',
         map_title: 'Bản đồ Định vị & Lộ trình',
@@ -1199,7 +1158,7 @@
         find_route_btn: 'Tìm đường đi',
         nav_info: 'Khám phá',
         nav_map: 'Bản đồ',
-        nav_scan: 'Quét AI',
+        nav_scan: 'Quét thử',
         nav_chat: 'Chatbot',
         nav_quiz: 'Đố vui',
         route_to_floor: 'Chỉ đường tới tầng này',
@@ -1227,7 +1186,7 @@
         floors_route_sub: 'Recommended route: Floor 3 → Floor 2 → Floor 1',
         featured_artifacts_title: 'Featured Artifacts',
         scanner_title: 'Camera Artifact Scanner',
-        scanner_subtitle: 'Point camera at an exhibit or QR label',
+        scanner_subtitle: 'Center one exhibit in the frame to try matching it.',
         mode_chat: 'AI Chatbot',
         mode_quiz: 'Quick Quiz',
         map_title: '3-Floor Map & Wayfinding',
@@ -1236,7 +1195,7 @@
         find_route_btn: 'Find Route',
         nav_info: 'Explore',
         nav_map: 'Map',
-        nav_scan: 'AI Scan',
+        nav_scan: 'Scan demo',
         nav_chat: 'Chatbot',
         nav_quiz: 'Quiz',
         route_to_floor: 'Route to this floor',
@@ -1264,7 +1223,7 @@
         floors_route_sub: '추천 동선: 3층 → 2층 → 1층',
         featured_artifacts_title: '주요 전시 유물',
         scanner_title: '유물 스캐너',
-        scanner_subtitle: '유물이나 QR 코드에 카메라를 비춰주세요',
+        scanner_subtitle: '유물 하나를 화면 중앙에 맞춰 주세요.',
         mode_chat: 'AI 챗봇',
         mode_quiz: '스피드 퀴즈',
         map_title: '3층 지도 및 길찾기',
@@ -1273,7 +1232,7 @@
         find_route_btn: '경로 찾기',
         nav_info: '탐색',
         nav_map: '지도',
-        nav_scan: 'AI 스캔',
+        nav_scan: '스캔 체험',
         nav_chat: '챗봇',
         nav_quiz: '퀴즈',
         route_to_floor: '이 층으로 길찾기',
@@ -1301,7 +1260,7 @@
         floors_route_sub: '推奨ルート: 3階 → 2階 → 1階',
         featured_artifacts_title: '代表的な展示品',
         scanner_title: '展示品スキャナー',
-        scanner_subtitle: '展示品またはQRコードにカメラを向けてください',
+        scanner_subtitle: '展示品を一つ、画面の中央に合わせてください。',
         mode_chat: 'AIチャット',
         mode_quiz: '早押しクイズ',
         map_title: '館内マップ＆ルート案内',
@@ -1310,7 +1269,7 @@
         find_route_btn: 'ルートを検索',
         nav_info: '案内',
         nav_map: '地図',
-        nav_scan: 'AIスキャン',
+        nav_scan: 'スキャン体験',
         nav_chat: 'チャット',
         nav_quiz: 'クイズ',
         route_to_floor: 'この階へ案内',
@@ -1338,7 +1297,7 @@
         floors_route_sub: '建议路线：3楼 → 2楼 → 1楼',
         featured_artifacts_title: '馆藏精品文物',
         scanner_title: '文物扫描仪',
-        scanner_subtitle: '将摄像头对准展品或二维码',
+        scanner_subtitle: '将一件展品对准取景框中央。',
         mode_chat: 'AI智能问答',
         mode_quiz: '快问快答',
         map_title: '三层地图与路线导航',
@@ -1347,7 +1306,7 @@
         find_route_btn: '查找路线',
         nav_info: '探索',
         nav_map: '地图',
-        nav_scan: 'AI扫描',
+        nav_scan: '试扫',
         nav_chat: '问答',
         nav_quiz: '闯关',
         route_to_floor: '导航至该楼层',
@@ -1375,7 +1334,7 @@
         floors_route_sub: 'Itinéraire conseillé : 3e → 2e → 1er étage',
         featured_artifacts_title: 'Œuvres Majeures',
         scanner_title: 'Scanner d’Artéfacts',
-        scanner_subtitle: 'Pointez la caméra vers un objet ou code QR',
+        scanner_subtitle: 'Centrez un objet dans le cadre pour essayer de le reconnaître.',
         mode_chat: 'Chatbot IA',
         mode_quiz: 'Jeu Quiz',
         map_title: 'Plan 3 Étages & Orientation',
@@ -1384,7 +1343,7 @@
         find_route_btn: 'Trouver le chemin',
         nav_info: 'Explorer',
         nav_map: 'Plan',
-        nav_scan: 'Scan IA',
+        nav_scan: 'Essai scan',
         nav_chat: 'Chatbot',
         nav_quiz: 'Quiz',
         route_to_floor: 'Aller à cet étage',
@@ -1544,6 +1503,26 @@
       return svgs[type] || svgs.cannon;
     }
 
+    const MUSEUM_PHOTOS = {
+      floor1: ['floor-1', 'Không gian sưu tập cổ vật tầng 1'],
+      floor2: ['floor-2', 'Không gian trưng bày tầng 2'],
+      floor3: ['floor-3', 'Không gian trưng bày tầng 3'],
+      cannon: ['cannon', 'Súng thần công trong bộ sưu tập của Bảo tàng Đà Nẵng'],
+      sahuynh: ['sa-huynh-earring', 'Khuyên tai hai đầu thú'],
+      kendy: ['kendy', 'Bình gốm Kendy'],
+      hondadame: ['honda-dame', 'Xe Honda Dame'],
+      cotu: ['co-tu-sculpture', 'Tượng cổng làng của người Cơ Tu'],
+      ghebau: ['ghe-bau', 'Mô hình ghe bầu xứ Quảng'],
+      chudau: ['floor-1', 'Tủ trưng bày trong không gian sưu tập cổ vật tầng 1'],
+      denco: ['oil-lamp', 'Đèn măng xông trong bộ sưu tập của Bảo tàng Đà Nẵng']
+    };
+
+    function getMuseumArtwork(key, photoClass = 'h-full object-contain') {
+      const [fileName, alt] = MUSEUM_PHOTOS[key];
+      return `<img src="./images/${fileName}.webp" alt="${escapeHtml(alt)}"
+                   loading="lazy" decoding="async" class="block w-full rounded-lg ${photoClass}" />`;
+    }
+
     const FLOORS_DATA = [
       {
         floor: 3,
@@ -1552,7 +1531,7 @@
         desc: 'Tổng quan về thành phố, thiên nhiên và con người Đà Nẵng; Lịch sử Đô thị; Đấu tranh bảo vệ nền độc lập dân tộc (1858–1975) & Đà Nẵng – Chứng tích chiến tranh.',
         expandedDetails: 'Chuyến tham quan bắt đầu tại Tầng 3 với bức tranh toàn cảnh về địa lý, cảng biển và con người Đà Nẵng, tiếp nối qua hai cuộc kháng chiến hào hùng với bộ sưu tập Súng thần công Thành Điện Hải (1858), Sắc phong triều Nguyễn, Xe Honda Dame và Bom CBU 55.',
         highlights: ['Thiên nhiên & Con người', 'Lịch sử Đô thị', 'Súng thần công 1858', 'Xe Honda Dame & Bom CBU 55'],
-        svgKey: 'floor3',
+        photoKey: 'floor3',
         mapNodeId: 'f3_cannon',
         audioText: {
           vi: 'Chào mừng quý khách đến với Tầng 3, điểm bắt đầu hành trình tham quan Bảo tàng Đà Nẵng. Không gian này giới thiệu tổng quan về thiên nhiên, con người, lịch sử đô thị Đà Nẵng và cuộc đấu tranh bảo vệ nền độc lập dân tộc giai đoạn 1858 đến 1975 cùng chuyên đề Đà Nẵng chứng tích chiến tranh.',
@@ -1566,7 +1545,7 @@
         desc: 'Không gian trưng bày Đèn cổ và trầm hương xứ Quảng; Nghiên cứu và phát triển; Văn hóa các dân tộc ít người ở Đà Nẵng (Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor...).',
         expandedDetails: 'Tầng 2 tôn vinh sắc màu văn hóa cộng đồng các dân tộc thiểu số ở Đà Nẵng như Cơ Tu, Xơ Đăng, Giẻ - Triêng, Cor qua kiến trúc Nhà mồ, tượng cổng làng, kèn Tơghêy, cùng bộ sưu tập Đèn cổ và trầm hương quý giá xứ Quảng.',
         highlights: ['Đèn cổ & Trầm hương', 'Nghiên cứu & Phát triển', 'Tượng cổng làng Cơ Tu', 'Kèn Tơghêy & Ghe bầu'],
-        svgKey: 'floor2',
+        photoKey: 'floor2',
         mapNodeId: 'f2_cotu',
         audioText: {
           vi: 'Quý khách đang ở Tầng 2 của Bảo tàng Đà Nẵng. Nơi đây trưng bày không gian nghệ thuật Đèn cổ và trầm hương xứ Quảng, khu Nghiên cứu và phát triển, cùng di sản văn hóa đặc sắc của các dân tộc ít người ở Đà Nẵng như Cơ Tu, Xơ Đăng, Giẻ Triêng và Cor.',
@@ -1580,7 +1559,7 @@
         desc: 'Không gian sưu tập cổ vật của Bảo tàng Đà Nẵng bao gồm: Gốm Chu Đậu, Gốm sứ thời Nguyễn, Bình vôi của người Việt, Gốm cổ các tỉnh Trung bộ.',
         expandedDetails: 'Kết thúc lộ trình tại Tầng 1, du khách chiêm ngưỡng các bảo vật khảo cổ và mỹ thuật cổ truyền: Khuyên tai hai đầu thú văn hóa Sa Huỳnh, Bình gốm Kendy Champa, Gốm hoa lam Chu Đậu, Gốm sứ thời Nguyễn và bộ sưu tập Bình vôi của người Việt.',
         highlights: ['Gốm Chu Đậu', 'Gốm sứ thời Nguyễn', 'Bình vôi người Việt', 'Sa Huỳnh & Champa'],
-        svgKey: 'floor1',
+        photoKey: 'floor1',
         mapNodeId: 'f1_chudau',
         audioText: {
           vi: 'Tầng 1 là không gian sưu tập cổ vật của Bảo tàng Đà Nẵng. Tại đây trưng bày những hiện vật quý hiếm gồm Gốm Chu Đậu, Gốm sứ thời Nguyễn, Bình vôi của người Việt, Gốm cổ các tỉnh Trung bộ cùng bảo vật văn hóa Sa Huỳnh và Champa.',
@@ -1598,7 +1577,7 @@
         floor: 3,
         room: 'Phòng Lịch sử Đấu tranh - Tầng 3',
         mapNodeId: 'f3_cannon',
-        svgKey: 'cannon',
+        photoKey: 'cannon',
         shortDesc: 'Vũ khí phòng thủ chủ lực của quân dân Đà Nẵng trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha.',
         fullDesc: 'Bộ sưu tập súng thần công Thành Điện Hải được đúc bằng gang và đồng dưới triều Nguyễn. Trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha mở đầu năm 1858–1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, những khẩu thần công này đã lập nên chiến công oanh liệt bảo vệ cửa biển Đà Nẵng.',
         audio: {
@@ -1615,7 +1594,7 @@
         floor: 1,
         room: 'Không gian Cổ vật - Tầng 1',
         mapNodeId: 'f1_sahuynh',
-        svgKey: 'sahuynh',
+        photoKey: 'sahuynh',
         shortDesc: 'Trang sức ngọc bích tạc hình hai đầu thú đối xứng tinh xảo thuộc nền văn hóa Sa Huỳnh.',
         fullDesc: 'Khuyên tai hai đầu thú là hiện vật tiêu biểu bậc nhất của nền văn hóa Sa Huỳnh thời kỳ Tiền sơ sử. Được chế tác thủ công từ đá ngọc bích (nephrite) xanh ngọc với tạo hình hai đầu thú có sừng cong đối xứng, hiện vật minh chứng cho kỹ nghệ chế tác đá quý đỉnh cao và giao thương biển của cư dân cổ miền Trung.',
         audio: {
@@ -1632,7 +1611,7 @@
         floor: 1,
         room: 'Không gian Cổ vật - Tầng 1',
         mapNodeId: 'f1_sahuynh',
-        svgKey: 'kendy',
+        photoKey: 'kendy',
         shortDesc: 'Bình nghi lễ có vòi rót bên hông đặc trưng dùng trong nghi thức tôn giáo Champa.',
         fullDesc: 'Bình gốm Kendy thuộc nền văn hóa Champa cổ, có dáng thân tròn đầy đặn, cổ cao miệng loe và một vòi rót nhô ra ở vai bình. Trong các nghi lễ tôn giáo và sinh hoạt cung đình Champa xưa, bình Kendy được dùng để đựng và rưới nước thanh khiết ban phước lành.',
         audio: {
@@ -1649,7 +1628,7 @@
         floor: 3,
         room: 'Chứng tích Chiến tranh - Tầng 3',
         mapNodeId: 'f3_war',
-        svgKey: 'hondadame',
+        photoKey: 'hondadame',
         shortDesc: 'Phương tiện hoạt động bí mật của Biệt động Đà Nẵng cùng vỏ bom CBU 55 minh chứng lịch sử.',
         fullDesc: 'Tại chuyên đề Đà Nẵng – Chứng tích chiến tranh (Tầng 3), chiếc xe gắn máy Honda Dame từng được chiến sĩ Biệt động thành Đà Nẵng sử dụng để vận chuyển tài liệu mật và trinh sát ngay trong lòng địch, đặt cạnh vỏ bom CBU 55 khắc họa khát vọng hòa bình của nhân dân Đà Nẵng.',
         audio: {
@@ -1666,7 +1645,7 @@
         floor: 2,
         room: 'Văn hóa Các Dân tộc - Tầng 2',
         mapNodeId: 'f2_cotu',
-        svgKey: 'cotu',
+        photoKey: 'cotu',
         shortDesc: 'Điêu khắc gỗ tâm linh và nhạc cụ truyền thống đặc sắc của đồng bào Cơ Tu tại Đà Nẵng.',
         fullDesc: 'Không gian văn hóa các dân tộc ít người tại Tầng 2 giới thiệu Tượng cổng làng chạm khắc thủ công mang ý nghĩa bảo vệ sự bình yên cho buôn làng Cơ Tu, cùng chiếc Kèn Tơghêy ngân vang trong các lễ hội mừng lúa mới và nghi lễ cộng đồng vùng núi phía Tây Đà Nẵng.',
         audio: {
@@ -1683,7 +1662,7 @@
         floor: 2,
         room: 'Nghiên cứu & Phát triển - Tầng 2',
         mapNodeId: 'f2_rnd',
-        svgKey: 'ghebau',
+        photoKey: 'ghebau',
         shortDesc: 'Loại thuyền buồm truyền thống nổi tiếng giúp giao thương đường biển sầm uất vùng Quảng Nam – Đà Nẵng.',
         fullDesc: 'Ghe bầu xứ Quảng có phần bụng phình tròn như quả bầu, mũi và lái nhọn cao giúp vượt sóng lớn cực tốt. Đây là phương tiện vận tải đường biển chủ lực kết nối thương cảng Đà Nẵng – Hội An với khắp các vùng duyên hải trong và ngoài nước suốt nhiều thế kỷ.',
         audio: {
@@ -1700,7 +1679,7 @@
         floor: 1,
         room: 'Sưu tập Cổ vật - Tầng 1',
         mapNodeId: 'f1_chudau',
-        svgKey: 'chudau',
+        photoKey: 'chudau',
         shortDesc: 'Bộ sưu tập gốm hoa lam Chu Đậu, gốm sứ thời Nguyễn và Bình vôi gắn với văn hóa trầu cau Việt.',
         fullDesc: 'Không gian sưu tập cổ vật Tầng 1 quy tụ các dòng gốm danh tiếng: Gốm Chu Đậu men ngà vẽ lam tinh xảo, Gốm sứ thời Nguyễn, Gốm cổ các tỉnh Trung bộ và bộ sưu tập Bình vôi của người Việt—vật dụng thân thuộc trong phong tục ăn trầu truyền thống.',
         audio: {
@@ -1717,7 +1696,7 @@
         floor: 2,
         room: 'Đèn cổ & Trầm hương - Tầng 2',
         mapNodeId: 'f2_agarwood',
-        svgKey: 'denco',
+        photoKey: 'denco',
         shortDesc: 'Không gian thưởng lãm tinh hoa trầm hương Quảng Nam – Đà Nẵng và bộ sưu tập đèn cổ độc đáo.',
         fullDesc: 'Xứ Quảng nổi tiếng từ ngàn xưa với sản vật Trầm hương quý hiếm. Tại Tầng 2, không gian Đèn cổ và trầm hương xứ Quảng kết hợp ánh sáng ấm áp từ các cây đèn đồng, đèn gốm cổ với hương trầm thanh khiết tạo nên trải nghiệm văn hóa sâu lắng.',
         audio: {
@@ -1813,7 +1792,7 @@
       visitorName: 'Quý khách',
       activeTab: 'info',
       activeChatSubtab: 'chat',
-      currentScannedArtifact: ARTIFACTS_DATA[0],
+      currentScannedArtifact: null,
       modalArtifact: null,
       cameraStream: null,
       // Audio Guide
@@ -1998,6 +1977,20 @@
     // =========================================================================
     // 8. TAB NAVIGATION & CAMERA ARTIFACT SCANNER
     // =========================================================================
+    const SCAN_ARTIFACTS = ['cannon', 'kendy', 'ghebau'].map(id =>
+      ARTIFACTS_DATA.find(artifact => artifact.id === id)
+    );
+    const SCAN_SIZE = 32;
+    const SCAN_CROPS = [1, 0.82, 0.66];
+    const scanCanvas = document.createElement('canvas');
+    scanCanvas.width = scanCanvas.height = SCAN_SIZE;
+    const scanContext = scanCanvas.getContext('2d', { willReadFrequently: true });
+    let scanSession = 0;
+    let scanTimer = null;
+    let scanReferencePromise;
+
+    window.addEventListener('pagehide', stopCamera);
+
     function switchTab(tabName) {
       state.activeTab = tabName;
       document.querySelectorAll('.tab-content').forEach(sec => sec.classList.add('hidden'));
@@ -2042,70 +2035,221 @@
 
     async function initCamera() {
       const video = document.getElementById('camera-video');
-      const fallback = document.getElementById('camera-fallback');
-      const statusText = document.getElementById('scanner-status-text');
+      stopCamera();
+      closeScanResult();
+      const session = scanSession;
 
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        video.classList.add('hidden');
-        fallback.classList.remove('hidden');
-        statusText.textContent = 'Chế độ mô phỏng AR sẵn sàng';
+      if (!navigator.mediaDevices?.getUserMedia) {
+        showScannerFallback('Hãy mở web qua HTTPS để dùng camera, hoặc thử bằng một ảnh bên dưới.');
+        setScannerStatus('Camera chưa khả dụng');
         return;
       }
 
+      showScannerFallback('Cho phép trình duyệt dùng camera để bắt đầu.');
+      setScannerStatus('Đang mở camera…');
       try {
-        stopCamera();
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment' },
+          video: { facingMode: { ideal: 'environment' } },
           audio: false
         });
+        if (session !== scanSession) {
+          stream.getTracks().forEach(track => track.stop());
+          return;
+        }
         state.cameraStream = stream;
         video.srcObject = stream;
-        video.classList.remove('hidden');
-        fallback.classList.add('hidden');
-        statusText.textContent = 'Đang quét nhận diện hiện vật...';
-      } catch (err) {
-        video.classList.add('hidden');
-        fallback.classList.remove('hidden');
-        statusText.textContent = 'Chế độ mô phỏng AR (Chọn hiện vật bên dưới)';
+        await video.play();
+      } catch {
+        if (session !== scanSession) return;
+        stopCamera();
+        showScannerFallback('Kiểm tra quyền camera hoặc chọn ảnh để thử bên dưới.');
+        setScannerStatus('Chưa mở được camera');
+        return;
       }
+
+      if (session !== scanSession) return;
+      video.classList.remove('hidden');
+      document.getElementById('camera-fallback').classList.add('hidden');
+      setScannerStatus('Đang tải ảnh mẫu…');
+      let references;
+      try {
+        references = await loadScanReferences();
+      } catch {
+        if (session !== scanSession) return;
+        stopCamera();
+        showScannerFallback('Kiểm tra thư mục ảnh của website và bật lại camera.');
+        setScannerStatus('Chưa tải được ảnh mẫu');
+        return;
+      }
+
+      if (session !== scanSession) return;
+      document.getElementById('camera-reticle').classList.remove('hidden');
+      setScannerStatus('Đưa hiện vật vào giữa khung');
+      let previousMatch = null;
+      let stableFrames = 0;
+      scanTimer = setInterval(() => {
+        if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return;
+        const match = matchScanImage(video, references);
+        stableFrames = match === previousMatch ? stableFrames + 1 : 1;
+        previousMatch = match;
+        if (!match || stableFrames < 3) return;
+        stopCamera();
+        showScannerFallback('Bật camera để quét hiện vật tiếp theo.');
+        showScanResult(match);
+      }, 300);
     }
 
     function stopCamera() {
+      scanSession += 1;
+      clearInterval(scanTimer);
+      scanTimer = null;
       if (state.cameraStream) {
         state.cameraStream.getTracks().forEach(track => track.stop());
         state.cameraStream = null;
       }
+      document.getElementById('camera-video').srcObject = null;
+    }
+
+    function showScannerFallback(message) {
+      document.getElementById('camera-video').classList.add('hidden');
+      document.getElementById('camera-reticle').classList.add('hidden');
+      document.getElementById('camera-fallback-message').textContent = message;
+      document.getElementById('camera-fallback').classList.remove('hidden');
+    }
+
+    function setScannerStatus(message) {
+      document.getElementById('scanner-status-text').textContent = message;
+    }
+
+    function loadScanPhoto(url) {
+      const image = new Image();
+      image.src = url;
+      return image.decode().then(() => image);
+    }
+
+    function loadScanReferences() {
+      scanReferencePromise ??= Promise.all(SCAN_ARTIFACTS.map(async artifact => {
+        const [name] = MUSEUM_PHOTOS[artifact.photoKey];
+        const image = await loadScanPhoto(`./images/${name}.webp`);
+        return { artifact, descriptors: describeScanImage(image) };
+      })).catch(error => {
+        scanReferencePromise = undefined;
+        throw error;
+      });
+      return scanReferencePromise;
+    }
+
+    function describeScanImage(source) {
+      const width = source.videoWidth || source.naturalWidth;
+      const height = source.videoHeight || source.naturalHeight;
+      if (!width || !height) return [];
+
+      // Compare small center crops at several scales. Normalize brightness for exposure changes.
+      return SCAN_CROPS.map(coverage => {
+        const side = Math.min(width, height) * coverage;
+        scanContext.clearRect(0, 0, SCAN_SIZE, SCAN_SIZE);
+        scanContext.drawImage(source, (width - side) / 2, (height - side) / 2,
+          side, side, 0, 0, SCAN_SIZE, SCAN_SIZE);
+        const pixels = scanContext.getImageData(0, 0, SCAN_SIZE, SCAN_SIZE).data;
+        const values = new Float32Array(SCAN_SIZE * SCAN_SIZE);
+        let sum = 0;
+        let squaredSum = 0;
+        for (let index = 0; index < values.length; index += 1) {
+          const offset = index * 4;
+          const brightness = pixels[offset] * 0.299
+            + pixels[offset + 1] * 0.587 + pixels[offset + 2] * 0.114;
+          values[index] = brightness;
+          sum += brightness;
+          squaredSum += brightness * brightness;
+        }
+        const mean = sum / values.length;
+        const deviation = Math.sqrt(squaredSum / values.length - mean ** 2);
+        if (!(deviation >= 6)) return null;
+        return values.map(brightness => (brightness - mean) / deviation);
+      }).filter(Boolean);
+    }
+
+    function scanSimilarity(left, right) {
+      let product = 0;
+      for (let index = 0; index < left.length; index += 1) {
+        product += left[index] * right[index];
+      }
+      return product / left.length;
+    }
+
+    function matchScanImage(source, references) {
+      const descriptors = describeScanImage(source);
+      if (!descriptors.length) return null;
+      const [best, runnerUp] = references.map(({ artifact, descriptors: samples }) => ({
+        artifact,
+        score: Math.max(...descriptors.flatMap(probe => samples.map(sample => scanSimilarity(probe, sample))))
+      })).sort((left, right) => right.score - left.score);
+
+      return best.score >= 0.82 && best.score - runnerUp.score >= 0.08 ? best.artifact : null;
     }
 
     function renderQuickScanList() {
       const container = document.getElementById('quick-scan-list');
-      container.innerHTML = ARTIFACTS_DATA.map(art => `
-        <button onclick="simulateScanArtifact('${art.id}')" class="flex items-center gap-2 p-2 rounded-xl bg-museum-ivory hover:bg-amber-100/60 border border-museum-border hover:border-museum-bronze text-left transition active:scale-95">
+      container.innerHTML = SCAN_ARTIFACTS.map(art => `
+        <button type="button" onclick="scanSamplePhoto('${art.id}')" class="flex items-center gap-2 p-2 rounded-xl bg-museum-ivory hover:bg-amber-100/60 border border-museum-border hover:border-museum-bronze text-left transition active:scale-95">
           <div class="w-9 h-9 rounded-lg bg-white border border-museum-border p-1 shrink-0">
-            ${getSvgArtwork(art.svgKey)}
+            ${getMuseumArtwork(art.photoKey)}
           </div>
-          <div class="min-w-0">
-            <div class="text-[11px] font-bold text-museum-navy truncate">${art.shortName}</div>
-            <div class="text-[10px] text-museum-bronze font-bold">Tầng ${art.floor}</div>
-          </div>
+          <span class="min-w-0 flex-1 text-xs font-bold text-museum-navy">${art.shortName}</span>
+          <span class="text-[11px] text-museum-bronze font-semibold">Quét ảnh mẫu</span>
         </button>
       `).join('');
     }
 
-    function triggerRandomOrCurrentScan() {
-      const randomArt = ARTIFACTS_DATA[Math.floor(Math.random() * ARTIFACTS_DATA.length)];
-      simulateScanArtifact(randomArt.id);
+    function scanSamplePhoto(id) {
+      const artifact = SCAN_ARTIFACTS.find(item => item.id === id);
+      if (!artifact) return;
+      const [name] = MUSEUM_PHOTOS[artifact.photoKey];
+      return scanStillPhoto(`./images/${name}.webp`);
     }
 
-    function simulateScanArtifact(artifactId) {
-      const art = ARTIFACTS_DATA.find(a => a.id === artifactId);
-      if (!art) return;
+    async function scanUploadedPhoto(input) {
+      const file = input.files[0];
+      input.value = '';
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      try {
+        await scanStillPhoto(url);
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+    }
 
+    async function scanStillPhoto(url) {
+      stopCamera();
+      closeScanResult();
+      const session = scanSession;
+      showScannerFallback('Có thể bật lại camera để quét trực tiếp.');
+      setScannerStatus('Đang đối chiếu ảnh…');
+
+      try {
+        const [image, references] = await Promise.all([loadScanPhoto(url), loadScanReferences()]);
+        if (session !== scanSession) return;
+        const match = matchScanImage(image, references);
+        if (match) {
+          showScanResult(match);
+        } else {
+          showScannerFallback('Thử ảnh rõ hơn, đặt hiện vật ở giữa khung hình.');
+          setScannerStatus('Ảnh chưa khớp với ba mẫu');
+        }
+      } catch {
+        if (session !== scanSession) return;
+        showScannerFallback('Chọn lại ảnh hoặc thử một ảnh mẫu khác.');
+        setScannerStatus('Chưa đọc được ảnh để đối chiếu');
+      }
+    }
+
+    function showScanResult(art) {
       state.currentScannedArtifact = art;
-      document.getElementById('scanner-status-text').textContent = `Đã khớp: ${art.shortName}`;
+      setScannerStatus(`Đã khớp: ${art.shortName}`);
 
-      document.getElementById('scan-result-svg').innerHTML = getSvgArtwork(art.svgKey);
-      document.getElementById('scan-result-floor').textContent = `Tầng ${art.floor} • ${art.room}`;
+      document.getElementById('scan-result-svg').innerHTML = getMuseumArtwork(art.photoKey);
+      document.getElementById('scan-result-floor').textContent = art.room;
       document.getElementById('scan-result-title').textContent = art.title;
       document.getElementById('scan-result-era').textContent = `Niên đại: ${art.era}`;
       document.getElementById('scan-result-short').textContent = art.shortDesc;
@@ -2113,11 +2257,11 @@
       const card = document.getElementById('scan-result-card');
       card.classList.remove('hidden');
       card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      showToast(`Đã nhận diện: ${art.shortName}`);
       lucide.createIcons();
     }
 
     function closeScanResult() {
+      state.currentScannedArtifact = null;
       document.getElementById('scan-result-card').classList.add('hidden');
     }
 
@@ -2145,7 +2289,7 @@
       container.innerHTML = FLOORS_DATA.map(f => `
         <div class="bg-museum-card rounded-3xl overflow-hidden border border-museum-border shadow-soft">
           <div class="p-3 pb-0">
-            ${getSvgArtwork(f.svgKey)}
+            ${getMuseumArtwork(f.photoKey, 'aspect-[2/1] object-cover')}
           </div>
           <div class="p-4 space-y-2.5">
             <div class="flex items-center justify-between gap-2">
@@ -2195,7 +2339,7 @@
         <div onclick="openArtifactModal('${art.id}')" class="bg-museum-card rounded-2xl p-2.5 border border-museum-border shadow-soft hover:border-museum-bronze cursor-pointer transition flex flex-col justify-between group">
           <div>
             <div class="w-full h-26 h-[104px] rounded-xl bg-museum-ivory p-1.5 mb-2 flex items-center justify-center overflow-hidden group-hover:scale-[1.02] transition">
-              ${getSvgArtwork(art.svgKey)}
+              ${getMuseumArtwork(art.photoKey)}
             </div>
             <span class="inline-block px-2 py-0.5 rounded bg-museum-ivory text-museum-bronze border border-museum-border text-[10px] font-extrabold mb-1">
               Tầng ${art.floor}
@@ -2225,7 +2369,7 @@
       state.modalArtifact = art;
 
       document.getElementById('modal-art-floor').textContent = `Tầng ${art.floor} • ${art.room}`;
-      document.getElementById('modal-art-svg').innerHTML = getSvgArtwork(art.svgKey);
+      document.getElementById('modal-art-svg').innerHTML = getMuseumArtwork(art.photoKey);
       document.getElementById('modal-art-title').textContent = art.title;
       document.getElementById('modal-art-meta').textContent = `Niên đại: ${art.era}`;
       document.getElementById('modal-art-desc').textContent = art.fullDesc;
@@ -2272,7 +2416,7 @@
         title: art.title,
         subtitle: `${art.era} • ${art.room}`,
         floorTag: `Tầng ${art.floor}`,
-        svgKey: art.svgKey,
+        photoKey: art.photoKey,
         text: text,
         speechLang: langObj.speechLang,
         langName: `${langObj.flag} ${langObj.name}`
@@ -2290,7 +2434,7 @@
         title: floorData.title,
         subtitle: 'Bảo tàng Đà Nẵng • Thuyết minh không gian tầng',
         floorTag: `Tầng ${floorData.floor}`,
-        svgKey: floorData.svgKey,
+        photoKey: floorData.photoKey,
         text: text,
         speechLang: langObj.speechLang,
         langName: `${langObj.flag} ${langObj.name}`
@@ -2317,7 +2461,9 @@
       if (!cfg) return;
 
       document.getElementById('audio-lang-badge').textContent = `Ngôn ngữ: ${cfg.langName}`;
-      document.getElementById('audio-artwork-svg').innerHTML = getSvgArtwork(cfg.svgKey);
+      document.getElementById('audio-artwork-svg').innerHTML = cfg.photoKey
+        ? getMuseumArtwork(cfg.photoKey)
+        : getSvgArtwork(cfg.svgKey);
       document.getElementById('audio-floor-tag').textContent = cfg.floorTag;
       document.getElementById('audio-title').textContent = cfg.title;
       document.getElementById('audio-subtitle').textContent = cfg.subtitle;
@@ -2679,7 +2825,7 @@
           </div>
           <!-- Illustrated Artifact Card inside Chat Bubble -->
           <div class="w-full h-32 rounded-xl bg-white border border-museum-border p-2 flex items-center justify-center">
-            ${getSvgArtwork(art.svgKey)}
+            ${getMuseumArtwork(art.photoKey)}
           </div>
           <div>
             <h4 class="font-extrabold text-sm text-museum-navy">${art.title}</h4>
