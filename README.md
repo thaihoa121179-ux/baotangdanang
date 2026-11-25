@@ -16,6 +16,12 @@ python -m http.server 8000
 
 Mở `http://localhost:8000/filehtml.html` trên máy tính. Bản GitHub Pages dùng `index.html`. Camera trên điện thoại cần mở qua HTTPS và cấp quyền camera cho trình duyệt. Có thể mở riêng file HTML để dùng bộ ảnh và audio đã nhúng. Để thử nhận diện, mở qua localhost hoặc HTTPS.
 
+## Cập nhật chatbot
+
+Mục **Chatbot** đọc bộ chủ đề Việt–Anh trong [data/museum-chat.json](data/museum-chat.json) và danh mục hiện vật. Bổ sung câu trả lời, cụm từ để nhận biết chủ đề và các câu hỏi liên quan trong dữ liệu này. Chạy `node scripts/sync-demo.mjs` để nhúng thay đổi vào bản HTML mở riêng.
+
+Câu trả lời về bảo tàng tra dữ liệu cục bộ. Với câu hỏi phổ thông có tên chủ đề rõ ràng, web có thể gửi tên chủ đề đến Wikipedia để lấy đoạn giới thiệu và gắn link bài viết. Khi không tìm được bài phù hợp hoặc mất kết nối, chatbot hỏi thêm thay vì đoán. Gemini tiếp tục xử lý phần nhận diện ảnh.
+
 ## Cấu hình Gemini
 
 ### Proxy Cloudflare Worker

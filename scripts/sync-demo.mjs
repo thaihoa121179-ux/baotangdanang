@@ -3,10 +3,12 @@ import { readFile, writeFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = path => readFile(new URL(path, root), 'utf8');
 const pagePath = process.argv[2] || 'filehtml.html';
-const [html, catalog, recognizer] = await Promise.all([
+const [html, catalog, recognizer, chatKnowledge, chatScript] = await Promise.all([
   read(pagePath),
   read('data/artifacts.json'),
-  read('js/recognize.js')
+  read('js/recognize.js'),
+  read('data/museum-chat.json'),
+  read('js/museum-chat.js')
 ]);
 
 function inlineSection(page, name, content) {
@@ -18,7 +20,10 @@ function inlineSection(page, name, content) {
   return page.slice(0, start + begin.length) + content + '\n' + page.slice(finish);
 }
 
-const inlineCatalog = JSON.stringify(JSON.parse(catalog)).replace(/</g, '\\u003c');
-const withCatalog = inlineSection(html, 'ARTIFACTS', `    const EMBEDDED_ARTIFACTS = ${inlineCatalog};`);
+const inlineJson = text => JSON.stringify(JSON.parse(text)).replace(/</g, '\\u003c');
+const withCatalog = inlineSection(html, 'ARTIFACTS', `    const EMBEDDED_ARTIFACTS = ${inlineJson(catalog)};`);
 const script = recognizer.trimEnd().replace(/\nexport default MuseumRecognition;$/, '');
-await writeFile(new URL(pagePath, root), inlineSection(withCatalog, 'RECOGNITION', script));
+const withRecognition = inlineSection(withCatalog, 'RECOGNITION', script);
+const guide = chatScript.trimEnd().replace(/\nexport \{ createMuseumChat \};$/, '');
+const bundledChat = guide + `\n    const museumGuide = createMuseumChat(${inlineJson(chatKnowledge)});`;
+await writeFile(new URL(pagePath, root), inlineSection(withRecognition, 'MUSEUM CHAT', bundledChat));
