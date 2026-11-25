@@ -1,0 +1,470 @@
+[
+  {
+    "id": "cannon",
+    "name": "Súng thần công Thành Điện Hải (1858–1860)",
+    "era": "Thế kỷ XIX (Triều Nguyễn)",
+    "shortDesc": "Vũ khí phòng thủ chủ lực của quân dân Đà Nẵng trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha.",
+    "visualDesc": "Ống kim loại dài màu xám sẫm, hình trụ thuôn, có các gờ vòng và miệng tròn; đặt nằm ngang trên giá.",
+    "floor": 3,
+    "frame": 1,
+    "audio": {
+      "vi": "cannon",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Súng thần công Thành Điện Hải, niên đại thế kỷ 19. Trong cuộc kháng chiến chống liên quân Pháp Tây Ban Nha từ năm 1858 đến 1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, bộ sưu tập súng thần công này đã góp phần đánh bại âm mưu xâm lược của địch tại cửa biển Đà Nẵng.",
+      "en": "The Dien Hai Citadel Cannon from the 19th-century Nguyen Dynasty played a decisive role under General Nguyen Tri Phuong during the 1858–1860 resistance against the Franco-Spanish coalition."
+    },
+    "en": {
+      "shortName": "Cannon of 1858",
+      "title": "Dien Hai Citadel Cannon (1858–1860)",
+      "era": "19th century, Nguyen Dynasty",
+      "room": "Resistance History Gallery • Floor 3",
+      "shortDesc": "A cannon associated with Da Nang’s defense against the Franco-Spanish coalition.",
+      "fullDesc": "The Dien Hai Citadel cannon collection includes cast-iron and bronze pieces from the Nguyen Dynasty. General Nguyen Tri Phuong led the defense of Da Nang against a Franco-Spanish force between 1858 and 1860.",
+      "followUps": [
+        "Which general is associated with the cannon?",
+        "Where is Dien Hai Citadel?",
+        "Where is the cannon displayed?"
+      ]
+    },
+    "shortName": "Súng thần công 1858",
+    "room": "Phòng Lịch sử Đấu tranh - Tầng 3",
+    "mapNodeId": "f3_cannon",
+    "photoKey": "cannon",
+    "fullDesc": "Bộ sưu tập súng thần công Thành Điện Hải được đúc bằng gang và đồng dưới triều Nguyễn. Trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha mở đầu năm 1858–1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, những khẩu thần công này đã lập nên chiến công oanh liệt bảo vệ cửa biển Đà Nẵng.",
+    "followUps": [
+      "Súng thần công gắn với vị Danh tướng nào?",
+      "Thành Điện Hải nằm ở đâu?",
+      "Xem vị trí Súng thần công trên bản đồ"
+    ]
+  },
+  {
+    "id": "sahuynh",
+    "name": "Khuyên tai hai đầu thú (Văn hóa Sa Huỳnh)",
+    "era": "Tiền sơ sử (Cách ngày nay ~2.000–2.500 năm)",
+    "shortDesc": "Trang sức ngọc bích tạc hình hai đầu thú đối xứng tinh xảo thuộc nền văn hóa Sa Huỳnh.",
+    "visualDesc": "Khuyên đá xanh nhỏ uốn cong, hai đầu chạm dạng đầu thú đối xứng với sừng cong.",
+    "floor": 1,
+    "frame": 2,
+    "audio": {
+      "vi": "sahuynh",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Khuyên tai hai đầu thú thuộc nền văn hóa Sa Huỳnh thời kỳ tiền sơ sử, có niên đại khoảng 2.000 đến 2.500 năm trước. Được tạc từ đá ngọc bích nguyên khối với đường nét cân xứng tinh xảo, đây là biểu tượng nghệ thuật trang sức cổ đại Việt Nam.",
+      "en": "The two-headed animal earring of the protohistoric Sa Huynh culture dates back 2,000 to 2,500 years. Carved from nephrite jade, it exemplifies ancient jewelry craftsmanship in Central Vietnam."
+    },
+    "en": {
+      "shortName": "Sa Huynh earring",
+      "title": "Sa Huynh Two-Headed Animal Earring",
+      "era": "Around 2,000–2,500 years old",
+      "room": "Antiquities Gallery • Floor 1",
+      "shortDesc": "A jade ornament carved with two symmetrical animal heads.",
+      "fullDesc": "The two-headed earring is a distinctive example of Sa Huynh craftsmanship. Carved by hand from green nephrite jade, it features two symmetrical animal heads with curved horns.",
+      "followUps": [
+        "What is the earring made of?",
+        "How old is the Sa Huynh earring?",
+        "What else is on Floor 1?"
+      ]
+    },
+    "shortName": "Khuyên tai Sa Huỳnh",
+    "room": "Không gian Cổ vật - Tầng 1",
+    "mapNodeId": "f1_sahuynh",
+    "photoKey": "sahuynh",
+    "fullDesc": "Khuyên tai hai đầu thú là hiện vật tiêu biểu bậc nhất của nền văn hóa Sa Huỳnh thời kỳ Tiền sơ sử. Được chế tác thủ công từ đá ngọc bích (nephrite) xanh ngọc với tạo hình hai đầu thú có sừng cong đối xứng, hiện vật minh chứng cho kỹ nghệ chế tác đá quý đỉnh cao và giao thương biển của cư dân cổ miền Trung.",
+    "followUps": [
+      "Chất liệu làm nên khuyên tai hai đầu thú là gì?",
+      "Văn hóa Sa Huỳnh có niên đại bao nhiêu năm?",
+      "Tầng 1 còn những cổ vật nào?"
+    ]
+  },
+  {
+    "id": "kendy",
+    "name": "Bình gốm Kendy (Văn hóa Champa)",
+    "era": "Thế kỷ X – XII",
+    "shortDesc": "Bình nghi lễ có vòi rót bên hông đặc trưng dùng trong nghi thức tôn giáo Champa.",
+    "visualDesc": "Bình gốm thân tròn, cổ đứng, có một vòi nhô ra từ một bên thân.",
+    "floor": 1,
+    "frame": 2,
+    "audio": {
+      "vi": "kendy",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Bình gốm Kendy thuộc văn hóa Champa, niên đại thế kỷ 10 đến thế kỷ 12. Với phần thân tròn đầy, cổ cao và vòi rót tinh tế bên vai bình, đây là vật phẩm nghi lễ thiêng liêng dùng để rưới nước thanh khiết trong văn hóa Champa.",
+      "en": "This Champa Kendy ritual vessel from the 10th to 12th centuries features a bulbous body, tall flared neck, and side spout used for pouring sacred water in purification ceremonies."
+    },
+    "en": {
+      "shortName": "Kendy vessel",
+      "title": "Champa Kendy Vessel",
+      "era": "10th–12th centuries",
+      "room": "Antiquities Gallery • Floor 1",
+      "shortDesc": "A Champa ceramic ritual vessel with a spout on its shoulder.",
+      "fullDesc": "The Kendy has a rounded body, a tall flared neck and a side spout. In Champa ceremonies it held sacred water used in purification and blessings.",
+      "followUps": [
+        "What was the Kendy used for?",
+        "What makes Central Vietnamese ceramics distinctive?",
+        "Where is the Kendy displayed?"
+      ]
+    },
+    "shortName": "Bình gốm Kendy",
+    "room": "Không gian Cổ vật - Tầng 1",
+    "mapNodeId": "f1_sahuynh",
+    "photoKey": "kendy",
+    "fullDesc": "Bình gốm Kendy thuộc nền văn hóa Champa cổ, có dáng thân tròn đầy đặn, cổ cao miệng loe và một vòi rót nhô ra ở vai bình. Trong các nghi lễ tôn giáo và sinh hoạt cung đình Champa xưa, bình Kendy được dùng để đựng và rưới nước thanh khiết ban phước lành.",
+    "followUps": [
+      "Bình gốm Kendy được dùng để làm gì?",
+      "Gốm cổ các tỉnh Trung bộ có gì đặc sắc?",
+      "Chỉ đường tới khu Cổ vật Tầng 1"
+    ]
+  },
+  {
+    "id": "hondadame",
+    "name": "Xe Honda Dame & Bom CBU 55 (Chứng tích chiến tranh)",
+    "era": "Kháng chiến chống Mỹ (1968–1975)",
+    "shortDesc": "Phương tiện hoạt động bí mật của Biệt động Đà Nẵng cùng vỏ bom CBU 55 minh chứng lịch sử.",
+    "visualDesc": "Xe máy kiểu moped cổ, khung thấp, hai bánh nan hoa, đèn tròn phía trước, yên hẹp.",
+    "floor": 3,
+    "frame": 1,
+    "audio": {
+      "vi": "hondadame",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Xe Honda Dame và vỏ bom CBU 55 tại khu trưng bày Chứng tích chiến tranh Tầng 3. Chiếc xe Honda Dame là phương tiện gắn liền với chiến công thầm lặng của lực lượng Biệt động thành Đà Nẵng trước ngày giải phóng 29 tháng 3 năm 1975.",
+      "en": "Displayed in the Floor 3 War Relics gallery, the Honda Dame moped used by Da Nang special commandos and the CBU 55 bomb casing serve as poignant reminders of wartime history and peace."
+    },
+    "en": {
+      "shortName": "Honda Dame & war relics",
+      "title": "Honda Dame and CBU 55 Casing",
+      "era": "1968–1975",
+      "room": "War Relics Gallery • Floor 3",
+      "shortDesc": "A wartime moped used by Da Nang special commandos and a bomb casing.",
+      "fullDesc": "The Floor 3 gallery displays a Honda Dame moped used for reconnaissance and carrying confidential documents during the war. Its display alongside a CBU 55 casing recalls the city’s wartime history.",
+      "followUps": [
+        "When was Da Nang liberated?",
+        "What was the Honda Dame used for?",
+        "Where is the War Relics Gallery?"
+      ]
+    },
+    "shortName": "Xe Honda Dame & Bom CBU",
+    "room": "Chứng tích Chiến tranh - Tầng 3",
+    "mapNodeId": "f3_war",
+    "photoKey": "hondadame",
+    "fullDesc": "Tại chuyên đề Đà Nẵng – Chứng tích chiến tranh (Tầng 3), chiếc xe gắn máy Honda Dame từng được chiến sĩ Biệt động thành Đà Nẵng sử dụng để vận chuyển tài liệu mật và trinh sát ngay trong lòng địch, đặt cạnh vỏ bom CBU 55 khắc họa khát vọng hòa bình của nhân dân Đà Nẵng.",
+    "followUps": [
+      "Đà Nẵng giải phóng vào ngày nào?",
+      "Lực lượng Biệt động Đà Nẵng dùng xe Honda Dame làm gì?",
+      "Chỉ đường tới khu Chứng tích chiến tranh"
+    ]
+  },
+  {
+    "id": "cotu",
+    "name": "Tượng cổng làng & Kèn Tơghêy người Cơ Tu",
+    "era": "Thế kỷ XX",
+    "shortDesc": "Điêu khắc gỗ tâm linh và nhạc cụ truyền thống đặc sắc của đồng bào Cơ Tu tại Đà Nẵng.",
+    "visualDesc": "Tượng gỗ dáng người, thân thẳng, nét chạm thô và các mảng gỗ nâu.",
+    "floor": 2,
+    "frame": 2,
+    "audio": {
+      "vi": "cotu",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Tượng cổng làng và Kèn Tơghêy của người Cơ Tu trưng bày tại Tầng 2. Những tác phẩm điêu khắc gỗ mộc mạc mà sống động cùng âm thanh kèn Tơghêy phản ánh đời sống tâm linh phong phú và tình yêu đại ngàn của đồng bào Cơ Tu ở Đà Nẵng.",
+      "en": "On Floor 2, the Co Tu village gate wooden sculptures and traditional Toghey wind instrument reflect the spiritual life and mountain heritage of the Co Tu people in Da Nang."
+    },
+    "en": {
+      "shortName": "Co Tu sculpture & Toghey",
+      "title": "Co Tu Village Gate Figure and Toghey",
+      "era": "20th century",
+      "room": "Ethnic Cultures Gallery • Floor 2",
+      "shortDesc": "Traditional wood carving and a wind instrument from the Co Tu community.",
+      "fullDesc": "Co Tu villages carved gate figures to protect the community. The Toghey is a traditional wind instrument played at harvest celebrations and community ceremonies.",
+      "followUps": [
+        "Where do the Co Tu people live?",
+        "Which other communities are featured?",
+        "Where is the Co Tu gallery?"
+      ]
+    },
+    "shortName": "Tượng cổng làng & Kèn Tơghêy",
+    "room": "Văn hóa Các Dân tộc - Tầng 2",
+    "mapNodeId": "f2_cotu",
+    "photoKey": "cotu",
+    "fullDesc": "Không gian văn hóa các dân tộc ít người tại Tầng 2 giới thiệu Tượng cổng làng chạm khắc thủ công mang ý nghĩa bảo vệ sự bình yên cho buôn làng Cơ Tu, cùng chiếc Kèn Tơghêy ngân vang trong các lễ hội mừng lúa mới và nghi lễ cộng đồng vùng núi phía Tây Đà Nẵng.",
+    "followUps": [
+      "Người Cơ Tu ở Đà Nẵng sinh sống ở đâu?",
+      "Ngoài người Cơ Tu, Tầng 2 còn giới thiệu dân tộc nào?",
+      "Tìm đường tới khu văn hóa Cơ Tu"
+    ]
+  },
+  {
+    "id": "ghebau",
+    "name": "Mô hình Ghe bầu xứ Quảng",
+    "era": "Thế kỷ XVIII – XIX",
+    "shortDesc": "Loại thuyền buồm truyền thống nổi tiếng giúp giao thương đường biển sầm uất vùng Quảng Nam – Đà Nẵng.",
+    "visualDesc": "Mô hình thuyền gỗ thân thuôn dài, hai đầu cong, có cột và buồm.",
+    "floor": 2,
+    "frame": 2,
+    "audio": {
+      "vi": "ghebau",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Mô hình Ghe bầu xứ Quảng tại Tầng 2. Với thiết kế bụng phình tròn vững chãi và cánh buồm no gió, ghe bầu từng là biểu tượng của nghề đi biển và giao thương hàng hải sầm uất của cư dân Quảng Nam Đà Nẵng xưa.",
+      "en": "The Quang Nam Ghe Bau sailboat model on Floor 2 highlights the maritime trading heritage that connected Da Nang and Hoi An ports across the East Sea."
+    },
+    "en": {
+      "shortName": "Quang Nam sailboat",
+      "title": "Quang Nam Ghe Bau Sailboat Model",
+      "era": "18th–19th centuries",
+      "room": "Research and Development Gallery • Floor 2",
+      "shortDesc": "A traditional sailboat that helped connect the ports of Da Nang and Hoi An.",
+      "fullDesc": "The ghe bau’s rounded hull and high bow and stern were suited to coastal navigation. These boats carried goods from the ports of Da Nang and Hoi An along regional and international trade routes.",
+      "followUps": [
+        "Why is it called ghe bau?",
+        "What did ghe bau boats carry?",
+        "Where is the sailboat model displayed?"
+      ]
+    },
+    "shortName": "Ghe bầu xứ Quảng",
+    "room": "Nghiên cứu & Phát triển - Tầng 2",
+    "mapNodeId": "f2_rnd",
+    "photoKey": "ghebau",
+    "fullDesc": "Ghe bầu xứ Quảng có phần bụng phình tròn như quả bầu, mũi và lái nhọn cao giúp vượt sóng lớn cực tốt. Đây là phương tiện vận tải đường biển chủ lực kết nối thương cảng Đà Nẵng – Hội An với khắp các vùng duyên hải trong và ngoài nước suốt nhiều thế kỷ.",
+    "followUps": [
+      "Vì sao thuyền được gọi là Ghe bầu?",
+      "Ghe bầu có vai trò gì trong thương mại Đà Nẵng xưa?",
+      "Xem vị trí Ghe bầu trên bản đồ"
+    ]
+  },
+  {
+    "id": "chudau",
+    "name": "Gốm Chu Đậu, Gốm thời Nguyễn & Bình vôi Việt",
+    "era": "Thế kỷ XV – XIX",
+    "shortDesc": "Bộ sưu tập gốm hoa lam Chu Đậu, gốm sứ thời Nguyễn và Bình vôi gắn với văn hóa trầu cau Việt.",
+    "visualDesc": "TODO: Đối chiếu ảnh hiện vật để bổ sung dáng bình, họa tiết, màu men và chi tiết phân biệt với bình Kendy.",
+    "floor": 1,
+    "frame": 2,
+    "audio": {
+      "vi": "chudau",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Bộ sưu tập Gốm Chu Đậu, Gốm sứ thời Nguyễn và Bình vôi của người Việt tại Tầng 1. Mỗi hiện vật là một tác phẩm nghệ thuật gốm sứ tinh xảo, lưu giữ hồn cốt văn hóa truyền thống của dân tộc Việt qua nhiều thế kỷ.",
+      "en": "Floor 1 exhibits Chu Dau blue-and-white ceramics, Nguyen Dynasty porcelain, and traditional Vietnamese lime pots tied to the time-honored betel-chewing custom."
+    },
+    "en": {
+      "shortName": "Chu Dau ceramics & lime pots",
+      "title": "Chu Dau Ceramics, Nguyen Porcelain and Lime Pots",
+      "era": "15th–19th centuries",
+      "room": "Antiquities Collection • Floor 1",
+      "shortDesc": "Blue-and-white ceramics, Nguyen porcelain and vessels associated with betel chewing.",
+      "fullDesc": "The collection features Chu Dau blue-and-white ceramics, Nguyen Dynasty porcelain, ancient ceramics from Central Vietnam and traditional lime pots used in betel chewing.",
+      "followUps": [
+        "What custom are lime pots associated with?",
+        "What ceramics are on Floor 1?",
+        "Where is the Chu Dau collection?"
+      ]
+    },
+    "shortName": "Gốm Chu Đậu & Bình vôi",
+    "room": "Sưu tập Cổ vật - Tầng 1",
+    "mapNodeId": "f1_chudau",
+    "photoKey": "chudau",
+    "fullDesc": "Không gian sưu tập cổ vật Tầng 1 quy tụ các dòng gốm danh tiếng: Gốm Chu Đậu men ngà vẽ lam tinh xảo, Gốm sứ thời Nguyễn, Gốm cổ các tỉnh Trung bộ và bộ sưu tập Bình vôi của người Việt—vật dụng thân thuộc trong phong tục ăn trầu truyền thống.",
+    "followUps": [
+      "Bình vôi gắn với phong tục gì của người Việt?",
+      "Tầng 1 trưng bày những dòng gốm nào?",
+      "Chỉ đường tới phòng Gốm Chu Đậu"
+    ]
+  },
+  {
+    "id": "denco",
+    "name": "Đèn cổ và Trầm hương xứ Quảng",
+    "era": "Thế kỷ XVII – XX",
+    "shortDesc": "Không gian thưởng lãm tinh hoa trầm hương Quảng Nam – Đà Nẵng và bộ sưu tập đèn cổ độc đáo.",
+    "visualDesc": "Đèn kim loại cổ có bầu chứa nhiên liệu, thân đứng, quai xách phía trên và buồng sáng ở giữa.",
+    "floor": 2,
+    "frame": 2,
+    "audio": {
+      "vi": "denco",
+      "en": null
+    },
+    "transcript": {
+      "vi": "Không gian Đèn cổ và trầm hương xứ Quảng tại Tầng 2 tôn vinh nghề khai thác, chế tác trầm hương truyền thống của vùng đất Quảng Nam Đà Nẵng cùng bộ sưu tập đèn cổ qua các thời kỳ.",
+      "en": "The Antique Lamps and Quang Nam Agarwood gallery on Floor 2 celebrates the region’s prized agarwood heritage alongside historic bronze and ceramic lamps."
+    },
+    "en": {
+      "shortName": "Antique lamps & agarwood",
+      "title": "Antique Lamps and Quang Nam Agarwood",
+      "era": "17th–20th centuries",
+      "room": "Lamps and Agarwood Gallery • Floor 2",
+      "shortDesc": "Antique lamps and the agarwood traditions of the Quang Nam and Da Nang region.",
+      "fullDesc": "The gallery presents the history of harvesting and working with agarwood in the region. It also features bronze and ceramic lamps spanning several historical periods.",
+      "followUps": [
+        "What is Quang Nam agarwood known for?",
+        "What else is on Floor 2?",
+        "Where is the lamps and agarwood gallery?"
+      ]
+    },
+    "shortName": "Đèn cổ & Trầm hương",
+    "room": "Đèn cổ & Trầm hương - Tầng 2",
+    "mapNodeId": "f2_agarwood",
+    "photoKey": "denco",
+    "fullDesc": "Xứ Quảng nổi tiếng từ ngàn xưa với sản vật Trầm hương quý hiếm. Tại Tầng 2, không gian Đèn cổ và trầm hương xứ Quảng kết hợp ánh sáng ấm áp từ các cây đèn đồng, đèn gốm cổ với hương trầm thanh khiết tạo nên trải nghiệm văn hóa sâu lắng.",
+    "followUps": [
+      "Trầm hương xứ Quảng nổi tiếng như thế nào?",
+      "Tầng 2 có những chủ đề trưng bày nào?",
+      "Chỉ đường tới phòng Đèn cổ & Trầm hương"
+    ]
+  },
+  {
+    "id": "soldier-uniform",
+    "name": "Bộ quần áo",
+    "era": null,
+    "shortDesc": "Áo có cổ, hai túi có nắp và chiếc quần được gấp gọn bên dưới.",
+    "visualDesc": "Áo vải xanh ô liu có cổ, hàng cúc, hai túi ngực có nắp; quần vải cùng màu gấp phía dưới.",
+    "floor": null,
+    "frame": 1,
+    "audio": {
+      "vi": "soldier-uniform",
+      "en": "soldier-uniform-en"
+    },
+    "transcript": {
+      "vi": "Đây là bộ quần áo trong ảnh minh họa đồ dùng người lính. Bạn có thể quan sát cổ áo, hàng nút phía trước và hai túi có nắp ở ngực. Chiếc quần được gấp gọn bên dưới.",
+      "en": "This folded uniform is part of the illustrated set of a soldier’s belongings. Look for the collar, the row of buttons and two flap pockets on the chest. The trousers are folded underneath."
+    },
+    "photoKey": "soldierUniform",
+    "shortName": "Bộ quần áo",
+    "fullDesc": "Ảnh minh họa cho thấy một bộ quần áo màu xanh ô liu. Hãy nhìn phần cổ áo, hàng nút và hai túi có nắp ở ngực. Đây là những chi tiết dễ nhận ra khi quan sát trang phục trong khung hình.",
+    "story": {
+      "question": "Bộ quần áo này có gì đặc biệt?",
+      "answer": "Bạn nhìn hai túi ở ngực áo xem, cả hai đều có nắp đấy. Tôi thích bắt đầu câu chuyện từ những chi tiết nhỏ như thế. Cổ áo, hàng cúc rồi đến cách gấp quần, nhìn một lúc là thấy nhiều thứ để hỏi lắm!"
+    },
+    "en": {
+      "shortName": "Uniform",
+      "shortDesc": "A collared shirt with two flap pockets and folded trousers underneath.",
+      "fullDesc": "The illustration shows an olive-green uniform. Look at the collar, the row of buttons and the two flap pockets on the chest. These are useful details to look for when examining the outfit.",
+      "story": {
+        "question": "What stands out about the uniform?",
+        "answer": "See the two chest pockets? Both have flaps. I like to start with little details like those. The collar, buttons and even the way the trousers are folded can give us something to talk about."
+      },
+      "title": "Uniform",
+      "room": "Illustrated kit"
+    },
+    "room": "Bộ đồ dùng mô phỏng",
+    "keywords": "\\b(?:ao|quan|trang phuc|uniform|shirt|trousers|clothes)\\b"
+  },
+  {
+    "id": "soldier-helmet",
+    "name": "Mũ cối",
+    "era": null,
+    "shortDesc": "Chiếc mũ màu xanh có dáng vòm, vành rộng và phần bọc vải.",
+    "visualDesc": "Mũ cối xanh ô liu bọc vải, chóp tròn dạng vòm, vành rộng, có đường may và lỗ nhỏ hai bên.",
+    "floor": null,
+    "frame": 1,
+    "audio": {
+      "vi": "soldier-helmet",
+      "en": "soldier-helmet-en"
+    },
+    "transcript": {
+      "vi": "Chiếc mũ cối trong ảnh có dáng vòm và vành rộng. Vành mũ giúp che nắng cho mặt. Hãy nhìn lớp vải màu xanh, các đường may và những lỗ nhỏ ở hai bên mũ.",
+      "en": "This pith helmet has a rounded crown and a broad brim that shades the face. Look closely at its green fabric cover, stitching and the small holes on the sides."
+    },
+    "photoKey": "soldierHelmet",
+    "shortName": "Mũ cối",
+    "fullDesc": "Mũ cối trong ảnh có chóp tròn, vành rộng và lớp vải bọc. Vành nhô ra giúp che nắng cho mặt. Nhìn kỹ, bạn có thể thấy các đường nối vải và những lỗ nhỏ ở hai bên.",
+    "story": {
+      "question": "Chiếc mũ cối có gì đặc biệt?",
+      "answer": "Các bạn có thấy cái vành nhô ra quanh mũ không? Đứng ngoài trời nắng, có bóng râm trước mặt là dễ chịu hơn nhiều. Hai bên còn có mấy lỗ nhỏ nữa. Nhìn gần mới thấy rõ!"
+    },
+    "en": {
+      "shortName": "Pith helmet",
+      "shortDesc": "A fabric-covered green helmet with a rounded crown and wide brim.",
+      "fullDesc": "The illustrated pith helmet has a rounded crown, broad brim and fabric cover. The brim shades the face. Look closely and you can spot the seams and small holes on the sides.",
+      "story": {
+        "question": "What is special about the pith helmet?",
+        "answer": "Can you see how the brim sticks out all the way around? A bit of shade over your face makes a difference when you’re out in the sun. There are little holes on the sides, too. Take a closer look!"
+      },
+      "title": "Pith helmet",
+      "room": "Illustrated kit"
+    },
+    "room": "Bộ đồ dùng mô phỏng",
+    "keywords": "\\b(?:mu|non|coi|helmet|brim)\\b"
+  },
+  {
+    "id": "soldier-tobacco",
+    "name": "Gói thuốc lá",
+    "era": null,
+    "shortDesc": "Một vỏ bao bằng giấy với các nếp gấp và mép đã sờn.",
+    "visualDesc": "Gói giấy nhỏ dạng hộp chữ nhật, có nếp gấp ở góc và các mép giấy ngả màu, sờn.",
+    "floor": null,
+    "frame": 1,
+    "audio": {
+      "vi": "soldier-tobacco",
+      "en": "soldier-tobacco-en"
+    },
+    "transcript": {
+      "vi": "Đây là gói thuốc lá bằng giấy trong ảnh minh họa. Bạn hãy chú ý đến những nếp gấp ở góc và các mép giấy đã sờn. Các chi tiết nhỏ này giúp kể câu chuyện về đồ dùng thường ngày.",
+      "en": "This illustrated cigarette packet is made of paper. Notice the folds at the corners and the worn edges. These small details can help tell a story about everyday belongings."
+    },
+    "photoKey": "soldierTobacco",
+    "shortName": "Gói thuốc lá",
+    "fullDesc": "Vỏ bao giấy trong ảnh được dựng để minh họa một vật dụng nhỏ của đời sống thường ngày. Bề mặt, nếp gấp và mép giấy đã sờn là các chi tiết có thể quan sát khi nhìn gần.",
+    "story": {
+      "question": "Vì sao có gói thuốc lá trong bộ đồ dùng?",
+      "answer": "Món nhỏ thế này dễ bị bỏ qua lắm. Tôi muốn các bạn thử nhìn những nếp gấp và mép giấy sờn. Khi đặt cạnh áo và mũ, nó giúp mình hình dung thêm về đồ dùng đời thường ngày ấy."
+    },
+    "en": {
+      "shortName": "Cigarette packet",
+      "shortDesc": "A paper packet with folded corners and worn edges.",
+      "fullDesc": "The paper packet was created as an illustration of a small everyday item. Its surface, folds and worn edges are details you can examine up close.",
+      "story": {
+        "question": "Why is there a cigarette packet in the set?",
+        "answer": "It’s easy to miss something this small. Look at the folds and the worn paper edges. Beside the uniform and helmet, it gives us another detail about the things people carried back then."
+      },
+      "title": "Cigarette packet",
+      "room": "Illustrated kit"
+    },
+    "room": "Bộ đồ dùng mô phỏng",
+    "keywords": "\\b(?:thuoc la|goi thuoc|bao thuoc|bao giay|cigarette|tobacco|packet)\\b"
+  },
+  {
+    "id": "soldier-canteen",
+    "name": "Bình tông đựng nước",
+    "era": null,
+    "shortDesc": "Bình đựng nước có bao vải và quai mang.",
+    "visualDesc": "Bình nước thân dẹt, bo tròn, có nắp nhỏ ở đỉnh, bao vải sẫm và quai dài.",
+    "floor": null,
+    "frame": 1,
+    "audio": {
+      "vi": "soldier-canteen",
+      "en": "soldier-canteen-en"
+    },
+    "transcript": {
+      "vi": "Đây là bình tông đựng nước trong bộ đồ dùng minh họa. Bạn có thể nhìn thấy thân bình dẹt, bao vải và quai để mang bình khi đi đường.",
+      "en": "This illustrated kit includes a water canteen. Notice its flat body, fabric cover and carrying strap."
+    },
+    "photoKey": "soldierCanteen",
+    "shortName": "Bình tông",
+    "room": "Bộ đồ dùng mô phỏng",
+    "fullDesc": "Bình tông trong ảnh minh họa có thân dẹt, bao vải và quai. Người mang có thể dùng quai để đeo bình khi đi lại.",
+    "story": {
+      "question": "Bình tông dùng để làm gì?",
+      "answer": "À, đó là bình đựng nước đấy các bạn. Xem cái quai kia kìa. Có quai thì mang theo khi đi bộ tiện hơn nhiều."
+    },
+    "en": {
+      "shortName": "Water canteen",
+      "title": "Water canteen",
+      "room": "Illustrated kit",
+      "shortDesc": "A water bottle with a fabric cover and carrying strap.",
+      "fullDesc": "The illustrated canteen has a flat body, a fabric cover and a strap that makes it easier to carry.",
+      "story": {
+        "question": "What was the canteen used for?",
+        "answer": "Ah, that’s a water bottle. See the strap there? It made the bottle much easier to carry on a walk."
+      }
+    },
+    "keywords": "\\b(?:binh tong|binh nuoc|bi dong|canteen|water bottle)\\b"
+  }
+]
