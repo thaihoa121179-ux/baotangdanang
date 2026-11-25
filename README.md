@@ -4,7 +4,7 @@
 
 Mở **Quét**, cấp quyền camera, đưa hiện vật vào ô giữa màn hình và bấm **Quét ngay**. Bạn cũng có thể chọn ảnh trong màn hình quét và bấm cùng nút đó. Mỗi lần bấm gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini chỉ trả về ID và độ tin cậy. Web tra tên, mô tả, audio, transcript và nội dung chatbot trong danh mục. Kết quả được gắn nhãn **AI nhận diện** khi có ít nhất một ID hợp lệ đạt 0,5. Web chọn kết quả đầu tiên để mở ngay hai nút nghe và giới thiệu. Bấm một thẻ khác để đổi hiện vật.
 
-Chọn Khung 1 hoặc Khung 2 để xác định nhóm gợi ý thủ công. Gemini có thể trả về bất kỳ ID hợp lệ trong danh mục. Khi chưa chắc chắn hoặc lỗi kết nối, web gợi ý tối đa ba mục trong khung đã chọn. Nếu Gemini có trả điểm hợp lệ dưới ngưỡng, các mục có điểm trong khung được ưu tiên. **Ảnh mẫu** của hai khung và **Quét ảnh có sẵn** là các chế độ riêng chạy offline.
+Dùng **Đổi camera** để chuyển camera trước hoặc sau. **Chọn ảnh** mở ảnh của bạn để nhận diện bằng Gemini. Chọn **Khu trưng bày** để xác định nhóm gợi ý thủ công. Khi chưa chắc chắn hoặc lỗi kết nối, web gợi ý tối đa ba mục trong khu đã chọn. Các mục có điểm nhận diện dưới ngưỡng trong khu được ưu tiên nếu có.
 
 ## Chạy thử
 
@@ -29,7 +29,7 @@ Mở `http://localhost:8000/filehtml.html` trên máy tính. Bản GitHub Pages 
    npx wrangler deploy --config docs/wrangler.toml
    ```
 
-3. Trên điện thoại, mở **Quét → Về dự án → Cài đặt nhận diện và nhật ký**, dán URL HTTPS của Worker và lưu. Để áp dụng URL mặc định cho mọi thiết bị, đặt `CONFIG.PROXY_ENDPOINT` trong [js/recognize.js](js/recognize.js), chạy lại lệnh đồng bộ bên dưới và xuất bản. Mặc định URL để trống cho đến khi có Worker.
+3. Trên điện thoại, mở **Quét → biểu tượng bánh răng → Cài đặt nhận diện và nhật ký**, dán URL HTTPS của Worker và lưu. Để áp dụng URL mặc định cho mọi thiết bị, đặt `CONFIG.PROXY_ENDPOINT` trong [js/recognize.js](js/recognize.js), chạy lại lệnh đồng bộ bên dưới và xuất bản. Mặc định URL để trống cho đến khi có Worker.
 4. Model mặc định là `gemini-3.5-flash-lite`, một model Flash-Lite nhận ảnh. Đổi `CONFIG.MODEL` ở đầu module nếu dự án dùng model khác. Tùy chọn `GEMINI_MODEL` trong cấu hình Worker ghi đè model ở phía proxy. Đồng bộ HTML sau khi đổi cấu hình trình duyệt.
 
 Worker dùng Prompt A và danh mục ở phía máy chủ. Trình duyệt chỉ gửi ảnh tới URL proxy. Worker giới hạn dung lượng ảnh, origin trình duyệt và số lượt mỗi IP. Origin là kiểm tra CORS, vì vậy hãy đặt hạn mức dự án và giới hạn chi phí phù hợp cho endpoint công khai.
@@ -52,4 +52,4 @@ node scripts/sync-demo.mjs index.html
 
 ## Nhật ký nhận diện
 
-Mở **Quét → Về dự án → Cài đặt nhận diện và nhật ký → Xuất log JSON**. Web ghi thời điểm, thời gian xử lý, nguồn ảnh, khung, trạng thái và các cặp ID/độ tin cậy hợp lệ vào console và giữ tối đa 500 lượt gần nhất trong localStorage. Ảnh mẫu offline không được tính vào log AI. Để tính tỷ lệ chính xác, đối chiếu mỗi lượt với danh sách ID thật được ghi riêng cho ảnh thử. Trường `success` chỉ cho biết có kết quả qua ngưỡng, còn `confidence` là điểm Gemini tự báo.
+Mở **Quét → biểu tượng bánh răng → Cài đặt nhận diện và nhật ký → Xuất log JSON**. Web ghi thời điểm, thời gian xử lý, nguồn ảnh, khung, trạng thái và các cặp ID/độ tin cậy hợp lệ vào console và giữ tối đa 500 lượt gần nhất trong localStorage. Để tính tỷ lệ chính xác, đối chiếu mỗi lượt với danh sách ID thật được ghi riêng cho ảnh thử. Trường `success` chỉ cho biết có kết quả qua ngưỡng, còn `confidence` là điểm Gemini tự báo.
