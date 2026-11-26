@@ -476,6 +476,7 @@
   "Choose photo": "写真を選ぶ",
   "Scan now": "今すぐスキャン",
   "About the project": "プロジェクトについて",
+  "Go back": "戻る",
   "Close": "閉じる",
   "Included in the demo": "デモで使える機能",
   "Gemini identifies catalog IDs from camera frames or selected photos when configured.": "設定済みの場合、Geminiがカメラ画像や選択した写真から展示品のIDを特定します。",
