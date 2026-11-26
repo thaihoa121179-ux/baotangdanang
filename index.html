@@ -291,6 +291,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       border-radius: clamp(22px, 6vw, 36px);
       background: #202528;
     }
+    .frame-scan-target.is-live { touch-action: pan-y; }
     #frame-camera, #frame-camera-preview, #frame-snapshot, #frame-selected-photo {
       position: absolute;
       inset: 0;
@@ -3494,6 +3495,7 @@ const CameraPreview = (() => {
     }
 
     const frameScanner = document.getElementById('frame-scanner');
+    const frameScanTarget = frameScanner.querySelector('.frame-scan-target');
     const frameCamera = document.getElementById('frame-camera');
     const frameCanvas = document.getElementById('frame-camera-preview');
     const frameSelectedPhoto = document.getElementById('frame-selected-photo');
@@ -3505,6 +3507,7 @@ const CameraPreview = (() => {
       facing: 'environment', source: null, stream: null, preview: null, previewController: null, zoom: 1,
       scan: null, cameraRequest: 0, lastStart: -Infinity, photoURL: ''
     };
+    let framePinchDistance = 0;
     const settingsKey = 'museum-recognition-settings';
     const logsKey = 'museum-recognition-logs';
     let sessionSettings = {};
@@ -3637,7 +3640,9 @@ const CameraPreview = (() => {
     function setFrameZoom(zoom) {
       frameCapture.zoom = Math.min(frameZoomMax, Math.max(1, zoom));
       frameScanner.style.setProperty('--frame-zoom', String(frameCapture.zoom));
-      document.getElementById('frame-zoom-value').textContent = `${frameCapture.zoom}×`;
+      const output = document.getElementById('frame-zoom-value');
+      const label = `${Number(frameCapture.zoom.toFixed(1))}×`;
+      if (output.textContent !== label) output.textContent = label;
       document.getElementById('frame-zoom-out').disabled = frameCapture.zoom === 1;
       document.getElementById('frame-zoom-in').disabled = frameCapture.zoom === frameZoomMax;
     }
@@ -3645,6 +3650,27 @@ const CameraPreview = (() => {
     function changeFrameZoom(amount) {
       if (frameCapture.source === 'camera' && !frameCapture.scan) setFrameZoom(frameCapture.zoom + amount);
     }
+
+    function resetFramePinch() {
+      framePinchDistance = 0;
+    }
+
+    function updateFramePinch(event) {
+      const touches = event.targetTouches;
+      if (frameCapture.source !== 'camera' || frameCapture.scan || touches.length !== 2) {
+        resetFramePinch();
+        return;
+      }
+      if (event.cancelable) event.preventDefault();
+      const distance = Math.hypot(touches[1].clientX - touches[0].clientX, touches[1].clientY - touches[0].clientY);
+      if (distance > 0 && framePinchDistance > 0) setFrameZoom(frameCapture.zoom * distance / framePinchDistance);
+      framePinchDistance = distance;
+    }
+
+    frameScanTarget.addEventListener('touchstart', updateFramePinch, { passive: false });
+    frameScanTarget.addEventListener('touchmove', updateFramePinch, { passive: false });
+    frameScanTarget.addEventListener('touchend', resetFramePinch);
+    frameScanTarget.addEventListener('touchcancel', resetFramePinch);
 
     function switchFrameCamera() {
       let facing = frameCapture.facing;
@@ -3725,7 +3751,10 @@ const CameraPreview = (() => {
 
     function setFrameScanning(scanning) {
       frameScanner.classList.toggle('is-scanning', scanning);
-      document.getElementById('frame-zoom').classList.toggle('hidden', scanning || frameCapture.source !== 'camera');
+      const cameraLive = !scanning && frameCapture.source === 'camera';
+      frameScanTarget.classList.toggle('is-live', cameraLive);
+      document.getElementById('frame-zoom').classList.toggle('hidden', !cameraLive);
+      if (!cameraLive) resetFramePinch();
       for (const id of ['frame-area', 'frame-mode-file', 'frame-switch-camera', 'frame-about']) {
         document.getElementById(id).disabled = scanning;
       }

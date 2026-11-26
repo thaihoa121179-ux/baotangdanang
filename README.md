@@ -10,7 +10,7 @@ Mỗi mục mô phỏng có một ảnh minh họa được tạo dựa trên kh
 
 Trên iPhone, web vẽ hình camera vào ô quét để tránh việc trình duyệt bên trong ứng dụng mở trình phát toàn màn hình. Nếu trình duyệt không cung cấp khung hình, web sẽ hiện hướng dẫn mở bằng Safari hoặc chọn ảnh.
 
-Dùng **−** và **+** trong khung camera để zoom từ 1× đến 3×. Web lấy đúng vùng đang hiển thị khi bấm **Quét ngay**. Zoom về 1× khi mở lại hoặc đổi camera.
+Trong khung camera, tách hai ngón tay để phóng to hoặc chụm lại để thu nhỏ. Nút **−** và **+** cũng điều chỉnh zoom từ 1× đến 3×. Web lấy đúng vùng đang hiển thị khi bấm **Quét ngay**. Zoom về 1× khi mở lại hoặc đổi camera.
 
 Dùng **Đổi camera** để chuyển camera trước hoặc sau. **Chọn ảnh** mở ảnh của bạn để nhận diện bằng Gemini. Trong chế độ AI, chọn **Khu trưng bày** để xác định nhóm gợi ý thủ công. Khi chưa chắc chắn hoặc lỗi kết nối, web gợi ý tối đa ba mục trong khu đã chọn. Các mục có điểm nhận diện dưới ngưỡng trong khu được ưu tiên nếu có.
 
