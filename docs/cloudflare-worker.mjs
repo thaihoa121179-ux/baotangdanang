@@ -50,6 +50,7 @@ async function replyToChat(request, env, reply) {
   } catch (error) {
     if (signal.aborted) return reply({ error: 'timeout' }, 504);
     if (error.message === 'quota_or_rate_limit') return reply({ error: 'quota_or_rate_limit' }, 429);
+    if (error.message === geminiChat.MISSING_ACCENTS) return reply({ error: geminiChat.MISSING_ACCENTS }, 422);
     return reply({ error: 'chat_unavailable' }, 502);
   }
 }
