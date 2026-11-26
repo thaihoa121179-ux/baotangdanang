@@ -22,6 +22,8 @@ Mở `http://localhost:8000/filehtml.html` trên máy tính. Bản GitHub Pages 
 
 Mục **Chatbot** đọc bộ chủ đề Việt–Anh trong [data/museum-chat.json](data/museum-chat.json) và danh mục hiện vật. Bổ sung câu trả lời, cụm từ để nhận biết chủ đề và các câu hỏi liên quan trong dữ liệu này. Chạy `node scripts/sync-demo.mjs` để nhúng thay đổi vào bản HTML mở riêng.
 
+Chatbot nhận một số cách nói thân mật như “bùn quá” và đổi gợi ý theo mạch trò chuyện. Mục `chatBreaks` chứa chuyện ngắn và câu đố Việt–Anh. Trạng thái trò chuyện ở trong phiên chat của từng ngôn ngữ.
+
 Câu trả lời về bảo tàng tra dữ liệu cục bộ. Với câu hỏi phổ thông có tên chủ đề rõ ràng, web có thể gửi tên chủ đề đến Wikipedia để lấy đoạn giới thiệu và gắn link bài viết. Khi không tìm được bài phù hợp hoặc mất kết nối, chatbot hỏi thêm thay vì đoán. Gemini tiếp tục xử lý phần nhận diện ảnh.
 
 ## Cấu hình Gemini

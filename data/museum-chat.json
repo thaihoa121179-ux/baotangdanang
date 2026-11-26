@@ -208,6 +208,127 @@
       "next": ["nearby", "history-1858", "sky"]
     }
   ],
+  "chatBreaks": [
+    {
+      "story": [
+        "Thử tưởng tượng bạn cầm một chiếc bình mà thứ giống mũi ấm lại mọc từ bên hông. Đó là dáng của bình Kendy. Nhờ chiếc vòi ấy, người ta có thể rót nước trong nghi lễ. Nếu ghé tầng 1, thử tìm chiếc vòi trước khi đọc nhãn nhé.",
+        "Imagine a vessel with a spout growing out of its side. That is the shape of a Kendy. Its spout was used to pour water in ceremonies. On Floor 1, try finding the spout before reading the label."
+      ],
+      "question": [
+        "Trên bình Kendy, chi tiết nào ở bên hông dùng để rót nước?",
+        "Which part on the side of a Kendy vessel was used to pour water?"
+      ],
+      "choices": [
+        [
+          "Cái nắp",
+          "The lid"
+        ],
+        [
+          "Chiếc vòi",
+          "The spout"
+        ],
+        [
+          "Chân bình",
+          "The base"
+        ]
+      ],
+      "correct": 1,
+      "alsoAccept": [
+        "vòi",
+        "vòi rót",
+        "cái vòi",
+        "spout"
+      ],
+      "hint": [
+        "Thử tưởng tượng bạn nghiêng bình. Nước sẽ chảy ra qua một phần nhô khỏi thân.",
+        "Imagine tilting the vessel. The water flows through a part that sticks out from the body."
+      ],
+      "explanation": [
+        "Chiếc vòi bên hông là dấu hiệu dễ nhận ra của bình Kendy.",
+        "The side spout is one of the easiest ways to recognize a Kendy."
+      ]
+    },
+    {
+      "story": [
+        "Nhìn chiếc khuyên tai Sa Huỳnh từ xa, bạn có thể chỉ thấy một hình cong. Nhìn gần hơn mới thấy hai đầu thú được tạc đối xứng. Mình thích chi tiết đó vì chỉ cần đổi góc nhìn là đã thấy thêm một điều mới.",
+        "From a distance the Sa Huynh earring may look like a simple curved shape. Up close, two symmetrical animal heads appear. A small change in viewing angle reveals something new."
+      ],
+      "question": [
+        "Chiếc khuyên tai Sa Huỳnh trong bảo tàng có mấy đầu thú?",
+        "How many animal heads are on the museum’s Sa Huynh earring?"
+      ],
+      "choices": [
+        [
+          "Hai đầu",
+          "Two"
+        ],
+        [
+          "Ba đầu",
+          "Three"
+        ],
+        [
+          "Một đầu",
+          "One"
+        ]
+      ],
+      "correct": 0,
+      "alsoAccept": [
+        "2",
+        "hai",
+        "hai đầu thú",
+        "2 đầu",
+        "two heads"
+      ],
+      "hint": [
+        "Hai phía của chiếc khuyên đối xứng. Bạn thử đếm mỗi phía một lần xem.",
+        "The earring is symmetrical. Try counting once on each side."
+      ],
+      "explanation": [
+        "Hai đầu thú được chạm đối xứng ở hai phía chiếc khuyên.",
+        "The two animal heads were carved symmetrically on either side of the earring."
+      ]
+    },
+    {
+      "story": [
+        "Mô hình ghe bầu ở tầng 2 có một chi tiết dễ bỏ sót là thân ghe nở rộng ở giữa. Các ghe buồm xứ Quảng từng chở người và hàng hóa dọc bờ biển. Nhìn mô hình nhỏ mà tưởng tượng cả một chuyến đi biển cũng thú vị nhỉ?",
+        "The Ghe Bau model on Floor 2 has an easy-to-miss detail: its hull widens in the middle. These wooden sailboats carried people and goods along the coast. The little model gives you a lot to imagine."
+      ],
+      "question": [
+        "Ghe bầu truyền thống căng buồm để đi nhờ sức gì?",
+        "What powered a traditional Ghe Bau sailboat when its sails were raised?"
+      ],
+      "choices": [
+        [
+          "Sức kéo của ngựa",
+          "Horses"
+        ],
+        [
+          "Động cơ điện",
+          "An electric motor"
+        ],
+        [
+          "Sức gió",
+          "Wind"
+        ]
+      ],
+      "correct": 2,
+      "alsoAccept": [
+        "gió",
+        "bằng gió",
+        "chạy nhờ gió",
+        "the wind",
+        "wind power"
+      ],
+      "hint": [
+        "Hãy nghĩ xem điều gì làm căng một cánh buồm khi ghe ra khơi.",
+        "Think about what fills a sail when a boat goes out to sea."
+      ],
+      "explanation": [
+        "Buồm đón gió để đưa ghe đi. Ghe bầu xứ Quảng từng phục vụ giao thương ven biển.",
+        "Sails catch the wind to move the boat. Ghe Bau sailboats were part of the coastal trading network."
+      ]
+    }
+  ],
   "artifacts": {
     "cannon": {
       "aliases": ["súng thần công", "khẩu thần công", "khẩu súng cổ", "cannon", "cannons", "artillery piece"],

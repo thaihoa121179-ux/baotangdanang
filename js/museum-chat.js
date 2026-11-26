@@ -1,6 +1,16 @@
 function createMuseumChat(knowledge) {
   const topics = new Map(knowledge.topics.map(topic => [topic.id, topic]));
   const defaultTopics = ['hours', 'short-tour', 'floor-1', 'history-1858'];
+  const conversationPrompts = {
+    listen: ['Muốn tâm sự', 'I’d like to talk'],
+    story: ['Kể chuyện vui', 'Tell me a story'],
+    quiz: ['Đố mình đi', 'Give me a riddle'],
+    anotherStory: ['Kể chuyện khác đi', 'Tell me another story'],
+    anotherQuiz: ['Thêm một câu đố nữa', 'Give me another riddle'],
+    hint: ['Cho mình gợi ý', 'Give me a hint'],
+    reveal: ['Cho mình xem đáp án', 'Show me the answer'],
+    tour: ['Hỏi về bảo tàng', 'Back to the museum']
+  };
   const pick = (pair, lang) => pair[lang === 'en' ? 1 : 0];
   const localized = (record, lang) => lang === 'en' ? { ...record, ...record.en } : record;
 
@@ -118,43 +128,179 @@ function createMuseumChat(knowledge) {
     };
   }
 
-  function socialReply(query, name, lang) {
+  function conversationReply(query, { context, lang, name }) {
+    const reply = (pair, chatMode, patch = {}) => ({
+      text: pick(pair, lang),
+      keepContext: true,
+      social: true,
+      ...(chatMode !== undefined ? { contextPatch: { chatMode, ...patch } } : {})
+    });
+    const is = (key, pattern) => conversationPrompts[key].some(text => normalize(text) === query) || pattern.test(query);
+    const breaks = knowledge.chatBreaks;
+    const set = breaks[context.quizIndex] ?? breaks[0];
+
+    if (is('tour', /^(?:doi chu de|quay lai(?: bao tang)?|hoi ve bao tang|back to the museum|change the subject)$/)) {
+      return reply([
+        'Mình quay lại chuyện bảo tàng nhé. Bạn chọn một câu bên dưới hoặc hỏi điều bạn đang tò mò.',
+        'Back to the museum. Pick a question below or tell me what you’re curious about.'
+      ], null);
+    }
+
+    if (is('listen', /^(?:tam su(?: chut)?|muon tam su|minh muon tam su|minh muon ke them|cho minh tam su|noi chuyen voi minh|muon noi chuyen|can we talk|i need to talk|can i tell you something)$/)) {
+      return reply([
+        'Bạn kể từ đoạn nào thấy dễ nhất nhé. Chuyện gì làm bạn bận lòng hôm nay?',
+        'Start wherever it feels easiest. What has been on your mind today?'
+      ], 'listening');
+    }
+
+    if (is('story', /^(?:ke (?:minh )?(?:nghe )?(?:mot )?chuyen (?:vui|la|thu vi)|ke chuyen di|ke gi do di|noi gi vui di|tell me a story)$/)
+      || is('anotherStory', /^(?:ke chuyen khac|another story)$/)
+      || (context.chatMode === 'story' && /^(?:ke tiep|ke tiep di|tell me more)$/.test(query))) {
+      const storyIndex = ((context.storyIndex ?? -1) + 1) % breaks.length;
+      return reply(breaks[storyIndex].story, 'story', { storyIndex });
+    }
+
+    if (is('quiz', /^(?:do minh di|cho (?:minh )?(?:mot )?cau do(?: nho)?|cau do|do vui(?: di)?|give me a (?:quick )?riddle)$/)
+      || is('anotherQuiz', /^(?:cau khac di|do tiep di|another riddle|one more riddle)$/)) {
+      const quizIndex = ((context.quizIndex ?? -1) + 1) % breaks.length;
+      return reply(breaks[quizIndex].question, 'quiz', { quizIndex, quizHint: false });
+    }
+
+    if (context.chatMode === 'quiz') {
+      if (is('hint', /^(?:goi y|goi y di|minh khong biet|khong biet nua|i don t know|hint)$/)) {
+        return reply(set.hint, 'quiz', { quizHint: true });
+      }
+      if (is('reveal', /^(?:dap an|dap an di|chiu(?: roi)?|bo cuoc|tell me the answer|i give up)$/)) {
+        return reply(set.explanation, 'quiz-done');
+      }
+      const guess = query.replace(/^(?:minh doan|tui doan|chac la|i guess|i think it s) /, '').replace(/ (?:a|ha|dung khong)$/, '');
+      const matches = words => words.some(word => normalize(word) === guess);
+      if (matches([...set.choices[set.correct], ...set.alsoAccept])) {
+        return reply([`Chuẩn rồi! ${set.explanation[0]}`, `You got it! ${set.explanation[1]}`], 'quiz-done');
+      }
+      if (set.choices.some(matches)) {
+        return reply([`Chưa đúng, thử thêm lần nữa nhé. ${set.hint[0]}`, `Good try. Here’s a clue: ${set.hint[1]}`], 'quiz', { quizHint: true });
+      }
+    }
+
+    const casual = query.replace(/\b(?:wa+|qa+|qoa+|qua+)\b/g, 'qua')
+      .replace(/^(?:(?:minh|tui|toi|tao|to|em|hom nay|nay|dang|thay|cam thay|tu nhien|hoi|rat|qua|i m|i am|i feel|feeling|really|very|so|a bit|kind of) )+/, '');
+    const qualifiers = '(?: (?:qua|ghe|lam|lom|vai|qua di|di|nhe|nha|ne|a|luon|that|vay|he|roi|right now|today|so much|really))*';
+    const mood = pattern => new RegExp(`^(?:${pattern})${qualifiers}(?: (?:vi|because) .+)?$`).test(casual);
+    const sad = mood('bu+o+n+|bu+n+|tut mood|tam trang te|sad|down|upset|muon khoc|feeling down');
+    const firstPerson = /\b(minh|tui|toi|to|em|cua (?:minh|tui|toi)|i|my)\b/.test(query);
+    const talking = ['listening', 'sad', 'bored', 'tired', 'worried'].includes(context.chatMode);
+    const generalQuestion = /^(?:vi sao|tai sao|what is|what are|why|who is|how) /.test(query);
+    const personal = firstPerson || sad || /^(?:moi|vua|bi) /.test(query) || (talking && !generalQuestion);
+    if (personal && /\b(diem (?:kem|thap|xau)|bi diem kem|thi rot|rot mon|trut ky thi|failed (?:the |an )?exam|bad grade|bad grades)\b/.test(query)) {
+      return reply([
+        'Nhận điểm thấp dễ làm mình hụt hẫng. Bạn đang tiếc vì kết quả hay lo điều gì sẽ tới sau đó?',
+        'Getting a low grade can be discouraging. Are you most disappointed about the result, or worried about what comes next?'
+      ], 'listening');
+    }
+    if (personal && /\b(cai nhau|gian (?:minh|tui|toi)|chia tay|that tinh|bi bo roi|argued with|broke up|had a fight)\b/.test(query)) {
+      return reply([
+        'Chuyện với người mình quý có thể làm mình nghĩ mãi. Điều gì trong chuyện đó khiến bạn buồn nhất?',
+        'Something happening with a person you care about can stay on your mind. What part of it hurt the most?'
+      ], 'listening');
+    }
+    if (personal && /\b(bi mang|bi la|so (?:bo me|ba me|cha me)|getting in trouble)\b/.test(query)) {
+      return reply([
+        'Nghe như bạn đang lo người nhà sẽ phản ứng thế nào. Bạn muốn kể điều khiến bạn lo nhất, hay thử cùng mình nghĩ một cách mở lời?',
+        'It sounds like you’re worried about how they might react. Would you like to talk about that, or think of a way to start the conversation?'
+      ], 'listening');
+    }
+    if (personal && /\b(co don|lac long|khong ai hieu|khong co ai de noi|lonely|left out|nobody understands)\b/.test(query)) {
+      return reply([
+        'Cảm giác một mình có thể nặng nề thật. Bạn đang muốn có người nghe, hay muốn mình giúp bạn nghĩ xem có thể mở lời với ai?',
+        'Feeling alone can be heavy. Would it help to talk here, or would you like to think of someone you could reach out to?'
+      ], 'listening');
+    }
+    if (sad) {
+      return reply([
+        'Ôi, mình nghe nè. Chuyện gì làm bạn buồn vậy? Bạn cứ kể nếu thấy thoải mái nha.',
+        'It sounds like today has been a bit rough. If you’d like to talk, I’m here to listen. What’s been weighing on you?'
+      ], 'sad');
+    }
+    if (mood('chan+|nan+|chan nan|chan hoc|bored|nothing to do')) {
+      return reply([
+        'Chán ghê ha. Hay mình đổi không khí một chút? Mình có một câu đố ngắn hoặc một chuyện hay trong bảo tàng.',
+        'A change of pace might be nice. How about a quick riddle or a little museum story?'
+      ], 'bored');
+    }
+    if (mood('met+|doi suc|buon ngu|het nang luong|tired|exhausted|sleepy')) {
+      return reply([
+        'Nghe như bạn cần nghỉ một nhịp. Mình có thể kể một chuyện ngắn, hoặc bạn cứ tạm dừng một chút nha.',
+        'It sounds like you could use a pause. I can tell you a short story, or we can take a break.'
+      ], 'tired');
+    }
+    if (mood('lo|lo lang|ap luc|stress|cang thang|worried|stressed')) {
+      return reply([
+        'Có chuyện gì làm bạn lo nhất lúc này? Mình có thể cùng bạn nghĩ từng việc một.',
+        'What is worrying you most right now? We can think it through one thing at a time.'
+      ], 'worried');
+    }
+    if (mood('vui|vui ve|mung|happy|excited') || /\b(minh|tui|toi|i) (?:vua )?(?:thi dau|thi do|duoc diem cao|passed my exam)\b/.test(query)) {
+      return reply([
+        'Vui lây với bạn luôn! Có chuyện gì hay vậy, kể mình nghe với 😊',
+        'That sounds lovely! What happened? I’d like to hear the good news 😊'
+      ], 'happy');
+    }
+
+    const hesitant = /^(?:khong biet(?: nua)?|chang biet nua|ko biet(?: nua)?|k biet(?: nua)?|i don t know|not sure)$/;
+    const acknowledge = /^(?:u|uh|um|uk|ok|oke|okay|co|yes|yeah)(?: (?:a|nha|nhe|ne))?$/;
+    const leave = /^(?:thoi|ke di|bo qua(?: di)?|khong muon ke|k muon ke|khong sao|never mind|rather not)$/;
+    if (talking && hesitant.test(query)) {
+      return reply([
+        'Không sao, có lúc khó gọi tên cảm giác lắm. Bạn muốn kể một chút về hôm nay hay đổi không khí bằng chuyện khác?',
+        'That’s okay. Feelings can be hard to name. Would you rather talk a little about today or switch to a lighter subject?'
+      ], 'listening');
+    }
+    if (talking && acknowledge.test(query)) {
+      return reply([
+        'Ừ, mình nghe đây. Bạn kể từ chuyện gần đây nhất mà bạn nhớ cũng được.',
+        'I’m listening. You can start with the most recent thing you remember.'
+      ], 'listening');
+    }
+    if (context.chatMode && leave.test(query)) {
+      return reply([
+        'Được nha. Mình để đó một chút. Nếu muốn đổi không khí, thử chọn một câu chuyện hoặc câu đố bên dưới.',
+        'Of course. We can leave it there. If you want a change of pace, try a story or riddle below.'
+      ], 'bored');
+    }
+
     const responses = [
       [/^(?:he lo+|he+lo+|hello+|helo+|hi+|hey+|alo+|xin chao|chao)(?: (?:ban|nha|nhe|nho|a|moi nguoi|bot|there|everyone))*$/, [
         `Hế lô${name ? ', ' + name : ''}! Rất vui gặp bạn 😊 Hôm nay bạn muốn đi một vòng bảo tàng hay nghe mình kể một chuyện lạ về hiện vật?`,
         `Hi${name ? ', ' + name : ''}! Lovely to meet you 😊 Fancy a quick tour or a little story about one of the objects?`
       ]],
       [/^(?:cam on|cam on ban|cam on nha|cam on nhieu|thank you|thanks|thank you so much)(?: (?:nhe|a|ban|nha))?$/, [
-        'Không có gì nha! Bạn hỏi tiếp bất cứ khi nào thấy một chi tiết thú vị nhé.',
-        'You’re welcome! Ask me anytime you spot an interesting detail.'
+        'Không có gì nha! Cảm ơn bạn đã trò chuyện với mình.',
+        'You’re welcome! Thanks for chatting with me.'
       ]],
       [/^(?:tam biet|bye|goodbye|hen gap lai|see you)(?: (?:nhe|a|ban|later))?$/, [
-        'Hẹn gặp lại bạn nhé! Chúc bạn có một chuyến tham quan thật vui.',
-        'See you next time! I hope you enjoy your museum visit.'
+        'Hẹn gặp lại bạn nhé!',
+        'See you next time!'
       ]],
       [/^(?:ban la ai|ban ten gi|ten ban la gi|ban la robot a|who are you|what is your name|are you a bot)$/, [
         'Mình là hướng dẫn viên số của Bảo tàng Đà Nẵng. Mình có thể kể chuyện hiện vật, gợi ý đường đi hoặc cùng bạn tìm hiểu một chủ đề mới.',
         'I’m Da Nang Museum’s digital guide. I can tell you about the objects, suggest a route or help you explore another topic.'
       ]],
       [/^(?:ban khoe khong|khoe khong|how are you|how are you doing)$/, [
-        'Mình sẵn sàng đi tham quan cùng bạn rồi 😊 Còn bạn hôm nay muốn xem gì trước?',
-        'Ready for a museum visit 😊 What would you like to see first?'
+        'Mình sẵn sàng đi tham quan cùng bạn rồi 😊 Còn bạn hôm nay thế nào?',
+        'Ready for a museum visit 😊 How are you doing today?'
       ]],
-      [/^(?:ban co cam xuc khong|ban co buon khong|noi chuyen voi minh|can you chat|do you have feelings)$/, [
-        'Mình là hướng dẫn viên số, nhưng mình có thể trò chuyện cùng bạn. Bạn muốn nghe một chuyện thú vị hay đang muốn tâm sự một chút?',
-        'I’m a digital guide, and I’m happy to keep you company. Would you like a little museum story or a chat?'
-      ]],
-      [/^(?:chan qua|minh chan|chan ghe|hoi chan|minh met|met qua|i am bored|i m bored|i m tired)$/, [
-        'Mình hiểu, xem lâu cũng dễ mệt. Hay mình chọn một món nhỏ thôi? Khuyên tai hai đầu thú có vài chi tiết nhìn lướt qua rất dễ bỏ sót.',
-        'A long visit can get tiring. How about one small object? The two-headed earring has details that are easy to miss at first glance.'
+      [/^(?:ban co cam xuc khong|ban co buon khong|can you chat|do you have feelings)$/, [
+        'Mình là hướng dẫn viên số. Bạn muốn trò chuyện một chút hay nghe mình kể chuyện về một hiện vật?',
+        'I’m a digital guide. Would you like a chat or a little story about an artifact?'
       ]],
       [/^(?:tra loi sai|ban tra loi sai|ban khong hieu|sai roi|ban kho qua|bot kho qua|that is wrong|that s wrong|you misunderstood)$/, [
-        'Cảm ơn bạn đã nói. Mình có thể đã hiểu sai ý. Bạn thử nói tên món đồ hoặc chi tiết đang hỏi, mình sẽ trả lời sát hơn.',
-        'Thanks for pointing that out. I may have misunderstood. Tell me the object or detail you mean and I’ll try again.'
+        'Cảm ơn bạn đã nói. Bạn chỉ giúp mình chỗ nào chưa đúng, mình sẽ thử trả lời lại sát hơn.',
+        'Thanks for pointing that out. Show me which part was off and I’ll try again.'
       ]]
     ];
     const match = responses.find(([pattern]) => pattern.test(query));
-    return match ? { text: pick(match[1], lang), keepContext: true, social: true } : null;
+    return match ? reply(match[1]) : null;
   }
 
   function lookupSubject(raw) {
@@ -168,13 +314,13 @@ function createMuseumChat(knowledge) {
     const subject = patterns.map(pattern => clean.match(pattern)?.[1]).find(Boolean)?.trim();
     if (!subject || subject.length < 2 || subject.length > 90 || /[\n\r@<>:]/.test(subject)) return null;
     if (/^(?:a |an |the )?(?:this|that|it|you|i|he|she|they|my|your|tôi|mình|bạn|nó|cái (?:này|đó|kia))(?:\s|$)/iu.test(subject)) return null;
-    if (/\b(hom nay|thoi tiet|today|weather|bao nhieu tien|ty gia)\b/.test(normalize(subject))) return null;
+    if (/\b(hom nay|thoi tiet|today|weather|bao nhieu tien|ty gia|cua (?:minh|tui|toi|em|ban)|my|our)\b/.test(normalize(subject))) return null;
     return subject.replace(/^(?:a|an|the)\s+/i, '');
   }
 
   function answer(raw, { context, catalog, lang, name }) {
     const q = normalize(raw);
-    const social = socialReply(q, name, lang);
+    const social = conversationReply(q, { context, lang, name });
     if (social) return social;
 
     const intent = artifactIntent(q);
@@ -220,6 +366,17 @@ function createMuseumChat(knowledge) {
     }
 
     const subject = !named && !reference ? lookupSubject(raw) : null;
+    if (!subject && ['sad', 'listening', 'worried'].includes(context.chatMode) && q && !/^(?:ai|cai gi|vi sao|tai sao|khi nao|what|why|when|who|where|how) /.test(q)) {
+      return {
+        text: pick([
+          'Cảm ơn bạn đã kể. Bạn muốn mình nghe thêm, hay mình cùng nghĩ một việc nhỏ có thể làm ngay bây giờ?',
+          'Thanks for sharing that. Would you like to talk more, or think of one small thing you can do right now?'
+        ], lang),
+        contextPatch: { chatMode: 'listening' },
+        keepContext: true,
+        social: true
+      };
+    }
     const text = context.artifactId ? pick([
       'Mình chưa chắc ý bạn đang hỏi phần nào của hiện vật. Bạn thử nói rõ chi tiết, hoặc chọn một câu bên dưới nhé.',
       'I’m not sure which part of the artifact you mean. Try naming the detail, or pick a question below.'
@@ -231,6 +388,17 @@ function createMuseumChat(knowledge) {
   }
 
   function suggestions(context, catalog, lang) {
+    const { chatMode, quizIndex, quizHint } = context;
+    const prompts = keys => keys.map(key => pick(conversationPrompts[key], lang));
+    if (chatMode === 'quiz' && knowledge.chatBreaks[quizIndex]) {
+      const choices = knowledge.chatBreaks[quizIndex].choices.map(pair => pick(pair, lang));
+      return [...choices, ...prompts([quizHint ? 'reveal' : 'hint'])];
+    }
+    if (chatMode === 'quiz-done') return prompts(['anotherQuiz', 'story', 'tour']);
+    if (chatMode === 'story') return prompts(['anotherStory', 'quiz', 'tour']);
+    if (['sad', 'listening', 'worried', 'happy'].includes(chatMode)) return prompts(['listen', 'story', 'quiz']);
+    if (['bored', 'tired'].includes(chatMode)) return prompts(['story', 'quiz', 'tour']);
+
     const artifact = catalog.get(context.artifactId);
     if (artifact) {
       const result = [];
