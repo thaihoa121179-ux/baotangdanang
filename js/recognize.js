@@ -83,8 +83,9 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
   }
 
   function jpegFrame(source) {
-    const width = source.videoWidth || source.naturalWidth;
-    const height = source.videoHeight || source.naturalHeight;
+    const isCanvas = typeof source.getContext === 'function';
+    const width = isCanvas ? source.width : source.videoWidth || source.naturalWidth;
+    const height = isCanvas ? source.height : source.videoHeight || source.naturalHeight;
     if (!width || !height) throw new Error('invalid_image');
     // Live video uses object-fit: cover, so crop to the same centered viewfinder.
     const ratio = source.videoWidth && source.clientHeight

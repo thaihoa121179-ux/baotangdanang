@@ -247,28 +247,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       --camera-accent: #e4b677;
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      max-width: none;
-      max-height: none;
-      margin: 0;
+      width: min(calc(100% - 24px), 430px);
+      height: fit-content;
+      max-height: calc(100% - 24px);
+      max-height: calc(100dvh - max(12px, env(safe-area-inset-top)) - max(12px, env(safe-area-inset-bottom)));
+      margin: auto;
       padding: 0;
-      border: 0;
+      border: 1px solid #4b4136;
+      border-radius: 24px;
       background: var(--camera-bg);
       color: #fbf6ec;
-      overflow: hidden;
+      box-shadow: 0 18px 48px #080b10b3;
+      overflow: auto;
+      overscroll-behavior: contain;
     }
-    #frame-scanner::backdrop { background: #13171a; }
+    #frame-scanner::backdrop { background: #1118219c; }
     .frame-scanner-shell {
       display: grid;
-      grid-template-rows: auto minmax(150px, 1fr) auto;
-      gap: clamp(12px, 2.2dvh, 22px);
-      width: 100%;
-      height: 100%;
-      max-width: 520px;
-      margin: auto;
-      padding: max(17px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
-      overflow: auto;
+      gap: clamp(10px, 1.7dvh, 16px);
+      padding: 12px 14px 14px;
     }
     .frame-camera-header {
       display: grid;
@@ -281,25 +278,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     .frame-viewfinder {
       display: grid;
       place-items: center;
-      container-type: size;
     }
     .frame-scan-target {
       position: relative;
       isolation: isolate;
-      width: min(100%, 470px, 58dvh);
-      width: min(100%, 470px, 100cqh);
+      width: min(100%, 320px, 46vh);
+      width: min(100%, 320px, 46dvh);
       aspect-ratio: 1;
       overflow: hidden;
       border: 1px solid #564a3a;
       border-radius: clamp(26px, 8vw, 42px);
       background: #202528;
     }
-    #frame-camera, #frame-selected-photo {
+    #frame-camera, #frame-camera-preview, #frame-selected-photo {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      pointer-events: none;
     }
     #frame-selected-photo { object-fit: contain; }
     .frame-corners {
@@ -398,7 +395,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     }
     .frame-capture-ring {
       display: grid;
-      width: clamp(69px, 10dvh, 88px);
+      width: clamp(59px, 8dvh, 74px);
       aspect-ratio: 1;
       padding: 5px;
       border: 2px solid var(--camera-accent);
@@ -1320,7 +1317,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         </header>
         <div class="frame-viewfinder">
           <div class="frame-scan-target">
-            <video id="frame-camera" muted autoplay playsinline class="hidden"></video>
+            <canvas id="frame-camera-preview" class="hidden" aria-hidden="true"></canvas>
+            <video id="frame-camera" muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback class="hidden" aria-hidden="true"></video>
             <img id="frame-selected-photo" class="hidden" alt="Ảnh hiện vật đã chọn" data-en-alt="Selected artifact photo">
             <div class="frame-corners" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
             <div id="frame-camera-placeholder" class="frame-camera-placeholder">
@@ -2153,8 +2151,9 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
   }
 
   function jpegFrame(source) {
-    const width = source.videoWidth || source.naturalWidth;
-    const height = source.videoHeight || source.naturalHeight;
+    const isCanvas = typeof source.getContext === 'function';
+    const width = isCanvas ? source.width : source.videoWidth || source.naturalWidth;
+    const height = isCanvas ? source.height : source.videoHeight || source.naturalHeight;
     if (!width || !height) throw new Error('invalid_image');
     // Live video uses object-fit: cover, so crop to the same centered viewfinder.
     const ratio = source.videoWidth && source.clientHeight
@@ -2515,6 +2514,214 @@ function createMuseumChat(knowledge) {
 
     const museumGuide = createMuseumChat({"topics":[{"id":"hours","aliases":["giờ mở cửa","mở cửa","mấy giờ đóng","đóng cửa","giờ tham quan","lịch mở cửa","mở lúc mấy giờ","thứ hai có mở","cuối tuần có mở","opening hours","open today","what time does","closing time","open on weekends"],"question":["Bảo tàng mở cửa lúc mấy giờ?","When does the museum open?"],"answer":["Bảo tàng Đà Nẵng mở cửa từ 08:00 đến 17:00 hằng ngày theo thông tin công bố của bảo tàng. Bạn có thể ghé buổi sáng nếu muốn dành nhiều thời gian xem cả ba tầng.","Da Nang Museum lists its opening hours as 8 a.m. to 5 p.m. daily. Aim for the morning if you’d like time to explore all three floors."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["tickets","address","short-tour"]},{"id":"tickets","aliases":["giá vé","vé bao nhiêu","tiền vé","mua vé","miễn phí","vé sinh viên","vé tham quan","có mất tiền","mất phí","phí vào cửa","bao nhiêu tiền","ticket","tickets","admission","entry fee","free entry"],"question":["Vé tham quan tính thế nào?","How does admission work?"],"answer":["Bảo tàng có thông báo vé riêng theo nhóm khách. Bạn xem bảng giá chính thức bên dưới để kiểm tra mức vé và giấy tờ cần mang nếu thuộc diện miễn hoặc giảm.","The museum publishes separate admission rules for different groups. Check the official notice below for current prices and any documents needed for a discount or exemption."],"source":"https://baotangdanang.vn/bao-tang-da-nang-xin-thong-bao-gia-ve-tham-quan-tai-bao-tang-da-nang-ap-dung-tu-ngay-0372025-theo-nghi-quyet-so-102025nq-hdn-cua-thanh-pho-da-nang-cu-the","next":["hours","address","short-tour"]},{"id":"address","aliases":["địa chỉ","bảo tàng ở đâu","bảo tàng đà nẵng ở đâu","đến bảo tàng","đi tới bảo tàng","31 trần phú","museum address","where is the museum","getting to the museum","get to da nang museum"],"question":["Bảo tàng nằm ở đâu?","Where is Da Nang Museum?"],"answer":["Bạn tìm Bảo tàng Đà Nẵng tại số 31 Trần Phú, Đà Nẵng. Khi gọi xe, bạn có thể đọc số nhà hoặc dán nguyên tên “Bảo tàng Đà Nẵng, 31 Trần Phú” để đến đúng cơ sở.","Da Nang Museum is at 31 Tran Phu Street, Da Nang. Use the full address when booking a ride so you’re taken to the right location."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["hours","tickets","short-tour"]},{"id":"contact","aliases":["hotline","số điện thoại","liên hệ","đặt đoàn","đăng ký đoàn","tham quan theo đoàn","đặt hướng dẫn viên","contact","phone number","book a group","group booking","school group"],"question":["Liên hệ bảo tàng bằng cách nào?","How can I contact the museum?"],"answer":["Bạn có thể gọi 0236 388 6236. Nếu đi theo lớp hoặc cần hỗ trợ tại chỗ, nên nói trước số người, ngày đến và nhu cầu của đoàn để nhân viên tư vấn.","You can call 0236 388 6236. For a school group or extra assistance, tell the staff your group size, planned date and what help you need."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["address","hours","access"]},{"id":"short-tour","aliases":["30 phút","nửa tiếng","ít thời gian","tham quan nhanh","15 phút","20 phút","đi đâu trước","bắt đầu ở đâu","30 minutes","half an hour","short visit","quick tour","start the tour"],"question":["Chỉ có 30 phút thì xem gì?","What should I see in 30 minutes?"],"answer":["Nếu chỉ có 30 phút, mình gợi ý dành khoảng 15 phút ở tầng 3 để xem câu chuyện Đà Nẵng năm 1858, rồi xuống tầng 1 dành khoảng 10 phút cho khuyên tai Sa Huỳnh và bình Kendy. Chừa vài phút để di chuyển giữa các tầng.","With 30 minutes, I’d spend about 15 minutes on Floor 3 for Da Nang’s story in 1858, then about 10 minutes on Floor 1 for the Sa Huynh earring and Kendy vessel. Leave a few minutes to move between floors."],"map":true,"next":["tour","floor-3","floor-1"]},{"id":"tour","aliases":["lộ trình","xem gì","tham quan thế nào","bao nhiêu tầng","mấy tầng","mỗi tầng","tham quan bao lâu","tour route","each floor","what to see","what should i see","how many floors","museum highlights","map","bản đồ"],"question":["Nên tham quan ba tầng theo thứ tự nào?","What’s a good route through all three floors?"],"answer":["Mình gợi ý đi từ tầng 3 xuống tầng 1. Tầng 3 kể lịch sử và đời sống Đà Nẵng, tầng 2 có văn hóa các cộng đồng cùng đèn cổ và trầm hương, tầng 1 dành cho bộ sưu tập cổ vật. Nếu mê gốm, bạn có thể bắt đầu ngay ở tầng 1.","I’d start on Floor 3 and work down. Floor 3 covers Da Nang’s history and daily life, Floor 2 features community cultures, antique lamps and agarwood, and Floor 1 houses the antiquities. If ceramics are your main interest, start on Floor 1."],"map":true,"next":["floor-3","floor-2","floor-1"]},{"id":"floor-1","aliases":["tầng 1","tầng một","tầng trệt","tủ cổ vật","khu cổ vật","floor 1","first floor","antiquities gallery"],"question":["Tầng 1 có hiện vật gì?","What’s on Floor 1?"],"answer":["Tầng 1 có sưu tập cổ vật, trong đó có gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ miền Trung. Bạn có thể quan sát khuyên tai Sa Huỳnh và bình gốm Kendy để thấy hai kiểu tạo hình rất khác nhau.","Floor 1 houses the antiquities collection, including Chu Dau ceramics, Nguyen-era porcelain, lime pots and ancient pottery from Central Vietnam. Compare the shapes of the Sa Huynh earring and the Kendy vessel when you visit."],"floor":1,"source":"https://baotangdanang.vn/khong-gian-suu-tap-co-vat-cua-bao-tang-da-nan","next":["ceramics","betel","floor-2"]},{"id":"floor-2","aliases":["tầng 2","tầng hai","khu văn hóa","floor 2","second floor","ethnic cultures"],"question":["Tầng 2 trưng bày gì?","What’s displayed on Floor 2?"],"answer":["Tầng 2 có đèn cổ, trầm hương xứ Quảng và trưng bày về các cộng đồng Cơ Tu, Xơ Đăng, Giẻ – Triêng và Cor. Mình gợi ý dừng lại ở tượng cổng làng và kèn Tơghêy để để ý cách gỗ và âm nhạc đi vào đời sống cộng đồng.","Floor 2 explores antique lighting, Quang Nam agarwood and the cultures of the Co Tu, Xo Dang, Gie Trieng and Cor communities. Look out for the village-gate figures and the Toghey instrument."],"floor":2,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-2","next":["agarwood","community","floor-3"]},{"id":"floor-3","aliases":["tầng 3","tầng ba","phòng lịch sử","khu chứng tích chiến tranh","floor 3","third floor","resistance history gallery"],"question":["Tầng 3 kể câu chuyện gì?","What story does Floor 3 tell?"],"answer":["Tầng 3 kể về thiên nhiên, con người, lịch sử đô thị và các giai đoạn đấu tranh của Đà Nẵng. Bộ sưu tập súng thần công gắn với Thành Điện Hải là một điểm dừng để tìm hiểu sự kiện năm 1858.","Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The cannon collection associated with Dien Hai Citadel is a good starting point for the events of 1858."],"floor":3,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang","next":["history-1858","citadel","liberation"]},{"id":"history-1858","aliases":["năm 1858","sự kiện 1858","chiến sự 1858","1858 xảy ra","tại sao năm 1858","pháp tây ban nha","liên quân pháp","nguyễn tri phương","what happened in 1858","franco spanish","nguyen tri phuong","battle of da nang"],"question":["Chuyện gì xảy ra ở Đà Nẵng năm 1858?","What happened in Da Nang in 1858?"],"answer":["Tháng 9 năm 1858, liên quân Pháp – Tây Ban Nha tiến công Đà Nẵng. Quân dân triều Nguyễn kháng cự và ngăn đối phương nhanh chóng chiếm được mục tiêu. Nguyễn Tri Phương là một trong những người chỉ huy phòng thủ gắn với giai đoạn này.","In September 1858, a combined French and Spanish force attacked Da Nang. Nguyen Dynasty defenders resisted, preventing a quick victory. Nguyen Tri Phuong was one of the commanders associated with the defense."],"source":"https://baotangdanang.vn/bao-tang-da-nang/hien-vat/song-than-cing","next":["citadel","floor-3","liberation"]},{"id":"citadel","aliases":["thành điện hải","điện hải ở đâu","điện hải là gì","thành cổ","dien hai citadel","dien hai fortress"],"question":["Thành Điện Hải có gì đặc biệt?","What makes Dien Hai Citadel significant?"],"answer":["Thành Điện Hải là di tích phòng thủ thời Nguyễn ở Đà Nẵng, gần Bảo tàng Đà Nẵng. Di tích gắn với cuộc phòng thủ trước liên quân Pháp – Tây Ban Nha từ năm 1858. Tại bảo tàng, bạn có thể nối câu chuyện đó với bộ sưu tập súng thần công.","Dien Hai Citadel is a Nguyen-era defensive site near Da Nang Museum. It is associated with the defense against French and Spanish forces beginning in 1858. The museum’s cannon collection connects the site to that history."],"source":"https://baotangdanang.vn/bao-tang-da-nang/hien-vat/song-than-cing","next":["history-1858","floor-3","address"]},{"id":"liberation","aliases":["đà nẵng giải phóng","giải phóng đà nẵng","29 tháng 3","29 3 1975","liberation of da nang","da nang liberated","march 29 1975"],"question":["Đà Nẵng được giải phóng ngày nào?","When was Da Nang liberated?"],"answer":["Đà Nẵng được giải phóng ngày 29 tháng 3 năm 1975. Bạn có thể xem phần Chứng tích chiến tranh ở tầng 3 để đặt những hiện vật như Honda Dame vào bối cảnh giai đoạn đó.","Da Nang was liberated on 29 March 1975. The wartime exhibits on Floor 3 help put objects such as the Honda Dame moped into that period’s context."],"floor":3,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang","next":["floor-3","history-1858","citadel"]},{"id":"ceramics","aliases":["gốm sứ khác","gốm và sứ","men lam","hoa lam","gốm cổ trung bộ","gốm cổ các tỉnh trung bộ","gốm sứ","đồ gốm","blue and white","ceramics and porcelain","central vietnamese ceramics"],"question":["Nhận ra gốm hoa lam bằng cách nào?","How can I recognize blue-and-white ceramics?"],"answer":["Hoa lam thường có họa tiết màu lam trên nền sáng. Khi nhìn qua tủ kính, thử để ý nét bút, sự đậm nhạt của màu và cách họa tiết chạy quanh thân. Ở tầng 1 có gốm Chu Đậu để bạn tìm những chi tiết đó.","Blue-and-white ceramics typically have blue designs on a light background. Look for brushwork, differences in color intensity and how the pattern wraps around the vessel. Floor 1’s Chu Dau ceramics are a good place to look."],"floor":1,"next":["floor-1","betel","tour"]},{"id":"betel","aliases":["trầu cau","ăn trầu","tại sao có vôi","phong tục gì","betel chewing","betel nut","betel leaves"],"question":["Bình vôi liên quan gì đến tục ăn trầu?","What do lime pots have to do with betel chewing?"],"answer":["Bình vôi đựng vôi dùng khi têm trầu. Vôi được quệt một lượng nhỏ lên lá trầu trước khi gói cùng cau. Chiếc bình vì vậy kể được một phần câu chuyện về thói quen tiếp khách và giao tiếp ngày trước.","A lime pot held lime used to prepare betel. A small amount was spread on the leaf before wrapping it with areca nut. The pot is a small object that opens up a story about hospitality and social life."],"next":["ceramics","floor-1","tour"]},{"id":"agarwood","aliases":["trầm hương","gỗ trầm","vì sao trầm thơm","agarwood","oud wood"],"question":["Trầm hương hình thành như thế nào?","How does agarwood form?"],"answer":["Trầm hương là phần gỗ tích nhựa thơm ở một số cây dó bầu, thường liên quan đến phản ứng của cây khi thân bị tổn thương. Ở tầng 2, trầm hương xứ Quảng được giới thiệu cùng bộ sưu tập đèn cổ.","Agarwood is resin-rich wood from certain Aquilaria trees, typically formed in response to injury. On Floor 2, Quang Nam agarwood is presented alongside a collection of antique lamps."],"floor":2,"next":["floor-2","community","tour"]},{"id":"community","aliases":["người cơ tu ở đâu","cơ tu sinh sống","cơ tu ở đà nẵng","người cơ tu sống ở đâu","người cơ tu ở đà nẵng sinh sống ở đâu","dân tộc nào","các dân tộc","where do the co tu live","co tu communities","other ethnic groups"],"question":["Tầng 2 giới thiệu những cộng đồng nào?","Which communities are represented on Floor 2?"],"answer":["Tầng 2 giới thiệu các cộng đồng Cơ Tu, Xơ Đăng, Giẻ – Triêng và Cor. Người Cơ Tu có các cộng đồng ở nhiều vùng miền núi miền Trung, trong đó có khu vực phía tây Đà Nẵng. Hiện vật như tượng gỗ và kèn Tơghêy cho bạn một điểm bắt đầu để tìm hiểu văn hóa Cơ Tu.","Floor 2 features Co Tu, Xo Dang, Gie Trieng and Cor communities. Co Tu communities live in various mountainous areas of Central Vietnam, including west of Da Nang. Wooden figures and the Toghey instrument are a good introduction."],"floor":2,"next":["floor-2","agarwood","tour"]},{"id":"kids","aliases":["trẻ em","đi cùng bé","đi với trẻ","thiếu nhi","tham quan với con","kids","children","family visit"],"question":["Đi cùng trẻ nhỏ thì xem gì?","What can children look for?"],"answer":["Bạn có thể bắt đầu ở tầng 1, nơi bảo tàng giới thiệu khu trưng bày thiếu nhi. Một trò nhỏ là nhờ bé tìm hai đầu thú trên chiếc khuyên tai rồi tìm chiếc vòi trên bình Kendy. Mỗi hiện vật sẽ thành một câu đố quan sát.","Try Floor 1, where the museum lists a children’s exhibition area. For a small game, ask children to spot the two animal heads on the earring and then find the spout on the Kendy vessel."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","floor":1,"next":["floor-1","short-tour","tickets"]},{"id":"access","aliases":["xe lăn","thang máy","lối đi","người khuyết tật","hỗ trợ tiếp cận","gửi xe","bãi đỗ","wheelchair","accessibility","elevator","lift access","car park","parking"],"question":["Có thể hỏi về hỗ trợ tiếp cận ở đâu?","How can I ask about accessibility?"],"answer":["Nếu bạn cần lối đi cho xe lăn, thang máy hoặc chỗ gửi xe, hãy gọi 0236 388 6236 trước khi tới. Nhân viên bảo tàng có thể xác nhận lối vào và phương án phù hợp với chuyến đi của bạn.","If you need wheelchair access, lift access or parking, call 0236 388 6236 before visiting. Staff can confirm the best entrance and arrangements for your visit."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["contact","address","hours"]},{"id":"photos","aliases":["chụp ảnh","quay phim","đèn flash","chạm hiện vật","sờ hiện vật","take photos","flash photography","photography allowed","touch exhibits"],"question":["Khi chụp ảnh hiện vật nên lưu ý gì?","What should I know about photographing artifacts?"],"answer":["Bạn xem biển hướng dẫn của từng phòng hoặc hỏi nhân viên trước khi quay chụp. Nếu được chụp, hãy tắt flash, giữ khoảng cách với tủ kính và nhường lối cho khách khác. Khi chụp vật sau kính, hơi nghiêng máy có thể giảm phản chiếu.","Check the signs in each gallery or ask staff before taking photos or filming. Where photography is allowed, turn off your flash, keep clear of display cases and leave room for others. Angling your phone slightly can reduce reflections."],"next":["scanner","access","tour"]},{"id":"scanner","aliases":["cách quét","quét như thế nào","bật camera","camera không mở","không nhận diện","cấp quyền camera","how to scan","scanner","camera permission","camera not working"],"question":["Quét hiện vật bằng điện thoại thế nào?","How do I scan an artifact with my phone?"],"answer":["Mở web qua HTTPS, bấm Quét và cho phép camera. Đưa hiện vật vào giữa khung, giữ máy ổn định rồi bấm Quét ngay. Nếu có nhiều ánh phản chiếu, bạn thử đổi góc một chút hoặc chọn một ảnh rõ từ điện thoại.","Open the site over HTTPS, tap Scan and allow camera access. Center the artifact, hold the phone steady and tap Scan now. If the glass reflects too much light, change your angle slightly or choose a clear photo."],"next":["photos","tour","short-tour"]},{"id":"nearby","aliases":["gần bảo tàng","đi đâu tiếp","sau khi tham quan","quanh bảo tàng","du lịch đà nẵng","things nearby","nearby attractions","after the museum","around the museum"],"question":["Gần bảo tàng còn có gì để xem?","What else can I visit nearby?"],"answer":["Bạn có thể tìm hiểu tiếp ở Thành Điện Hải hoặc đi dọc bờ sông Hàn. Nếu muốn đào sâu về nghệ thuật Chăm sau khi xem bình Kendy, hãy thêm Bảo tàng Điêu khắc Chăm vào lịch đi.","You can continue at Dien Hai Citadel or take a walk along the Han River. If the Kendy vessel makes you curious about Cham art, consider adding the Museum of Cham Sculpture to your itinerary."],"next":["citadel","cham-museum","dragon-bridge"]},{"id":"cham-museum","aliases":["bảo tàng chăm","bảo tàng chàm","bảo tàng điêu khắc chăm","mỹ sơn","điêu khắc chăm","museum of cham sculpture","cham museum","my son sanctuary"],"question":["Xem thêm nghệ thuật Chăm ở đâu?","Where can I see more Cham art?"],"answer":["Ở Đà Nẵng, Bảo tàng Điêu khắc Chăm trưng bày các tác phẩm điêu khắc Chăm từ nhiều địa điểm khảo cổ miền Trung. Nếu vừa xem bình Kendy, bạn có thể tiếp tục khám phá cách họ thể hiện hình người, thần linh và họa tiết trên đá.","The Museum of Cham Sculpture in Da Nang displays Cham sculpture from archaeological sites around Central Vietnam. After seeing the Kendy vessel, you can explore how figures, deities and patterns were carved in stone."],"source":"https://chammuseum.vn/","next":["nearby","floor-1","ceramics"]},{"id":"dragon-bridge","aliases":["cầu rồng","sông hàn","dragon bridge","han river","han river bridge"],"question":["Cầu Rồng nằm ở đâu?","Where is the Dragon Bridge?"],"answer":["Cầu Rồng bắc qua sông Hàn, nối hai bờ trung tâm Đà Nẵng. Nếu bạn muốn ghé xem cầu phun lửa và nước, hãy xem lịch cập nhật của thành phố trước khi đi.","The Dragon Bridge spans the Han River in central Da Nang. Check the city’s current schedule before planning a visit for the fire and water show."],"source":"https://danangfantasticity.com/","next":["nearby","cham-museum","address"]},{"id":"sky","aliases":["bầu trời xanh","trời màu xanh","sky blue","blue sky"],"question":["Vì sao bầu trời có màu xanh?","Why does the sky look blue?"],"answer":["Ánh sáng Mặt Trời gồm nhiều màu. Khi đi qua khí quyển, ánh sáng xanh có bước sóng ngắn nên bị tán xạ mạnh hơn ánh đỏ. Vì ánh xanh đến mắt mình từ nhiều hướng, bầu trời trông xanh.","Sunlight contains many colors. Air molecules scatter shorter blue wavelengths more strongly than red wavelengths. Blue light reaches your eyes from many directions, making the sky look blue."],"source":"https://spaceplace.nasa.gov/blue-sky/en/","next":["day-night","capital","nearby"]},{"id":"day-night","aliases":["ngày và đêm","ngày đêm","trái đất quay","day and night","earth rotates"],"question":["Vì sao có ngày và đêm?","Why do we have day and night?"],"answer":["Trái Đất quay quanh trục. Khi nơi bạn đang ở quay về phía Mặt Trời thì là ban ngày, còn khi quay sang phía khuất ánh sáng thì là ban đêm. Một vòng quay theo ngày Mặt Trời kéo dài gần 24 giờ.","Earth spins on its axis. When your location faces the Sun it experiences daylight. When it rotates away from the Sun it experiences night. A solar day is about 24 hours."],"next":["sky","capital","nearby"]},{"id":"capital","aliases":["thủ đô việt nam","thủ đô nước mình","thủ đô của việt nam","capital of vietnam","vietnam's capital"],"question":["Thủ đô Việt Nam là thành phố nào?","What is the capital of Vietnam?"],"answer":["Hà Nội là thủ đô của Việt Nam. Khu vực này từng là kinh đô Thăng Long trong nhiều giai đoạn lịch sử.","Hanoi is the capital of Vietnam. The area, historically known as Thang Long, served as an imperial capital during several periods."],"next":["nearby","history-1858","sky"]}],"artifacts":{"cannon":{"aliases":["súng thần công","khẩu thần công","khẩu súng cổ","cannon","cannons","artillery piece"],"material":["Bộ sưu tập súng thần công Thành Điện Hải có các khẩu được đúc bằng gang và đồng. Nếu muốn biết một khẩu cụ thể bằng gì, hãy đối chiếu nhãn của đúng hiện vật đó.","The Dien Hai Citadel collection includes cannons cast in iron and bronze. Check the label for the material of a specific piece."],"purpose":["Đây là hiện vật gắn với việc phòng thủ cửa biển Đà Nẵng trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha. Khi tham quan, bạn có thể tìm hiểu vai trò lịch sử của bộ sưu tập ở tầng 3.","The collection is associated with the defense of Da Nang’s port against French and Spanish forces. Floor 3 puts the pieces in that historical context."],"history":["Danh tướng Nguyễn Tri Phương gắn với cuộc phòng thủ Đà Nẵng trong giai đoạn 1858–1860. Bộ sưu tập súng thần công giúp minh họa câu chuyện phòng thủ đó.","General Nguyen Tri Phuong is associated with the defense of Da Nang in 1858–1860. The cannon collection helps illustrate that episode."],"next":["history-1858","citadel"]},"sahuynh":{"aliases":["sa huỳnh","khuyên tai","hai đầu thú","earring","sa huynh","nephrite"],"material":["Chiếc khuyên tai hai đầu thú trong danh mục được tạc từ đá ngọc bích màu xanh. Hai đầu thú được chạm đối xứng, nên bạn thử nhìn lần lượt từ bên này sang bên kia.","The two-headed earring in the catalog is carved from green nephrite jade. Look from one end to the other to see the symmetrical animal heads."],"purpose":["Đây là một đồ trang sức. Kiểu hai đầu thú và cách chạm đối xứng giúp nhận ra hiện vật này giữa những loại khuyên tai cổ khác.","This was a piece of jewelry. The two animal heads and their symmetry help distinguish it from other ancient earrings."],"next":["floor-1","ceramics"]},"kendy":{"aliases":["kendy","kendi","bình chăm","bình champa","bình có vòi","bình gốm","cham vessel"],"material":["Bình Kendy trong danh mục là đồ gốm. Tên gọi và dáng vòi giúp nhận ra kiểu bình, còn nhãn hiện vật cho biết các thông tin cụ thể của mẫu đang trưng bày.","The Kendy vessel in this catalog is ceramic. Its spout helps identify the vessel type, and the display label gives details for the particular piece."],"purpose":["Bình Kendy được dùng để rót nước trong nghi lễ Champa. Dấu hiệu dễ nhận ra là chiếc vòi mọc từ bên hông thân bình. Nhìn dáng vòi là bạn có thể hình dung cách người ta rót.","The Kendy vessel was used to pour water in Champa ceremonies. Its side spout is the easiest feature to spot and shows how the vessel was used."],"next":["cham-museum","floor-1"]},"hondadame":{"aliases":["honda dame","xe honda","xe dame","xe biệt động","bom cbu 55","moped","honda dame moped"],"purpose":["Xe Honda Dame gắn với hoạt động của lực lượng Biệt động Đà Nẵng trong thời chiến. Khi xem ở tầng 3, hãy để ý một phương tiện rất đời thường có thể kể được câu chuyện chiến tranh như thế nào.","The Honda Dame moped is associated with the activities of the Da Nang commandos during wartime. On Floor 3, consider how an ordinary vehicle can tell a wartime story."],"next":["liberation","floor-3"]},"cotu":{"aliases":["cơ tu","tơghêy","tơ ghêy","tượng cổng làng","cổng làng","co tu","toghey","village gate figure"],"material":["Tượng cổng làng được chạm từ gỗ. Nếu bạn đang hỏi riêng về kèn Tơghêy, hãy xem nhãn cạnh chiếc kèn để biết chất liệu của mẫu đang trưng bày.","The village-gate figures are carved from wood. If you mean the Toghey instrument specifically, check the label beside the instrument for its materials."],"purpose":["Ở đây có hai loại hiện vật. Tượng gỗ gắn với cổng làng và đời sống tinh thần của cộng đồng Cơ Tu, còn kèn Tơghêy là nhạc cụ truyền thống.","This display brings together two kinds of objects. The wooden figures are linked to village gates and Co Tu spiritual life, while the Toghey is a traditional instrument."],"next":["community","floor-2"]},"ghebau":{"aliases":["ghe bầu","thuyền ghe bầu","thuyền buồm xứ quảng","sailboat","ghe bau","quang nam boat"],"material":["Mô hình trong danh mục thể hiện thân ghe và hệ buồm. Ghe bầu truyền thống có thân gỗ.","The model shows the boat’s hull and sails. Traditional Ghe Bau boats had wooden hulls."],"purpose":["Ghe bầu chở người và hàng hóa trên các tuyến ven biển. Ở xứ Quảng, loại thuyền buồm này là một phần của mạng lưới giao thương đường biển.","Ghe Bau boats carried people and goods along coastal routes. In the Quang region, they were part of the maritime trading network."],"detail":["Khi nhìn mô hình, để ý thân ghe rộng và phình ở giữa. Đó là nét dễ thấy khi phân biệt ghe bầu với những thuyền có thân thon hẹp.","Look at how broad the middle of the model’s hull is. It’s a useful way to distinguish this type from narrow-bodied boats."],"next":["floor-2","nearby"]},"chudau":{"aliases":["chu đậu","gốm chu đậu","bình vôi","gốm thời nguyễn","chu dau","lime pot","nguyen porcelain"],"material":["Nhóm này gồm các hiện vật gốm và sứ, có những món trang trí hoa lam. Chất đất, men và họa tiết khác nhau theo từng món nên bạn có thể đọc thêm trên nhãn trưng bày.","This group includes ceramic and porcelain objects, some with blue-and-white decoration. Clay, glaze and patterns vary by item, so check each display label."],"purpose":["Các bình, đĩa gốm và bình vôi có công dụng khác nhau. Bình vôi đựng vôi để têm trầu, còn các đồ gốm khác có thể là đồ đựng, đồ dùng hoặc vật trang trí tùy kiểu dáng.","Ceramic vessels, dishes and lime pots served different purposes. Lime pots stored lime for preparing betel, while other items were containers, tableware or decorative pieces depending on shape."],"next":["betel","ceramics"]},"denco":{"aliases":["đèn cổ","đèn măng xông","đèn dầu","oil lamp","antique lamp","antique lighting"],"purpose":["Đèn cổ kể câu chuyện người xưa thắp sáng sinh hoạt. Với đèn dầu, vật chứa nhiên liệu và bấc giúp mình hiểu cách chiếc đèn tạo ra ánh sáng.","Antique lamps tell the story of lighting before electric fixtures were widespread. An oil lamp’s fuel reservoir and wick are useful details to look for."],"next":["agarwood","floor-2"]},"soldier-uniform":{"aliases":["bộ quần áo","áo người lính","quân phục","trang phục người lính","uniform","soldier's clothes"],"material":["Ảnh minh họa cho thấy vải xanh ô liu. Danh mục chưa xác định loại sợi cụ thể của bộ đồ.","The illustration shows an olive-green fabric. The catalog does not identify a specific fiber."],"purpose":["Đây là trang phục trong bộ đồ dùng minh họa của người lính. Bạn có thể nhận ra cổ áo, hàng cúc và hai túi có nắp ở ngực.","This uniform is part of the illustrated soldier’s kit. Look for the collar, row of buttons and two chest pockets with flaps."],"next":["floor-3","scanner"]},"soldier-helmet":{"aliases":["mũ cối","mucoi","mũ người lính","pith helmet","helmet"],"material":["Mũ trong ảnh minh họa có lớp vải bọc bên ngoài. Danh mục chưa có thông tin để xác định vật liệu lõi của chiếc mũ này.","The illustrated helmet has a fabric cover. The catalog does not specify the material of its core."],"purpose":["Vành rộng giúp che nắng cho mặt khi ở ngoài trời. Bạn có thể tìm các đường may và lỗ nhỏ hai bên để nhận ra chiếc mũ trong ảnh.","The wide brim shades the face outdoors. Look for the seams and small side holes to recognize the helmet in the illustration."],"next":["floor-3","scanner"]},"soldier-tobacco":{"aliases":["gói thuốc lá","bao thuốc lá","bao thuốc","cigarette packet","tobacco packet"],"material":["Đây là vỏ bao giấy minh họa, với nếp gấp và mép sờn. Những chi tiết này giúp bạn nhận ra vật liệu khi nhìn gần.","This is an illustrated paper packet with folds and worn edges. Those details reveal the material on a closer look."],"purpose":["Chiếc vỏ bao được dùng trong bộ đồ minh họa để kể về đời sống thường ngày. Mình gợi ý nhìn nếp gấp ở góc và mép giấy đã sờn.","This illustrated packet represents a small everyday item. Look at the folds and worn edges for a detail people often miss."],"next":["floor-3","scanner"]},"soldier-canteen":{"aliases":["bình tông","bi đông","bình nước người lính","water canteen","canteen"],"material":["Ảnh minh họa cho thấy bao vải và quai mang. Danh mục chưa xác nhận chất liệu thân bình bên trong bao.","The illustration shows a cloth cover and carrying strap. The catalog does not confirm the material of the canteen body beneath the cover."],"purpose":["Bình tông dùng để mang nước. Thân dẹt và quai đeo giúp người mang áp bình sát người khi di chuyển.","A canteen carries drinking water. The flat body and strap let it hang close to the body while walking."],"next":["floor-3","scanner"]}}});
     // END EMBEDDED MUSEUM CHAT
+
+    // BEGIN EMBEDDED CAMERA PREVIEW
+const CameraPreview = (() => {
+  const workerSource = `
+    let track;
+    let reader;
+
+    async function sendFrame() {
+      try {
+        const { done, value } = await reader.read();
+        if (done) {
+          self.postMessage(null);
+          return;
+        }
+        try {
+          self.postMessage(value, [value]);
+        } catch {
+          value.close();
+          self.postMessage(null);
+        }
+      } catch {
+        self.postMessage(null);
+      }
+    }
+
+    self.onmessage = ({ data }) => {
+      if (data === 'stop') {
+        track?.stop();
+        self.close();
+      } else if (data === 'next') {
+        sendFrame();
+      } else {
+        track = data;
+        try {
+          reader = new MediaStreamTrackProcessor({ track, maxBufferSize: 1 }).readable.getReader();
+          sendFrame();
+        } catch {
+          track.stop();
+          self.postMessage(null);
+        }
+      }
+    };
+  `;
+
+  function draw(canvas, frame) {
+    const width = frame.displayWidth || frame.width;
+    const height = frame.displayHeight || frame.height;
+    const side = Math.min(width, height);
+    if (!side) throw new Error('empty_frame');
+
+    const size = Math.min(side, 768);
+    if (canvas.width !== size || canvas.height !== size) {
+      canvas.width = size;
+      canvas.height = size;
+    }
+    canvas.getContext('2d', { alpha: false }).drawImage(frame,
+      (width - side) / 2, (height - side) / 2, side, side,
+      0, 0, size, size);
+  }
+
+  function startFrameLoop(open, canvas, signal, onError) {
+    return new Promise((resolve, reject) => {
+      signal.throwIfAborted();
+      let ready = false;
+      let stopped = false;
+      let close = () => {};
+      const finish = error => {
+        if (stopped) return;
+        stopped = true;
+        clearTimeout(deadline);
+        signal.removeEventListener('abort', abort);
+        close();
+        if (!ready) reject(error);
+        else if (!signal.aborted) onError(error);
+      };
+      const abort = () => finish(signal.reason);
+      const deadline = setTimeout(() => finish(new Error('preview_timeout')), 2200);
+      signal.addEventListener('abort', abort, { once: true });
+
+      const receive = frame => {
+        try {
+          if (stopped) return;
+          draw(canvas, frame);
+          if (!ready) {
+            ready = true;
+            clearTimeout(deadline);
+            resolve(canvas);
+          }
+        } catch (error) {
+          finish(error);
+        } finally {
+          frame.close();
+        }
+      };
+
+      try {
+        close = open(receive, finish);
+      } catch (error) {
+        finish(error);
+      }
+    });
+  }
+
+  function openImageCapture(track, receive, fail) {
+    const capture = new ImageCapture(track);
+    let timer;
+    let stopped = false;
+
+    async function grab() {
+      try {
+        receive(await capture.grabFrame());
+        if (!stopped) timer = setTimeout(grab, 42);
+      } catch (error) {
+        if (!stopped) fail(error);
+      }
+    }
+    grab();
+
+    return () => {
+      stopped = true;
+      clearTimeout(timer);
+    };
+  }
+
+  function openWorker(track, receive, fail) {
+    const url = URL.createObjectURL(new Blob([workerSource], { type: 'text/javascript' }));
+    let worker;
+    try {
+      worker = new Worker(url);
+    } catch (error) {
+      URL.revokeObjectURL(url);
+      throw error;
+    }
+
+    worker.onmessage = ({ data: frame }) => {
+      if (!frame) {
+        fail(new Error('worker_preview_unavailable'));
+        return;
+      }
+      receive(frame);
+      if (worker.onmessage) worker.postMessage('next');
+    };
+    worker.onerror = event => {
+      event.preventDefault();
+      fail(new Error('worker_preview_unavailable'));
+    };
+
+    let clone;
+    try {
+      clone = track.clone();
+      worker.postMessage(clone, [clone]);
+    } catch (error) {
+      clone?.stop();
+      URL.revokeObjectURL(url);
+      worker.terminate();
+      throw error;
+    }
+
+    return () => {
+      worker.onmessage = null;
+      worker.onerror = null;
+      URL.revokeObjectURL(url);
+      worker.postMessage('stop');
+      setTimeout(() => worker.terminate(), 250);
+    };
+  }
+
+  function isAppleMobile() {
+    const agent = navigator.userAgent;
+    return /iPhone|iPad|iPod/i.test(agent) || (/Macintosh/i.test(agent) && navigator.maxTouchPoints > 1);
+  }
+
+  async function start(stream, canvas, video, signal, onError) {
+    const track = stream.getVideoTracks()[0];
+    if (!track) throw new Error('no_video_track');
+
+    const backends = [];
+    if (typeof ImageCapture !== 'undefined' && typeof ImageCapture.prototype.grabFrame === 'function') {
+      backends.push(openImageCapture);
+    }
+    if (typeof Worker !== 'undefined' && typeof VideoFrame !== 'undefined') backends.push(openWorker);
+
+    for (const backend of backends) {
+      try {
+        return await startFrameLoop((receive, fail) => backend(track, receive, fail), canvas, signal, onError);
+      } catch {
+        signal.throwIfAborted();
+      }
+    }
+
+    // An iOS app's webview can force a video element into native full-screen playback.
+    // Drawing frames above does not depend on that app's inline playback settings.
+    if (isAppleMobile()) throw new Error('inline_camera_unavailable');
+
+    signal.throwIfAborted();
+    video.muted = true;
+    video.playsInline = true;
+    video.srcObject = stream;
+    video.classList.remove('hidden');
+    await video.play();
+    signal.throwIfAborted();
+    return video;
+  }
+
+  return { start };
+})();
+
+    // END EMBEDDED CAMERA PREVIEW
 
     const soldierIds = ['soldier-uniform', 'soldier-helmet', 'soldier-tobacco', 'soldier-canteen'];
 
@@ -3020,10 +3227,14 @@ function createMuseumChat(knowledge) {
 
     const frameScanner = document.getElementById('frame-scanner');
     const frameCamera = document.getElementById('frame-camera');
+    const frameCanvas = document.getElementById('frame-camera-preview');
     const frameSelectedPhoto = document.getElementById('frame-selected-photo');
     const frameGreetingAudio = document.getElementById('frame-greeting-audio');
     const frameFile = document.getElementById('frame-upload');
-    const frameCapture = { facing: 'environment', source: null, scan: null, cameraRequest: 0, lastStart: -Infinity, photoURL: '' };
+    const frameCapture = {
+      facing: 'environment', source: null, stream: null, preview: null, previewController: null,
+      scan: null, cameraRequest: 0, lastStart: -Infinity, photoURL: ''
+    };
     const settingsKey = 'museum-recognition-settings';
     const logsKey = 'museum-recognition-logs';
     let sessionSettings = {};
@@ -3109,7 +3320,8 @@ function createMuseumChat(knowledge) {
 
     function setFrameView(source, vietnamese, english, canRetry = false) {
       frameCapture.source = source;
-      frameCamera.classList.toggle('hidden', source !== 'camera');
+      frameCamera.classList.toggle('hidden', source !== 'camera' || frameCapture.preview !== frameCamera);
+      frameCanvas.classList.toggle('hidden', source !== 'camera' || frameCapture.preview !== frameCanvas);
       frameSelectedPhoto.classList.toggle('hidden', source !== 'file');
       document.getElementById('frame-camera-placeholder').classList.toggle('hidden', Boolean(source));
       document.getElementById('frame-retry-camera').classList.toggle('hidden', !canRetry);
@@ -3121,8 +3333,14 @@ function createMuseumChat(knowledge) {
 
     function releaseFrameMedia() {
       frameCapture.cameraRequest++;
-      frameCamera.srcObject?.getTracks().forEach(track => track.stop());
+      frameCapture.previewController?.abort();
+      frameCapture.previewController = null;
+      frameCapture.stream?.getTracks().forEach(track => track.stop());
+      frameCapture.stream = null;
+      frameCapture.preview = null;
       frameCamera.srcObject = null;
+      frameCamera.classList.add('hidden');
+      frameCanvas.classList.add('hidden');
       if (frameCapture.photoURL) URL.revokeObjectURL(frameCapture.photoURL);
       frameCapture.photoURL = '';
       frameSelectedPhoto.removeAttribute('src');
@@ -3151,24 +3369,31 @@ function createMuseumChat(knowledge) {
           stream.getTracks().forEach(track => track.stop());
           return;
         }
-        frameCamera.srcObject = stream;
-        frameCamera.classList.remove('hidden');
-        await frameCamera.play();
-        if (request !== frameCapture.cameraRequest) return;
-
+        frameCapture.stream = stream;
         const track = stream.getVideoTracks()[0];
-        frameCapture.facing = track.getSettings().facingMode || facing;
-        track.addEventListener('ended', () => {
+        const controller = new AbortController();
+        frameCapture.previewController = controller;
+        const previewStopped = () => {
           if (request !== frameCapture.cameraRequest || !frameScanner.open || frameCapture.scan) return;
           releaseFrameMedia();
           setFrameView(null, 'Kết nối camera đã dừng.', 'The camera has stopped.', true);
-        }, { once: true });
+        };
+        track.addEventListener('ended', previewStopped, { once: true, signal: controller.signal });
+        const preview = await CameraPreview.start(stream, frameCanvas, frameCamera, controller.signal, previewStopped);
+        if (request !== frameCapture.cameraRequest) return;
+
+        frameCapture.preview = preview;
+        frameCapture.facing = track.getSettings().facingMode || facing;
         setFrameView('camera', 'Đưa hiện vật vào khung.', 'Aim at the artifact.');
       } catch (error) {
         if (request !== frameCapture.cameraRequest) return;
         releaseFrameMedia();
         if (error.name === 'NotAllowedError') {
           setFrameView(null, 'Cấp quyền camera trong cài đặt trình duyệt rồi thử lại.', 'Allow camera access in your browser settings, then retry.', true);
+        } else if (error.message === 'inline_camera_unavailable') {
+          setFrameView(null,
+            'Trình duyệt này chưa hỗ trợ camera trong khung. Thử mở bằng Safari hoặc chọn ảnh.',
+            'This browser cannot show the camera in the frame. Try Safari or choose a photo.');
         } else {
           setFrameView(null, 'Không mở được camera. Hãy thử lại hoặc chọn ảnh của bạn.', 'Camera unavailable. Retry or choose your own photo.', true);
         }
@@ -3254,7 +3479,7 @@ function createMuseumChat(knowledge) {
       let detections = [];
       let error = null;
       try {
-        const image = MuseumRecognition.jpegFrame(source === 'camera' ? frameCamera : frameSelectedPhoto);
+        const image = MuseumRecognition.jpegFrame(source === 'camera' ? frameCapture.preview : frameSelectedPhoto);
         const result = await MuseumRecognition.recognize(image, [...catalogById.values()], {
           ...recognitionSettings(),
           signal: scan.signal,
