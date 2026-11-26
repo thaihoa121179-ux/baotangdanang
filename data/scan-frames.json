@@ -1,0 +1,138 @@
+{
+  "source": "https://www.youtube.com/watch?v=sprWjdlhSJg",
+  "frames": [
+    {
+      "id": "urban-life",
+      "label": ["Đồ dùng đô thị", "Objects of urban life"],
+      "items": [
+        {
+          "id": "scan-gramophone",
+          "name": ["Máy hát đĩa loa kèn", "Horn gramophone"],
+          "icon": "disc-3",
+          "text": ["Máy hát đĩa đặt bên trái có chiếc loa kèn lớn và mâm đĩa trên đế gỗ. Dáng loa loe là chi tiết dễ nhận ra. Hiện vật gợi câu chuyện về thú nghe nhạc trong đời sống đô thị.", "The record player on the left has a large horn and a turntable above its wooden base. The flared horn makes it easy to spot. It offers a glimpse of music in urban life."],
+          "purpose": ["Đây là một máy hát đĩa để nghe âm thanh đã ghi. Loa kèn loe giúp đưa âm thanh ra ngoài.", "A gramophone plays recorded sound from a disc. Its flared horn projects the sound."]
+        },
+        {
+          "id": "scan-tall-vase",
+          "name": ["Bình trang trí cổ cao", "Tall-necked decorative vase"],
+          "icon": "flower-2",
+          "text": ["Chiếc bình phía sau bên phải có cổ cao, thân nở và các mảng trang trí màu sáng. Nhìn từ chân lên cổ, bạn có thể thấy tỷ lệ giữa thân bình và cổ bình.", "The vase at the back right has a tall neck, broad body and pale decoration. Look from the base to the rim to see how its proportions change."]
+        },
+        {
+          "id": "scan-table-lamp",
+          "name": ["Đèn để bàn có ống kính", "Table lamp with a glass chimney"],
+          "icon": "lamp",
+          "text": ["Chiếc đèn nằm phía trước bên phải. Nó có chân loe, phần thân tròn và ống kính đứng phía trên. Các bộ phận này giúp nhận ra dáng đèn để bàn trong khung.", "The lamp at the front right has a flared foot, rounded body and an upright glass chimney. Together these features give it the shape of a table lamp."]
+        },
+        {
+          "id": "scan-small-jar",
+          "name": ["Bình nhỏ màu sẫm", "Small dark jar"],
+          "icon": "box",
+          "text": ["Bình nhỏ ở giữa phía trước có miệng hẹp, thân phình và chân thấp. Bạn có thể so sánh dáng thấp của nó với chiếc bình cổ cao ở phía sau.", "The small jar at the front center has a narrow mouth, rounded body and low foot. Compare its squat profile with the tall-necked vase behind it."]
+        }
+      ]
+    },
+    {
+      "id": "community-life",
+      "label": ["Đồ dùng và nhạc cụ", "Household objects and music"],
+      "items": [
+        {
+          "id": "scan-light-garment",
+          "name": ["Áo cộc tay màu ngà", "Pale sleeveless garment"],
+          "icon": "shirt",
+          "text": ["Món đồ màu ngà bên trái được trải phẳng, có dáng áo cộc tay. Đường viền và bề mặt thô là hai chi tiết có thể nhìn thấy qua tủ kính.", "The pale object spread out on the left has the shape of a sleeveless garment. Its outline and rough surface are visible through the display glass."]
+        },
+        {
+          "id": "scan-string-instrument",
+          "name": ["Nhạc cụ dây thân gỗ", "Wooden string instrument"],
+          "icon": "guitar",
+          "text": ["Nhạc cụ bên phải có thân bầu, lỗ cộng hưởng và cần dài. Bạn có thể nhìn dọc cần đàn để thấy cách dây nối từ mặt đàn đến phần đầu đàn.", "The instrument on the right has a rounded body, a sound hole and a long neck. Follow the neck to see where the strings run from the body to the head."]
+        },
+        {
+          "id": "scan-dark-pot",
+          "name": ["Nồi sẫm màu có hai quai", "Dark pot with two handles"],
+          "icon": "cooking-pot",
+          "text": ["Chiếc nồi ở giữa có miệng mở rộng, thân tròn sẫm màu và hai quai đối xứng. Hai quai là chi tiết dễ nhận ra khi so với những vật có dáng ống đứng cạnh.", "The pot in the center has a wide open mouth, a dark rounded body and a pair of handles. The paired handles distinguish it from the tall cylindrical objects nearby."]
+        },
+        {
+          "id": "scan-woven-basket",
+          "name": ["Gùi đan thân cao", "Tall woven basket"],
+          "icon": "archive",
+          "text": ["Chiếc gùi ở rìa phải có thân đứng, miệng mở và các đường đan lặp lại. Các sợi đan tạo thành bề mặt khác với chiếc nồi sẫm màu ở giữa khung.", "The basket at the right edge has an upright body, an open mouth and a repeated weave. Its woven surface contrasts with the dark pot in the center."]
+        },
+        {
+          "id": "scan-decorated-tube",
+          "name": ["Vật dạng ống có hoa văn", "Patterned cylindrical object"],
+          "icon": "cylinder",
+          "text": ["Vật màu nâu dựng ở giữa khung có dáng ống hẹp với nhiều dải hoa văn. Nhìn theo chiều dọc có thể thấy các phần trang trí được bố trí thành từng đoạn.", "The brown object standing in the middle is narrow and cylindrical with several bands of ornament. The decoration is arranged in sections along its height."]
+        }
+      ]
+    },
+    {
+      "id": "wartime-metal",
+      "label": ["Di vật kim loại thời chiến", "Wartime metal artifacts"],
+      "items": [
+        {
+          "id": "scan-dark-metal-casing",
+          "name": ["Cụm vỏ kim loại sẫm màu", "Dark metal casings"],
+          "icon": "cylinder",
+          "text": ["Hai vỏ kim loại tối màu được đặt đứng gần nhau. Bề mặt có vết gỉ và xước quan sát được trong ảnh. Chúng là những hiện vật trưng bày gợi nhắc dấu tích chiến tranh.", "Two dark metal casings stand close together. Rust and scratches are visible on their surfaces. They are displayed as reminders of the material traces left by war."]
+        },
+        {
+          "id": "scan-painted-metal-casing",
+          "name": ["Vỏ kim loại sơn đỏ và trắng", "Red-and-white metal casing"],
+          "icon": "layers",
+          "text": ["Hiện vật đứng phía sau có các mảng sơn đỏ và trắng còn thấy rõ. Khi quan sát cả khung, những mảng màu giúp phân biệt nó với hai vỏ sẫm ở phía trước.", "The object standing behind has visible areas of red and white paint. Those areas distinguish it from the dark casings in front."]
+        },
+        {
+          "id": "scan-finned-casing",
+          "name": ["Vỏ kim loại có phần cánh", "Metal casing with fins"],
+          "icon": "shapes",
+          "text": ["Trên bục phía sau có hiện vật kim loại với các mảng phẳng nhô ra hai bên. Ảnh tham chiếu cho phép quan sát hình dáng và vị trí của nó trong nhóm trưng bày.", "A metal object on the rear plinth has flat surfaces projecting from its sides. The reference image shows its outline and position within the display."]
+        },
+        {
+          "id": "scan-green-cylinder",
+          "name": ["Thiết bị dạng trụ màu xanh", "Green cylindrical equipment"],
+          "icon": "box",
+          "text": ["Thiết bị màu xanh nằm thấp ở phía trước bên phải, cạnh một cụm có dây. Có thể quan sát thân trụ và các chi tiết gắn trên thân trong ảnh.", "The green equipment stands low at the front right beside a wired assembly. Its cylindrical case and exterior fittings are visible in the image."]
+        }
+      ]
+    },
+    {
+      "id": "wartime-clothing",
+      "label": ["Trang phục và thiết bị thời chiến", "Wartime clothing and equipment"],
+      "items": [
+        {
+          "id": "scan-olive-backpack",
+          "name": ["Ba lô vải màu ô liu", "Olive fabric backpack"],
+          "icon": "backpack",
+          "text": ["Ba lô treo ở góc trên bên trái có màu ô liu, với các túi ngoài và dây đeo. Những chi tiết dễ quan sát này giúp phân biệt ba lô với các loại áo treo cạnh.", "The olive backpack at the upper left has exterior pockets and straps. These visible details distinguish it from the garments hanging beside it."]
+        },
+        {
+          "id": "scan-olive-vest",
+          "name": ["Áo không tay màu ô liu", "Olive sleeveless vest"],
+          "icon": "shirt",
+          "text": ["Chiếc áo treo cao ở giữa có dáng không tay, thân dày và các đường may ở mặt trước. Trong ảnh, nó nằm giữa ba lô bên trái và áo họa tiết bên phải.", "The garment hanging high in the center is sleeveless, with a thick body and visible seams. It sits between the backpack and the patterned jacket."]
+        },
+        {
+          "id": "scan-patterned-jacket",
+          "name": ["Áo khoác họa tiết ngụy trang", "Camouflage-patterned jacket"],
+          "icon": "shirt",
+          "text": ["Chiếc áo bên phải có tay dài và các mảng hoa văn xanh nâu. Màu sắc, kiểu cổ và các túi ở mặt trước là những chi tiết có thể so sánh với chiếc áo màu trơn ở giữa.", "The jacket on the right has long sleeves and a green-brown pattern. Compare its color, collar and front pockets with the plain garment in the center."]
+        },
+        {
+          "id": "scan-case-camera",
+          "name": ["Máy ảnh trong tủ trưng bày", "Camera in the display case"],
+          "icon": "camera",
+          "text": ["Chiếc máy ảnh nhỏ gần màn hình màu xanh có thân hộp và ống kính tròn phía trước. Nó nằm thấp hơn các hiện vật trang phục trong tủ kính.", "The small camera near the blue screen has a box-shaped body and a round front lens. It is displayed below the garments."]
+        },
+        {
+          "id": "scan-coiled-cord",
+          "name": ["Thiết bị có dây xoắn", "Equipment with a coiled cord"],
+          "icon": "cable",
+          "text": ["Thiết bị ở phần bên trái, phía dưới ba lô, có một đoạn dây xoắn rủ xuống. Hình dáng chiếc dây giúp phân biệt nó với chiếc máy ảnh có ống kính đặt kế bên.", "The equipment below the backpack on the left has a hanging coiled cord. The cord helps distinguish it from the small camera with a lens nearby."]
+        }
+      ]
+    }
+  ]
+}

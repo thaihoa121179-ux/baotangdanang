@@ -67,7 +67,7 @@ export default {
         signal, redirect: 'error', cf: { cacheEverything: true, cacheTtl: 30 }
       });
       if (!response.ok) return reply({ error: 'catalog_unavailable' }, 502);
-      const catalog = recognition.catalogRows(await response.json());
+      const catalog = recognition.scanRows(await response.json());
       if (!catalog.length) return reply({ error: 'catalog_unavailable' }, 502);
 
       const model = env.GEMINI_MODEL || recognition.CONFIG.MODEL;

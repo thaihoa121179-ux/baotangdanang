@@ -52,7 +52,7 @@
       "id": "floor-1",
       "aliases": ["tầng 1", "tầng một", "tầng trệt", "tủ cổ vật", "khu cổ vật", "floor 1", "first floor", "antiquities gallery"],
       "question": ["Tầng 1 có hiện vật gì?", "What’s on Floor 1?"],
-      "answer": ["Tầng 1 có sưu tập cổ vật, trong đó có gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ miền Trung. Bạn có thể quan sát khuyên tai Sa Huỳnh và bình gốm Kendy để thấy hai kiểu tạo hình rất khác nhau.", "Floor 1 houses the antiquities collection, including Chu Dau ceramics, Nguyen-era porcelain, lime pots and ancient pottery from Central Vietnam. Compare the shapes of the Sa Huynh earring and the Kendy vessel when you visit."],
+      "answer": ["Tầng 1 có sưu tập cổ vật, trong đó có gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ miền Trung. Trong danh mục của web, khuyên tai Sa Huỳnh và bình gốm Kendy cho thấy hai kiểu tạo hình rất khác nhau.", "Floor 1 houses the antiquities collection, including Chu Dau ceramics, Nguyen-era porcelain, lime pots and ancient pottery from Central Vietnam. Compare the shapes of the Sa Huynh earring and the Kendy vessel in the guide’s collection."],
       "floor": 1,
       "source": "https://baotangdanang.vn/khong-gian-suu-tap-co-vat-cua-bao-tang-da-nan",
       "next": ["ceramics", "betel", "floor-2"]
@@ -70,7 +70,7 @@
       "id": "floor-3",
       "aliases": ["tầng 3", "tầng ba", "phòng lịch sử", "khu chứng tích chiến tranh", "floor 3", "third floor", "resistance history gallery"],
       "question": ["Tầng 3 kể câu chuyện gì?", "What story does Floor 3 tell?"],
-      "answer": ["Tầng 3 kể về thiên nhiên, con người, lịch sử đô thị và các giai đoạn đấu tranh của Đà Nẵng. Bộ sưu tập súng thần công gắn với Thành Điện Hải là một điểm dừng để tìm hiểu sự kiện năm 1858.", "Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The cannon collection associated with Dien Hai Citadel is a good starting point for the events of 1858."],
+      "answer": ["Tầng 3 kể về thiên nhiên, con người, lịch sử đô thị và các giai đoạn đấu tranh của Đà Nẵng. Không gian này kết nối câu chuyện Thành Điện Hải với cuộc kháng chiến bắt đầu năm 1858.", "Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The gallery connects Dien Hai Citadel with the events of 1858."],
       "floor": 3,
       "source": "https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang",
       "next": ["history-1858", "citadel", "liberation"]
@@ -80,7 +80,7 @@
       "aliases": ["năm 1858", "sự kiện 1858", "chiến sự 1858", "1858 xảy ra", "tại sao năm 1858", "pháp tây ban nha", "liên quân pháp", "nguyễn tri phương", "what happened in 1858", "franco spanish", "nguyen tri phuong", "battle of da nang"],
       "question": ["Chuyện gì xảy ra ở Đà Nẵng năm 1858?", "What happened in Da Nang in 1858?"],
       "answer": ["Tháng 9 năm 1858, liên quân Pháp – Tây Ban Nha tiến công Đà Nẵng. Quân dân triều Nguyễn kháng cự và ngăn đối phương nhanh chóng chiếm được mục tiêu. Nguyễn Tri Phương là một trong những người chỉ huy phòng thủ gắn với giai đoạn này.", "In September 1858, a combined French and Spanish force attacked Da Nang. Nguyen Dynasty defenders resisted, preventing a quick victory. Nguyen Tri Phuong was one of the commanders associated with the defense."],
-      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/song-than-cing",
+      "source": "https://baotangdanang.vn/168-nam-ngay-da-nang-mo-dau-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-01-9-1858-01-9-2026",
       "next": ["citadel", "floor-3", "liberation"]
     },
     {
@@ -88,7 +88,7 @@
       "aliases": ["thành điện hải", "điện hải ở đâu", "điện hải là gì", "thành cổ", "dien hai citadel", "dien hai fortress"],
       "question": ["Thành Điện Hải có gì đặc biệt?", "What makes Dien Hai Citadel significant?"],
       "answer": ["Thành Điện Hải là di tích phòng thủ thời Nguyễn ở Đà Nẵng, gần Bảo tàng Đà Nẵng. Di tích gắn với cuộc phòng thủ trước liên quân Pháp – Tây Ban Nha từ năm 1858. Tại bảo tàng, bạn có thể nối câu chuyện đó với bộ sưu tập súng thần công.", "Dien Hai Citadel is a Nguyen-era defensive site near Da Nang Museum. It is associated with the defense against French and Spanish forces beginning in 1858. The museum’s cannon collection connects the site to that history."],
-      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/song-than-cing",
+      "source": "https://baotangdanang.vn/168-nam-ngay-da-nang-mo-dau-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-01-9-1858-01-9-2026",
       "next": ["history-1858", "floor-3", "address"]
     },
     {
@@ -211,8 +211,8 @@
   "chatBreaks": [
     {
       "story": [
-        "Thử tưởng tượng bạn cầm một chiếc bình mà thứ giống mũi ấm lại mọc từ bên hông. Đó là dáng của bình Kendy. Nhờ chiếc vòi ấy, người ta có thể rót nước trong nghi lễ. Nếu ghé tầng 1, thử tìm chiếc vòi trước khi đọc nhãn nhé.",
-        "Imagine a vessel with a spout growing out of its side. That is the shape of a Kendy. Its spout was used to pour water in ceremonies. On Floor 1, try finding the spout before reading the label."
+        "Thử tưởng tượng bạn cầm một chiếc bình mà thứ giống mũi ấm lại mọc từ bên hông. Đó là dáng của bình Kendy. Nhờ chiếc vòi ấy, người ta có thể rót nước. Bạn thử tìm chiếc vòi trên ảnh tư liệu trước khi đọc mô tả nhé.",
+        "Imagine a vessel with a spout growing out of its side. That is the shape of a Kendy. Its spout was used for pouring. Try finding the spout in the museum photograph before reading the description."
       ],
       "question": [
         "Trên bình Kendy, chi tiết nào ở bên hông dùng để rót nước?",
@@ -290,8 +290,8 @@
     },
     {
       "story": [
-        "Mô hình ghe bầu ở tầng 2 có một chi tiết dễ bỏ sót là thân ghe nở rộng ở giữa. Các ghe buồm xứ Quảng từng chở người và hàng hóa dọc bờ biển. Nhìn mô hình nhỏ mà tưởng tượng cả một chuyến đi biển cũng thú vị nhỉ?",
-        "The Ghe Bau model on Floor 2 has an easy-to-miss detail: its hull widens in the middle. These wooden sailboats carried people and goods along the coast. The little model gives you a lot to imagine."
+        "Mô hình ghe bầu trong hồ sơ bảo tàng có một chi tiết dễ bỏ sót là thân ghe nở rộng ở giữa. Các ghe buồm xứ Quảng từng chở người và hàng hóa dọc bờ biển. Nhìn mô hình nhỏ mà tưởng tượng cả một chuyến đi biển cũng thú vị nhỉ?",
+        "The museum’s Ghe Bau model has an easy-to-miss detail: its hull widens in the middle. These wooden sailboats carried people and goods along the coast. The little model gives you a lot to imagine."
       ],
       "question": [
         "Ghe bầu truyền thống căng buồm để đi nhờ sức gì?",
@@ -331,76 +331,140 @@
   ],
   "artifacts": {
     "cannon": {
-      "aliases": ["súng thần công", "khẩu thần công", "khẩu súng cổ", "cannon", "cannons", "artillery piece"],
-      "material": ["Bộ sưu tập súng thần công Thành Điện Hải có các khẩu được đúc bằng gang và đồng. Nếu muốn biết một khẩu cụ thể bằng gì, hãy đối chiếu nhãn của đúng hiện vật đó.", "The Dien Hai Citadel collection includes cannons cast in iron and bronze. Check the label for the material of a specific piece."],
-      "purpose": ["Đây là hiện vật gắn với việc phòng thủ cửa biển Đà Nẵng trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha. Khi tham quan, bạn có thể tìm hiểu vai trò lịch sử của bộ sưu tập ở tầng 3.", "The collection is associated with the defense of Da Nang’s port against French and Spanish forces. Floor 3 puts the pieces in that historical context."],
-      "history": ["Danh tướng Nguyễn Tri Phương gắn với cuộc phòng thủ Đà Nẵng trong giai đoạn 1858–1860. Bộ sưu tập súng thần công giúp minh họa câu chuyện phòng thủ đó.", "General Nguyen Tri Phuong is associated with the defense of Da Nang in 1858–1860. The cannon collection helps illustrate that episode."],
-      "next": ["history-1858", "citadel"]
+      "aliases": [
+        "súng thần công",
+        "khẩu thần công",
+        "khẩu súng cổ",
+        "cannon",
+        "cannons"
+      ],
+      "next": [
+        "history-1858",
+        "citadel"
+      ]
     },
     "sahuynh": {
-      "aliases": ["sa huỳnh", "khuyên tai", "hai đầu thú", "earring", "sa huynh", "nephrite"],
-      "material": ["Chiếc khuyên tai hai đầu thú trong danh mục được tạc từ đá ngọc bích màu xanh. Hai đầu thú được chạm đối xứng, nên bạn thử nhìn lần lượt từ bên này sang bên kia.", "The two-headed earring in the catalog is carved from green nephrite jade. Look from one end to the other to see the symmetrical animal heads."],
-      "purpose": ["Đây là một đồ trang sức. Kiểu hai đầu thú và cách chạm đối xứng giúp nhận ra hiện vật này giữa những loại khuyên tai cổ khác.", "This was a piece of jewelry. The two animal heads and their symmetry help distinguish it from other ancient earrings."],
-      "next": ["floor-1", "ceramics"]
+      "aliases": [
+        "khuyên tai",
+        "hai đầu thú",
+        "earring",
+        "sa huynh"
+      ],
+      "purpose": [
+        "Đây là một đồ trang sức. Kiểu hai đầu thú và cách chạm đối xứng giúp nhận ra hiện vật này giữa những loại khuyên tai cổ khác.",
+        "This was a piece of jewelry. The two animal heads and their symmetry help distinguish it from other ancient earrings."
+      ],
+      "next": [
+        "floor-1",
+        "ceramics"
+      ]
     },
     "kendy": {
-      "aliases": ["kendy", "kendi", "bình chăm", "bình champa", "bình có vòi", "bình gốm", "cham vessel"],
-      "material": ["Bình Kendy trong danh mục là đồ gốm. Tên gọi và dáng vòi giúp nhận ra kiểu bình, còn nhãn hiện vật cho biết các thông tin cụ thể của mẫu đang trưng bày.", "The Kendy vessel in this catalog is ceramic. Its spout helps identify the vessel type, and the display label gives details for the particular piece."],
-      "purpose": ["Bình Kendy được dùng để rót nước trong nghi lễ Champa. Dấu hiệu dễ nhận ra là chiếc vòi mọc từ bên hông thân bình. Nhìn dáng vòi là bạn có thể hình dung cách người ta rót.", "The Kendy vessel was used to pour water in Champa ceremonies. Its side spout is the easiest feature to spot and shows how the vessel was used."],
-      "next": ["cham-museum", "floor-1"]
+      "aliases": [
+        "kendy",
+        "kendi",
+        "bình chăm",
+        "bình champa",
+        "bình có vòi",
+        "bình gốm",
+        "cham vessel"
+      ],
+      "next": [
+        "cham-museum",
+        "floor-1"
+      ]
     },
     "hondadame": {
-      "aliases": ["honda dame", "xe honda", "xe dame", "xe biệt động", "bom cbu 55", "moped", "honda dame moped"],
-      "purpose": ["Xe Honda Dame gắn với hoạt động của lực lượng Biệt động Đà Nẵng trong thời chiến. Khi xem ở tầng 3, hãy để ý một phương tiện rất đời thường có thể kể được câu chuyện chiến tranh như thế nào.", "The Honda Dame moped is associated with the activities of the Da Nang commandos during wartime. On Floor 3, consider how an ordinary vehicle can tell a wartime story."],
-      "next": ["liberation", "floor-3"]
+      "aliases": [
+        "honda dame",
+        "xe honda",
+        "xe dame",
+        "xe biệt động",
+        "moped",
+        "honda dame moped"
+      ],
+      "purpose": [
+        "Xe Honda Dame gắn với hoạt động của lực lượng Biệt động Đà Nẵng trong thời chiến. Khi xem ở tầng 3, hãy để ý một phương tiện rất đời thường có thể kể được câu chuyện chiến tranh như thế nào.",
+        "The Honda Dame moped is associated with the activities of the Da Nang commandos during wartime. On Floor 3, consider how an ordinary vehicle can tell a wartime story."
+      ],
+      "next": [
+        "liberation",
+        "floor-3"
+      ]
     },
     "cotu": {
-      "aliases": ["cơ tu", "tơghêy", "tơ ghêy", "tượng cổng làng", "cổng làng", "co tu", "toghey", "village gate figure"],
-      "material": ["Tượng cổng làng được chạm từ gỗ. Nếu bạn đang hỏi riêng về kèn Tơghêy, hãy xem nhãn cạnh chiếc kèn để biết chất liệu của mẫu đang trưng bày.", "The village-gate figures are carved from wood. If you mean the Toghey instrument specifically, check the label beside the instrument for its materials."],
-      "purpose": ["Ở đây có hai loại hiện vật. Tượng gỗ gắn với cổng làng và đời sống tinh thần của cộng đồng Cơ Tu, còn kèn Tơghêy là nhạc cụ truyền thống.", "This display brings together two kinds of objects. The wooden figures are linked to village gates and Co Tu spiritual life, while the Toghey is a traditional instrument."],
-      "next": ["community", "floor-2"]
+      "aliases": [
+        "tượng cổng làng",
+        "người xê đăng",
+        "xe dang gate figure"
+      ],
+      "next": [
+        "community",
+        "floor-2"
+      ]
     },
     "ghebau": {
-      "aliases": ["ghe bầu", "thuyền ghe bầu", "thuyền buồm xứ quảng", "sailboat", "ghe bau", "quang nam boat"],
-      "material": ["Mô hình trong danh mục thể hiện thân ghe và hệ buồm. Ghe bầu truyền thống có thân gỗ.", "The model shows the boat’s hull and sails. Traditional Ghe Bau boats had wooden hulls."],
-      "purpose": ["Ghe bầu chở người và hàng hóa trên các tuyến ven biển. Ở xứ Quảng, loại thuyền buồm này là một phần của mạng lưới giao thương đường biển.", "Ghe Bau boats carried people and goods along coastal routes. In the Quang region, they were part of the maritime trading network."],
-      "detail": ["Khi nhìn mô hình, để ý thân ghe rộng và phình ở giữa. Đó là nét dễ thấy khi phân biệt ghe bầu với những thuyền có thân thon hẹp.", "Look at how broad the middle of the model’s hull is. It’s a useful way to distinguish this type from narrow-bodied boats."],
-      "next": ["floor-2", "nearby"]
+      "aliases": [
+        "ghe bầu",
+        "thuyền ghe bầu",
+        "thuyền buồm xứ quảng",
+        "sailboat",
+        "ghe bau",
+        "quang nam boat"
+      ],
+      "material": [
+        "Mô hình trong danh mục thể hiện thân ghe và hệ buồm. Ghe bầu truyền thống có thân gỗ.",
+        "The model shows the boat’s hull and sails. Traditional Ghe Bau boats had wooden hulls."
+      ],
+      "purpose": [
+        "Ghe bầu chở người và hàng hóa trên các tuyến ven biển. Ở xứ Quảng, loại thuyền buồm này là một phần của mạng lưới giao thương đường biển.",
+        "Ghe Bau boats carried people and goods along coastal routes. In the Quang region, they were part of the maritime trading network."
+      ],
+      "detail": [
+        "Khi nhìn mô hình, để ý thân ghe rộng và phình ở giữa. Đó là nét dễ thấy khi phân biệt ghe bầu với những thuyền có thân thon hẹp.",
+        "Look at how broad the middle of the model’s hull is. It’s a useful way to distinguish this type from narrow-bodied boats."
+      ],
+      "next": [
+        "floor-2",
+        "nearby"
+      ]
     },
     "chudau": {
-      "aliases": ["chu đậu", "gốm chu đậu", "bình vôi", "gốm thời nguyễn", "chu dau", "lime pot", "nguyen porcelain"],
-      "material": ["Nhóm này gồm các hiện vật gốm và sứ, có những món trang trí hoa lam. Chất đất, men và họa tiết khác nhau theo từng món nên bạn có thể đọc thêm trên nhãn trưng bày.", "This group includes ceramic and porcelain objects, some with blue-and-white decoration. Clay, glaze and patterns vary by item, so check each display label."],
-      "purpose": ["Các bình, đĩa gốm và bình vôi có công dụng khác nhau. Bình vôi đựng vôi để têm trầu, còn các đồ gốm khác có thể là đồ đựng, đồ dùng hoặc vật trang trí tùy kiểu dáng.", "Ceramic vessels, dishes and lime pots served different purposes. Lime pots stored lime for preparing betel, while other items were containers, tableware or decorative pieces depending on shape."],
-      "next": ["betel", "ceramics"]
+      "aliases": [
+        "chu đậu",
+        "gốm chu đậu",
+        "bình vôi",
+        "gốm thời nguyễn",
+        "chu dau",
+        "lime pot",
+        "nguyen porcelain"
+      ],
+      "material": [
+        "Nhóm này gồm các hiện vật gốm và sứ, có những món trang trí hoa lam. Chất đất, men và họa tiết khác nhau theo từng món nên bạn có thể đọc thêm trên nhãn trưng bày.",
+        "This group includes ceramic and porcelain objects, some with blue-and-white decoration. Clay, glaze and patterns vary by item, so check each display label."
+      ],
+      "purpose": [
+        "Các bình, đĩa gốm và bình vôi có công dụng khác nhau. Bình vôi đựng vôi để têm trầu, còn các đồ gốm khác có thể là đồ đựng, đồ dùng hoặc vật trang trí tùy kiểu dáng.",
+        "Ceramic vessels, dishes and lime pots served different purposes. Lime pots stored lime for preparing betel, while other items were containers, tableware or decorative pieces depending on shape."
+      ],
+      "next": [
+        "betel",
+        "ceramics"
+      ]
     },
     "denco": {
-      "aliases": ["đèn cổ", "đèn măng xông", "đèn dầu", "oil lamp", "antique lamp", "antique lighting"],
-      "purpose": ["Đèn cổ kể câu chuyện người xưa thắp sáng sinh hoạt. Với đèn dầu, vật chứa nhiên liệu và bấc giúp mình hiểu cách chiếc đèn tạo ra ánh sáng.", "Antique lamps tell the story of lighting before electric fixtures were widespread. An oil lamp’s fuel reservoir and wick are useful details to look for."],
-      "next": ["agarwood", "floor-2"]
-    },
-    "soldier-uniform": {
-      "aliases": ["bộ quần áo", "áo người lính", "quân phục", "trang phục người lính", "uniform", "soldier's clothes"],
-      "material": ["Ảnh minh họa cho thấy vải xanh ô liu. Danh mục chưa xác định loại sợi cụ thể của bộ đồ.", "The illustration shows an olive-green fabric. The catalog does not identify a specific fiber."],
-      "purpose": ["Đây là trang phục trong bộ đồ dùng minh họa của người lính. Bạn có thể nhận ra cổ áo, hàng cúc và hai túi có nắp ở ngực.", "This uniform is part of the illustrated soldier’s kit. Look for the collar, row of buttons and two chest pockets with flaps."],
-      "next": ["floor-3", "scanner"]
-    },
-    "soldier-helmet": {
-      "aliases": ["mũ cối", "mucoi", "mũ người lính", "pith helmet", "helmet"],
-      "material": ["Mũ trong ảnh minh họa có lớp vải bọc bên ngoài. Danh mục chưa có thông tin để xác định vật liệu lõi của chiếc mũ này.", "The illustrated helmet has a fabric cover. The catalog does not specify the material of its core."],
-      "purpose": ["Vành rộng giúp che nắng cho mặt khi ở ngoài trời. Bạn có thể tìm các đường may và lỗ nhỏ hai bên để nhận ra chiếc mũ trong ảnh.", "The wide brim shades the face outdoors. Look for the seams and small side holes to recognize the helmet in the illustration."],
-      "next": ["floor-3", "scanner"]
-    },
-    "soldier-tobacco": {
-      "aliases": ["gói thuốc lá", "bao thuốc lá", "bao thuốc", "cigarette packet", "tobacco packet"],
-      "material": ["Đây là vỏ bao giấy minh họa, với nếp gấp và mép sờn. Những chi tiết này giúp bạn nhận ra vật liệu khi nhìn gần.", "This is an illustrated paper packet with folds and worn edges. Those details reveal the material on a closer look."],
-      "purpose": ["Chiếc vỏ bao được dùng trong bộ đồ minh họa để kể về đời sống thường ngày. Mình gợi ý nhìn nếp gấp ở góc và mép giấy đã sờn.", "This illustrated packet represents a small everyday item. Look at the folds and worn edges for a detail people often miss."],
-      "next": ["floor-3", "scanner"]
-    },
-    "soldier-canteen": {
-      "aliases": ["bình tông", "bi đông", "bình nước người lính", "water canteen", "canteen"],
-      "material": ["Ảnh minh họa cho thấy bao vải và quai mang. Danh mục chưa xác nhận chất liệu thân bình bên trong bao.", "The illustration shows a cloth cover and carrying strap. The catalog does not confirm the material of the canteen body beneath the cover."],
-      "purpose": ["Bình tông dùng để mang nước. Thân dẹt và quai đeo giúp người mang áp bình sát người khi di chuyển.", "A canteen carries drinking water. The flat body and strap let it hang close to the body while walking."],
-      "next": ["floor-3", "scanner"]
+      "aliases": [
+        "đèn cổ",
+        "đèn măng xông",
+        "đèn dầu",
+        "oil lamp",
+        "antique lamp",
+        "antique lighting"
+      ],
+      "next": [
+        "agarwood",
+        "floor-2"
+      ]
     }
   }
 }

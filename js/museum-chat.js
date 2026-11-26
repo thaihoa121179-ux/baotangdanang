@@ -58,6 +58,7 @@ function createMuseumChat(knowledge) {
       record,
       score: aliasMatch(query, [
         ...(knowledge.artifacts[record.id]?.aliases || []),
+        ...(record.aliases || []),
         record.name, record.shortName, record.en?.shortName, record.en?.title
       ], true)
     })).filter(match => match.score > 0).sort((a, b) => b.score - a.score);
@@ -73,6 +74,7 @@ function createMuseumChat(knowledge) {
     if (/^(?:nghe|cho nghe)$|\b(nghe (?:narration|thuyet minh|doc|giong doc)|cho (?:minh )?nghe|audio|read aloud|listen)\b/.test(query)) return 'audio';
     if (/\b(chat lieu|vat lieu|bang gi|duoc duc bang|lam tu gi|made of|material|carved from)\b/.test(query)) return 'material';
     if (/\b(dung de|cong dung|dung lam gi|de lam gi|vai tro|used for|purpose|what did .+ do|cach dung)\b/.test(query)) return 'purpose';
+    if (/\b(?:tim thay (?:o|tai) dau|khai quat (?:o|tai) dau|where (?:was|were) .+ (?:found|excavated))\b/.test(query)) return 'history';
     if (/\b(chi duong|vi tri|o dau|tang nao|tang may|where|which floor|directions|location|nam o)\b/.test(query)) return 'location';
     if (/\b(nien dai|bao nhieu tuoi|bao nhieu nam|co tu khi nao|co tu bao gio|nam nao|the ky nao|bao lau roi|how old|what century|date from|when was)\b/.test(query)) return 'era';
     if (/\b(ai chi huy|ai lanh dao|gan voi (?:vi|ai)|who led|which general|nguon goc|lich su)\b/.test(query)) return 'history';
@@ -84,8 +86,8 @@ function createMuseumChat(knowledge) {
 
   function artifactReply(record, intent, lang) {
     const art = localized(record, lang);
-    const facts = knowledge.artifacts[record.id] || {};
-    const base = { artifactId: record.id };
+    const facts = { ...knowledge.artifacts[record.id], ...record.facts };
+    const base = { artifactId: record.id, source: record.source };
     if (!intent || intent === 'card') return { ...base, card: true };
     if (intent === 'audio') return { ...base, text: pick([
       `Mình có phần thuyết minh về ${art.shortName}. Bấm Nghe audio bên dưới nhé.`,
@@ -96,8 +98,8 @@ function createMuseumChat(knowledge) {
         `Bạn tìm ${art.shortName} ở tầng ${art.floor}, khu ${art.room.replace(/\s*[-•]\s*Tầng \d+$/i, '')}.`,
         `Look for ${art.shortName} in ${art.room}.`
       ], lang) : pick([
-        `${art.shortName} thuộc bộ ảnh minh họa. Mình chưa có vị trí trưng bày cụ thể cho mục này.`,
-        `${art.shortName} is in the illustrated set. I don’t have a display location for this item.`
+        `Bảo tàng có hồ sơ về ${art.shortName}. Mình chưa xác nhận được vị trí trưng bày cụ thể.`,
+        `The museum has a record for ${art.shortName}. I don’t have a confirmed display location for this item.`
       ], lang);
       return { ...base, text, floor: art.floor, mapNodeId: art.mapNodeId };
     }
@@ -402,9 +404,11 @@ function createMuseumChat(knowledge) {
     const artifact = catalog.get(context.artifactId);
     if (artifact) {
       const result = [];
-      if (knowledge.artifacts[artifact.id]?.purpose) result.push(pick(['Món này dùng để làm gì?', 'What was it used for?'], lang));
-      if (knowledge.artifacts[artifact.id]?.material) result.push(pick(['Nó làm bằng gì?', 'What is it made of?'], lang));
+      const facts = { ...knowledge.artifacts[artifact.id], ...artifact.facts };
+      if (facts.purpose) result.push(pick(['Món này dùng để làm gì?', 'What was it used for?'], lang));
+      if (facts.material) result.push(pick(['Nó làm bằng gì?', 'What is it made of?'], lang));
       if (artifact.floor) result.push(pick(['Món này ở tầng mấy?', 'Which floor is it on?'], lang));
+      if (facts.dimensions) result.push(pick(['Món này có kích thước bao nhiêu?', 'What are its dimensions?'], lang));
       if (artifact.era) result.push(pick(['Món này có từ bao giờ?', 'How old is it?'], lang));
       const next = knowledge.artifacts[artifact.id]?.next ?? defaultTopics;
       return [...result.slice(0, 3), ...next.slice(0, 2).map(id => pick(topics.get(id).question, lang))].slice(0, 4);

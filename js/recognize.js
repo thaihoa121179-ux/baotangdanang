@@ -26,7 +26,12 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     return value.filter(row => row && typeof row.id === 'string'
       && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.id)
       && typeof row.name === 'string' && row.name.trim()
-      && typeof row.visualDesc === 'string' && [1, 2].includes(row.frame));
+      && (typeof row.visualDesc === 'string' || (row.scanReady === false && row.visualDesc === null))
+      && [1, 2].includes(row.frame));
+  }
+
+  function scanRows(value) {
+    return catalogRows(value).filter(row => row.scanReady === true && row.visualDesc.trim());
   }
 
   function buildRequest(image, catalog) {
@@ -123,13 +128,15 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
 
   async function callGemini(image, catalog, model, key, signal) {
     if (!/^[a-z0-9][a-z0-9.-]*$/.test(model)) throw new Error('invalid_model');
+    const eligible = scanRows(catalog);
+    if (!eligible.length) throw new Error('catalog_unavailable');
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
-    const body = await postJSON(url, buildRequest(image, catalog), signal, { 'x-goog-api-key': key });
+    const body = await postJSON(url, buildRequest(image, eligible), signal, { 'x-goog-api-key': key });
     const parts = body?.candidates?.[0]?.content?.parts;
     if (!Array.isArray(parts)) throw new Error('invalid_response');
     const json = parts.filter(part => !part.thought && typeof part.text === 'string').map(part => part.text).join('');
     try {
-      return parseDetections(JSON.parse(json), catalog);
+      return parseDetections(JSON.parse(json), eligible);
     } catch {
       throw new Error('invalid_response');
     }
@@ -156,15 +163,17 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
         }
       }
       if (!url) return await callGemini(image, catalog, CONFIG.MODEL, key, deadline);
+      const eligible = scanRows(catalog);
+      if (!eligible.length) throw new Error('catalog_unavailable');
       const body = await postJSON(url, { image }, deadline);
-      return parseDetections(body, catalog);
+      return parseDetections(body, eligible);
     } catch (error) {
       if (timeout.aborted) throw new Error('timeout');
       throw error;
     }
   }
 
-  return { CONFIG, catalogRows, jpegFrame, normalizeEndpoint, parseDetections, callGemini, recognize };
+  return { CONFIG, catalogRows, scanRows, jpegFrame, normalizeEndpoint, parseDetections, callGemini, recognize };
 })();
 
 export default MuseumRecognition;

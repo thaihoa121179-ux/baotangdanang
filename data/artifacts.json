@@ -1,470 +1,958 @@
 [
   {
     "id": "cannon",
-    "name": "Súng thần công Thành Điện Hải (1858–1860)",
-    "era": "Thế kỷ XIX (Triều Nguyễn)",
-    "shortDesc": "Vũ khí phòng thủ chủ lực của quân dân Đà Nẵng trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha.",
-    "visualDesc": "Ống kim loại dài màu xám sẫm, hình trụ thuôn, có các gờ vòng và miệng tròn; đặt nằm ngang trên giá.",
-    "floor": 3,
+    "name": "Súng thần công phát hiện ở Liên Chiểu",
+    "shortName": "Súng thần công phát hiện ở Liên Chiểu",
+    "era": "Thế kỷ XIX theo hồ sơ",
+    "shortDesc": "Hiện vật kim loại được phát hiện trong khi thi công kè biển đoạn Xuân Thiều – Nam Ô năm 2019.",
+    "fullDesc": "Bảo tàng ghi nhận khẩu súng thần công này được phát hiện ngày 23 tháng 5 năm 2019 tại công trình kè biển đoạn Xuân Thiều – Nam Ô. Khi quan sát ảnh, có thể thấy thân kim loại dài, hai trục đối xứng và những dải hoa văn nổi. Phần niên đại trong hồ sơ ghi thế kỷ mười chín, còn phần chú giải có nêu một nhận định khác về nguồn gốc và niên đại.",
+    "visualDesc": "Hiện vật kim loại sẫm, thân trụ nằm ngang, đầu nhỏ, thân nở dần, có hai trục đối xứng nhô bên hông và các dải hoa văn nổi chạy quanh thân.",
+    "floor": null,
     "frame": 1,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": true,
+    "photoKey": "cannon",
+    "photoFile": "images/artifacts/cannon.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/song-than-cing",
     "audio": {
-      "vi": "cannon",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Súng thần công Thành Điện Hải, niên đại thế kỷ 19. Trong cuộc kháng chiến chống liên quân Pháp Tây Ban Nha từ năm 1858 đến 1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, bộ sưu tập súng thần công này đã góp phần đánh bại âm mưu xâm lược của địch tại cửa biển Đà Nẵng.",
-      "en": "The Dien Hai Citadel Cannon from the 19th-century Nguyen Dynasty played a decisive role under General Nguyen Tri Phuong during the 1858–1860 resistance against the Franco-Spanish coalition."
+      "vi": "Bảo tàng ghi nhận khẩu súng thần công này được phát hiện ngày 23 tháng 5 năm 2019 tại công trình kè biển đoạn Xuân Thiều – Nam Ô. Khi quan sát ảnh, có thể thấy thân kim loại dài, hai trục đối xứng và những dải hoa văn nổi. Phần niên đại trong hồ sơ ghi thế kỷ mười chín, còn phần chú giải có nêu một nhận định khác về nguồn gốc và niên đại.",
+      "en": "The museum records the discovery of this cannon on 23 May 2019 during seawall construction between Xuan Thieu and Nam O. The photograph shows its long metal body, paired side pivots and raised decorative bands. The catalog labels it nineteenth-century and the accompanying note discusses a different attribution and date."
     },
-    "en": {
-      "shortName": "Cannon of 1858",
-      "title": "Dien Hai Citadel Cannon (1858–1860)",
-      "era": "19th century, Nguyen Dynasty",
-      "room": "Resistance History Gallery • Floor 3",
-      "shortDesc": "A cannon associated with Da Nang’s defense against the Franco-Spanish coalition.",
-      "fullDesc": "The Dien Hai Citadel cannon collection includes cast-iron and bronze pieces from the Nguyen Dynasty. General Nguyen Tri Phuong led the defense of Da Nang against a Franco-Spanish force between 1858 and 1860.",
-      "followUps": [
-        "Which general is associated with the cannon?",
-        "Where is Dien Hai Citadel?",
-        "Where is the cannon displayed?"
+    "aliases": [
+      "súng thần công liên chiểu",
+      "súng thần công nam ô",
+      "khẩu súng nam ô",
+      "lien chieu cannon"
+    ],
+    "facts": {
+      "material": [
+        "Hồ sơ xếp hiện vật vào nhóm kim loại.",
+        "The museum classifies the object as metal."
       ]
     },
-    "shortName": "Súng thần công 1858",
-    "room": "Phòng Lịch sử Đấu tranh - Tầng 3",
-    "mapNodeId": "f3_cannon",
-    "photoKey": "cannon",
-    "fullDesc": "Bộ sưu tập súng thần công Thành Điện Hải được đúc bằng gang và đồng dưới triều Nguyễn. Trong cuộc kháng chiến chống liên quân Pháp – Tây Ban Nha mở đầu năm 1858–1860 dưới sự chỉ huy của Danh tướng Nguyễn Tri Phương, những khẩu thần công này đã lập nên chiến công oanh liệt bảo vệ cửa biển Đà Nẵng.",
-    "followUps": [
-      "Súng thần công gắn với vị Danh tướng nào?",
-      "Thành Điện Hải nằm ở đâu?",
-      "Xem vị trí Súng thần công trên bản đồ"
-    ]
+    "en": {
+      "title": "Cannon found in Lien Chieu",
+      "shortName": "Cannon found in Lien Chieu",
+      "era": "19th century per the catalog",
+      "shortDesc": "A metal artifact found in 2019 during seawall work between Xuan Thieu and Nam O.",
+      "fullDesc": "The museum records the discovery of this cannon on 23 May 2019 during seawall construction between Xuan Thieu and Nam O. The photograph shows its long metal body, paired side pivots and raised decorative bands. The catalog labels it nineteenth-century and the accompanying note discusses a different attribution and date.",
+      "room": "Collection record"
+    }
   },
   {
     "id": "sahuynh",
-    "name": "Khuyên tai hai đầu thú (Văn hóa Sa Huỳnh)",
-    "era": "Tiền sơ sử (Cách ngày nay ~2.000–2.500 năm)",
-    "shortDesc": "Trang sức ngọc bích tạc hình hai đầu thú đối xứng tinh xảo thuộc nền văn hóa Sa Huỳnh.",
-    "visualDesc": "Khuyên đá xanh nhỏ uốn cong, hai đầu chạm dạng đầu thú đối xứng với sừng cong.",
-    "floor": 1,
+    "name": "Khuyên tai hai đầu thú Sa Huỳnh",
+    "shortName": "Khuyên tai hai đầu thú Sa Huỳnh",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Trang sức thuộc văn hóa Sa Huỳnh, khai quật ở khu mộ chum Gò Đình năm 1980.",
+    "fullDesc": "Chiếc khuyên tai hai đầu thú này thuộc văn hóa Sa Huỳnh. Hiện vật được tìm thấy khi khai quật khu mộ chum Gò Đình, Đại Lãnh, Đại Lộc vào năm 1980. Chi tiết nổi bật là hai đầu thú tạo hình đối xứng.",
+    "visualDesc": "Trang sức nhỏ màu sáng, có thanh ngang, hai đầu thú nhô thẳng lên đối xứng, phần giữa có một chi tiết nhỏ nhô lên có lỗ.",
+    "floor": null,
     "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": true,
+    "photoKey": "sahuynh",
+    "photoFile": "images/artifacts/sahuynh.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/khuyan-tai-hai-yau-tho-1",
     "audio": {
-      "vi": "sahuynh",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Khuyên tai hai đầu thú thuộc nền văn hóa Sa Huỳnh thời kỳ tiền sơ sử, có niên đại khoảng 2.000 đến 2.500 năm trước. Được tạc từ đá ngọc bích nguyên khối với đường nét cân xứng tinh xảo, đây là biểu tượng nghệ thuật trang sức cổ đại Việt Nam.",
-      "en": "The two-headed animal earring of the protohistoric Sa Huynh culture dates back 2,000 to 2,500 years. Carved from nephrite jade, it exemplifies ancient jewelry craftsmanship in Central Vietnam."
+      "vi": "Chiếc khuyên tai hai đầu thú này thuộc văn hóa Sa Huỳnh. Hiện vật được tìm thấy khi khai quật khu mộ chum Gò Đình, Đại Lãnh, Đại Lộc vào năm 1980. Chi tiết nổi bật là hai đầu thú tạo hình đối xứng.",
+      "en": "This two-headed earring belongs to the Sa Huynh culture. It was recovered in 1980 during excavations of the Go Dinh jar-burial site in Dai Lanh, Dai Loc. Two symmetrical animal heads distinguish it."
     },
-    "en": {
-      "shortName": "Sa Huynh earring",
-      "title": "Sa Huynh Two-Headed Animal Earring",
-      "era": "Around 2,000–2,500 years old",
-      "room": "Antiquities Gallery • Floor 1",
-      "shortDesc": "A jade ornament carved with two symmetrical animal heads.",
-      "fullDesc": "The two-headed earring is a distinctive example of Sa Huynh craftsmanship. Carved by hand from green nephrite jade, it features two symmetrical animal heads with curved horns.",
-      "followUps": [
-        "What is the earring made of?",
-        "How old is the Sa Huynh earring?",
-        "What else is on Floor 1?"
+    "aliases": [],
+    "facts": {
+      "history": [
+        "Hiện vật được khai quật tại khu mộ chum Gò Đình năm 1980.",
+        "This artifact was excavated at the Go Dinh jar-burial site in 1980."
       ]
     },
-    "shortName": "Khuyên tai Sa Huỳnh",
-    "room": "Không gian Cổ vật - Tầng 1",
-    "mapNodeId": "f1_sahuynh",
-    "photoKey": "sahuynh",
-    "fullDesc": "Khuyên tai hai đầu thú là hiện vật tiêu biểu bậc nhất của nền văn hóa Sa Huỳnh thời kỳ Tiền sơ sử. Được chế tác thủ công từ đá ngọc bích (nephrite) xanh ngọc với tạo hình hai đầu thú có sừng cong đối xứng, hiện vật minh chứng cho kỹ nghệ chế tác đá quý đỉnh cao và giao thương biển của cư dân cổ miền Trung.",
-    "followUps": [
-      "Chất liệu làm nên khuyên tai hai đầu thú là gì?",
-      "Văn hóa Sa Huỳnh có niên đại bao nhiêu năm?",
-      "Tầng 1 còn những cổ vật nào?"
-    ]
+    "en": {
+      "title": "Sa Huynh two-headed animal earring",
+      "shortName": "Sa Huynh two-headed animal earring",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "Sa Huynh jewelry excavated at the Go Dinh burial site in 1980.",
+      "fullDesc": "This two-headed earring belongs to the Sa Huynh culture. It was recovered in 1980 during excavations of the Go Dinh jar-burial site in Dai Lanh, Dai Loc. Two symmetrical animal heads distinguish it.",
+      "room": "Collection record"
+    }
   },
   {
     "id": "kendy",
-    "name": "Bình gốm Kendy (Văn hóa Champa)",
-    "era": "Thế kỷ X – XII",
-    "shortDesc": "Bình nghi lễ có vòi rót bên hông đặc trưng dùng trong nghi thức tôn giáo Champa.",
-    "visualDesc": "Bình gốm thân tròn, cổ đứng, có một vòi nhô ra từ một bên thân.",
-    "floor": 1,
+    "name": "Bình gốm Kendy",
+    "shortName": "Bình gốm Kendy",
+    "era": "Thế kỷ IX–XI",
+    "shortDesc": "Bình đất nung không có quai, có vòi bên hông, từ di chỉ Nam Thổ Sơn ở Ngũ Hành Sơn.",
+    "fullDesc": "Bình Kendy bằng đất nung, niên đại thế kỷ chín đến mười một, được ghi nhận tại di chỉ Nam Thổ Sơn, Ngũ Hành Sơn. Hiện vật từng vỡ thành nhiều mảnh và được phục chế vào tháng hai năm 2000. Miệng hơi loe, cổ ngắn, thân phình tròn và vòi bên hông là các chi tiết dễ quan sát.",
+    "visualDesc": "Bình gốm không quai, thân phình tròn, cổ tương đối ngắn, miệng hơi loe, có một vòi nhô cao bên hông.",
+    "floor": null,
     "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": true,
+    "photoKey": "kendy",
+    "photoFile": "images/artifacts/kendy.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/benh-gom-kendy",
     "audio": {
-      "vi": "kendy",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Bình gốm Kendy thuộc văn hóa Champa, niên đại thế kỷ 10 đến thế kỷ 12. Với phần thân tròn đầy, cổ cao và vòi rót tinh tế bên vai bình, đây là vật phẩm nghi lễ thiêng liêng dùng để rưới nước thanh khiết trong văn hóa Champa.",
-      "en": "This Champa Kendy ritual vessel from the 10th to 12th centuries features a bulbous body, tall flared neck, and side spout used for pouring sacred water in purification ceremonies."
+      "vi": "Bình Kendy bằng đất nung, niên đại thế kỷ chín đến mười một, được ghi nhận tại di chỉ Nam Thổ Sơn, Ngũ Hành Sơn. Hiện vật từng vỡ thành nhiều mảnh và được phục chế vào tháng hai năm 2000. Miệng hơi loe, cổ ngắn, thân phình tròn và vòi bên hông là các chi tiết dễ quan sát.",
+      "en": "This ninth- to eleventh-century earthenware Kendy comes from the Nam Tho Son site in the Marble Mountains. It was recovered in fragments and restored in February 2000. Look for the slightly flared mouth, short neck, rounded body and side spout."
     },
-    "en": {
-      "shortName": "Kendy vessel",
-      "title": "Champa Kendy Vessel",
-      "era": "10th–12th centuries",
-      "room": "Antiquities Gallery • Floor 1",
-      "shortDesc": "A Champa ceramic ritual vessel with a spout on its shoulder.",
-      "fullDesc": "The Kendy has a rounded body, a tall flared neck and a side spout. In Champa ceremonies it held sacred water used in purification and blessings.",
-      "followUps": [
-        "What was the Kendy used for?",
-        "What makes Central Vietnamese ceramics distinctive?",
-        "Where is the Kendy displayed?"
+    "aliases": [],
+    "facts": {
+      "material": [
+        "Hồ sơ ghi chất liệu là đất nung.",
+        "The museum records the material as earthenware."
+      ],
+      "purpose": [
+        "Bảo tàng mô tả Kendy là loại bình để đựng và rót chất lỏng. Chiếc vòi thông với thân bình.",
+        "The museum describes Kendy as vessels for holding and pouring liquids. The spout connects to the body."
+      ],
+      "dimensions": [
+        "Thân cao 20 cm, vòi cao 7 cm, đường kính miệng 9,5 cm.",
+        "The body is 20 cm high, the spout is 7 cm high and the mouth is 9.5 cm across."
       ]
     },
-    "shortName": "Bình gốm Kendy",
-    "room": "Không gian Cổ vật - Tầng 1",
-    "mapNodeId": "f1_sahuynh",
-    "photoKey": "kendy",
-    "fullDesc": "Bình gốm Kendy thuộc nền văn hóa Champa cổ, có dáng thân tròn đầy đặn, cổ cao miệng loe và một vòi rót nhô ra ở vai bình. Trong các nghi lễ tôn giáo và sinh hoạt cung đình Champa xưa, bình Kendy được dùng để đựng và rưới nước thanh khiết ban phước lành.",
-    "followUps": [
-      "Bình gốm Kendy được dùng để làm gì?",
-      "Gốm cổ các tỉnh Trung bộ có gì đặc sắc?",
-      "Chỉ đường tới khu Cổ vật Tầng 1"
-    ]
+    "en": {
+      "title": "Kendy ceramic vessel",
+      "shortName": "Kendy ceramic vessel",
+      "era": "9th–11th century",
+      "shortDesc": "A handleless earthenware vessel with a side spout, from the Nam Tho Son site in the Marble Mountains.",
+      "fullDesc": "This ninth- to eleventh-century earthenware Kendy comes from the Nam Tho Son site in the Marble Mountains. It was recovered in fragments and restored in February 2000. Look for the slightly flared mouth, short neck, rounded body and side spout.",
+      "room": "Collection record"
+    }
   },
   {
     "id": "hondadame",
-    "name": "Xe Honda Dame & Bom CBU 55 (Chứng tích chiến tranh)",
-    "era": "Kháng chiến chống Mỹ (1968–1975)",
-    "shortDesc": "Phương tiện hoạt động bí mật của Biệt động Đà Nẵng cùng vỏ bom CBU 55 minh chứng lịch sử.",
-    "visualDesc": "Xe máy kiểu moped cổ, khung thấp, hai bánh nan hoa, đèn tròn phía trước, yên hẹp.",
+    "name": "Xe Honda Dame",
+    "shortName": "Xe Honda Dame",
+    "era": "1960–1975",
+    "shortDesc": "Chiếc xe gắn với hoạt động của ông Kiều Thanh Tân và lực lượng biệt động Đà Nẵng.",
+    "fullDesc": "Xe Honda Dame này thuộc về ông Kiều Thanh Tân, cán bộ xây dựng lực lượng biệt động thành Đà Nẵng. Bảo tàng ghi nhận chiếc xe được sử dụng liên lạc trong những ngày cuối tháng ba năm 1975. Gia đình hiến tặng hiện vật năm 2025.",
+    "visualDesc": "Xe máy dáng thấp, bánh nan hoa, đèn tròn, yên đen và khung thấp kiểu Honda Dame.",
     "floor": 3,
     "frame": 1,
+    "room": "Tầng 3",
+    "scanReady": true,
+    "mapNodeId": "f3_war",
+    "photoKey": "hondadame",
+    "photoFile": "images/artifacts/hondadame.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/xe-honda-dame",
     "audio": {
-      "vi": "hondadame",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Xe Honda Dame và vỏ bom CBU 55 tại khu trưng bày Chứng tích chiến tranh Tầng 3. Chiếc xe Honda Dame là phương tiện gắn liền với chiến công thầm lặng của lực lượng Biệt động thành Đà Nẵng trước ngày giải phóng 29 tháng 3 năm 1975.",
-      "en": "Displayed in the Floor 3 War Relics gallery, the Honda Dame moped used by Da Nang special commandos and the CBU 55 bomb casing serve as poignant reminders of wartime history and peace."
+      "vi": "Xe Honda Dame này thuộc về ông Kiều Thanh Tân, cán bộ xây dựng lực lượng biệt động thành Đà Nẵng. Bảo tàng ghi nhận chiếc xe được sử dụng liên lạc trong những ngày cuối tháng ba năm 1975. Gia đình hiến tặng hiện vật năm 2025.",
+      "en": "This Honda Dame belonged to Kieu Thanh Tan, who helped organize the Da Nang commandos. According to the museum, it was used for communications in the last days of March 1975. His family donated it in 2025."
     },
-    "en": {
-      "shortName": "Honda Dame & war relics",
-      "title": "Honda Dame and CBU 55 Casing",
-      "era": "1968–1975",
-      "room": "War Relics Gallery • Floor 3",
-      "shortDesc": "A wartime moped used by Da Nang special commandos and a bomb casing.",
-      "fullDesc": "The Floor 3 gallery displays a Honda Dame moped used for reconnaissance and carrying confidential documents during the war. Its display alongside a CBU 55 casing recalls the city’s wartime history.",
-      "followUps": [
-        "When was Da Nang liberated?",
-        "What was the Honda Dame used for?",
-        "Where is the War Relics Gallery?"
+    "aliases": [],
+    "facts": {
+      "history": [
+        "Gia đình ông Kiều Thanh Tân hiến tặng xe cho Bảo tàng năm 2025.",
+        "Kieu Thanh Tan’s family donated the moped in 2025."
+      ],
+      "dimensions": [
+        "Dài 177 cm, rộng 66 cm và cao 109 cm theo hồ sơ bảo tàng.",
+        "The museum records the dimensions as 177 cm long, 66 cm wide and 109 cm tall."
       ]
     },
-    "shortName": "Xe Honda Dame & Bom CBU",
-    "room": "Chứng tích Chiến tranh - Tầng 3",
-    "mapNodeId": "f3_war",
-    "photoKey": "hondadame",
-    "fullDesc": "Tại chuyên đề Đà Nẵng – Chứng tích chiến tranh (Tầng 3), chiếc xe gắn máy Honda Dame từng được chiến sĩ Biệt động thành Đà Nẵng sử dụng để vận chuyển tài liệu mật và trinh sát ngay trong lòng địch, đặt cạnh vỏ bom CBU 55 khắc họa khát vọng hòa bình của nhân dân Đà Nẵng.",
-    "followUps": [
-      "Đà Nẵng giải phóng vào ngày nào?",
-      "Lực lượng Biệt động Đà Nẵng dùng xe Honda Dame làm gì?",
-      "Chỉ đường tới khu Chứng tích chiến tranh"
-    ]
+    "en": {
+      "title": "Honda Dame moped",
+      "shortName": "Honda Dame moped",
+      "era": "1960–1975",
+      "shortDesc": "A moped associated with Kieu Thanh Tan and the Da Nang commandos.",
+      "fullDesc": "This Honda Dame belonged to Kieu Thanh Tan, who helped organize the Da Nang commandos. According to the museum, it was used for communications in the last days of March 1975. His family donated it in 2025.",
+      "room": "Floor 3"
+    }
   },
   {
     "id": "cotu",
-    "name": "Tượng cổng làng & Kèn Tơghêy người Cơ Tu",
+    "name": "Tượng cổng làng người Xê Đăng",
+    "shortName": "Tượng cổng làng người Xê Đăng",
     "era": "Thế kỷ XX",
-    "shortDesc": "Điêu khắc gỗ tâm linh và nhạc cụ truyền thống đặc sắc của đồng bào Cơ Tu tại Đà Nẵng.",
-    "visualDesc": "Tượng gỗ dáng người, thân thẳng, nét chạm thô và các mảng gỗ nâu.",
-    "floor": 2,
+    "shortDesc": "Tượng gỗ từ Trà My gắn với phong tục đặt tượng ở cổng làng của người Xê Đăng.",
+    "fullDesc": "Tượng cổng làng được chạm từ gỗ, cao một mét. Bảo tàng ghi hiện vật được đưa về từ Trà My năm 1987. Theo hồ sơ, tượng đặt ở cổng làng có ý nghĩa chào khách và cầu mong làng được bình yên.",
+    "visualDesc": "Tượng gỗ dựng đứng, dáng người chạm thô trên thân gỗ, bề mặt nâu sẫm.",
+    "floor": null,
     "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": true,
+    "photoKey": "cotu",
+    "photoFile": "images/artifacts/cotu.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/tng-cong-lang",
     "audio": {
-      "vi": "cotu",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Tượng cổng làng và Kèn Tơghêy của người Cơ Tu trưng bày tại Tầng 2. Những tác phẩm điêu khắc gỗ mộc mạc mà sống động cùng âm thanh kèn Tơghêy phản ánh đời sống tâm linh phong phú và tình yêu đại ngàn của đồng bào Cơ Tu ở Đà Nẵng.",
-      "en": "On Floor 2, the Co Tu village gate wooden sculptures and traditional Toghey wind instrument reflect the spiritual life and mountain heritage of the Co Tu people in Da Nang."
+      "vi": "Tượng cổng làng được chạm từ gỗ, cao một mét. Bảo tàng ghi hiện vật được đưa về từ Trà My năm 1987. Theo hồ sơ, tượng đặt ở cổng làng có ý nghĩa chào khách và cầu mong làng được bình yên.",
+      "en": "The one-meter-tall wooden gate figure came from Tra My in 1987. The museum describes these figures as pieces placed at village entrances to welcome visitors and express hopes for the community’s well-being."
     },
-    "en": {
-      "shortName": "Co Tu sculpture & Toghey",
-      "title": "Co Tu Village Gate Figure and Toghey",
-      "era": "20th century",
-      "room": "Ethnic Cultures Gallery • Floor 2",
-      "shortDesc": "Traditional wood carving and a wind instrument from the Co Tu community.",
-      "fullDesc": "Co Tu villages carved gate figures to protect the community. The Toghey is a traditional wind instrument played at harvest celebrations and community ceremonies.",
-      "followUps": [
-        "Where do the Co Tu people live?",
-        "Which other communities are featured?",
-        "Where is the Co Tu gallery?"
+    "aliases": [
+      "tượng xê đăng",
+      "tuong xe dang",
+      "tượng xơ đăng",
+      "xơ đăng trạm gỗ",
+      "xe dang gate figure"
+    ],
+    "facts": {
+      "material": [
+        "Hiện vật được làm bằng gỗ.",
+        "The figure is made from wood."
+      ],
+      "dimensions": [
+        "Tượng cao 100 cm.",
+        "The figure is 100 cm tall."
       ]
     },
-    "shortName": "Tượng cổng làng & Kèn Tơghêy",
-    "room": "Văn hóa Các Dân tộc - Tầng 2",
-    "mapNodeId": "f2_cotu",
-    "photoKey": "cotu",
-    "fullDesc": "Không gian văn hóa các dân tộc ít người tại Tầng 2 giới thiệu Tượng cổng làng chạm khắc thủ công mang ý nghĩa bảo vệ sự bình yên cho buôn làng Cơ Tu, cùng chiếc Kèn Tơghêy ngân vang trong các lễ hội mừng lúa mới và nghi lễ cộng đồng vùng núi phía Tây Đà Nẵng.",
-    "followUps": [
-      "Người Cơ Tu ở Đà Nẵng sinh sống ở đâu?",
-      "Ngoài người Cơ Tu, Tầng 2 còn giới thiệu dân tộc nào?",
-      "Tìm đường tới khu văn hóa Cơ Tu"
-    ]
+    "en": {
+      "title": "Xe Dang village-gate figure",
+      "shortName": "Xe Dang village-gate figure",
+      "era": "20th century",
+      "shortDesc": "A wooden figure from Tra My associated with the Xe Dang practice of placing sculptures at village entrances.",
+      "fullDesc": "The one-meter-tall wooden gate figure came from Tra My in 1987. The museum describes these figures as pieces placed at village entrances to welcome visitors and express hopes for the community’s well-being.",
+      "room": "Collection record"
+    }
   },
   {
     "id": "ghebau",
-    "name": "Mô hình Ghe bầu xứ Quảng",
-    "era": "Thế kỷ XVIII – XIX",
-    "shortDesc": "Loại thuyền buồm truyền thống nổi tiếng giúp giao thương đường biển sầm uất vùng Quảng Nam – Đà Nẵng.",
-    "visualDesc": "Mô hình thuyền gỗ thân thuôn dài, hai đầu cong, có cột và buồm.",
-    "floor": 2,
+    "name": "Mô hình ghe bầu xứ Quảng",
+    "shortName": "Mô hình ghe bầu xứ Quảng",
+    "era": "Mô hình thế kỷ XXI",
+    "shortDesc": "Mô hình gỗ đặt làm tại Kim Bồng, Hội An, tái hiện loại ghe buồm truyền thống xứ Quảng.",
+    "fullDesc": "Mô hình gỗ này được làm tại cơ sở mộc Huỳnh Ri ở Kim Bồng, Hội An. Hồ sơ bảo tàng ghi mô hình thuộc thế kỷ hai mươi mốt. Kiểu ghe bầu mà mô hình tái hiện thịnh hành từ thế kỷ mười sáu đến mười chín và từng dùng để vận chuyển hàng hóa bằng đường biển.",
+    "visualDesc": "Mô hình thuyền gỗ màu nâu, thân nở bụng, mũi và đuôi cong, có các chi tiết mô phỏng cột và buồm.",
+    "floor": null,
     "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": true,
+    "photoKey": "ghebau",
+    "photoFile": "images/artifacts/ghebau.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ghe-bau",
     "audio": {
-      "vi": "ghebau",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Mô hình Ghe bầu xứ Quảng tại Tầng 2. Với thiết kế bụng phình tròn vững chãi và cánh buồm no gió, ghe bầu từng là biểu tượng của nghề đi biển và giao thương hàng hải sầm uất của cư dân Quảng Nam Đà Nẵng xưa.",
-      "en": "The Quang Nam Ghe Bau sailboat model on Floor 2 highlights the maritime trading heritage that connected Da Nang and Hoi An ports across the East Sea."
+      "vi": "Mô hình gỗ này được làm tại cơ sở mộc Huỳnh Ri ở Kim Bồng, Hội An. Hồ sơ bảo tàng ghi mô hình thuộc thế kỷ hai mươi mốt. Kiểu ghe bầu mà mô hình tái hiện thịnh hành từ thế kỷ mười sáu đến mười chín và từng dùng để vận chuyển hàng hóa bằng đường biển.",
+      "en": "This wooden model was made by the Huynh Ri workshop in Kim Bong, Hoi An. The museum dates the model to the twenty-first century. The boat type it depicts flourished from the sixteenth to nineteenth centuries and carried goods by sea."
     },
-    "en": {
-      "shortName": "Quang Nam sailboat",
-      "title": "Quang Nam Ghe Bau Sailboat Model",
-      "era": "18th–19th centuries",
-      "room": "Research and Development Gallery • Floor 2",
-      "shortDesc": "A traditional sailboat that helped connect the ports of Da Nang and Hoi An.",
-      "fullDesc": "The ghe bau’s rounded hull and high bow and stern were suited to coastal navigation. These boats carried goods from the ports of Da Nang and Hoi An along regional and international trade routes.",
-      "followUps": [
-        "Why is it called ghe bau?",
-        "What did ghe bau boats carry?",
-        "Where is the sailboat model displayed?"
+    "aliases": [],
+    "facts": {
+      "history": [
+        "Mô hình đặt làm tại cơ sở mộc Huỳnh Ri, Kim Bồng, Hội An.",
+        "The model was commissioned from the Huynh Ri woodworking workshop in Kim Bong, Hoi An."
       ]
     },
-    "shortName": "Ghe bầu xứ Quảng",
-    "room": "Nghiên cứu & Phát triển - Tầng 2",
-    "mapNodeId": "f2_rnd",
-    "photoKey": "ghebau",
-    "fullDesc": "Ghe bầu xứ Quảng có phần bụng phình tròn như quả bầu, mũi và lái nhọn cao giúp vượt sóng lớn cực tốt. Đây là phương tiện vận tải đường biển chủ lực kết nối thương cảng Đà Nẵng – Hội An với khắp các vùng duyên hải trong và ngoài nước suốt nhiều thế kỷ.",
-    "followUps": [
-      "Vì sao thuyền được gọi là Ghe bầu?",
-      "Ghe bầu có vai trò gì trong thương mại Đà Nẵng xưa?",
-      "Xem vị trí Ghe bầu trên bản đồ"
-    ]
+    "en": {
+      "title": "Quang Nam Ghe Bau boat model",
+      "shortName": "Quang Nam Ghe Bau boat model",
+      "era": "21st-century model",
+      "shortDesc": "A wooden model commissioned in Kim Bong, Hoi An, depicting a traditional Quang sailboat.",
+      "fullDesc": "This wooden model was made by the Huynh Ri workshop in Kim Bong, Hoi An. The museum dates the model to the twenty-first century. The boat type it depicts flourished from the sixteenth to nineteenth centuries and carried goods by sea.",
+      "room": "Collection record"
+    }
   },
   {
     "id": "chudau",
-    "name": "Gốm Chu Đậu, Gốm thời Nguyễn & Bình vôi Việt",
-    "era": "Thế kỷ XV – XIX",
-    "shortDesc": "Bộ sưu tập gốm hoa lam Chu Đậu, gốm sứ thời Nguyễn và Bình vôi gắn với văn hóa trầu cau Việt.",
-    "visualDesc": "TODO: Đối chiếu ảnh hiện vật để bổ sung dáng bình, họa tiết, màu men và chi tiết phân biệt với bình Kendy.",
+    "name": "Sưu tập gốm cổ và bình vôi",
+    "shortName": "Sưu tập gốm cổ và bình vôi",
+    "era": "Nhiều thời kỳ",
+    "shortDesc": "Chủ đề trưng bày gốm Chu Đậu, gốm thời Nguyễn và bình vôi người Việt tại tầng 1.",
+    "fullDesc": "Không gian sưu tập cổ vật tại tầng một giới thiệu gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ các tỉnh miền Trung. Đây là một nhóm trưng bày gồm nhiều hiện vật. Từng món có chất liệu, niên đại và xuất xứ riêng.",
+    "visualDesc": null,
     "floor": 1,
     "frame": 2,
+    "room": "Tầng 1",
+    "scanReady": false,
+    "mapNodeId": "f1_chudau",
+    "photoKey": "chudau",
+    "source": "https://baotangdanang.vn/khong-gian-suu-tap-co-vat-cua-bao-tang-da-nan",
     "audio": {
-      "vi": "chudau",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Bộ sưu tập Gốm Chu Đậu, Gốm sứ thời Nguyễn và Bình vôi của người Việt tại Tầng 1. Mỗi hiện vật là một tác phẩm nghệ thuật gốm sứ tinh xảo, lưu giữ hồn cốt văn hóa truyền thống của dân tộc Việt qua nhiều thế kỷ.",
-      "en": "Floor 1 exhibits Chu Dau blue-and-white ceramics, Nguyen Dynasty porcelain, and traditional Vietnamese lime pots tied to the time-honored betel-chewing custom."
+      "vi": "Không gian sưu tập cổ vật tại tầng một giới thiệu gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ các tỉnh miền Trung. Đây là một nhóm trưng bày gồm nhiều hiện vật. Từng món có chất liệu, niên đại và xuất xứ riêng.",
+      "en": "The first-floor antiquities collection introduces Chu Dau ceramics, Nguyen-era porcelain, Vietnamese lime pots and old ceramics of Central Vietnam. It is a display grouping whose objects have individual materials, dates and origins."
     },
+    "aliases": [
+      "gốm chu đậu",
+      "gốm thời nguyễn",
+      "bình vôi",
+      "chu dau ceramics",
+      "lime pots"
+    ],
+    "facts": {},
     "en": {
-      "shortName": "Chu Dau ceramics & lime pots",
-      "title": "Chu Dau Ceramics, Nguyen Porcelain and Lime Pots",
-      "era": "15th–19th centuries",
-      "room": "Antiquities Collection • Floor 1",
-      "shortDesc": "Blue-and-white ceramics, Nguyen porcelain and vessels associated with betel chewing.",
-      "fullDesc": "The collection features Chu Dau blue-and-white ceramics, Nguyen Dynasty porcelain, ancient ceramics from Central Vietnam and traditional lime pots used in betel chewing.",
-      "followUps": [
-        "What custom are lime pots associated with?",
-        "What ceramics are on Floor 1?",
-        "Where is the Chu Dau collection?"
-      ]
-    },
-    "shortName": "Gốm Chu Đậu & Bình vôi",
-    "room": "Sưu tập Cổ vật - Tầng 1",
-    "mapNodeId": "f1_chudau",
-    "photoKey": "chudau",
-    "fullDesc": "Không gian sưu tập cổ vật Tầng 1 quy tụ các dòng gốm danh tiếng: Gốm Chu Đậu men ngà vẽ lam tinh xảo, Gốm sứ thời Nguyễn, Gốm cổ các tỉnh Trung bộ và bộ sưu tập Bình vôi của người Việt—vật dụng thân thuộc trong phong tục ăn trầu truyền thống.",
-    "followUps": [
-      "Bình vôi gắn với phong tục gì của người Việt?",
-      "Tầng 1 trưng bày những dòng gốm nào?",
-      "Chỉ đường tới phòng Gốm Chu Đậu"
-    ]
+      "title": "Antique ceramics and lime pot collection",
+      "shortName": "Antique ceramics and lime pot collection",
+      "era": "Multiple periods",
+      "shortDesc": "Floor 1 display of Chu Dau ceramics, Nguyen-era porcelain and Vietnamese lime pots.",
+      "fullDesc": "The first-floor antiquities collection introduces Chu Dau ceramics, Nguyen-era porcelain, Vietnamese lime pots and old ceramics of Central Vietnam. It is a display grouping whose objects have individual materials, dates and origins.",
+      "room": "Floor 1"
+    }
   },
   {
     "id": "denco",
-    "name": "Đèn cổ và Trầm hương xứ Quảng",
-    "era": "Thế kỷ XVII – XX",
-    "shortDesc": "Không gian thưởng lãm tinh hoa trầm hương Quảng Nam – Đà Nẵng và bộ sưu tập đèn cổ độc đáo.",
-    "visualDesc": "Đèn kim loại cổ có bầu chứa nhiên liệu, thân đứng, quai xách phía trên và buồng sáng ở giữa.",
-    "floor": 2,
-    "frame": 2,
+    "name": "Đèn măng xông của ông Huỳnh Trưng",
+    "shortName": "Đèn măng xông của ông Huỳnh Trưng",
+    "era": "Thế kỷ XX",
+    "shortDesc": "Đèn do ông Huỳnh Trưng hiến tặng, gắn với việc liên lạc ở khu vực Nước Mặn từ năm 1967.",
+    "fullDesc": "Chiếc đèn măng xông được ông Huỳnh Trưng hiến tặng. Theo hồ sơ của bảo tàng, ông đã dùng chiếc đèn này làm tín hiệu liên lạc trong thời chiến. Câu chuyện hiện vật được ghi nhận gắn với khu vực Nước Mặn từ năm 1967.",
+    "visualDesc": "Đèn gắn trên bầu tròn màu xanh sẫm, khung đứng hở ở giữa, quai dây và vòng tròn kim loại phía trên.",
+    "floor": null,
+    "frame": 1,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": true,
+    "photoKey": "denco",
+    "photoFile": "images/artifacts/denco.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/yan-mang-xing",
     "audio": {
-      "vi": "denco",
+      "vi": null,
       "en": null
     },
     "transcript": {
-      "vi": "Không gian Đèn cổ và trầm hương xứ Quảng tại Tầng 2 tôn vinh nghề khai thác, chế tác trầm hương truyền thống của vùng đất Quảng Nam Đà Nẵng cùng bộ sưu tập đèn cổ qua các thời kỳ.",
-      "en": "The Antique Lamps and Quang Nam Agarwood gallery on Floor 2 celebrates the region’s prized agarwood heritage alongside historic bronze and ceramic lamps."
+      "vi": "Chiếc đèn măng xông được ông Huỳnh Trưng hiến tặng. Theo hồ sơ của bảo tàng, ông đã dùng chiếc đèn này làm tín hiệu liên lạc trong thời chiến. Câu chuyện hiện vật được ghi nhận gắn với khu vực Nước Mặn từ năm 1967.",
+      "en": "Huynh Trung donated this pressure lantern. According to the museum record, he used it for signaling during the war. Its documented history is linked to the Nuoc Man area from 1967."
     },
-    "en": {
-      "shortName": "Antique lamps & agarwood",
-      "title": "Antique Lamps and Quang Nam Agarwood",
-      "era": "17th–20th centuries",
-      "room": "Lamps and Agarwood Gallery • Floor 2",
-      "shortDesc": "Antique lamps and the agarwood traditions of the Quang Nam and Da Nang region.",
-      "fullDesc": "The gallery presents the history of harvesting and working with agarwood in the region. It also features bronze and ceramic lamps spanning several historical periods.",
-      "followUps": [
-        "What is Quang Nam agarwood known for?",
-        "What else is on Floor 2?",
-        "Where is the lamps and agarwood gallery?"
+    "aliases": [],
+    "facts": {
+      "purpose": [
+        "Theo hồ sơ, ông Huỳnh Trưng đã dùng đèn làm tín hiệu liên lạc trong thời chiến.",
+        "According to the museum, Huynh Trung used the lamp for signaling during the war."
       ]
     },
-    "shortName": "Đèn cổ & Trầm hương",
-    "room": "Đèn cổ & Trầm hương - Tầng 2",
-    "mapNodeId": "f2_agarwood",
-    "photoKey": "denco",
-    "fullDesc": "Xứ Quảng nổi tiếng từ ngàn xưa với sản vật Trầm hương quý hiếm. Tại Tầng 2, không gian Đèn cổ và trầm hương xứ Quảng kết hợp ánh sáng ấm áp từ các cây đèn đồng, đèn gốm cổ với hương trầm thanh khiết tạo nên trải nghiệm văn hóa sâu lắng.",
-    "followUps": [
-      "Trầm hương xứ Quảng nổi tiếng như thế nào?",
-      "Tầng 2 có những chủ đề trưng bày nào?",
-      "Chỉ đường tới phòng Đèn cổ & Trầm hương"
-    ]
+    "en": {
+      "title": "Huynh Trung’s pressure lantern",
+      "shortName": "Huynh Trung’s pressure lantern",
+      "era": "20th century",
+      "shortDesc": "A lamp donated by Huynh Trung, associated with communications around Nuoc Man from 1967.",
+      "fullDesc": "Huynh Trung donated this pressure lantern. According to the museum record, he used it for signaling during the war. Its documented history is linked to the Nuoc Man area from 1967.",
+      "room": "Collection record"
+    }
   },
   {
-    "id": "soldier-uniform",
-    "name": "Bộ quần áo",
-    "era": null,
-    "shortDesc": "Áo có cổ, hai túi có nắp và chiếc quần được gấp gọn bên dưới.",
-    "visualDesc": "Áo vải xanh ô liu có cổ, hàng cúc, hai túi ngực có nắp; quần vải cùng màu gấp phía dưới.",
+    "id": "agate-jewelry",
+    "name": "Trang sức mã não Sa Huỳnh",
+    "shortName": "Trang sức mã não Sa Huỳnh",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Trang sức bằng mã não tìm thấy khi khai quật khu mộ chum Gò Đình năm 1980.",
+    "fullDesc": "Các món trang sức mã não trong hồ sơ được thu thập ở Gò Đình trong đợt khai quật năm 1980. Người Sa Huỳnh dùng mã não để làm chuỗi hạt và những kiểu trang sức khác. Những vật nhỏ này cho thấy đồ trang sức có vai trò trong đời sống và tập tục của cộng đồng.",
+    "visualDesc": null,
     "floor": null,
-    "frame": 1,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "agate-jewelry",
+    "photoFile": "images/artifacts/agate-jewelry.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/trang-sc-ma-nao",
     "audio": {
-      "vi": "soldier-uniform",
-      "en": "soldier-uniform-en"
+      "vi": null,
+      "en": null
     },
     "transcript": {
-      "vi": "Đây là bộ quần áo trong ảnh minh họa đồ dùng người lính. Bạn có thể quan sát cổ áo, hàng nút phía trước và hai túi có nắp ở ngực. Chiếc quần được gấp gọn bên dưới.",
-      "en": "This folded uniform is part of the illustrated set of a soldier’s belongings. Look for the collar, the row of buttons and two flap pockets on the chest. The trousers are folded underneath."
+      "vi": "Các món trang sức mã não trong hồ sơ được thu thập ở Gò Đình trong đợt khai quật năm 1980. Người Sa Huỳnh dùng mã não để làm chuỗi hạt và những kiểu trang sức khác. Những vật nhỏ này cho thấy đồ trang sức có vai trò trong đời sống và tập tục của cộng đồng.",
+      "en": "The agate jewelry in this record was recovered at Go Dinh during the 1980 excavation. Sa Huynh people used agate for beads and other jewelry. These small objects help illustrate jewelry’s place in social life and customs."
     },
-    "photoKey": "soldierUniform",
-    "shortName": "Bộ quần áo",
-    "fullDesc": "Ảnh minh họa cho thấy một bộ quần áo màu xanh ô liu. Hãy nhìn phần cổ áo, hàng nút và hai túi có nắp ở ngực. Đây là những chi tiết dễ nhận ra khi quan sát trang phục trong khung hình.",
-    "story": {
-      "question": "Bộ quần áo này có gì đặc biệt?",
-      "answer": "Bạn nhìn hai túi ở ngực áo xem, cả hai đều có nắp đấy. Tôi thích bắt đầu câu chuyện từ những chi tiết nhỏ như thế. Cổ áo, hàng cúc rồi đến cách gấp quần, nhìn một lúc là thấy nhiều thứ để hỏi lắm!"
+    "aliases": [
+      "hạt mã não",
+      "vòng mã não",
+      "agate beads"
+    ],
+    "facts": {
+      "material": [
+        "Chất liệu là đá mã não.",
+        "The jewelry is made of agate."
+      ]
     },
     "en": {
-      "shortName": "Uniform",
-      "shortDesc": "A collared shirt with two flap pockets and folded trousers underneath.",
-      "fullDesc": "The illustration shows an olive-green uniform. Look at the collar, the row of buttons and the two flap pockets on the chest. These are useful details to look for when examining the outfit.",
-      "story": {
-        "question": "What stands out about the uniform?",
-        "answer": "See the two chest pockets? Both have flaps. I like to start with little details like those. The collar, buttons and even the way the trousers are folded can give us something to talk about."
-      },
-      "title": "Uniform",
-      "room": "Illustrated kit"
+      "title": "Sa Huynh agate jewelry",
+      "shortName": "Sa Huynh agate jewelry",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "Agate jewelry recovered at the Go Dinh burial site in 1980.",
+      "fullDesc": "The agate jewelry in this record was recovered at Go Dinh during the 1980 excavation. Sa Huynh people used agate for beads and other jewelry. These small objects help illustrate jewelry’s place in social life and customs.",
+      "room": "Collection record"
     },
-    "room": "Bộ đồ dùng mô phỏng",
-    "keywords": "\\b(?:ao|quan|trang phuc|uniform|shirt|trousers|clothes)\\b"
+    "visualNotes": "Một nhóm hạt đá nhỏ dùng làm trang sức; nhìn hình dáng, độ bóng và tông màu đá trong ảnh tư liệu."
   },
   {
-    "id": "soldier-helmet",
-    "name": "Mũ cối",
-    "era": null,
-    "shortDesc": "Chiếc mũ màu xanh có dáng vòm, vành rộng và phần bọc vải.",
-    "visualDesc": "Mũ cối xanh ô liu bọc vải, chóp tròn dạng vòm, vành rộng, có đường may và lỗ nhỏ hai bên.",
+    "id": "ring-earring",
+    "name": "Khuyên tai hình vành khăn",
+    "shortName": "Khuyên tai hình vành khăn",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Khuyên đá dạng vòng dẹt có khe hở, sưu tầm khi khai quật Gò Quảng năm 1983.",
+    "fullDesc": "Khuyên tai hình vành khăn là một kiểu trang sức của văn hóa Sa Huỳnh. Mẫu này làm bằng đá, có dạng vòng nhỏ bản rộng và dẹt với một khe hở trên thân. Hiện vật được sưu tầm trong đợt khai quật Gò Quảng năm 1983.",
+    "visualDesc": null,
     "floor": null,
-    "frame": 1,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "ring-earring",
+    "photoFile": "images/artifacts/ring-earring.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/khuyan-tai-henh-vanh-khan",
     "audio": {
-      "vi": "soldier-helmet",
-      "en": "soldier-helmet-en"
+      "vi": null,
+      "en": null
     },
     "transcript": {
-      "vi": "Chiếc mũ cối trong ảnh có dáng vòm và vành rộng. Vành mũ giúp che nắng cho mặt. Hãy nhìn lớp vải màu xanh, các đường may và những lỗ nhỏ ở hai bên mũ.",
-      "en": "This pith helmet has a rounded crown and a broad brim that shades the face. Look closely at its green fabric cover, stitching and the small holes on the sides."
+      "vi": "Khuyên tai hình vành khăn là một kiểu trang sức của văn hóa Sa Huỳnh. Mẫu này làm bằng đá, có dạng vòng nhỏ bản rộng và dẹt với một khe hở trên thân. Hiện vật được sưu tầm trong đợt khai quật Gò Quảng năm 1983.",
+      "en": "The slit-ring earring is a Sa Huynh jewelry form. This stone example has a small, broad, flat ring with a slit. It was collected during the 1983 excavation at Go Quang."
     },
-    "photoKey": "soldierHelmet",
-    "shortName": "Mũ cối",
-    "fullDesc": "Mũ cối trong ảnh có chóp tròn, vành rộng và lớp vải bọc. Vành nhô ra giúp che nắng cho mặt. Nhìn kỹ, bạn có thể thấy các đường nối vải và những lỗ nhỏ ở hai bên.",
-    "story": {
-      "question": "Chiếc mũ cối có gì đặc biệt?",
-      "answer": "Các bạn có thấy cái vành nhô ra quanh mũ không? Đứng ngoài trời nắng, có bóng râm trước mặt là dễ chịu hơn nhiều. Hai bên còn có mấy lỗ nhỏ nữa. Nhìn gần mới thấy rõ!"
+    "aliases": [
+      "khuyên vành khăn",
+      "khuyên tai có khe",
+      "slit ring"
+    ],
+    "facts": {
+      "material": [
+        "Chiếc khuyên được làm bằng đá.",
+        "The earring is made of stone."
+      ]
     },
     "en": {
-      "shortName": "Pith helmet",
-      "shortDesc": "A fabric-covered green helmet with a rounded crown and wide brim.",
-      "fullDesc": "The illustrated pith helmet has a rounded crown, broad brim and fabric cover. The brim shades the face. Look closely and you can spot the seams and small holes on the sides.",
-      "story": {
-        "question": "What is special about the pith helmet?",
-        "answer": "Can you see how the brim sticks out all the way around? A bit of shade over your face makes a difference when you’re out in the sun. There are little holes on the sides, too. Take a closer look!"
-      },
-      "title": "Pith helmet",
-      "room": "Illustrated kit"
+      "title": "Slit-ring earring",
+      "shortName": "Slit-ring earring",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "A flat stone ring with an open slit, recovered at Go Quang in 1983.",
+      "fullDesc": "The slit-ring earring is a Sa Huynh jewelry form. This stone example has a small, broad, flat ring with a slit. It was collected during the 1983 excavation at Go Quang.",
+      "room": "Collection record"
     },
-    "room": "Bộ đồ dùng mô phỏng",
-    "keywords": "\\b(?:mu|non|coi|helmet|brim)\\b"
+    "visualNotes": "Khuyên đá hình vòng dẹt, bản rộng, có khoảng hở cắt qua một bên vành."
   },
   {
-    "id": "soldier-tobacco",
-    "name": "Gói thuốc lá",
-    "era": null,
-    "shortDesc": "Một vỏ bao bằng giấy với các nếp gấp và mép đã sờn.",
-    "visualDesc": "Gói giấy nhỏ dạng hộp chữ nhật, có nếp gấp ở góc và các mép giấy ngả màu, sờn.",
+    "id": "three-point-earring",
+    "name": "Khuyên tai ba mấu",
+    "shortName": "Khuyên tai ba mấu",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Trang sức thủy tinh có ba mấu nhọn và một móc nhỏ, khai quật tại Gò Đình.",
+    "fullDesc": "Khuyên tai ba mấu bằng thủy tinh, có ba mấu nhọn và một móc nhỏ. Hiện vật được tìm thấy tại khu mộ chum Gò Đình năm 1980. Khi xem ảnh, hãy đếm các mấu để phân biệt chiếc khuyên này với khuyên hình vành khăn.",
+    "visualDesc": null,
     "floor": null,
-    "frame": 1,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "three-point-earring",
+    "photoFile": "images/artifacts/three-point-earring.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/khuyan-tai-ba-mau",
     "audio": {
-      "vi": "soldier-tobacco",
-      "en": "soldier-tobacco-en"
+      "vi": null,
+      "en": null
     },
     "transcript": {
-      "vi": "Đây là gói thuốc lá bằng giấy trong ảnh minh họa. Bạn hãy chú ý đến những nếp gấp ở góc và các mép giấy đã sờn. Các chi tiết nhỏ này giúp kể câu chuyện về đồ dùng thường ngày.",
-      "en": "This illustrated cigarette packet is made of paper. Notice the folds at the corners and the worn edges. These small details can help tell a story about everyday belongings."
+      "vi": "Khuyên tai ba mấu bằng thủy tinh, có ba mấu nhọn và một móc nhỏ. Hiện vật được tìm thấy tại khu mộ chum Gò Đình năm 1980. Khi xem ảnh, hãy đếm các mấu để phân biệt chiếc khuyên này với khuyên hình vành khăn.",
+      "en": "This glass earring has three pointed projections and a small hook. It was recovered at the Go Dinh jar-burial site in 1980. Counting the projections helps distinguish it from a slit-ring earring."
     },
-    "photoKey": "soldierTobacco",
-    "shortName": "Gói thuốc lá",
-    "fullDesc": "Vỏ bao giấy trong ảnh được dựng để minh họa một vật dụng nhỏ của đời sống thường ngày. Bề mặt, nếp gấp và mép giấy đã sờn là các chi tiết có thể quan sát khi nhìn gần.",
-    "story": {
-      "question": "Vì sao có gói thuốc lá trong bộ đồ dùng?",
-      "answer": "Món nhỏ thế này dễ bị bỏ qua lắm. Tôi muốn các bạn thử nhìn những nếp gấp và mép giấy sờn. Khi đặt cạnh áo và mũ, nó giúp mình hình dung thêm về đồ dùng đời thường ngày ấy."
+    "aliases": [
+      "khuyên ba mấu",
+      "three point earring"
+    ],
+    "facts": {
+      "material": [
+        "Bảo tàng ghi chất liệu là thủy tinh.",
+        "The museum identifies the material as glass."
+      ]
     },
     "en": {
-      "shortName": "Cigarette packet",
-      "shortDesc": "A paper packet with folded corners and worn edges.",
-      "fullDesc": "The paper packet was created as an illustration of a small everyday item. Its surface, folds and worn edges are details you can examine up close.",
-      "story": {
-        "question": "Why is there a cigarette packet in the set?",
-        "answer": "It’s easy to miss something this small. Look at the folds and the worn paper edges. Beside the uniform and helmet, it gives us another detail about the things people carried back then."
-      },
-      "title": "Cigarette packet",
-      "room": "Illustrated kit"
+      "title": "Three-projection earring",
+      "shortName": "Three-projection earring",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "A glass ornament with three pointed projections and a small hook, excavated at Go Dinh.",
+      "fullDesc": "This glass earring has three pointed projections and a small hook. It was recovered at the Go Dinh jar-burial site in 1980. Counting the projections helps distinguish it from a slit-ring earring.",
+      "room": "Collection record"
     },
-    "room": "Bộ đồ dùng mô phỏng",
-    "keywords": "\\b(?:thuoc la|goi thuoc|bao thuoc|bao giay|cigarette|tobacco|packet)\\b"
+    "visualNotes": "Đồ trang sức nhỏ, thân có ba mấu nhọn và một móc nhỏ."
   },
   {
-    "id": "soldier-canteen",
-    "name": "Bình tông đựng nước",
-    "era": null,
-    "shortDesc": "Bình đựng nước có bao vải và quai mang.",
-    "visualDesc": "Bình nước thân dẹt, bo tròn, có nắp nhỏ ở đỉnh, bao vải sẫm và quai dài.",
+    "id": "pot-burial",
+    "name": "Mộ nồi Khuê Bắc",
+    "shortName": "Mộ nồi Khuê Bắc",
+    "era": "Thế kỷ II TCN–II SCN",
+    "shortDesc": "Hiện vật gốm từ cuộc khai quật Vườn đình Khuê Bắc, Ngũ Hành Sơn, tháng 5 năm 2001.",
+    "fullDesc": "Mộ nồi được tìm thấy khi khai quật di chỉ Vườn đình Khuê Bắc, Ngũ Hành Sơn, tháng năm năm 2001. Hồ sơ đặt hiện vật từ thế kỷ hai trước Công nguyên đến thế kỷ hai sau Công nguyên. Nồi cao mười bảy xăng ti mét và đường kính hai mươi chín xăng ti mét.",
+    "visualDesc": null,
     "floor": null,
-    "frame": 1,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "pot-burial",
+    "photoFile": "images/artifacts/pot-burial.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/mo-noi",
     "audio": {
-      "vi": "soldier-canteen",
-      "en": "soldier-canteen-en"
+      "vi": null,
+      "en": null
     },
     "transcript": {
-      "vi": "Đây là bình tông đựng nước trong bộ đồ dùng minh họa. Bạn có thể nhìn thấy thân bình dẹt, bao vải và quai để mang bình khi đi đường.",
-      "en": "This illustrated kit includes a water canteen. Notice its flat body, fabric cover and carrying strap."
+      "vi": "Mộ nồi được tìm thấy khi khai quật di chỉ Vườn đình Khuê Bắc, Ngũ Hành Sơn, tháng năm năm 2001. Hồ sơ đặt hiện vật từ thế kỷ hai trước Công nguyên đến thế kỷ hai sau Công nguyên. Nồi cao mười bảy xăng ti mét và đường kính hai mươi chín xăng ti mét.",
+      "en": "The burial pot was recovered at the Khue Bac communal-house garden site in May 2001. The museum dates it from the second century BCE to the second century CE. It is 17 cm high and 29 cm in diameter."
     },
-    "photoKey": "soldierCanteen",
-    "shortName": "Bình tông",
-    "room": "Bộ đồ dùng mô phỏng",
-    "fullDesc": "Bình tông trong ảnh minh họa có thân dẹt, bao vải và quai. Người mang có thể dùng quai để đeo bình khi đi lại.",
-    "story": {
-      "question": "Bình tông dùng để làm gì?",
-      "answer": "À, đó là bình đựng nước đấy các bạn. Xem cái quai kia kìa. Có quai thì mang theo khi đi bộ tiện hơn nhiều."
+    "aliases": [
+      "mộ nồi",
+      "nồi khuê bắc",
+      "burial pot"
+    ],
+    "facts": {
+      "dimensions": [
+        "Cao 17 cm và đường kính 29 cm.",
+        "17 cm tall and 29 cm in diameter."
+      ]
     },
     "en": {
-      "shortName": "Water canteen",
-      "title": "Water canteen",
-      "room": "Illustrated kit",
-      "shortDesc": "A water bottle with a fabric cover and carrying strap.",
-      "fullDesc": "The illustrated canteen has a flat body, a fabric cover and a strap that makes it easier to carry.",
-      "story": {
-        "question": "What was the canteen used for?",
-        "answer": "Ah, that’s a water bottle. See the strap there? It made the bottle much easier to carry on a walk."
-      }
+      "title": "Khue Bac burial pot",
+      "shortName": "Khue Bac burial pot",
+      "era": "2nd century BCE–2nd century CE",
+      "shortDesc": "A ceramic object excavated at the Khue Bac communal-house garden site in May 2001.",
+      "fullDesc": "The burial pot was recovered at the Khue Bac communal-house garden site in May 2001. The museum dates it from the second century BCE to the second century CE. It is 17 cm high and 29 cm in diameter.",
+      "room": "Collection record"
     },
-    "keywords": "\\b(?:binh tong|binh nuoc|bi dong|canteen|water bottle)\\b"
+    "visualNotes": "Nồi gốm thấp, thân phình, miệng rộng, tông đất."
+  },
+  {
+    "id": "tabhing-jar",
+    "name": "Mộ chum Tabhing",
+    "shortName": "Mộ chum Tabhing",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Chum và nắp bằng đất nung, khai quật tại Nam Giang năm 1986.",
+    "fullDesc": "Mộ chum Tabhing được khai quật ở Nam Giang năm 1986. Chum cao bảy mươi xăng ti mét, đường kính năm mươi hai xăng ti mét. Phần nắp được đo riêng. Chum táng là một trong những loại hiện vật giúp tìm hiểu tập tục mai táng của cư dân Sa Huỳnh.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "tabhing-jar",
+    "photoFile": "images/artifacts/tabhing-jar.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/mo-chum-tabhing",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Mộ chum Tabhing được khai quật ở Nam Giang năm 1986. Chum cao bảy mươi xăng ti mét, đường kính năm mươi hai xăng ti mét. Phần nắp được đo riêng. Chum táng là một trong những loại hiện vật giúp tìm hiểu tập tục mai táng của cư dân Sa Huỳnh.",
+      "en": "The Tabhing burial jar was excavated at Nam Giang in 1986. The jar is 70 cm high and 52 cm across, with the lid measured separately. Jar burials help researchers study Sa Huynh funerary customs."
+    },
+    "aliases": [
+      "mộ chum",
+      "chum tabhing",
+      "chum táng",
+      "tabhing jar",
+      "burial jar"
+    ],
+    "facts": {
+      "material": [
+        "Chum được làm bằng đất nung.",
+        "The jar is made of earthenware."
+      ],
+      "dimensions": [
+        "Thân chum cao 70 cm, đường kính 52 cm. Nắp cao 24 cm, đường kính 45 cm.",
+        "The jar is 70 cm high and 52 cm across. The lid is 24 cm high and 45 cm across."
+      ]
+    },
+    "en": {
+      "title": "Tabhing burial jar",
+      "shortName": "Tabhing burial jar",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "Earthenware jar and lid from an excavation at Nam Giang in 1986.",
+      "fullDesc": "The Tabhing burial jar was excavated at Nam Giang in 1986. The jar is 70 cm high and 52 cm across, with the lid measured separately. Jar burials help researchers study Sa Huynh funerary customs.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Chum đất nung thân lớn màu nâu, có nắp riêng."
+  },
+  {
+    "id": "spindle-whorls",
+    "name": "Dọi xe chỉ Sa Huỳnh",
+    "shortName": "Dọi xe chỉ Sa Huỳnh",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Dụng cụ đất nung dùng khi xe chỉ, được khai quật tại Đại Lãnh năm 1979.",
+    "fullDesc": "Các dọi xe chỉ bằng đất nung được khai quật tại Đại Lãnh, Đại Lộc năm 1979. Dọi là dụng cụ dùng trong quá trình xe sợi. Đây là một trong những dấu tích bảo tàng dùng để giới thiệu nghề dệt của cư dân Sa Huỳnh.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "spindle-whorls",
+    "photoFile": "images/artifacts/spindle-whorls.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/doi-xe-che",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Các dọi xe chỉ bằng đất nung được khai quật tại Đại Lãnh, Đại Lộc năm 1979. Dọi là dụng cụ dùng trong quá trình xe sợi. Đây là một trong những dấu tích bảo tàng dùng để giới thiệu nghề dệt của cư dân Sa Huỳnh.",
+      "en": "These earthenware spindle whorls were excavated at Dai Lanh, Dai Loc in 1979. They were used in spinning thread and are evidence used by the museum to explain Sa Huynh textile production."
+    },
+    "aliases": [
+      "dọi xe chỉ",
+      "dọi se chỉ",
+      "dọi xe sợi",
+      "spindle whorl"
+    ],
+    "facts": {
+      "material": [
+        "Các dọi trong hồ sơ làm bằng đất nung.",
+        "The spindle whorls in the record are made of earthenware."
+      ],
+      "purpose": [
+        "Dọi xe chỉ là dụng cụ dùng để xe sợi, liên quan đến nghề dệt.",
+        "Spindle whorls were tools for spinning thread, part of textile production."
+      ]
+    },
+    "en": {
+      "title": "Sa Huynh spindle whorls",
+      "shortName": "Sa Huynh spindle whorls",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "Earthenware spinning tools excavated at Dai Lanh in 1979.",
+      "fullDesc": "These earthenware spindle whorls were excavated at Dai Lanh, Dai Loc in 1979. They were used in spinning thread and are evidence used by the museum to explain Sa Huynh textile production.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Các chi tiết đất nung nhỏ, tròn, có lỗ ở giữa để gắn vào trục xe sợi."
+  },
+  {
+    "id": "glass-bangle",
+    "name": "Vòng đeo tay thủy tinh",
+    "shortName": "Vòng đeo tay thủy tinh",
+    "era": "Khoảng 2.500–2.000 năm trước",
+    "shortDesc": "Vòng thủy tinh xanh lục có dấu mài bóng, khai quật tại Đại Lãnh năm 1980.",
+    "fullDesc": "Vòng đeo tay thủy tinh màu xanh lục thuộc văn hóa Sa Huỳnh, tìm thấy tại Đại Lãnh, Đại Lộc năm 1980. Hồ sơ bảo tàng ghi vòng có tiết diện bán nguyệt và còn dấu mài, đánh bóng. Đường kính vòng là sáu phẩy chín xăng ti mét.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "glass-bangle",
+    "photoFile": "images/artifacts/glass-bangle.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ving-yeo-tay-thuy-tinh",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Vòng đeo tay thủy tinh màu xanh lục thuộc văn hóa Sa Huỳnh, tìm thấy tại Đại Lãnh, Đại Lộc năm 1980. Hồ sơ bảo tàng ghi vòng có tiết diện bán nguyệt và còn dấu mài, đánh bóng. Đường kính vòng là sáu phẩy chín xăng ti mét.",
+      "en": "This green Sa Huynh glass bangle was found at Dai Lanh, Dai Loc in 1980. The museum records its semicircular cross-section and traces of grinding and polishing. It is 6.9 cm in diameter."
+    },
+    "aliases": [
+      "vòng tay thủy tinh",
+      "vòng thủy tinh xanh",
+      "glass bracelet"
+    ],
+    "facts": {
+      "material": [
+        "Vòng được làm bằng thủy tinh xanh lục.",
+        "The bangle is made of green glass."
+      ],
+      "dimensions": [
+        "Đường kính 6,9 cm và dày 1,4 cm.",
+        "It is 6.9 cm across and 1.4 cm thick."
+      ]
+    },
+    "en": {
+      "title": "Glass bangle",
+      "shortName": "Glass bangle",
+      "era": "About 2,500–2,000 years ago",
+      "shortDesc": "A green glass bracelet with traces of polishing, excavated at Dai Lanh in 1980.",
+      "fullDesc": "This green Sa Huynh glass bangle was found at Dai Lanh, Dai Loc in 1980. The museum records its semicircular cross-section and traces of grinding and polishing. It is 6.9 cm in diameter.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Vòng khép kín màu xanh lục, tiết diện bán nguyệt, bề mặt có dấu mài."
+  },
+  {
+    "id": "dien-hai-decree",
+    "name": "Sắc phong Thự thủ thành Điện Hải",
+    "shortName": "Sắc phong Thự thủ thành Điện Hải",
+    "era": "1840",
+    "shortDesc": "Văn bản năm Minh Mạng thứ 21 ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức.",
+    "fullDesc": "Sắc phong ghi việc ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức vào năm 1840, năm Minh Mạng thứ hai mươi mốt. Tờ giấy hình chữ nhật màu vàng có chữ đen, dấu triện đỏ và trang trí rồng mây.",
+    "visualDesc": null,
+    "floor": 3,
+    "frame": 1,
+    "room": "Tầng 3",
+    "scanReady": false,
+    "photoKey": "dien-hai-decree",
+    "photoFile": "images/artifacts/dien-hai-decree.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/sac-phong",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Sắc phong ghi việc ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức vào năm 1840, năm Minh Mạng thứ hai mươi mốt. Tờ giấy hình chữ nhật màu vàng có chữ đen, dấu triện đỏ và trang trí rồng mây.",
+      "en": "This 1840 decree records the appointment of Ton That Truc as acting keeper of Dien Hai Citadel in the twenty-first year of Minh Mang’s reign. It is a rectangular yellow paper document with black writing, a red seal and dragon-and-cloud decoration."
+    },
+    "aliases": [
+      "sắc phong",
+      "sắc phong điện hải",
+      "sắc phong tôn thất trức",
+      "royal decree",
+      "dien hai decree"
+    ],
+    "facts": {
+      "material": [
+        "Văn bản được viết trên giấy.",
+        "The decree is written on paper."
+      ],
+      "purpose": [
+        "Sắc phong ghi việc ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức.",
+        "It records Ton That Truc’s appointment as acting keeper of Dien Hai Citadel."
+      ]
+    },
+    "en": {
+      "title": "Royal decree for the acting keeper of Dien Hai Citadel",
+      "shortName": "Royal decree for the acting keeper of Dien Hai Citadel",
+      "era": "1840",
+      "shortDesc": "An 1840 document appointing Ton That Truc acting keeper of Dien Hai Citadel.",
+      "fullDesc": "This 1840 decree records the appointment of Ton That Truc as acting keeper of Dien Hai Citadel in the twenty-first year of Minh Mang’s reign. It is a rectangular yellow paper document with black writing, a red seal and dragon-and-cloud decoration.",
+      "room": "Floor 3"
+    },
+    "visualNotes": "Tờ giấy vàng hình chữ nhật dài, nhiều hàng chữ đen, dấu triện đỏ và trang trí rồng mây."
+  },
+  {
+    "id": "thu-that-dieu",
+    "name": "Sách Thư thất điều",
+    "shortName": "Sách Thư thất điều",
+    "era": "Bản in năm 1958",
+    "shortDesc": "Bản in lại năm 1958 của bức thư Phan Châu Trinh gửi vua Khải Định ở Paris năm 1922.",
+    "fullDesc": "Cuốn sách trong hồ sơ là bản in lại Thư thất điều, xuất bản năm 1958. Bức thư gốc được Phan Châu Trinh gửi vua Khải Định ở Paris năm 1922. Bà Lê Thị Kinh, cháu ngoại Phan Châu Trinh, hiến tặng bản in cho bảo tàng năm 1990.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 1,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "thu-that-dieu",
+    "photoFile": "images/artifacts/thu-that-dieu.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/sach-th-that-yiau",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Cuốn sách trong hồ sơ là bản in lại Thư thất điều, xuất bản năm 1958. Bức thư gốc được Phan Châu Trinh gửi vua Khải Định ở Paris năm 1922. Bà Lê Thị Kinh, cháu ngoại Phan Châu Trinh, hiến tặng bản in cho bảo tàng năm 1990.",
+      "en": "The museum’s copy is a 1958 reprint of the Letter of Seven Charges. Phan Chau Trinh sent the original letter to Emperor Khai Dinh in Paris in 1922. His granddaughter Le Thi Kinh donated the edition to the museum in 1990."
+    },
+    "aliases": [
+      "thư thất điều",
+      "bảy điều",
+      "letter of seven charges",
+      "thu that dieu"
+    ],
+    "facts": {
+      "material": [
+        "Bản in là hiện vật bằng giấy.",
+        "The edition is a paper artifact."
+      ],
+      "history": [
+        "Phan Châu Trinh gửi bức thư gốc năm 1922. Hiện vật là bản in năm 1958.",
+        "Phan Chau Trinh sent the original letter in 1922. This object is a 1958 edition."
+      ]
+    },
+    "en": {
+      "title": "Letter of Seven Charges book",
+      "shortName": "Letter of Seven Charges book",
+      "era": "1958 edition",
+      "shortDesc": "A 1958 reprint of the letter Phan Chau Trinh sent to Emperor Khai Dinh in Paris in 1922.",
+      "fullDesc": "The museum’s copy is a 1958 reprint of the Letter of Seven Charges. Phan Chau Trinh sent the original letter to Emperor Khai Dinh in Paris in 1922. His granddaughter Le Thi Kinh donated the edition to the museum in 1990.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Cuốn sách giấy cũ, xem tên nhan đề trên bìa hoặc trang sách trong ảnh tư liệu."
+  },
+  {
+    "id": "tay-ho-sante",
+    "name": "Tây Hồ và Santé thi tập",
+    "shortName": "Tây Hồ và Santé thi tập",
+    "era": "Bản phát hành năm 1961",
+    "shortDesc": "Tập thơ Phan Châu Trinh, được Lê Ấm biên soạn và phát hành lại năm 1961.",
+    "fullDesc": "Tập sách gồm các bài thơ gắn với Phan Châu Trinh, trong đó có thơ viết thời gian ông bị giam ở ngục Santé. Hồ sơ bảo tàng ghi Lê Ấm biên soạn và phát hành lại tập thơ năm 1961. Bà Lê Thị Kinh hiến tặng bản sách năm 1990.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 1,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "tay-ho-sante",
+    "photoFile": "images/artifacts/tay-ho-sante.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/tay-ho-va-santa-thi-tap",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Tập sách gồm các bài thơ gắn với Phan Châu Trinh, trong đó có thơ viết thời gian ông bị giam ở ngục Santé. Hồ sơ bảo tàng ghi Lê Ấm biên soạn và phát hành lại tập thơ năm 1961. Bà Lê Thị Kinh hiến tặng bản sách năm 1990.",
+      "en": "This volume brings together poems associated with Phan Chau Trinh, including work from his imprisonment at Sante prison. The museum records that Le Am edited and reissued the book in 1961. Le Thi Kinh donated the copy in 1990."
+    },
+    "aliases": [
+      "tây hồ thi tập",
+      "santé thi tập",
+      "thơ phan châu trinh",
+      "tay ho and sante"
+    ],
+    "facts": {
+      "history": [
+        "Lê Ấm biên soạn và phát hành lại cuốn sách năm 1961.",
+        "Le Am edited and reissued the book in 1961."
+      ]
+    },
+    "en": {
+      "title": "Tay Ho and Sante poetry volume",
+      "shortName": "Tay Ho and Sante poetry volume",
+      "era": "1961 edition",
+      "shortDesc": "Poems by Phan Chau Trinh edited and reissued by Le Am in 1961.",
+      "fullDesc": "This volume brings together poems associated with Phan Chau Trinh, including work from his imprisonment at Sante prison. The museum records that Le Am edited and reissued the book in 1961. Le Thi Kinh donated the copy in 1990.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Tập sách giấy, đối chiếu nhan đề Tây Hồ và Santé trên ảnh tư liệu."
+  },
+  {
+    "id": "con-ga-prison-door",
+    "name": "Cánh cửa nhà lao Con Gà",
+    "shortName": "Cánh cửa nhà lao Con Gà",
+    "era": "1946–1954",
+    "shortDesc": "Cánh cửa sắt từng thuộc nhà lao Con Gà trên đường Hùng Vương, Đà Nẵng.",
+    "fullDesc": "Cánh cửa sắt thuộc nhà lao Con Gà ở số tám mươi tám Hùng Vương theo hồ sơ bảo tàng. Hiện vật gắn với lịch sử giam giữ tại Đà Nẵng thời thuộc địa. Trung tâm Văn hóa Triển lãm chuyển giao hiện vật cho bảo tàng vào tháng chín năm 1983.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 1,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "con-ga-prison-door",
+    "photoFile": "images/artifacts/con-ga-prison-door.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/canh-ca-nha-to",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Cánh cửa sắt thuộc nhà lao Con Gà ở số tám mươi tám Hùng Vương theo hồ sơ bảo tàng. Hiện vật gắn với lịch sử giam giữ tại Đà Nẵng thời thuộc địa. Trung tâm Văn hóa Triển lãm chuyển giao hiện vật cho bảo tàng vào tháng chín năm 1983.",
+      "en": "The iron door came from Con Ga prison at 88 Hung Vuong Street according to the museum. It documents the history of imprisonment in colonial-era Da Nang. The Cultural Exhibition Center transferred the object to the museum in September 1983."
+    },
+    "aliases": [
+      "cánh cửa nhà tù",
+      "cửa nhà lao con gà",
+      "con ga jail",
+      "prison door"
+    ],
+    "facts": {
+      "material": [
+        "Cánh cửa được làm bằng sắt.",
+        "The door is made of iron."
+      ],
+      "dimensions": [
+        "Hồ sơ ghi cao 190 cm và rộng 160 cm.",
+        "The museum records it as 190 cm tall and 160 cm wide."
+      ]
+    },
+    "en": {
+      "title": "Con Ga prison door",
+      "shortName": "Con Ga prison door",
+      "era": "1946–1954",
+      "shortDesc": "An iron door formerly at Con Ga prison on Hung Vuong Street, Da Nang.",
+      "fullDesc": "The iron door came from Con Ga prison at 88 Hung Vuong Street according to the museum. It documents the history of imprisonment in colonial-era Da Nang. The Cultural Exhibition Center transferred the object to the museum in September 1983.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Cánh cửa lớn bằng sắt, các thanh dọc và chi tiết ngang tạo thành khung."
+  },
+  {
+    "id": "to-ghey-horn",
+    "name": "Kèn Tơghêy người Cơ Tu",
+    "shortName": "Kèn Tơghêy người Cơ Tu",
+    "era": "Cuối thế kỷ XX",
+    "shortDesc": "Kèn sừng trâu dùng trong lễ hội Cơ Tu, sưu tầm tại Tà Lu năm 2002.",
+    "fullDesc": "Kèn Tơghêy làm từ sừng trâu, dùng trong các dịp lễ hội của cộng đồng Cơ Tu. Mẫu trong hồ sơ được sưu tầm ở Tà Lu năm 2002. Theo bảo tàng, kèn là nhạc cụ được trân trọng và gắn với đời sống lễ hội của làng.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "to-ghey-horn",
+    "photoFile": "images/artifacts/to-ghey-horn.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/kan-tghay",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Kèn Tơghêy làm từ sừng trâu, dùng trong các dịp lễ hội của cộng đồng Cơ Tu. Mẫu trong hồ sơ được sưu tầm ở Tà Lu năm 2002. Theo bảo tàng, kèn là nhạc cụ được trân trọng và gắn với đời sống lễ hội của làng.",
+      "en": "The Toghey is a buffalo-horn instrument used at Co Tu festivals. The museum collected this one at Ta Lu in 2002. The record describes the horn as a valued instrument in village ceremonial life."
+    },
+    "aliases": [
+      "kèn tơ ghêy",
+      "tơghêy",
+      "kèn cơ tu",
+      "toghey instrument",
+      "buffalo horn instrument"
+    ],
+    "facts": {
+      "material": [
+        "Thân kèn được làm bằng sừng trâu.",
+        "The body is made from buffalo horn."
+      ],
+      "purpose": [
+        "Kèn được dùng trong các dịp lễ hội của người Cơ Tu.",
+        "The horn is used in Co Tu festivals."
+      ]
+    },
+    "en": {
+      "title": "Co Tu Toghey horn",
+      "shortName": "Co Tu Toghey horn",
+      "era": "Late 20th century",
+      "shortDesc": "A buffalo-horn instrument used in Co Tu festivals, collected at Ta Lu in 2002.",
+      "fullDesc": "The Toghey is a buffalo-horn instrument used at Co Tu festivals. The museum collected this one at Ta Lu in 2002. The record describes the horn as a valued instrument in village ceremonial life.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Thân sừng trâu uốn cong, màu nâu sẫm, một đầu loe, kích thước nhỏ."
+  },
+  {
+    "id": "bark-clothing",
+    "name": "Áo khố vỏ cây người Cơ Tu",
+    "shortName": "Áo khố vỏ cây người Cơ Tu",
+    "era": "2005",
+    "shortDesc": "Bộ trang phục vỏ cây do ông Bríu-Brăm làm cho các dịp lễ hội ở Bhơhôồng.",
+    "fullDesc": "Bộ áo khố vỏ cây do ông Bríu-Brăm ở thôn Bhơhôồng, Đông Giang làm và dùng trong các dịp lễ hội từ năm 2005. Bộ trang phục từng được giới thiệu ở Hà Nội năm 2008. Bảo tàng tiếp nhận hiện vật năm 2010.",
+    "visualDesc": null,
+    "floor": null,
+    "frame": 2,
+    "room": "Hồ sơ bộ sưu tập",
+    "scanReady": false,
+    "photoKey": "bark-clothing",
+    "photoFile": "images/artifacts/bark-clothing.webp",
+    "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ao-kho-v-cay",
+    "audio": {
+      "vi": null,
+      "en": null
+    },
+    "transcript": {
+      "vi": "Bộ áo khố vỏ cây do ông Bríu-Brăm ở thôn Bhơhôồng, Đông Giang làm và dùng trong các dịp lễ hội từ năm 2005. Bộ trang phục từng được giới thiệu ở Hà Nội năm 2008. Bảo tàng tiếp nhận hiện vật năm 2010.",
+      "en": "Briu-Bram of Bhơhôồng village, Dong Giang made this bark outfit for local festivals from 2005. It was exhibited in Hanoi in 2008 and entered the museum collection in 2010."
+    },
+    "aliases": [
+      "áo vỏ cây",
+      "áo khố vỏ cây",
+      "trang phục vỏ cây cơ tu",
+      "bark garment",
+      "bark cloth"
+    ],
+    "facts": {
+      "material": [
+        "Trang phục làm bằng vỏ cây.",
+        "The outfit is made from tree bark."
+      ],
+      "history": [
+        "Ông Bríu-Brăm làm bộ trang phục ở Bhơhôồng. Bảo tàng tiếp nhận năm 2010.",
+        "Briu-Bram made the outfit in Bhơhôồng. It entered the museum collection in 2010."
+      ]
+    },
+    "en": {
+      "title": "Co Tu bark clothing",
+      "shortName": "Co Tu bark clothing",
+      "era": "2005",
+      "shortDesc": "Bark clothing made by Briu-Bram for local festivals in Bhơhôồng village.",
+      "fullDesc": "Briu-Bram of Bhơhôồng village, Dong Giang made this bark outfit for local festivals from 2005. It was exhibited in Hanoi in 2008 and entered the museum collection in 2010.",
+      "room": "Collection record"
+    },
+    "visualNotes": "Bộ trang phục từ vỏ cây màu vàng nâu, áo cổ tròn, không tay và bề mặt sợi thô."
   }
 ]
