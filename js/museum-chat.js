@@ -1,4 +1,4 @@
-function createMuseumChat(knowledge) {
+function createMuseumChat(knowledge, japaneseText = text => text) {
   const topics = new Map(knowledge.topics.map(topic => [topic.id, topic]));
   const defaultTopics = ['hours', 'short-tour', 'floor-1', 'history-1858'];
   const conversationPrompts = {
@@ -11,10 +11,38 @@ function createMuseumChat(knowledge) {
     reveal: ['Cho mình xem đáp án', 'Show me the answer'],
     tour: ['Hỏi về bảo tàng', 'Back to the museum']
   };
-  const pick = (pair, lang) => pair[lang === 'en' ? 1 : 0];
-  const localized = (record, lang) => lang === 'en' ? { ...record, ...record.en } : record;
+  const pick = (pair, lang) => lang === 'ja' ? pair[2] ?? japaneseText(pair[1]) : pair[lang === 'en' ? 1 : 0];
+  const localized = (record, lang) => {
+    if (lang === 'ja') {
+      const translations = Object.entries(record.en || {}).map(([key, text]) => [key, japaneseText(text)]);
+      return { ...record, ...Object.fromEntries(translations) };
+    }
+    return lang === 'en' ? { ...record, ...record.en } : record;
+  };
+
+  const japaneseScript = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u;
+  const japaneseTopicAliases = {
+    hours: ['開館時間', '営業時間', '何時に開', '何時から', '何時まで', '休館日'],
+    tickets: ['入館料', '入場料', 'チケット', '料金', '割引'],
+    address: ['住所', '所在地', '博物館はどこ', '博物館への行き方'],
+    contact: ['電話番号', '連絡先', '連絡方法'], 'short-tour': ['30分', '短時間'],
+    tour: ['見学ルート', '回り方', 'おすすめの順路'], 'floor-1': ['1階'], 'floor-2': ['2階'], 'floor-3': ['3階'],
+    'history-1858': ['1858年'], citadel: ['ディエンハイ城'], liberation: ['解放'],
+    ceramics: ['染付'], betel: ['キンマ'], agarwood: ['沈香'], community: ['民族の文化'],
+    kids: ['子ども', '子供'], access: ['車いす', '車椅子', 'バリアフリー'], photos: ['撮影', 'フラッシュ'],
+    scanner: ['スキャン方法', 'スキャンするには'], nearby: ['近くの観光', '周辺'], 'cham-museum': ['チャム彫刻博物館'],
+    'dragon-bridge': ['ドラゴン橋', '龍の橋'], sky: ['空はなぜ青', '空が青'], 'day-night': ['昼と夜'], capital: ['首都']
+  };
+  const japaneseArtifactAliases = {
+    cannon: ['大砲'], sahuynh: ['双獣頭形耳飾り', '双頭の耳飾り'], kendy: ['ケンディ'],
+    hondadame: ['ホンダデイム', 'ホンダ・デイム'], cotu: ['村の門の木像'], ghebau: ['ゲーバウ', '帆船の模型'],
+    chudau: ['チューダウ陶器'], denco: ['圧力式ランプ'], 'dien-hai-decree': ['勅書'], 'to-ghey-horn': ['トーゲイ']
+  };
 
   function normalize(text) {
+    if (japaneseScript.test(text)) {
+      return text.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '').trim();
+    }
     return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
   }
@@ -37,6 +65,10 @@ function createMuseumChat(knowledge) {
       if (!original) continue;
       const alias = normalize(original);
       if (!alias) continue;
+      if (japaneseScript.test(alias)) {
+        if (query.includes(alias)) strongest = Math.max(strongest, 2 + Math.min(alias.length, 45) / 50);
+        continue;
+      }
       const parts = alias.split(' ');
       const weight = parts.length * 2 + Math.min(alias.length, 45) / 50;
       if (` ${query} `.includes(` ${alias} `)) {
@@ -59,17 +91,29 @@ function createMuseumChat(knowledge) {
       score: aliasMatch(query, [
         ...(knowledge.artifacts[record.id]?.aliases || []),
         ...(record.aliases || []),
-        record.name, record.shortName, record.en?.shortName, record.en?.title
+        record.name, record.shortName, record.en?.shortName, record.en?.title,
+        ...(japaneseArtifactAliases[record.id] || []), japaneseText(record.en?.shortName), japaneseText(record.en?.title)
       ], true)
     })).filter(match => match.score > 0).sort((a, b) => b.score - a.score);
   }
 
   function topicMatches(query) {
-    return [...topics.values()].map(topic => ({ topic, score: aliasMatch(query, [...topic.aliases, ...topic.question]) }))
+    return [...topics.values()].map(topic => ({ topic, score: aliasMatch(query, [
+      ...topic.aliases, ...topic.question, japaneseText(topic.question[1]), ...(japaneseTopicAliases[topic.id] || [])
+    ]) }))
       .filter(match => match.score > 0).sort((a, b) => b.score - a.score);
   }
 
   function artifactIntent(query) {
+    if (japaneseScript.test(query)) {
+      const intents = [
+        ['card', /写真|画像/], ['audio', /音声|読み上げ|聞かせ/], ['material', /材質|素材|何ででき|何で作/],
+        ['purpose', /使い方|用途|何に使/], ['history', /出土|発見|見つか|歴史|由来/],
+        ['location', /何階|展示場所|どこ/], ['era', /年代|いつの|何世紀|何年前/], ['maker', /誰が作|製作者/],
+        ['dimensions', /大きさ|寸法|サイズ|重さ|高さ/], ['detail', /もっと|詳しく|特徴/]
+      ];
+      return intents.find(([, pattern]) => pattern.test(query))?.[0] ?? null;
+    }
     if (/\b(hinh anh|xem anh|cho xem|show me|show the|photo|picture)\b/.test(query)) return 'card';
     if (/^(?:nghe|cho nghe)$|\b(nghe (?:narration|thuyet minh|doc|giong doc)|cho (?:minh )?nghe|audio|read aloud|listen)\b/.test(query)) return 'audio';
     if (/\b(chat lieu|vat lieu|bang gi|duoc duc bang|lam tu gi|made of|material|carved from)\b/.test(query)) return 'material';
@@ -91,31 +135,35 @@ function createMuseumChat(knowledge) {
     if (!intent || intent === 'card') return { ...base, card: true };
     if (intent === 'audio') return { ...base, text: pick([
       `Mình có phần thuyết minh về ${art.shortName}. Bấm Nghe audio bên dưới nhé.`,
-      `There’s a narration for ${art.shortName}. Tap Listen to audio below.`
+      `There’s a narration for ${art.shortName}. Tap Listen to audio below.`,
+      `「${art.shortName}」の音声解説があります。下のボタンから聞けます。`
     ], lang), audio: true };
     if (intent === 'location') {
       const text = art.floor ? pick([
         `Bạn tìm ${art.shortName} ở tầng ${art.floor}, khu ${art.room.replace(/\s*[-•]\s*Tầng \d+$/i, '')}.`,
-        `Look for ${art.shortName} in ${art.room}.`
+        `Look for ${art.shortName} in ${art.room}.`, `${art.room}で「${art.shortName}」をご覧いただけます。`
       ], lang) : pick([
         `Bảo tàng có hồ sơ về ${art.shortName}. Mình chưa xác nhận được vị trí trưng bày cụ thể.`,
-        `The museum has a record for ${art.shortName}. I don’t have a confirmed display location for this item.`
+        `The museum has a record for ${art.shortName}. I don’t have a confirmed display location for this item.`,
+        `博物館には「${art.shortName}」の資料があります。展示場所は確認できていません。`
       ], lang);
       return { ...base, text, floor: art.floor, mapNodeId: art.mapNodeId };
     }
     if (intent === 'era') return { ...base, text: art.era ? pick([
       `${art.shortName} có niên đại theo danh mục là ${art.era}.`,
-      `The catalog dates ${art.shortName} to ${art.era}.`
+      `The catalog dates ${art.shortName} to ${art.era}.`, `目録によると、「${art.shortName}」は${art.era}のものです。`
     ], lang) : pick([
       `Danh mục chưa ghi niên đại cụ thể cho ${art.shortName}. Mình có thể kể thêm về công dụng hoặc hình dáng của nó.`,
-      `The catalog doesn’t give an exact date for ${art.shortName}. I can tell you about its purpose or appearance.`
+      `The catalog doesn’t give an exact date for ${art.shortName}. I can tell you about its purpose or appearance.`,
+      `「${art.shortName}」の詳しい年代は目録に記載されていません。使い方や形についてはご案内できます。`
     ], lang) };
     const detail = facts[intent] ?? (intent === 'detail' ? facts.purpose : null);
     const text = detail ? pick(detail, lang)
       : intent === 'purpose' || intent === 'detail' ? art.fullDesc
       : pick([
         `Mình chưa có thông tin đủ cụ thể về phần này của ${art.shortName}. Bạn có thể xem nhãn trưng bày hoặc hỏi mình về một chi tiết khác.`,
-        `I don’t have that specific detail about ${art.shortName}. You can check the display label or ask me about another feature.`
+        `I don’t have that specific detail about ${art.shortName}. You can check the display label or ask me about another feature.`,
+        `「${art.shortName}」について、その詳しい情報は確認できていません。展示ラベルを見るか、別の特徴について聞いてみてください。`
       ], lang);
     return { ...base, text };
   }
@@ -137,7 +185,8 @@ function createMuseumChat(knowledge) {
       social: true,
       ...(chatMode !== undefined ? { contextPatch: { chatMode, ...patch } } : {})
     });
-    const is = (key, pattern) => conversationPrompts[key].some(text => normalize(text) === query) || pattern.test(query);
+    const is = (key, pattern) => normalize(pick(conversationPrompts[key], lang)) === query
+      || conversationPrompts[key].some(text => normalize(text) === query) || pattern.test(query);
     const breaks = knowledge.chatBreaks;
     const set = breaks[context.quizIndex] ?? breaks[0];
 
@@ -176,12 +225,15 @@ function createMuseumChat(knowledge) {
         return reply(set.explanation, 'quiz-done');
       }
       const guess = query.replace(/^(?:minh doan|tui doan|chac la|i guess|i think it s) /, '').replace(/ (?:a|ha|dung khong)$/, '');
-      const matches = words => words.some(word => normalize(word) === guess);
+      const matches = words => words.some(word => normalize(word) === guess
+        || (lang === 'ja' && normalize(japaneseText(word)) === guess));
       if (matches([...set.choices[set.correct], ...set.alsoAccept])) {
-        return reply([`Chuẩn rồi! ${set.explanation[0]}`, `You got it! ${set.explanation[1]}`], 'quiz-done');
+        return reply([`Chuẩn rồi! ${set.explanation[0]}`, `You got it! ${set.explanation[1]}`,
+          `正解です！ ${pick(set.explanation, 'ja')}`], 'quiz-done');
       }
       if (set.choices.some(matches)) {
-        return reply([`Chưa đúng, thử thêm lần nữa nhé. ${set.hint[0]}`, `Good try. Here’s a clue: ${set.hint[1]}`], 'quiz', { quizHint: true });
+        return reply([`Chưa đúng, thử thêm lần nữa nhé. ${set.hint[0]}`, `Good try. Here’s a clue: ${set.hint[1]}`,
+          `もう一度考えてみましょう。${pick(set.hint, 'ja')}`], 'quiz', { quizHint: true });
       }
     }
 
@@ -189,7 +241,8 @@ function createMuseumChat(knowledge) {
       .replace(/^(?:(?:minh|tui|toi|tao|to|em|hom nay|nay|dang|thay|cam thay|tu nhien|hoi|rat|qua|i m|i am|i feel|feeling|really|very|so|a bit|kind of) )+/, '');
     const qualifiers = '(?: (?:qua|ghe|lam|lom|vai|qua di|di|nhe|nha|ne|a|luon|that|vay|he|roi|right now|today|so much|really))*';
     const mood = pattern => new RegExp(`^(?:${pattern})${qualifiers}(?: (?:vi|because) .+)?$`).test(casual);
-    const sad = mood('bu+o+n+|bu+n+|tut mood|tam trang te|sad|down|upset|muon khoc|feeling down');
+    const sad = mood('bu+o+n+|bu+n+|tut mood|tam trang te|sad|down|upset|muon khoc|feeling down')
+      || /^(?:今日は)?(?:悲しい|つらい|落ち込んでいる|寂しい)(?:です)?$/.test(query);
     const firstPerson = /\b(minh|tui|toi|to|em|cua (?:minh|tui|toi)|i|my)\b/.test(query);
     const talking = ['listening', 'sad', 'bored', 'tired', 'worried'].includes(context.chatMode);
     const generalQuestion = /^(?:vi sao|tai sao|what is|what are|why|who is|how) /.test(query);
@@ -224,7 +277,7 @@ function createMuseumChat(knowledge) {
         'It sounds like today has been a bit rough. If you’d like to talk, I’m here to listen. What’s been weighing on you?'
       ], 'sad');
     }
-    if (mood('chan+|nan+|chan nan|chan hoc|bored|nothing to do')) {
+    if (mood('chan+|nan+|chan nan|chan hoc|bored|nothing to do') || /^(?:退屈|暇)(?:です)?$/.test(query)) {
       return reply([
         'Chán ghê ha. Hay mình đổi không khí một chút? Mình có một câu đố ngắn hoặc một chuyện hay trong bảo tàng.',
         'A change of pace might be nice. How about a quick riddle or a little museum story?'
@@ -272,19 +325,20 @@ function createMuseumChat(knowledge) {
     }
 
     const responses = [
-      [/^(?:he lo+|he+lo+|hello+|helo+|hi+|hey+|alo+|xin chao|chao)(?: (?:ban|nha|nhe|nho|a|moi nguoi|bot|there|everyone))*$/, [
+      [/^(?:he lo+|he+lo+|hello+|helo+|hi+|hey+|alo+|xin chao|chao)(?: (?:ban|nha|nhe|nho|a|moi nguoi|bot|there|everyone))*$|^(?:こんにちは|こんばんは|おはよう(?:ございます)?)$/, [
         `Hế lô${name ? ', ' + name : ''}! Rất vui gặp bạn 😊 Hôm nay bạn muốn đi một vòng bảo tàng hay nghe mình kể một chuyện lạ về hiện vật?`,
-        `Hi${name ? ', ' + name : ''}! Lovely to meet you 😊 Fancy a quick tour or a little story about one of the objects?`
+        `Hi${name ? ', ' + name : ''}! Lovely to meet you 😊 Fancy a quick tour or a little story about one of the objects?`,
+        `こんにちは${name ? '、' + name + 'さん' : ''}！ お会いできてうれしいです。館内を少し回りますか？ それとも展示品のお話を聞きますか？`
       ]],
-      [/^(?:cam on|cam on ban|cam on nha|cam on nhieu|thank you|thanks|thank you so much)(?: (?:nhe|a|ban|nha))?$/, [
+      [/^(?:cam on|cam on ban|cam on nha|cam on nhieu|thank you|thanks|thank you so much)(?: (?:nhe|a|ban|nha))?$|^ありがとう(?:ございます)?$/, [
         'Không có gì nha! Cảm ơn bạn đã trò chuyện với mình.',
         'You’re welcome! Thanks for chatting with me.'
       ]],
-      [/^(?:tam biet|bye|goodbye|hen gap lai|see you)(?: (?:nhe|a|ban|later))?$/, [
+      [/^(?:tam biet|bye|goodbye|hen gap lai|see you)(?: (?:nhe|a|ban|later))?$|^(?:さようなら|またね)$/, [
         'Hẹn gặp lại bạn nhé!',
         'See you next time!'
       ]],
-      [/^(?:ban la ai|ban ten gi|ten ban la gi|ban la robot a|who are you|what is your name|are you a bot)$/, [
+      [/^(?:ban la ai|ban ten gi|ten ban la gi|ban la robot a|who are you|what is your name|are you a bot|あなたは誰(?:ですか)?)$/, [
         'Mình là hướng dẫn viên số của Bảo tàng Đà Nẵng. Mình có thể kể chuyện hiện vật, gợi ý đường đi hoặc cùng bạn tìm hiểu một chủ đề mới.',
         'I’m Da Nang Museum’s digital guide. I can tell you about the objects, suggest a route or help you explore another topic.'
       ]],
@@ -306,11 +360,12 @@ function createMuseumChat(knowledge) {
   }
 
   function lookupSubject(raw) {
-    const clean = raw.trim().replace(/[?!.]+$/, '').trim();
+    const clean = raw.trim().replace(/[?!.？！。]+$/, '').trim();
     const patterns = [
       /^(.+?)\s+(?:là\s+(?:ai|gì)|la\s+(?:ai|gi))$/iu,
       /^(?:ai\s+(?:là|la)|(?:giải thích|giai thich|kể về|ke ve|tìm hiểu về|tim hieu ve))\s+(.+)$/iu,
       /^(?:what (?:is|are)|who (?:is|was)|tell me about|explain)\s+(.+)$/iu,
+      /^(.+?)(?:とは(?:何ですか)?|って何|について教えて(?:ください)?)$/u,
       /^(.+?)\s+(?:nghĩa là gì|nghia la gi)$/iu
     ];
     const subject = patterns.map(pattern => clean.match(pattern)?.[1]).find(Boolean)?.trim();
@@ -329,12 +384,12 @@ function createMuseumChat(knowledge) {
     const explicit = artifactMatches(q, catalog);
     const relatedTopics = topicMatches(q);
     const top = relatedTopics[0];
-    const reference = lang === 'en'
+    const reference = lang === 'ja' ? /^(?:これ|それ)|この(?:展示品|品|資料)|その(?:展示品|品|資料)/.test(q) : lang === 'en'
       ? /\b(it|that one|this one|this artifact|that artifact)\b/.test(q)
       : /\b(no|mon (?:do|nay|kia|ay)|cai (?:do|nay|kia|ay)|hien vat (?:do|nay|ay)|vay|the)\b/.test(q);
     const abbreviated = q.split(' ').length <= 7 && !top;
     const recent = (reference || abbreviated) && intent ? catalog.get(context.artifactId) : null;
-    const compare = /\b(so sanh|khac nhau|vs|compare|difference between)\b/.test(q);
+    const compare = /\b(so sanh|khac nhau|vs|compare|difference between)\b|違い|比較/.test(q);
     if (compare && explicit.length > 1) {
       const [first, second] = explicit.slice(0, 2).map(({ record }) => localized(record, lang));
       return {
@@ -418,7 +473,7 @@ function createMuseumChat(knowledge) {
   }
 
   async function searchWikipedia(subject, lang, signal) {
-    const wikiLanguage = lang === 'en' ? 'en' : 'vi';
+    const wikiLanguage = ['en', 'ja'].includes(lang) ? lang : 'vi';
     const endpoint = new URL(`https://${wikiLanguage}.wikipedia.org/w/api.php`);
     endpoint.search = new URLSearchParams({
       action: 'query', prop: 'extracts|pageprops', ppprop: 'disambiguation', exintro: '1',

@@ -24,6 +24,10 @@ python -m http.server 8000
 
 Mở `http://localhost:8000/filehtml.html` trên máy tính. Bản GitHub Pages dùng `index.html`. Camera trên điện thoại cần mở qua HTTPS và cấp quyền camera cho trình duyệt. Có thể mở riêng file HTML để dùng bộ ảnh và audio đã nhúng. Để thử nhận diện, mở qua localhost hoặc HTTPS.
 
+## Ngôn ngữ
+
+Màn hình chào, danh mục hiện vật và các luồng chính có bản tiếng Việt, tiếng Anh và tiếng Nhật. Bản tiếng Nhật dùng nội dung trong [data/ja.json](data/ja.json) và giọng đọc `ja-JP` của thiết bị. Khi cập nhật nội dung tiếng Nhật, chạy `node scripts/sync-demo.mjs` để nhúng bản dịch vào HTML.
+
 ## Cập nhật chatbot
 
 Mục **Chatbot** đọc bộ chủ đề Việt–Anh trong [data/museum-chat.json](data/museum-chat.json) và danh mục hiện vật. Bổ sung câu trả lời, cụm từ để nhận biết chủ đề và các câu hỏi liên quan trong dữ liệu này. Chạy `node scripts/sync-demo.mjs` để nhúng thay đổi vào bản HTML mở riêng.

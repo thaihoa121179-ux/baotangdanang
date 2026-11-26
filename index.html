@@ -291,6 +291,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       border-radius: clamp(22px, 6vw, 36px);
       background: #202528;
     }
+    html[lang="ja"] body { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, "Noto Sans CJK JP", sans-serif; }
     .frame-scan-target.is-live { touch-action: pan-y; }
     #frame-camera, #frame-camera-preview, #frame-snapshot, #frame-selected-photo {
       position: absolute;
@@ -608,7 +609,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       <div class="relative z-10 flex items-center justify-between gap-2">
         <span class="onboarding-brand inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold">
           <span class="w-2 h-2 rounded-full bg-museum-gold animate-pulse"></span>
-          <span>Smart Museum Guide</span>
+          <span data-en="Smart Museum Guide">Hướng dẫn tham quan</span>
         </span>
         <button onclick="openQrModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-95 transition text-xs font-bold text-white shadow-md border border-amber-300/30">
           <i data-lucide="qr-code" class="w-4 h-4 text-amber-200"></i>
@@ -646,25 +647,25 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <div class="mb-4">
           <label for="language-select" class="block text-sm font-bold text-museum-navy mb-1.5 flex items-center gap-1.5">
             <i data-lucide="globe" class="w-4 h-4 text-museum-bronze"></i>
-            <span data-i18n="select_lang_label">Chọn ngôn ngữ / Select Language</span>
+            <span data-i18n="select_lang_label">Chọn ngôn ngữ</span>
           </label>
           <div class="relative">
             <select id="language-select" onchange="handleOnboardingLangChange(this.value)" class="w-full appearance-none bg-museum-ivory border border-museum-border rounded-2xl px-4 py-3 pr-10 text-[15px] font-semibold text-museum-navy focus:outline-none focus:ring-2 focus:ring-museum-bronze focus:border-museum-bronze transition cursor-pointer">
-              <option value="vi" selected data-en="🇻🇳 Vietnamese">🇻🇳 Tiếng Việt (Mặc định)</option>
-              <option value="en" data-en="🇺🇸 English">🇺🇸 English (Tiếng Anh)</option>
-              <option value="ko">🇰🇷 한국어 (Korean)</option>
-              <option value="ja">🇯🇵 日本語 (Japanese)</option>
-              <option value="zh">🇨🇳 中文 (Chinese)</option>
-              <option value="fr">🇫🇷 Français (French)</option>
-              <option value="es">🇪🇸 Español (Spanish)</option>
-              <option value="de">🇩🇪 Deutsch (German)</option>
-              <option value="th">🇹🇭 ภาษาไทย (Thai)</option>
-              <option value="ru">🇷🇺 Русский (Russian)</option>
-              <option value="id">🇮🇩 Bahasa Indonesia</option>
-              <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
-              <option value="ar">🇸🇦 العربية (Arabic)</option>
-              <option value="pt">🇵🇹 Português (Portuguese)</option>
-              <option value="it">🇮🇹 Italiano (Italian)</option>
+              <option value="vi" lang="vi" translate="no" selected>🇻🇳 Tiếng Việt</option>
+              <option value="en" lang="en" translate="no">🇺🇸 English</option>
+              <option value="ko" lang="ko" translate="no">🇰🇷 한국어</option>
+              <option value="ja" lang="ja" translate="no">🇯🇵 日本語</option>
+              <option value="zh" lang="zh" translate="no">🇨🇳 中文</option>
+              <option value="fr" lang="fr" translate="no">🇫🇷 Français</option>
+              <option value="es" lang="es" translate="no">🇪🇸 Español</option>
+              <option value="de" lang="de" translate="no">🇩🇪 Deutsch</option>
+              <option value="th" lang="th" translate="no">🇹🇭 ภาษาไทย</option>
+              <option value="ru" lang="ru" translate="no">🇷🇺 Русский</option>
+              <option value="id" lang="id" translate="no">🇮🇩 Bahasa Indonesia</option>
+              <option value="hi" lang="hi" translate="no">🇮🇳 हिन्दी</option>
+              <option value="ar" lang="ar" translate="no">🇸🇦 العربية</option>
+              <option value="pt" lang="pt" translate="no">🇵🇹 Português</option>
+              <option value="it" lang="it" translate="no">🇮🇹 Italiano</option>
             </select>
             <i data-lucide="chevron-down" class="w-5 h-5 text-museum-muted absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
           </div>
@@ -674,7 +675,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         <div class="mb-5">
           <label for="visitor-name-input" class="block text-sm font-bold text-museum-navy mb-1.5 flex items-center gap-1.5">
             <i data-lucide="user-round" class="w-4 h-4 text-museum-bronze"></i>
-            <span data-i18n="visitor_name_label">Nhập tên của bạn / Enter your name</span>
+            <span data-i18n="visitor_name_label">Nhập tên của bạn</span>
           </label>
           <input type="text" id="visitor-name-input" placeholder="Ví dụ: Minh Anh, Alex..." class="w-full bg-museum-ivory border border-museum-border rounded-2xl px-4 py-3 text-[15px] text-museum-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-museum-bronze focus:border-museum-bronze transition"  data-en-placeholder="For example, Alex"/>
 
@@ -690,7 +691,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 
         <!-- Start Tour Button -->
         <button onclick="startTour()" class="w-full py-3.5 px-5 rounded-2xl bg-museum-bronze hover:bg-[#A34E2F] active:scale-[0.99] text-white font-bold text-base shadow-bronze flex items-center justify-center gap-2 transition">
-          <span data-i18n="start_tour_btn">Bắt đầu tham quan / Start Tour</span>
+          <span data-i18n="start_tour_btn">Bắt đầu tham quan</span>
           <i data-lucide="arrow-right" class="w-5 h-5"></i>
         </button>
       </div>
@@ -827,7 +828,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               <h3 class="text-base font-extrabold text-museum-navy" data-i18n="floors_route_title">Lộ trình tham quan 3 Tầng</h3>
               <p class="text-xs text-museum-muted" data-i18n="floors_route_sub">Hành trình chuẩn: Tầng 3 → Tầng 2 → Tầng 1</p>
             </div>
-            <span class="px-2.5 py-1 rounded-full bg-museum-navy text-museum-gold text-[11px] font-bold">3F → 2F → 1F</span>
+            <span class="px-2.5 py-1 rounded-full bg-museum-navy text-museum-gold text-[11px] font-bold" data-en="3F → 2F → 1F">T3 → T2 → T1</span>
           </div>
 
           <div id="floors-list-container" class="space-y-4"></div>
@@ -839,9 +840,9 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <h3 class="text-base font-extrabold text-museum-navy" data-i18n="featured_artifacts_title">Hiện vật tiêu biểu</h3>
             <div class="flex gap-1 bg-white p-1 rounded-xl border border-museum-border text-xs font-bold">
               <button onclick="filterArtifacts('all')" id="filter-all" class="px-2 py-1 rounded-lg bg-museum-bronze text-white transition"><span data-en="All">Tất cả</span></button>
-              <button onclick="filterArtifacts(3)" id="filter-3" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition">T3</button>
-              <button onclick="filterArtifacts(2)" id="filter-2" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition">T2</button>
-              <button onclick="filterArtifacts(1)" id="filter-1" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition">T1</button>
+              <button onclick="filterArtifacts(3)" id="filter-3" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition"><span data-en="3F">T3</span></button>
+              <button onclick="filterArtifacts(2)" id="filter-2" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition"><span data-en="2F">T2</span></button>
+              <button onclick="filterArtifacts(1)" id="filter-1" class="px-2 py-1 rounded-lg text-museum-muted hover:text-museum-navy transition"><span data-en="1F">T1</span></button>
             </div>
           </div>
 
@@ -996,7 +997,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
                 <div class="text-museum-muted"><span data-en="Questions">Câu hỏi</span></div>
               </div>
               <div class="p-2.5 rounded-2xl bg-museum-ivory border border-museum-border">
-                <div class="font-extrabold text-museum-bronze text-base">15s</div>
+                <div class="font-extrabold text-museum-bronze text-base" data-en="15s">15 giây</div>
                 <div class="text-museum-muted"><span data-en="Per question">Mỗi câu</span></div>
               </div>
               <div class="p-2.5 rounded-2xl bg-museum-ivory border border-museum-border">
@@ -1052,7 +1053,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
                   <circle cx="60" cy="60" r="45" fill="#1C2536" stroke="#B85D3B" stroke-width="2.5" stroke-dasharray="4 3"/>
                   <polygon points="60,22 69,43 92,45 74,60 80,82 60,70 40,82 46,60 28,45 51,43" fill="#D4A359"/>
                   <rect x="20" y="84" width="80" height="18" rx="9" fill="#B85D3B"/>
-                  <text x="60" y="96" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="bold" data-en="DA NANG HERITAGE">ĐÀ NẴNG HERITAGE</text>
+                  <text x="60" y="96" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="bold" data-en="DA NANG HERITAGE">DI SẢN ĐÀ NẴNG</text>
                 </svg>
               </div>
               <p class="text-[10px] uppercase tracking-widest text-museum-gold font-bold"><span data-en="Da Nang Museum Certificate of Achievement">Chứng nhận Danh dự Bảo tàng Đà Nẵng</span></p>
@@ -1224,7 +1225,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     <div id="qr-modal" class="hidden fixed inset-0 z-50 bg-museum-navy/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-white w-full max-w-[380px] rounded-3xl p-5 shadow-2xl border border-museum-border text-center space-y-3.5 fade-in max-h-[92vh] overflow-y-auto">
         <div class="flex items-center justify-between">
-          <span class="px-2.5 py-1 rounded-full bg-museum-ivory text-museum-bronze text-xs font-extrabold border border-museum-border">QR Webapp Link</span>
+          <span class="px-2.5 py-1 rounded-full bg-museum-ivory text-museum-bronze text-xs font-extrabold border border-museum-border" data-en="Guide link">Liên kết hướng dẫn</span>
           <button onclick="closeQrModal()" class="p-1.5 rounded-xl hover:bg-slate-100 text-slate-500">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
@@ -1627,19 +1628,19 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     const LANGUAGES = [
       { code: 'vi', flag: '🇻🇳', name: 'Tiếng Việt', speechLang: 'vi-VN' },
       { code: 'en', flag: '🇺🇸', name: 'English', speechLang: 'en-US' },
-      { code: 'ko', flag: '🇰🇷', name: '한국어 (Korean)', speechLang: 'ko-KR' },
-      { code: 'ja', flag: '🇯🇵', name: '日本語 (Japanese)', speechLang: 'ja-JP' },
-      { code: 'zh', flag: '🇨🇳', name: '中文 (Chinese)', speechLang: 'zh-CN' },
-      { code: 'fr', flag: '🇫🇷', name: 'Français (French)', speechLang: 'fr-FR' },
-      { code: 'es', flag: '🇪🇸', name: 'Español (Spanish)', speechLang: 'es-ES' },
-      { code: 'de', flag: '🇩🇪', name: 'Deutsch (German)', speechLang: 'de-DE' },
-      { code: 'th', flag: '🇹🇭', name: 'ภาษาไทย (Thai)', speechLang: 'th-TH' },
-      { code: 'ru', flag: '🇷🇺', name: 'Русский (Russian)', speechLang: 'ru-RU' },
+      { code: 'ko', flag: '🇰🇷', name: '한국어', speechLang: 'ko-KR' },
+      { code: 'ja', flag: '🇯🇵', name: '日本語', speechLang: 'ja-JP' },
+      { code: 'zh', flag: '🇨🇳', name: '中文', speechLang: 'zh-CN' },
+      { code: 'fr', flag: '🇫🇷', name: 'Français', speechLang: 'fr-FR' },
+      { code: 'es', flag: '🇪🇸', name: 'Español', speechLang: 'es-ES' },
+      { code: 'de', flag: '🇩🇪', name: 'Deutsch', speechLang: 'de-DE' },
+      { code: 'th', flag: '🇹🇭', name: 'ภาษาไทย', speechLang: 'th-TH' },
+      { code: 'ru', flag: '🇷🇺', name: 'Русский', speechLang: 'ru-RU' },
       { code: 'id', flag: '🇮🇩', name: 'Bahasa Indonesia', speechLang: 'id-ID' },
-      { code: 'hi', flag: '🇮🇳', name: 'हिन्दी (Hindi)', speechLang: 'hi-IN' },
-      { code: 'ar', flag: '🇸🇦', name: 'العربية (Arabic)', speechLang: 'ar-SA' },
-      { code: 'pt', flag: '🇵🇹', name: 'Português (Portuguese)', speechLang: 'pt-PT' },
-      { code: 'it', flag: '🇮🇹', name: 'Italiano (Italian)', speechLang: 'it-IT' }
+      { code: 'hi', flag: '🇮🇳', name: 'हिन्दी', speechLang: 'hi-IN' },
+      { code: 'ar', flag: '🇸🇦', name: 'العربية', speechLang: 'ar-SA' },
+      { code: 'pt', flag: '🇵🇹', name: 'Português', speechLang: 'pt-PT' },
+      { code: 'it', flag: '🇮🇹', name: 'Italiano', speechLang: 'it-IT' }
     ];
 
     const UI_STRINGS = {
@@ -1647,10 +1648,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
         greeting: 'Xin chào, {name}!',
         qr_btn: 'Mã QR Webapp',
         welcome_title: 'Chào mừng đến với Bảo tàng Đà Nẵng',
-        select_lang_label: 'Chọn ngôn ngữ / Select Language',
-        visitor_name_label: 'Nhập tên của bạn / Enter your name',
+        select_lang_label: 'Chọn ngôn ngữ',
+        visitor_name_label: 'Nhập tên của bạn',
         quick_suggest: 'Gợi ý:',
-        start_tour_btn: 'Bắt đầu tham quan / Start Tour',
+        start_tour_btn: 'Bắt đầu tham quan',
         museum_short_title: 'Bảo tàng Đà Nẵng • 31 Trần Phú',
         open_status: '08:00 – 17:00',
         hero_title: 'Khám phá Dòng chảy Lịch sử & Văn hóa Đà Nẵng',
@@ -1858,6 +1859,10 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     // =========================================================================
     // 2. BESPOKE SVG ILLUSTRATIONS & MUSEUM DATA (3 FLOORS + 8 REAL ARTIFACTS)
     // =========================================================================
+    // BEGIN EMBEDDED JAPANESE
+    const JAPANESE = {"1840":"1840年","2005":"2005年","Cannon found in Lien Chieu":"リエンチエウで発見された大砲","19th century per the catalog":"19世紀（収蔵品目録による）","A metal artifact found in 2019 during seawall work between Xuan Thieu and Nam O.":"2019年、スアンティエウとナムオの間の護岸工事で見つかった金属製の資料です。","The museum records the discovery of this cannon on 23 May 2019 during seawall construction between Xuan Thieu and Nam O. The photograph shows its long metal body, paired side pivots and raised decorative bands. The catalog labels it nineteenth-century and the accompanying note discusses a different attribution and date.":"博物館の記録によると、この大砲は2019年5月23日、スアンティエウとナムオの間の護岸工事中に発見されました。写真では細長い金属の本体、左右の突起、浮き出た帯状の装飾がわかります。目録には19世紀とありますが、補足には別の年代と由来も記されています。","The museum classifies the object as metal.":"博物館は材質を金属と記載しています。","Sa Huynh two-headed animal earring":"サーフィン文化の双獣頭形耳飾り","About 2,500–2,000 years ago":"約2500〜2000年前","Sa Huynh jewelry excavated at the Go Dinh burial site in 1980.":"1980年にゴーディンの埋葬遺跡で出土したサーフィン文化の装飾品です。","This two-headed earring belongs to the Sa Huynh culture. It was recovered in 1980 during excavations of the Go Dinh jar-burial site in Dai Lanh, Dai Loc. Two symmetrical animal heads distinguish it.":"この双獣頭形耳飾りはサーフィン文化の資料です。1980年、ダイロックのダイランにあるゴーディンの壺棺墓遺跡で発掘されました。左右対称の獣の頭が特徴です。","This artifact was excavated at the Go Dinh jar-burial site in 1980.":"1980年にゴーディンの壺棺墓遺跡で出土しました。","Kendy ceramic vessel":"陶製のケンディ","9th–11th century":"9〜11世紀","A handleless earthenware vessel with a side spout, from the Nam Tho Son site in the Marble Mountains.":"五行山のナムトーソン遺跡から出土した、取っ手がなく横に注ぎ口のある土器です。","This ninth- to eleventh-century earthenware Kendy comes from the Nam Tho Son site in the Marble Mountains. It was recovered in fragments and restored in February 2000. Look for the slightly flared mouth, short neck, rounded body and side spout.":"このケンディは9〜11世紀の土器で、五行山のナムトーソン遺跡から出土しました。破片で見つかり、2000年2月に修復されました。少し広がった口、短い首、丸い胴と横の注ぎ口に注目してください。","The museum records the material as earthenware.":"博物館は材質を土器と記載しています。","The museum describes Kendy as vessels for holding and pouring liquids. The spout connects to the body.":"博物館によると、ケンディは液体を入れて注ぐための器です。注ぎ口は胴とつながっています。","The body is 20 cm high, the spout is 7 cm high and the mouth is 9.5 cm across.":"胴の高さは20センチ、注ぎ口の高さは7センチ、口の直径は9.5センチです。","1960–1975":"1960〜1975年","A moped associated with Kieu Thanh Tan and the Da Nang commandos.":"キエウ・タイン・タンとダナンの特殊部隊にゆかりのある車両です。","This Honda Dame belonged to Kieu Thanh Tan, who helped organize the Da Nang commandos. According to the museum, it was used for communications in the last days of March 1975. His family donated it in 2025.":"このホンダ・デイムの持ち主は、ダナンの特殊部隊の結成に関わったキエウ・タイン・タンさんです。博物館によると、1975年3月末に連絡用として使われました。2025年にご家族が寄贈しました。","Kieu Thanh Tan’s family donated the moped in 2025.":"2025年にキエウ・タイン・タンさんのご家族が寄贈しました。","The museum records the dimensions as 177 cm long, 66 cm wide and 109 cm tall.":"博物館の記録では、全長177センチ、幅66センチ、高さ109センチです。","Xe Dang village-gate figure":"ソダン族の村の門の木像","20th century":"20世紀","A wooden figure from Tra My associated with the Xe Dang practice of placing sculptures at village entrances.":"村の入口に像を置くソダン族の習慣を伝える、チャーミーの木像です。","The one-meter-tall wooden gate figure came from Tra My in 1987. The museum describes these figures as pieces placed at village entrances to welcome visitors and express hopes for the community’s well-being.":"高さ1メートルの木像で、1987年にチャーミーから収集されました。博物館によると、このような像は村の入口に置かれ、人々を迎え、村の安寧を願うものでした。","The figure is made from wood.":"木製です。","The figure is 100 cm tall.":"像の高さは100センチです。","Quang Nam Ghe Bau boat model":"クアンナムの帆船ゲーバウの模型","21st-century model":"21世紀製作の模型","A wooden model commissioned in Kim Bong, Hoi An, depicting a traditional Quang sailboat.":"ホイアンのキムボンで製作された、クアン地方の伝統的な帆船の木製模型です。","This wooden model was made by the Huynh Ri workshop in Kim Bong, Hoi An. The museum dates the model to the twenty-first century. The boat type it depicts flourished from the sixteenth to nineteenth centuries and carried goods by sea.":"この木製模型はホイアンのキムボンにあるフイン・リー工房で作られました。博物館の記録では21世紀の製作です。模型のもとになった帆船は16〜19世紀に盛んに使われ、海路で荷物を運びました。","The model was commissioned from the Huynh Ri woodworking workshop in Kim Bong, Hoi An.":"ホイアンのキムボンにあるフイン・リー木工房に製作を依頼したものです。","Antique ceramics and lime pot collection":"古陶磁器と石灰壺のコレクション","Multiple periods":"複数の時代","Floor 1 display of Chu Dau ceramics, Nguyen-era porcelain and Vietnamese lime pots.":"1階に展示されたチューダウ陶器、グエン朝の磁器、ベトナムの石灰壺です。","The first-floor antiquities collection introduces Chu Dau ceramics, Nguyen-era porcelain, Vietnamese lime pots and old ceramics of Central Vietnam. It is a display grouping whose objects have individual materials, dates and origins.":"1階の古美術コレクションでは、チューダウ陶器、グエン朝の磁器、ベトナムの石灰壺、中部ベトナムの古陶器を紹介しています。展示品ごとに材質や年代、産地が異なります。","Huynh Trung’s pressure lantern":"フイン・チュンの圧力式ランプ","A lamp donated by Huynh Trung, associated with communications around Nuoc Man from 1967.":"フイン・チュンさんの寄贈品で、1967年からヌオックマン周辺での連絡にゆかりのあるランプです。","Huynh Trung donated this pressure lantern. According to the museum record, he used it for signaling during the war. Its documented history is linked to the Nuoc Man area from 1967.":"この圧力式ランプはフイン・チュンさんの寄贈品です。博物館によると、戦時中に合図を送るために使われました。1967年からのヌオックマン一帯との関わりが記録されています。","According to the museum, Huynh Trung used the lamp for signaling during the war.":"博物館によると、フイン・チュンさんが戦時中に合図を送るために使いました。","Sa Huynh agate jewelry":"サーフィン文化のメノウ製装飾品","Agate jewelry recovered at the Go Dinh burial site in 1980.":"1980年にゴーディンの埋葬遺跡で出土したメノウ製の装飾品です。","The agate jewelry in this record was recovered at Go Dinh during the 1980 excavation. Sa Huynh people used agate for beads and other jewelry. These small objects help illustrate jewelry’s place in social life and customs.":"この装飾品は1980年のゴーディンの発掘調査で見つかりました。サーフィン文化の人々はメノウで玉やさまざまな装飾品を作りました。これらの小さな品から、装飾品と暮らしや習慣の関わりがわかります。","The jewelry is made of agate.":"材質はメノウです。","Slit-ring earring":"切れ目のある環形耳飾り","A flat stone ring with an open slit, recovered at Go Quang in 1983.":"1983年にゴークアンで出土した、切れ目のある平たい石の輪です。","The slit-ring earring is a Sa Huynh jewelry form. This stone example has a small, broad, flat ring with a slit. It was collected during the 1983 excavation at Go Quang.":"切れ目のある環形耳飾りはサーフィン文化の装飾品の一種です。この石製の品は、幅が広く平たい小さな輪に切れ目が入っています。1983年のゴークアンの発掘調査で見つかりました。","The earring is made of stone.":"石製の耳飾りです。","Three-projection earring":"三突起の耳飾り","A glass ornament with three pointed projections and a small hook, excavated at Go Dinh.":"三つの尖った突起と小さなかぎのあるガラス製の飾りで、ゴーディンで出土しました。","This glass earring has three pointed projections and a small hook. It was recovered at the Go Dinh jar-burial site in 1980. Counting the projections helps distinguish it from a slit-ring earring.":"このガラス製耳飾りには三つの尖った突起と小さなかぎがあります。1980年、ゴーディンの壺棺墓遺跡で発見されました。突起を数えると、切れ目のある環形耳飾りと区別できます。","The museum identifies the material as glass.":"博物館は材質をガラスと記載しています。","Khue Bac burial pot":"クエバックの埋葬用土器","2nd century BCE–2nd century CE":"紀元前2世紀〜紀元2世紀","A ceramic object excavated at the Khue Bac communal-house garden site in May 2001.":"2001年5月にクエバックの集会所跡の庭で発掘された土器です。","The burial pot was recovered at the Khue Bac communal-house garden site in May 2001. The museum dates it from the second century BCE to the second century CE. It is 17 cm high and 29 cm in diameter.":"この埋葬用土器は2001年5月、クエバックの集会所跡の庭から出土しました。博物館は紀元前2世紀から紀元2世紀のものとしています。高さは17センチ、直径は29センチです。","17 cm tall and 29 cm in diameter.":"高さ17センチ、直径29センチです。","Tabhing burial jar":"タービンの壺棺","Earthenware jar and lid from an excavation at Nam Giang in 1986.":"1986年にナムザンで発掘された土製の壺とふたです。","The Tabhing burial jar was excavated at Nam Giang in 1986. The jar is 70 cm high and 52 cm across, with the lid measured separately. Jar burials help researchers study Sa Huynh funerary customs.":"タービンの壺棺は1986年にナムザンで発掘されました。壺は高さ70センチ、直径52センチで、ふたは別に計測されています。壺棺はサーフィン文化の埋葬習慣を知る手掛かりです。","The jar is made of earthenware.":"素焼きの土製の壺です。","The jar is 70 cm high and 52 cm across. The lid is 24 cm high and 45 cm across.":"壺は高さ70センチ、直径52センチです。ふたは高さ24センチ、直径45センチです。","Sa Huynh spindle whorls":"サーフィン文化の紡錘車","Earthenware spinning tools excavated at Dai Lanh in 1979.":"1979年にダイランで出土した土製の糸紡ぎ道具です。","These earthenware spindle whorls were excavated at Dai Lanh, Dai Loc in 1979. They were used in spinning thread and are evidence used by the museum to explain Sa Huynh textile production.":"この土製の紡錘車は1979年にダイロックのダイランで発掘されました。糸を紡ぐ道具で、博物館はサーフィン文化の織物作りを伝える資料として紹介しています。","The spindle whorls in the record are made of earthenware.":"収蔵されている紡錘車は素焼きの土製です。","Spindle whorls were tools for spinning thread, part of textile production.":"紡錘車は織物作りの工程で糸を紡ぐ道具です。","Glass bangle":"ガラス製腕輪","A green glass bracelet with traces of polishing, excavated at Dai Lanh in 1980.":"磨いた跡のある緑色のガラス製腕輪で、1980年にダイランで出土しました。","This green Sa Huynh glass bangle was found at Dai Lanh, Dai Loc in 1980. The museum records its semicircular cross-section and traces of grinding and polishing. It is 6.9 cm in diameter.":"この腕輪はサーフィン文化の資料です。1980年にダイロックのダイランで発見されました。博物館によると、断面は半円形で、削りや磨きの跡が残っています。直径は6.9センチです。","The bangle is made of green glass.":"緑色のガラスでできています。","It is 6.9 cm across and 1.4 cm thick.":"直径6.9センチ、厚さ1.4センチです。","Royal decree for the acting keeper of Dien Hai Citadel":"ディエンハイ城の守備官代理を任命する勅書","An 1840 document appointing Ton That Truc acting keeper of Dien Hai Citadel.":"1840年、トン・タット・チュックをディエンハイ城の守備官代理に任命した文書です。","This 1840 decree records the appointment of Ton That Truc as acting keeper of Dien Hai Citadel in the twenty-first year of Minh Mang’s reign. It is a rectangular yellow paper document with black writing, a red seal and dragon-and-cloud decoration.":"1840年、明命帝の治世21年にトン・タット・チュックをディエンハイ城の守備官代理に任命した記録です。黄色い長方形の紙に黒い文字、赤い印、龍と雲の模様があります。","The decree is written on paper.":"紙に記された勅書です。","It records Ton That Truc’s appointment as acting keeper of Dien Hai Citadel.":"トン・タット・チュックをディエンハイ城の守備官代理に任命したことが記されています。","Letter of Seven Charges book":"『七箇条の書簡』","1958 edition":"1958年版","A 1958 reprint of the letter Phan Chau Trinh sent to Emperor Khai Dinh in Paris in 1922.":"ファン・チャウ・チンが1922年にパリでカイディン帝に送った書簡の1958年の復刻版です。","The museum’s copy is a 1958 reprint of the Letter of Seven Charges. Phan Chau Trinh sent the original letter to Emperor Khai Dinh in Paris in 1922. His granddaughter Le Thi Kinh donated the edition to the museum in 1990.":"博物館が所蔵する『七箇条の書簡』は1958年の復刻版です。原本はファン・チャウ・チンが1922年にパリでカイディン帝に送ったものです。1990年に孫のレ・ティ・キンさんが寄贈しました。","The edition is a paper artifact.":"紙の資料です。","Phan Chau Trinh sent the original letter in 1922. This object is a 1958 edition.":"ファン・チャウ・チンが原本を送ったのは1922年です。この資料は1958年版です。","Tay Ho and Sante poetry volume":"『タイホーとサンテ詩集』","1961 edition":"1961年版","Poems by Phan Chau Trinh edited and reissued by Le Am in 1961.":"ファン・チャウ・チンの詩をレ・アムが編集し、1961年に再刊した詩集です。","This volume brings together poems associated with Phan Chau Trinh, including work from his imprisonment at Sante prison. The museum records that Le Am edited and reissued the book in 1961. Le Thi Kinh donated the copy in 1990.":"ファン・チャウ・チンにゆかりのある詩を集めた本で、サンテ刑務所に収監されたときの作品も含まれます。博物館によると、レ・アムが1961年に編集・再刊し、1990年にレ・ティ・キンさんが寄贈しました。","Le Am edited and reissued the book in 1961.":"レ・アムが1961年に編集し再刊しました。","Con Ga prison door":"コンガー刑務所の扉","1946–1954":"1946〜1954年","An iron door formerly at Con Ga prison on Hung Vuong Street, Da Nang.":"ダナンのフンヴオン通りにあったコンガー刑務所の鉄の扉です。","The iron door came from Con Ga prison at 88 Hung Vuong Street according to the museum. It documents the history of imprisonment in colonial-era Da Nang. The Cultural Exhibition Center transferred the object to the museum in September 1983.":"博物館によると、この鉄の扉はフンヴオン通り88番地のコンガー刑務所のものです。植民地時代のダナンの収監の歴史を伝えています。1983年9月に文化展示センターから博物館へ移されました。","The door is made of iron.":"鉄製の扉です。","The museum records it as 190 cm tall and 160 cm wide.":"博物館によると、高さ190センチ、幅160センチです。","Co Tu Toghey horn":"コトゥ族の角笛トーゲイ","Late 20th century":"20世紀後半","A buffalo-horn instrument used in Co Tu festivals, collected at Ta Lu in 2002.":"コトゥ族が祭りで使う水牛の角の楽器で、2002年にタールーで収集されました。","The Toghey is a buffalo-horn instrument used at Co Tu festivals. The museum collected this one at Ta Lu in 2002. The record describes the horn as a valued instrument in village ceremonial life.":"トーゲイはコトゥ族の祭りで使われる水牛の角の楽器です。この品は2002年にタールーで収集されました。博物館では、村の儀礼で大切にされた楽器として紹介しています。","The body is made from buffalo horn.":"本体は水牛の角です。","The horn is used in Co Tu festivals.":"コトゥ族の祭りで使われます。","Co Tu bark clothing":"コトゥ族の樹皮製衣服","Bark clothing made by Briu-Bram for local festivals in Bhơhôồng village.":"ブリウ・ブラムさんがボホン村の祭りのために作った樹皮製の衣服です。","Briu-Bram of Bhơhôồng village, Dong Giang made this bark outfit for local festivals from 2005. It was exhibited in Hanoi in 2008 and entered the museum collection in 2010.":"ドンザンのボホン村で暮らすブリウ・ブラムさんが祭りのために作り、2005年から使った衣服です。2008年にハノイで展示され、2010年に博物館の所蔵品になりました。","The outfit is made from tree bark.":"樹皮でできています。","Briu-Bram made the outfit in Bhơhôồng. It entered the museum collection in 2010.":"ブリウ・ブラムさんがボホン村で製作し、2010年に博物館の所蔵品になりました。","Tour starting point":"見学の出発点","Floor 3: Da Nang and Its History of Resistance (1858–1975)":"3階：ダナンの概要と独立をめぐる歴史（1858〜1975年）","Explore the city, its people and landscapes, its urban history, and the struggle for independence from 1858 to 1975.":"ダナンの自然や人々、都市の歴史と、1858年から1975年までの独立をめぐる歩みを紹介します。","Begin with Da Nang’s geography, port and communities, then discover the Dien Hai Citadel cannons, Nguyen Dynasty royal decrees, the Honda Dame moped and other traces of wartime history.":"ダナンの地理や港、地域の人々について学び、ディエンハイ城の大砲、グエン朝の勅書、ホンダ・デイムなどの資料をご覧ください。","Nature & people":"自然と人々","Urban history":"都市の歴史","Cannons of 1858":"1858年の大砲","Honda Dame & wartime relics":"ホンダ・デイムと戦争資料","Welcome to Floor 3, the starting point of your Da Nang Museum tour. This gallery introduces Da Nang’s nature, people, urban history, and the struggle for national independence from 1858 to 1975 alongside wartime relics.":"見学の出発点、3階へようこそ。このフロアではダナンの自然、人々、都市の歴史、そして1858年から1975年までの独立をめぐる歩みを、戦争資料とともに紹介します。","Stop 2 • Culture and agarwood":"見学順2・文化と沈香","Floor 2: Ethnic Cultures and Quang Nam Agarwood":"2階：諸民族の文化とクアンナムの沈香","Explore antique lamps, local agarwood and the cultures of the Co Tu, Xo Dang, Gie Trieng and Cor communities.":"古いランプや沈香、コトゥ族、ソダン族、ジェーチェン族、コー族の文化を紹介します。","The galleries feature tomb-house architecture, village-gate figures, the Toghey wind instrument, antique lamps and precious agarwood from Quang Nam.":"墓屋の建築、村の門の木像、管楽器トーゲイ、古いランプやクアンナムの貴重な沈香が見どころです。","Antique lamps & agarwood":"古いランプと沈香","Co Tu gate figures":"コトゥ族の村の門の木像","Toghey & sailboat":"トーゲイと帆船","You are now on Floor 2 of Da Nang Museum, featuring antique lamps and Quang Nam agarwood, the Research and Development zone, and the rich heritage of ethnic minority groups including the Co Tu, Xo Dang, Gie Trieng, and Cor.":"ダナン博物館の2階です。古いランプとクアンナムの沈香、調査・研究のコーナー、コトゥ族、ソダン族、ジェーチェン族、コー族などの豊かな文化を紹介しています。","Stop 3 • Antiquities":"見学順3・古美術","Floor 1: Da Nang Museum Antiquities Collection":"1階：ダナン博物館の古美術コレクション","Discover Chu Dau ceramics, Nguyen Dynasty porcelain, Vietnamese lime pots and ancient ceramics from Central Vietnam.":"チューダウ陶器やグエン朝の磁器、ベトナムの石灰壺、中部ベトナムの古陶器をご覧ください。","End your visit with the Sa Huynh two-headed earring, the Champa Kendy, blue-and-white Chu Dau ceramics, Nguyen Dynasty porcelain and Vietnamese lime pots.":"見学の最後に、サーフィン文化の双獣頭形耳飾り、チャンパのケンディ、チューダウの染付陶器、グエン朝の磁器や石灰壺をお楽しみください。","Chu Dau ceramics":"チューダウ陶器","Nguyen Dynasty porcelain":"グエン朝の磁器","Vietnamese lime pots":"ベトナムの石灰壺","Floor 1 houses the antiquities collection of Da Nang Museum, showcasing Chu Dau ceramics, Nguyen Dynasty porcelain, traditional Vietnamese lime pots, Central Vietnam ancient pottery, and Sa Huynh and Champa treasures.":"ダナン博物館の1階では、チューダウ陶器、グエン朝の磁器、伝統的な石灰壺、中部ベトナムの古陶器、サーフィン文化やチャンパの資料を展示しています。","Who owned this Honda Dame?":"このホンダ・デイムは誰のものでしたか？","According to the museum record, the moped belonged to Kieu Thanh Tan. His family donated it in 2025.":"博物館の記録によると、キエウ・タイン・タンさんが所有していた車両です。2025年にご家族から寄贈されました。","What was the lantern used for?":"このランプは何に使われましたか？","The museum records that Huynh Trung used it for signaling during the war.":"博物館の記録によると、フイン・チュンさんが戦時中に合図を送るために使いました。","Who is named in the 1840 decree?":"1840年の勅書には誰の名前がありますか？","The decree records Ton That Truc’s appointment as acting keeper of Dien Hai Citadel in 1840.":"1840年にトン・タット・チュックがディエンハイ城の守備官代理に任命されたことが記されています。","What was the Kendy used for?":"ケンディは何に使われましたか？","Look at the spout on the shoulder. It was used to pour water in ceremonies. The shape of the vessel gives us a clue to what it was used for.":"胴の上部にある注ぎ口を見てみましょう。儀式で水を注ぐのに使われました。器の形には使い方のヒントが隠れています。","Where was the two-headed earring found?":"双獣頭形耳飾りはどこで見つかりましたか？","It was found during the 1980 excavation at Go Dinh. Look at the symmetrical animal heads.":"1980年にゴーディンで行われた発掘調査で見つかりました。左右対称の獣の頭に注目してください。","What stands out about Chu Dau ceramics?":"チューダウ陶器の特徴は何ですか？","Notice the blue decoration against the white surface. I look for the glaze and pattern first. They are two details you can easily spot through the display glass.":"白地に描かれた青い模様を見てみましょう。展示ケース越しでも、釉薬と模様に注目すると特徴がわかります。","What does the Ghe Bau model represent?":"ゲーバウの模型は何を表していますか？","It is a twenty-first-century model made in Kim Bong, Hoi An, showing a traditional sailboat.":"ホイアンのキムボンで21世紀に作られた、伝統的な帆船の模型です。","On which floor does the recommended museum route begin?":"おすすめの見学ルートは何階から始まりますか？","Floor 1 (Antiquities)":"1階（古美術）","Floor 2 (Ethnic Cultures)":"2階（諸民族の文化）","Floor 3 (City and History)":"3階（都市と歴史）","The garden":"庭園","Start on Floor 3 with Da Nang’s city and resistance history, then descend to Floor 2 and finish on Floor 1.":"3階でダナンの都市史と独立をめぐる歴史を見学し、次に2階、最後に1階を回ります。","What is the address of Da Nang Museum’s main site?":"ダナン博物館本館の住所はどこですか？","02 Bach Dang Street, Hai Chau, Da Nang":"ダナン市ハイチャウ、バックダン通り2番地","15 Le Duan Street, Thanh Khe, Da Nang":"ダナン市タインケー、レズアン通り15番地","99 Nguyen Van Linh Street, Da Nang":"ダナン市グエンヴァンリン通り99番地","The main site is at 31 Tran Phu Street, in the grounds of Dien Hai Citadel.":"本館はチャンフー通り31番地、ディエンハイ城の敷地内にあります。","Which culture produced the two-headed animal earring?":"双獣頭形耳飾りはどの文化に属しますか？","Dong Son":"ドンソン文化","Sa Huynh":"サーフィン文化","Oc Eo":"オケオ文化","Phung Nguyen":"フングエン文化","This two-headed earring is associated with the Sa Huynh culture and dates to roughly 2,500–2,000 years ago.":"この双獣頭形耳飾りはサーフィン文化に属し、約2500〜2000年前のものです。","Which floor exhibits antique lamps, Quang Nam agarwood and Co Tu culture?":"古いランプ、クアンナムの沈香、コトゥ族の文化は何階に展示されていますか？","The rooftop":"屋上","Floor 2 houses these exhibits, alongside displays about the Xo Dang, Gie Trieng and Cor communities.":"2階にあります。この階ではソダン族、ジェーチェン族、コー族についても紹介しています。","Which general is associated with the Dien Hai Citadel cannons of 1858–1860?":"1858〜1860年のディエンハイ城の大砲にゆかりのある将軍は誰ですか？","Nguyen Tri Phuong":"グエン・チー・フオン","Tran Hung Dao":"チャン・フン・ダオ","Ly Thuong Kiet":"リー・トゥオン・キエット","Vo Nguyen Giap":"ヴォー・グエン・ザップ","General Nguyen Tri Phuong led the defense of Da Nang against a Franco-Spanish force.":"グエン・チー・フオン将軍は、フランス・スペイン連合軍に対するダナンの防衛を指揮しました。","Which culture is associated with the Kendy vessel?":"ケンディはどの文化と関係がありますか？","Champa":"チャンパ","Bat Trang ceramics":"バッチャン陶器","Bien Hoa ceramics":"ビエンホア陶器","The rounded body, short neck and side spout distinguish the Kendy vessel.":"丸い胴、短い首、横に付いた注ぎ口がケンディの特徴です。","Where are the Chu Dau ceramics, Nguyen porcelain and Vietnamese lime pots displayed?":"チューダウ陶器、グエン朝の磁器、ベトナムの石灰壺はどこに展示されていますか？","Outdoors":"屋外","The antiquities collection is on Floor 1 and includes ancient Central Vietnamese ceramics.":"1階の古美術コレクションには、中部ベトナムの古陶器も展示されています。","Which vehicle used by Da Nang special commandos is displayed in the Floor 3 War Relics Gallery?":"3階の戦争資料展示室には、ダナンの特殊部隊が使ったどの乗り物が展示されていますか？","Honda Dame moped":"ホンダ・デイム","Phuong Hoang bicycle":"フオンホアン自転車","Jeep":"ジープ","Basket boat":"竹編みの丸舟","The Honda Dame was used to carry confidential documents and for reconnaissance before March 29, 1975.":"1975年3月29日以前、ホンダ・デイムは機密文書の運搬や偵察に使われました。","Main Entrance and Reception (Floor 1)":"正面入口と受付（1階）","Entrance / Reception":"入口・受付","Chu Dau Ceramics and Lime Pots (Floor 1)":"チューダウ陶器と石灰壺（1階）","Sa Huynh and Champa (Floor 1)":"サーフィン文化とチャンパ（1階）","Elevator and Stairs (Floor 1)":"エレベーターと階段（1階）","Elevator / Stairs":"エレベーター・階段","Elevator and Stairs (Floor 2)":"エレベーターと階段（2階）","Co Tu and Ethnic Cultures (Floor 2)":"コトゥ族と諸民族の文化（2階）","Co Tu culture":"コトゥ族の文化","Antique Lamps and Agarwood (Floor 2)":"古いランプと沈香（2階）","Research and Development / Sailboat (Floor 2)":"調査・研究と帆船模型（2階）","Elevator and Stairs (Floor 3)":"エレベーターと階段（3階）","Overview and Urban History (Floor 3)":"ダナンの概要と都市の歴史（3階）","Overview & history":"ダナンの概要と歴史","Dien Hai Citadel Cannons (Floor 3)":"ディエンハイ城の大砲（3階）","War Relics and Honda Dame (Floor 3)":"戦争資料とホンダ・デイム（3階）","Floor 1 antiquities gallery":"1階の古美術展示室","Floor 2 exhibition space":"2階の展示室","Floor 3 exhibition space":"3階の展示室","Cannon in the Da Nang Museum collection":"ダナン博物館所蔵の大砲","Two-headed animal earring":"双獣頭形耳飾り","Champa Kendy vessel":"チャンパのケンディ","Wooden village gate figure":"村の門の木像","Quang Nam sailboat model":"クアンナムの帆船模型","Display case in the Floor 1 antiquities gallery":"1階の古美術展示室の展示ケース","Oil lamp in the Da Nang Museum collection":"ダナン博物館所蔵のランプ","Objects of urban life":"都市の暮らしの道具","Horn gramophone":"ラッパ型蓄音機","The record player on the left has a large horn and a turntable above its wooden base. The flared horn makes it easy to spot. It offers a glimpse of music in urban life.":"左の蓄音機には大きなラッパと木製の台の上にレコード盤を載せる回転台があります。開いたラッパが目印です。当時の都市でどのように音楽を楽しんでいたかを伝えています。","A gramophone plays recorded sound from a disc. Its flared horn projects the sound.":"蓄音機はレコードに記録された音を再生します。先が広がったラッパが音を外に伝えます。","Tall-necked decorative vase":"首の長い飾り壺","The vase at the back right has a tall neck, broad body and pale decoration. Look from the base to the rim to see how its proportions change.":"右奥の壺は首が長く、胴が広がり、淡い色の装飾があります。底から口までたどって、形の変化を見てみましょう。","Table lamp with a glass chimney":"ガラス筒付き卓上ランプ","The lamp at the front right has a flared foot, rounded body and an upright glass chimney. Together these features give it the shape of a table lamp.":"右手前のランプは、裾が広がった台、丸い本体、その上に立つガラス筒が特徴です。","Small dark jar":"黒っぽい小壺","The small jar at the front center has a narrow mouth, rounded body and low foot. Compare its squat profile with the tall-necked vase behind it.":"手前中央の小壺は、口が狭く、胴が丸く、台が低い器です。奥にある首の長い壺と形を比べてみましょう。","Household objects and music":"暮らしの道具と楽器","Pale sleeveless garment":"生成りの袖なし衣服","The pale object spread out on the left has the shape of a sleeveless garment. Its outline and rough surface are visible through the display glass.":"左に広げられた生成りの品は、袖のない衣服の形をしています。展示ガラス越しに輪郭と粗い生地が見えます。","Wooden string instrument":"木製の弦楽器","The instrument on the right has a rounded body, a sound hole and a long neck. Follow the neck to see where the strings run from the body to the head.":"右の楽器には丸みのある胴、音を響かせる穴、長いネックがあります。弦が胴から先端までどのように張られているか、見てみましょう。","Dark pot with two handles":"両手付きの黒っぽい鍋","The pot in the center has a wide open mouth, a dark rounded body and a pair of handles. The paired handles distinguish it from the tall cylindrical objects nearby.":"中央の鍋は口が大きく、胴が丸く、両側に取っ手があります。取っ手の形を見ると、近くの筒状の品と区別できます。","Tall woven basket":"細長い編みかご","The basket at the right edge has an upright body, an open mouth and a repeated weave. Its woven surface contrasts with the dark pot in the center.":"右端にあるかごは背が高く、口が開き、編み目が規則的に並んでいます。中央の鍋と表面の違いを比べてみましょう。","Patterned cylindrical object":"模様付きの筒状の品","The brown object standing in the middle is narrow and cylindrical with several bands of ornament. The decoration is arranged in sections along its height.":"中央に立つ茶色の品は細長い筒状で、いくつかの帯状の模様が縦に並んでいます。","Wartime metal artifacts":"戦時中の金属資料","Dark metal casings":"黒っぽい金属製の外殻","Two dark metal casings stand close together. Rust and scratches are visible on their surfaces. They are displayed as reminders of the material traces left by war.":"黒っぽい金属製の外殻が二つ並んでいます。表面にはさびや傷が見えます。戦争の痕跡を伝える資料です。","Red-and-white metal casing":"赤と白の金属製の外殻","The object standing behind has visible areas of red and white paint. Those areas distinguish it from the dark casings in front.":"後ろに立つ資料には赤と白の塗装が残っています。色の違いで、手前の黒っぽい外殻と見分けられます。","Metal casing with fins":"板状の突起がある金属製の外殻","A metal object on the rear plinth has flat surfaces projecting from its sides. The reference image shows its outline and position within the display.":"奥の台の上に、両側に平らな部分が出た金属製の資料があります。参考画像で形と置かれている位置を確認できます。","Green cylindrical equipment":"緑色の円筒形の機器","The green equipment stands low at the front right beside a wired assembly. Its cylindrical case and exterior fittings are visible in the image.":"右手前の低い位置に、配線のそばに置かれた緑色の機器があります。円筒形の本体と外側の部品が見えます。","Wartime clothing and equipment":"戦時中の衣服と機器","Olive fabric backpack":"オリーブ色の布製リュック","The olive backpack at the upper left has exterior pockets and straps. These visible details distinguish it from the garments hanging beside it.":"左上に掛かったオリーブ色のリュックには、外ポケットと肩ひもがあります。隣に掛かる衣服と区別しやすい特徴です。","Olive sleeveless vest":"オリーブ色のベスト","The garment hanging high in the center is sleeveless, with a thick body and visible seams. It sits between the backpack and the patterned jacket.":"中央上に掛かった袖なしの服は、生地に厚みがあり、縫い目が見えます。リュックと柄入りの上着の間に掛かっています。","Camouflage-patterned jacket":"迷彩柄の上着","The jacket on the right has long sleeves and a green-brown pattern. Compare its color, collar and front pockets with the plain garment in the center.":"右の長袖の上着には、緑や茶色の模様があります。中央の無地の服と、色、襟、前ポケットを比べてみましょう。","Camera in the display case":"展示ケース内のカメラ","The small camera near the blue screen has a box-shaped body and a round front lens. It is displayed below the garments.":"青い画面の近くに箱型の小さなカメラがあり、正面に丸いレンズが付いています。衣服より低い位置に展示されています。","Equipment with a coiled cord":"らせん状のコードが付いた機器","The equipment below the backpack on the left has a hanging coiled cord. The cord helps distinguish it from the small camera with a lens nearby.":"リュックの下にある機器には、らせん状のコードが垂れています。近くにある丸いレンズ付きのカメラとは、このコードで見分けられます。","I’d like to talk":"少し話したい","Tell me a story":"お話を聞かせて","Give me a riddle":"なぞなぞを出して","Tell me another story":"別のお話を聞かせて","Give me another riddle":"別のなぞなぞを出して","Give me a hint":"ヒントをください","Show me the answer":"答えを教えて","Back to the museum":"博物館の話に戻る","Back to the museum. Pick a question below or tell me what you’re curious about.":"博物館の話に戻りましょう。下の質問を選ぶか、気になることを聞いてください。","Start wherever it feels easiest. What has been on your mind today?":"話しやすいところからで大丈夫です。今日はどんなことが気になっていますか？","Getting a low grade can be discouraging. Are you most disappointed about the result, or worried about what comes next?":"点数が低いと落ち込むこともありますよね。結果にがっかりしましたか、それとも今後が心配ですか？","Something happening with a person you care about can stay on your mind. What part of it hurt the most?":"大切な人との出来事は、なかなか頭から離れないことがあります。何が一番つらかったですか？","It sounds like you’re worried about how they might react. Would you like to talk about that, or think of a way to start the conversation?":"相手がどう反応するか心配なのですね。そのことを話しますか？ それとも切り出し方を一緒に考えましょうか？","Feeling alone can be heavy. Would it help to talk here, or would you like to think of someone you could reach out to?":"一人だと感じるのはつらいものです。ここで少し話しますか？ それとも話せそうな人を一緒に考えましょうか？","It sounds like today has been a bit rough. If you’d like to talk, I’m here to listen. What’s been weighing on you?":"今日は少しつらい日だったのですね。話したくなったら聞きます。どんなことが気になっていますか？","A change of pace might be nice. How about a quick riddle or a little museum story?":"少し気分を変えてみませんか？ 短いなぞなぞや博物館のお話なら、すぐに始められますよ。","It sounds like you could use a pause. I can tell you a short story, or we can take a break.":"少し休憩してもいいかもしれませんね。短いお話を聞くこともできます。","What is worrying you most right now? We can think it through one thing at a time.":"今、一番心配なことは何ですか？ 一つずつ一緒に考えてみましょう。","That sounds lovely! What happened? I’d like to hear the good news 😊":"それはうれしいですね！ 何があったのか、よかったら聞かせてください 😊","That’s okay. Feelings can be hard to name. Would you rather talk a little about today or switch to a lighter subject?":"気持ちを言葉にするのは難しいこともあります。今日のことを少し話しますか？ それとも別の話にしましょうか？","I’m listening. You can start with the most recent thing you remember.":"聞いていますよ。思い出しやすいことから話してみてください。","Of course. We can leave it there. If you want a change of pace, try a story or riddle below.":"もちろんです。いったんここまでにしましょう。気分を変えたいときは、下のお話やなぞなぞを選べます。","You’re welcome! Thanks for chatting with me.":"どういたしまして。お話しできてうれしかったです。","See you next time!":"またお会いしましょう！","I’m Da Nang Museum’s digital guide. I can tell you about the objects, suggest a route or help you explore another topic.":"ダナン博物館のデジタルガイドです。展示品の解説や経路のご案内、気になる話題のお手伝いができます。","Ready for a museum visit 😊 How are you doing today?":"見学の準備はできています 😊 今日はどんな気分ですか？","I’m a digital guide. Would you like a chat or a little story about an artifact?":"私はデジタルガイドです。少しお話ししますか？ それとも展示品のお話を聞いてみますか？","Thanks for pointing that out. Show me which part was off and I’ll try again.":"教えてくれてありがとうございます。どこが違っていたか教えてもらえれば、もう一度答えてみます。","Thanks for sharing that. Would you like to talk more, or think of one small thing you can do right now?":"聞かせてくれてありがとうございます。もう少し話しますか？ それとも今できそうなことを一緒に考えましょうか？","I’m not sure which part of the artifact you mean. Try naming the detail, or pick a question below.":"展示品のどの点について知りたいですか？ 詳しく聞くか、下の質問から選んでください。","I don’t have a reliable answer for that yet. Try naming the person, place or object you mean.":"その質問には確かな答えが見つかりませんでした。人や場所、展示品の名前を入れて聞いてみてください。","What was it used for?":"何に使われましたか？","What is it made of?":"何でできていますか？","Which floor is it on?":"何階にありますか？","What are its dimensions?":"大きさはどれくらいですか？","How old is it?":"いつのものですか？","When does the museum open?":"博物館は何時に開きますか？","Da Nang Museum lists its opening hours as 8 a.m. to 5 p.m. daily. Aim for the morning if you’d like time to explore all three floors.":"ダナン博物館は毎日、午前8時から午後5時まで開館しています。全3フロアをゆっくり見学するなら、午前中がおすすめです。","How does admission work?":"入館料はいくらですか？","The museum publishes separate admission rules for different groups. Check the official notice below for current prices and any documents needed for a discount or exemption.":"入館料や割引・免除の条件は対象によって異なります。最新の料金や必要な書類は、下の公式案内でご確認ください。","Where is Da Nang Museum?":"ダナン博物館はどこにありますか？","Da Nang Museum is at 31 Tran Phu Street, Da Nang. Use the full address when booking a ride so you’re taken to the right location.":"ダナン博物館はダナン市チャンフー通り31番地にあります。配車サービスを使う際は、番地まで入力してください。","How can I contact the museum?":"博物館への連絡方法は？","You can call 0236 388 6236. For a school group or extra assistance, tell the staff your group size, planned date and what help you need.":"電話番号は0236 388 6236です。学校などの団体やサポートをご希望の場合は、人数、来館予定日、必要なサポートをお伝えください。","What should I see in 30 minutes?":"30分なら何を見ればよいですか？","With 30 minutes, I’d spend about 15 minutes on Floor 3 for Da Nang’s story in 1858, then about 10 minutes on Floor 1 for the Sa Huynh earring and Kendy vessel. Leave a few minutes to move between floors.":"30分なら、3階で1858年のダナンの歴史を約15分、1階でサーフィン文化の耳飾りとケンディを約10分かけて見るのがおすすめです。フロア間の移動にも少し時間を取ってください。","What’s a good route through all three floors?":"全3フロアのおすすめの回り方は？","I’d start on Floor 3 and work down. Floor 3 covers Da Nang’s history and daily life, Floor 2 features community cultures, antique lamps and agarwood, and Floor 1 houses the antiquities. If ceramics are your main interest, start on Floor 1.":"3階から順に下りるのがおすすめです。3階はダナンの歴史と暮らし、2階は諸民族の文化・古いランプ・沈香、1階は古美術です。陶器に興味があれば1階から始めてもよいでしょう。","What’s on Floor 1?":"1階には何がありますか？","Floor 1 houses the antiquities collection, including Chu Dau ceramics, Nguyen-era porcelain, lime pots and ancient pottery from Central Vietnam. Compare the shapes of the Sa Huynh earring and the Kendy vessel in the guide’s collection.":"1階は古美術の展示室です。チューダウ陶器、グエン朝の磁器、石灰壺、中部ベトナムの古陶器などがあります。サーフィン文化の耳飾りとケンディの形を比べてみましょう。","What’s displayed on Floor 2?":"2階には何が展示されていますか？","Floor 2 explores antique lighting, Quang Nam agarwood and the cultures of the Co Tu, Xo Dang, Gie Trieng and Cor communities. Look out for the village-gate figures and the Toghey instrument.":"2階では古い照明器具、クアンナムの沈香、コトゥ族、ソダン族、ジェーチェン族、コー族の文化を紹介しています。村の門の木像やトーゲイという楽器が見どころです。","What story does Floor 3 tell?":"3階ではどんな歴史を学べますか？","Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The gallery connects Dien Hai Citadel with the events of 1858.":"3階ではダナンの自然や人々、都市の歴史、独立をめぐる歩みを紹介します。1858年の出来事とディエンハイ城の関わりもわかります。","What happened in Da Nang in 1858?":"1858年にダナンで何が起きましたか？","In September 1858, a combined French and Spanish force attacked Da Nang. Nguyen Dynasty defenders resisted, preventing a quick victory. Nguyen Tri Phuong was one of the commanders associated with the defense.":"1858年9月、フランスとスペインの連合軍がダナンを攻撃しました。グエン朝の守備側は抵抗し、連合軍の早期勝利を阻みました。グエン・チー・フオンは防衛に関わった指揮官の一人です。","What makes Dien Hai Citadel significant?":"ディエンハイ城はなぜ重要なのですか？","Dien Hai Citadel is a Nguyen-era defensive site near Da Nang Museum. It is associated with the defense against French and Spanish forces beginning in 1858. The museum’s cannon collection connects the site to that history.":"ディエンハイ城はダナン博物館のそばにあるグエン朝の防衛施設です。1858年に始まったフランス・スペイン連合軍との戦いにゆかりがあり、博物館の大砲がその歴史を伝えています。","When was Da Nang liberated?":"ダナンが解放されたのはいつですか？","Da Nang was liberated on 29 March 1975. The wartime exhibits on Floor 3 help put objects such as the Honda Dame moped into that period’s context.":"ダナンが解放されたのは1975年3月29日です。3階の戦争資料展示では、ホンダ・デイムなどの品を通じて当時の背景を知ることができます。","How can I recognize blue-and-white ceramics?":"染付陶器はどう見分けますか？","Blue-and-white ceramics typically have blue designs on a light background. Look for brushwork, differences in color intensity and how the pattern wraps around the vessel. Floor 1’s Chu Dau ceramics are a good place to look.":"染付陶器は明るい地に青い模様が描かれているのが一般的です。筆の跡や青の濃淡、器を取り巻く模様に注目してください。1階のチューダウ陶器で観察できます。","What do lime pots have to do with betel chewing?":"石灰壺はキンマをかむ習慣とどんな関係がありますか？","A lime pot held lime used to prepare betel. A small amount was spread on the leaf before wrapping it with areca nut. The pot is a small object that opens up a story about hospitality and social life.":"石灰壺はキンマを用意するための石灰を入れる器でした。キンマの葉に少量を塗り、ビンロウの実を包みます。小さな器から当時のもてなしや暮らしが見えてきます。","How does agarwood form?":"沈香はどうやってできますか？","Agarwood is resin-rich wood from certain Aquilaria trees, typically formed in response to injury. On Floor 2, Quang Nam agarwood is presented alongside a collection of antique lamps.":"沈香はジンチョウゲ科の特定の樹木に樹脂がたまった木材で、傷などをきっかけに形成されます。2階ではクアンナムの沈香が古いランプとともに紹介されています。","Which communities are represented on Floor 2?":"2階ではどの民族の文化を紹介していますか？","Floor 2 features Co Tu, Xo Dang, Gie Trieng and Cor communities. Co Tu communities live in various mountainous areas of Central Vietnam, including west of Da Nang. Wooden figures and the Toghey instrument are a good introduction.":"2階ではコトゥ族、ソダン族、ジェーチェン族、コー族を紹介しています。コトゥ族はダナン西部など中部ベトナムの山地に暮らしてきました。木像やトーゲイから文化に触れられます。","What can children look for?":"子どもにおすすめの展示は？","Try Floor 1, where the museum lists a children’s exhibition area. For a small game, ask children to spot the two animal heads on the earring and then find the spout on the Kendy vessel.":"博物館が子ども向けの展示エリアを案内している1階へどうぞ。耳飾りの二つの獣の頭や、ケンディの注ぎ口を探すと、遊びながら見学できます。","How can I ask about accessibility?":"バリアフリーについてどこに聞けばよいですか？","If you need wheelchair access, lift access or parking, call 0236 388 6236 before visiting. Staff can confirm the best entrance and arrangements for your visit.":"車いすでの入館、エレベーター、駐車場については来館前に0236 388 6236へお電話ください。スタッフが入口や利用方法をご案内します。","What should I know about photographing artifacts?":"展示品の撮影で気をつけることは？","Check the signs in each gallery or ask staff before taking photos or filming. Where photography is allowed, turn off your flash, keep clear of display cases and leave room for others. Angling your phone slightly can reduce reflections.":"写真や動画を撮る前に、展示室の表示を確認するか係員にお尋ねください。撮影が許可されている場所ではフラッシュを切り、展示ケースや他の来館者との間隔を取りましょう。スマートフォンを少し傾けると反射が減ることがあります。","How do I scan an artifact with my phone?":"スマートフォンで展示品をスキャンするには？","Open the site over HTTPS, tap Scan and allow camera access. Center the artifact, hold the phone steady and tap Scan now. If the glass reflects too much light, change your angle slightly or choose a clear photo.":"サイトをHTTPSで開き、「スキャン」を押してカメラを許可してください。展示品を枠の中央に入れて、端末を止めて「今すぐスキャン」を押します。反射が強い場合は角度を変えるか、写りのよい写真を選んでください。","What else can I visit nearby?":"近くにほかの見どころはありますか？","You can continue at Dien Hai Citadel or take a walk along the Han River. If the Kendy vessel makes you curious about Cham art, consider adding the Museum of Cham Sculpture to your itinerary.":"ディエンハイ城の見学やハン川沿いの散歩がおすすめです。ケンディを見てチャンパ美術に興味を持ったら、チャム彫刻博物館へ足を延ばしてみてください。","Where can I see more Cham art?":"チャンパ美術をもっと見るには？","The Museum of Cham Sculpture in Da Nang displays Cham sculpture from archaeological sites around Central Vietnam. After seeing the Kendy vessel, you can explore how figures, deities and patterns were carved in stone.":"ダナンのチャム彫刻博物館では中部ベトナムの遺跡から出土した彫刻を展示しています。ケンディを見た後は、人物や神々、模様が石にどのように彫られたかを観察できます。","Where is the Dragon Bridge?":"ドラゴン橋はどこにありますか？","The Dragon Bridge spans the Han River in central Da Nang. Check the city’s current schedule before planning a visit for the fire and water show.":"ドラゴン橋はダナン中心部のハン川に架かっています。火と水のショーを見る場合は、市の最新スケジュールを確認してください。","Why does the sky look blue?":"空はなぜ青く見えるのですか？","Sunlight contains many colors. Air molecules scatter shorter blue wavelengths more strongly than red wavelengths. Blue light reaches your eyes from many directions, making the sky look blue.":"太陽の光にはさまざまな色が含まれます。空気の分子は、波長の短い青い光を赤い光よりも強く散乱させます。散乱した青い光がさまざまな方向から目に届き、空が青く見えます。","Why do we have day and night?":"昼と夜があるのはなぜですか？","Earth spins on its axis. When your location faces the Sun it experiences daylight. When it rotates away from the Sun it experiences night. A solar day is about 24 hours.":"地球は自転しています。太陽に面している場所は昼になり、反対側へ回ると夜になります。太陽を基準とした1日は約24時間です。","What is the capital of Vietnam?":"ベトナムの首都はどこですか？","Hanoi is the capital of Vietnam. The area, historically known as Thang Long, served as an imperial capital during several periods.":"ベトナムの首都はハノイです。かつてタンロンと呼ばれ、複数の時代に王朝の都でした。","Imagine a vessel with a spout growing out of its side. That is the shape of a Kendy. Its spout was used for pouring. Try finding the spout in the museum photograph before reading the description.":"胴から注ぎ口が突き出た器を想像してみましょう。それがケンディの形です。解説を読む前に、写真で注ぎ口を探してみてください。","Which part on the side of a Kendy vessel was used to pour water?":"ケンディの横に付いていて、水を注ぐのに使う部分はどれですか？","The lid":"ふた","The spout":"注ぎ口","The base":"底","Imagine tilting the vessel. The water flows through a part that sticks out from the body.":"器を傾けたところを想像してください。水は胴から出っ張った部分を通って流れます。","The side spout is one of the easiest ways to recognize a Kendy.":"横に付いた注ぎ口は、ケンディのわかりやすい特徴の一つです。","From a distance the Sa Huynh earring may look like a simple curved shape. Up close, two symmetrical animal heads appear. A small change in viewing angle reveals something new.":"遠くからは曲がった形に見えるサーフィン文化の耳飾りも、近くで見ると左右対称の獣の頭が二つ見えます。少し角度を変えるだけで新しい発見があります。","How many animal heads are on the museum’s Sa Huynh earring?":"博物館のサーフィン文化の耳飾りに、獣の頭はいくつありますか？","Two":"二つ","Three":"三つ","One":"一つ","The earring is symmetrical. Try counting once on each side.":"耳飾りは左右対称です。左右の両方を数えてみましょう。","The two animal heads were carved symmetrically on either side of the earring.":"耳飾りの両側に獣の頭が一つずつ、左右対称に彫られています。","The museum’s Ghe Bau model has an easy-to-miss detail: its hull widens in the middle. These wooden sailboats carried people and goods along the coast. The little model gives you a lot to imagine.":"帆船ゲーバウの模型は、船体の中央が広いのが特徴です。この木造帆船は、海岸沿いに人々や荷物を運びました。小さな模型から当時の航海を想像できますね。","What powered a traditional Ghe Bau sailboat when its sails were raised?":"伝統的な帆船ゲーバウは、帆を上げると何の力で進みますか？","Horses":"馬","An electric motor":"電動モーター","Wind":"風","Think about what fills a sail when a boat goes out to sea.":"海に出たとき、帆をふくらませるものを考えてみましょう。","Sails catch the wind to move the boat. Ghe Bau sailboats were part of the coastal trading network.":"帆が風を受けて船を進めます。ゲーバウは沿岸の交易を支えた帆船です。","This was a piece of jewelry. The two animal heads and their symmetry help distinguish it from other ancient earrings.":"身に着ける装飾品です。左右対称の二つの獣の頭が、ほかの古代の耳飾りと見分ける手掛かりになります。","The Honda Dame moped is associated with the activities of the Da Nang commandos during wartime. On Floor 3, consider how an ordinary vehicle can tell a wartime story.":"ホンダ・デイムは戦時中のダナンの特殊部隊の活動に関わる車両です。3階では、身近な乗り物がどのように戦争の歴史を伝えるか考えてみましょう。","The model shows the boat’s hull and sails. Traditional Ghe Bau boats had wooden hulls.":"模型は船体と帆を再現しています。伝統的なゲーバウの船体は木造でした。","Ghe Bau boats carried people and goods along coastal routes. In the Quang region, they were part of the maritime trading network.":"ゲーバウは海岸沿いで人や荷物を運び、クアン地域の海上交易を支えました。","Look at how broad the middle of the model’s hull is. It’s a useful way to distinguish this type from narrow-bodied boats.":"模型の船体は中央が広いのが特徴です。胴の細い船と見分ける手掛かりになります。","This group includes ceramic and porcelain objects, some with blue-and-white decoration. Clay, glaze and patterns vary by item, so check each display label.":"陶器や磁器の展示で、青い模様を白地に描いた器もあります。土や釉薬、模様は品ごとに異なるため、展示ラベルをご覧ください。","Ceramic vessels, dishes and lime pots served different purposes. Lime pots stored lime for preparing betel, while other items were containers, tableware or decorative pieces depending on shape.":"陶器の容器や皿、石灰壺にはそれぞれ用途がありました。石灰壺はキンマ用の石灰入れで、ほかの品は形に応じて容器、食器、装飾品などに使われました。","Historical artifacts":"歴史資料","History storyteller":"歴史の語り手","Hello! Let’s explore objects connected to Da Nang’s history. Would you like to hear about the Honda Dame moped, the pressure lantern or the royal decree first?":"こんにちは！ ダナンの歴史を伝える品を一緒に見てみましょう。ホンダ・デイム、圧力式ランプ、勅書のうち、どれから聞きたいですか？","Antiquities and culture":"古美術と文化","Meet the potter":"陶工と話す","Oh, hello! Come and look at these old objects with me. Which one would you like to hear about first?":"やあ、こんにちは。昔の道具を一緒に見てみませんか？ どの品の話から聞きたいですか？","Demo list. The names describe visible features in the reference image.":"デモの一覧です。参考画像で確認できる特徴をもとに名前を付けています。","The image could not be read. Please choose manually.":"画像を読み取れませんでした。一覧から選んでください。","Could not connect to AI recognition. Please choose manually.":"AI認識に接続できませんでした。一覧から選んでください。","No confident match. Please choose an artifact below.":"確実な結果が得られませんでした。下から展示品を選んでください。","Black-and-white illustration in a historical article about Dien Hai Citadel":"ディエンハイ城の歴史記事に掲載された白黒の挿絵","Archival illustration · Da Nang Museum":"歴史資料の挿絵・ダナン博物館","Dien Hai Citadel · Special National Monument":"ディエンハイ城・国家特別史跡","31 Tran Phu Street, Hai Chau, Da Nang":"ダナン市ハイチャウ、チャンフー通り31番地","For example, Alex":"例：ケンジ","Da Nang Museum Smart Guide • 31 Tran Phu Street, Da Nang":"ダナン博物館ガイド・チャンフー通り31番地","Visitor support":"来館者サポート","Guide QR code":"ガイドのQRコード","Change language":"言語を変更","Main Site • Dien Hai Citadel":"本館・ディエンハイ城","Da Nang Museum entrance at 31 Tran Phu Street":"チャンフー通り31番地にあるダナン博物館の入口","Details →":"詳細を見る →","Main site: 31 Tran Phu Street, Hai Chau, Da Nang (Dien Hai Citadel grounds)":"本館：ダナン市ハイチャウ、チャンフー通り31番地（ディエンハイ城敷地内）","Daily, 08:00–17:00, including lunchtime":"毎日 8:00〜17:00（昼休みも開館）","All":"すべて","Photo source:":"写真の出典","Da Nang Museum":"ダナン博物館","Scan results":"スキャン結果","Scan again":"もう一度スキャン","Selected artifact":"選択した展示品","Close result":"詳細を閉じる","View source":"出典を見る","Ask the museum guide":"博物館ガイドに聞く","Questions & images":"質問と画像","Listen to audio":"音声ガイドを聞く","Audio narration":"音声解説","Illustrative images based on the reference frames.":"参考画像に基づくイメージです。","Museum AI Guide":"博物館AIガイド","Questions, images & audio narration":"質問・画像・音声解説","Reset conversation":"会話をリセット","Suggested questions":"おすすめの質問","Question":"質問","Ask me something you’re curious about...":"気になることを聞いてみましょう…","Send question":"質問を送信","8 Quick Questions":"全8問のクイズ","Heritage Explorer Challenge":"文化遺産クイズ","Answer eight questions about Da Nang Museum in 15 seconds each to earn a certificate with your name.":"ダナン博物館に関する全8問に、各15秒以内で答えましょう。名前入りの認定証がもらえます。","Questions":"問題数","Per question":"1問あたり","Certificate":"認定証","Of achievement":"達成記念","Start the challenge":"クイズを始める","Explanation:":"解説","Continue →":"次へ →","DA NANG HERITAGE":"ダナンの文化遺産","Da Nang Museum Certificate of Achievement":"ダナン博物館 クイズ認定証","Da Nang Heritage Explorer":"ダナン文化遺産探検家","Total score":"合計スコア","Correct answers":"正解数","Play again":"もう一度","Share result":"結果を共有","3 Floors":"全3フロア","Swap":"入れ替え","Your location":"現在地","Destination":"目的地","Floor 3":"3階","Start here":"見学の出発点","Floor 2":"2階","Culture & agarwood":"文化と沈香","Floor 1":"1階","Antiquities & entrance":"古美術と入口","Tap a pin to get directions.":"ピンをタップすると経路を表示します。","Start":"出発","Exhibit":"展示","Route":"経路","Step-by-step directions":"順路案内","Clear":"消去","Scan":"スキャン","Museum Guide QR Code":"博物館ガイドのQRコード","Scan with your phone camera or Google Lens to open the guide in your browser.":"スマートフォンのカメラやGoogleレンズで読み取ると、ブラウザーでガイドを開けます。","Paste a public web address (Vercel, Firebase or GitHub Pages):":"公開ウェブアドレスを貼り付けてください（Vercel、Firebase、GitHub Pagesなど）。","Generate QR":"QRコードを生成","Download QR image (PNG)":"QRコード画像をダウンロード（PNG）","Copy link":"リンクをコピー","Visitor Support":"来館者サポート","Da Nang Museum • 31 Tran Phu Street":"ダナン博物館・チャンフー通り31番地","Reception phone number":"受付の電話番号","Copy":"コピー","Opening hours":"開館時間","Tickets":"入館料","VND 20,000 per visit • Free for Da Nang residents and students":"1回20,000ドン。ダナン市民と学生は無料。","Free Wi-Fi throughout the museum":"館内全域で無料Wi-Fiを利用できます","SSID: DaNangMuseum_FreeWiFi (no password)":"ネットワーク名：DaNangMuseum_FreeWiFi（パスワード不要）","Feedback or on-site assistance":"ご意見・館内サポート","Share feedback or request a museum guide...":"ご意見や案内スタッフへのご要望を入力…","Send feedback to the museum":"博物館に送信","Close camera":"カメラを閉じる","Scan an artifact":"展示品をスキャン","About and settings":"プロジェクト情報と設定","Selected artifact photo":"選択した展示品の写真","Enable camera":"カメラを有効にする","Camera zoom":"カメラのズーム","Zoom out":"縮小","Zoom in":"拡大","Choose photo":"写真を選ぶ","Scan now":"今すぐスキャン","About the project":"プロジェクトについて","Close":"閉じる","Included in the demo":"デモで使える機能","Gemini identifies catalog IDs from camera frames or selected photos when configured.":"設定済みの場合、Geminiがカメラ画像や選択した写真から展示品のIDを特定します。","Artifact details, chatbot responses and audio narration use the project’s catalog.":"展示品の情報、チャットの回答、音声解説には、このプロジェクトの資料を使用しています。","A simulated floor map and roleplay with museum characters.":"館内マップのデモや、博物館のキャラクターとの会話を体験できます。","Planned":"今後の予定","Test recognition in galleries, improve visual descriptions and add more artifacts.":"展示室での認識テスト、識別用の説明の改善、登録展示品の追加を予定しています。","The four simulation frames show prepared lists. With AI recognition enabled, Scan now sends the image to Gemini.":"4種類のデモでは、用意した一覧を表示します。AI認識を有効にすると、スキャン時に画像をGeminiへ送信します。","Recognition settings and logs":"認識の設定とログ","Use live AI recognition":"AI画像認識を有効にする","HTTPS proxy URL":"プロキシのHTTPSアドレス","Gemini key for local testing":"テスト用のGemini APIキー","The key is stored in this browser and is used only when the proxy URL is blank.":"キーはこのブラウザーに保存され、プロキシのアドレスが空の場合に使われます。","Save settings":"設定を保存","Export JSON log":"ログをJSONで出力","Fictional character":"架空のキャラクター","What would you like to ask?":"何を聞きたいですか？","Question for the character":"キャラクターへの質問","Ask":"質問する","Return to regular chatbot":"通常のチャットに戻る","Audio Guide":"音声ガイド","Restart narration":"解説を最初から聞く","Stop":"停止","Stop narration":"解説を停止","Transcript":"解説の本文","Da Nang Museum record":"ダナン博物館の資料","Ask chatbot":"チャットで質問","Directions":"経路案内","Choose a language":"言語を選択","Artifact":"展示品","Da Nang Museum Smart Guide":"ダナン博物館ガイド","This address is too long for a QR code. Use a shorter link.":"QRコードにするにはアドレスが長すぎます。短いリンクを入力してください。","Enter a web address.":"ウェブアドレスを入力してください。","QR code updated.":"QRコードを更新しました。","Still generating the QR image. Try again in a moment.":"QRコード画像を作成中です。少し待ってからお試しください。","QR image downloaded.":"QRコード画像をダウンロードしました。","Guide link copied.":"ガイドのリンクをコピーしました。","Enter your feedback or request.":"ご意見やご要望を入力してください。","Enter the HTTPS proxy URL.":"プロキシのHTTPSアドレスを入力してください。","Settings saved.":"設定を保存しました。","Settings applied for this session.":"今回のセッションに設定を適用しました。","Exhibit area":"展示エリア","Demo frame":"デモの展示ケース","Switch camera":"カメラを切り替える","Camera":"カメラ","Open this page over HTTPS to use the camera.":"カメラを使うには、このページをHTTPSで開いてください。","Starting camera…":"カメラを起動中…","The camera has stopped.":"カメラが停止しました。","Aim at the artifact.":"展示品を枠に合わせてください。","You can run a demo scan or retry the camera.":"デモをスキャンするか、カメラをもう一度起動できます。","Allow camera access in your browser settings, then retry.":"ブラウザーの設定でカメラへのアクセスを許可してから、もう一度お試しください。","This browser cannot show the camera in the frame. Try Safari or choose a photo.":"このブラウザーでは枠内にカメラを表示できません。Safariで開くか、写真を選んでください。","Camera unavailable. Retry or choose your own photo.":"カメラを起動できませんでした。もう一度試すか、写真を選んでください。","Opening photo…":"写真を開いています…","Photo ready. Tap Scan now to recognize.":"写真の準備ができました。「今すぐスキャン」を押してください。","This photo could not be opened. Choose another.":"写真を開けませんでした。別の写真を選んでください。","Recognizing artifacts…":"展示品を認識中…","Running demo scan…":"デモをスキャン中…","Roleplay":"なりきりトーク","Play greeting":"あいさつを聞く","AI recognition":"AI認識","Simulation":"デモ","Manual selection":"手動で選択","Illustrated character portrait":"キャラクターのイメージ画像","Try asking me about one of the objects in the exhibit. You can start with one of the suggested questions above.":"展示品について聞いてみてください。上のおすすめの質問からも選べます。","Could not play the greeting.":"あいさつを再生できませんでした。","Pause greeting":"あいさつを一時停止","About this gallery":"展示室について","Collection record":"収蔵品資料","Da Nang Museum • Floor audio guide":"ダナン博物館・フロアの音声ガイド","Guide narration":"ガイドの音声解説","Piper synthetic voice · VAIS 1000 dataset (CC BY 4.0)":"Piper合成音声・VAIS 1000データセット（CC BY 4.0）","Piper synthetic voice · Lessac corpus":"Piper合成音声・Lessacコーパス","Could not play the recording":"音声解説を再生できませんでした","Speech narration is unavailable in this browser":"このブラウザーでは読み上げを利用できません","Could not play this voice":"読み上げ音声を再生できませんでした","Try again":"もう一度試す","Loading narration…":"音声解説を読み込み中…","Loading…":"読み込み中…","Playing narration…":"音声解説を再生中…","Pause":"一時停止","Stopped":"停止しました","Play":"再生","Finished":"再生が終了しました","Paused":"一時停止中","Resume":"再開","Conversation reset.":"会話をリセットしました。","Checking Wikipedia…":"ウィキペディアで検索中…","Illustration":"イメージ画像","Date":"年代","Reference video":"参考動画","Location":"展示場所","Time is up! ":"時間切れです。","Certificate and score copied!":"認定証とスコアをコピーしました！","Floor 3 Map (Tour starting point)":"3階のマップ（見学の出発点）","Floor 2 Map (Culture and agarwood)":"2階のマップ（文化と沈香）","Floor 1 Map (Antiquities and entrance)":"1階のマップ（古美術と入口）","You are already at the destination.":"現在地はすでに目的地です。","Overview & urban history":"ダナンの概要と都市の歴史","Cannon of 1858":"1858年の大砲","War relics":"戦争の資料","Co Tu & ethnic cultures":"コトゥ族と諸民族の文化","Lamps & agarwood":"古いランプと沈香","Research & development":"調査と研究","Chu Dau ceramics & lime pots":"チューダウ陶器と石灰壺","Sa Huynh & Champa":"サーフィン文化とチャンパ","Entrance & reception":"入口と受付","ELEVATOR / STAIRS":"エレベーター・階段","Vietnamese":"ベトナム語","Switched to English.":"日本語に切り替えました。","Copied.":"コピーしました。","Could not copy automatically.":"自動でコピーできませんでした。","Smart Museum Guide":"デジタル博物館ガイド","Guide link":"ガイドのリンク","3F → 2F → 1F":"3階 → 2階 → 1階","3F":"3階","2F":"2階","1F":"1階","Show on map":"マップで表示","Open the map":"マップを開く","Read on Wikipedia":"ウィキペディアで読む","Museum Guide":"博物館ガイド","AI narration":"AI音声解説","15s":"15秒"};
+    // END EMBEDDED JAPANESE
+
     function getSvgArtwork(type) {
       const svgs = {
         floor3: `
@@ -2299,7 +2304,7 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     // END EMBEDDED ARTIFACTS
 
     // BEGIN EMBEDDED MUSEUM CHAT
-function createMuseumChat(knowledge) {
+function createMuseumChat(knowledge, japaneseText = text => text) {
   const topics = new Map(knowledge.topics.map(topic => [topic.id, topic]));
   const defaultTopics = ['hours', 'short-tour', 'floor-1', 'history-1858'];
   const conversationPrompts = {
@@ -2312,10 +2317,38 @@ function createMuseumChat(knowledge) {
     reveal: ['Cho mình xem đáp án', 'Show me the answer'],
     tour: ['Hỏi về bảo tàng', 'Back to the museum']
   };
-  const pick = (pair, lang) => pair[lang === 'en' ? 1 : 0];
-  const localized = (record, lang) => lang === 'en' ? { ...record, ...record.en } : record;
+  const pick = (pair, lang) => lang === 'ja' ? pair[2] ?? japaneseText(pair[1]) : pair[lang === 'en' ? 1 : 0];
+  const localized = (record, lang) => {
+    if (lang === 'ja') {
+      const translations = Object.entries(record.en || {}).map(([key, text]) => [key, japaneseText(text)]);
+      return { ...record, ...Object.fromEntries(translations) };
+    }
+    return lang === 'en' ? { ...record, ...record.en } : record;
+  };
+
+  const japaneseScript = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u;
+  const japaneseTopicAliases = {
+    hours: ['開館時間', '営業時間', '何時に開', '何時から', '何時まで', '休館日'],
+    tickets: ['入館料', '入場料', 'チケット', '料金', '割引'],
+    address: ['住所', '所在地', '博物館はどこ', '博物館への行き方'],
+    contact: ['電話番号', '連絡先', '連絡方法'], 'short-tour': ['30分', '短時間'],
+    tour: ['見学ルート', '回り方', 'おすすめの順路'], 'floor-1': ['1階'], 'floor-2': ['2階'], 'floor-3': ['3階'],
+    'history-1858': ['1858年'], citadel: ['ディエンハイ城'], liberation: ['解放'],
+    ceramics: ['染付'], betel: ['キンマ'], agarwood: ['沈香'], community: ['民族の文化'],
+    kids: ['子ども', '子供'], access: ['車いす', '車椅子', 'バリアフリー'], photos: ['撮影', 'フラッシュ'],
+    scanner: ['スキャン方法', 'スキャンするには'], nearby: ['近くの観光', '周辺'], 'cham-museum': ['チャム彫刻博物館'],
+    'dragon-bridge': ['ドラゴン橋', '龍の橋'], sky: ['空はなぜ青', '空が青'], 'day-night': ['昼と夜'], capital: ['首都']
+  };
+  const japaneseArtifactAliases = {
+    cannon: ['大砲'], sahuynh: ['双獣頭形耳飾り', '双頭の耳飾り'], kendy: ['ケンディ'],
+    hondadame: ['ホンダデイム', 'ホンダ・デイム'], cotu: ['村の門の木像'], ghebau: ['ゲーバウ', '帆船の模型'],
+    chudau: ['チューダウ陶器'], denco: ['圧力式ランプ'], 'dien-hai-decree': ['勅書'], 'to-ghey-horn': ['トーゲイ']
+  };
 
   function normalize(text) {
+    if (japaneseScript.test(text)) {
+      return text.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '').trim();
+    }
     return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
   }
@@ -2338,6 +2371,10 @@ function createMuseumChat(knowledge) {
       if (!original) continue;
       const alias = normalize(original);
       if (!alias) continue;
+      if (japaneseScript.test(alias)) {
+        if (query.includes(alias)) strongest = Math.max(strongest, 2 + Math.min(alias.length, 45) / 50);
+        continue;
+      }
       const parts = alias.split(' ');
       const weight = parts.length * 2 + Math.min(alias.length, 45) / 50;
       if (` ${query} `.includes(` ${alias} `)) {
@@ -2360,17 +2397,29 @@ function createMuseumChat(knowledge) {
       score: aliasMatch(query, [
         ...(knowledge.artifacts[record.id]?.aliases || []),
         ...(record.aliases || []),
-        record.name, record.shortName, record.en?.shortName, record.en?.title
+        record.name, record.shortName, record.en?.shortName, record.en?.title,
+        ...(japaneseArtifactAliases[record.id] || []), japaneseText(record.en?.shortName), japaneseText(record.en?.title)
       ], true)
     })).filter(match => match.score > 0).sort((a, b) => b.score - a.score);
   }
 
   function topicMatches(query) {
-    return [...topics.values()].map(topic => ({ topic, score: aliasMatch(query, [...topic.aliases, ...topic.question]) }))
+    return [...topics.values()].map(topic => ({ topic, score: aliasMatch(query, [
+      ...topic.aliases, ...topic.question, japaneseText(topic.question[1]), ...(japaneseTopicAliases[topic.id] || [])
+    ]) }))
       .filter(match => match.score > 0).sort((a, b) => b.score - a.score);
   }
 
   function artifactIntent(query) {
+    if (japaneseScript.test(query)) {
+      const intents = [
+        ['card', /写真|画像/], ['audio', /音声|読み上げ|聞かせ/], ['material', /材質|素材|何ででき|何で作/],
+        ['purpose', /使い方|用途|何に使/], ['history', /出土|発見|見つか|歴史|由来/],
+        ['location', /何階|展示場所|どこ/], ['era', /年代|いつの|何世紀|何年前/], ['maker', /誰が作|製作者/],
+        ['dimensions', /大きさ|寸法|サイズ|重さ|高さ/], ['detail', /もっと|詳しく|特徴/]
+      ];
+      return intents.find(([, pattern]) => pattern.test(query))?.[0] ?? null;
+    }
     if (/\b(hinh anh|xem anh|cho xem|show me|show the|photo|picture)\b/.test(query)) return 'card';
     if (/^(?:nghe|cho nghe)$|\b(nghe (?:narration|thuyet minh|doc|giong doc)|cho (?:minh )?nghe|audio|read aloud|listen)\b/.test(query)) return 'audio';
     if (/\b(chat lieu|vat lieu|bang gi|duoc duc bang|lam tu gi|made of|material|carved from)\b/.test(query)) return 'material';
@@ -2392,31 +2441,35 @@ function createMuseumChat(knowledge) {
     if (!intent || intent === 'card') return { ...base, card: true };
     if (intent === 'audio') return { ...base, text: pick([
       `Mình có phần thuyết minh về ${art.shortName}. Bấm Nghe audio bên dưới nhé.`,
-      `There’s a narration for ${art.shortName}. Tap Listen to audio below.`
+      `There’s a narration for ${art.shortName}. Tap Listen to audio below.`,
+      `「${art.shortName}」の音声解説があります。下のボタンから聞けます。`
     ], lang), audio: true };
     if (intent === 'location') {
       const text = art.floor ? pick([
         `Bạn tìm ${art.shortName} ở tầng ${art.floor}, khu ${art.room.replace(/\s*[-•]\s*Tầng \d+$/i, '')}.`,
-        `Look for ${art.shortName} in ${art.room}.`
+        `Look for ${art.shortName} in ${art.room}.`, `${art.room}で「${art.shortName}」をご覧いただけます。`
       ], lang) : pick([
         `Bảo tàng có hồ sơ về ${art.shortName}. Mình chưa xác nhận được vị trí trưng bày cụ thể.`,
-        `The museum has a record for ${art.shortName}. I don’t have a confirmed display location for this item.`
+        `The museum has a record for ${art.shortName}. I don’t have a confirmed display location for this item.`,
+        `博物館には「${art.shortName}」の資料があります。展示場所は確認できていません。`
       ], lang);
       return { ...base, text, floor: art.floor, mapNodeId: art.mapNodeId };
     }
     if (intent === 'era') return { ...base, text: art.era ? pick([
       `${art.shortName} có niên đại theo danh mục là ${art.era}.`,
-      `The catalog dates ${art.shortName} to ${art.era}.`
+      `The catalog dates ${art.shortName} to ${art.era}.`, `目録によると、「${art.shortName}」は${art.era}のものです。`
     ], lang) : pick([
       `Danh mục chưa ghi niên đại cụ thể cho ${art.shortName}. Mình có thể kể thêm về công dụng hoặc hình dáng của nó.`,
-      `The catalog doesn’t give an exact date for ${art.shortName}. I can tell you about its purpose or appearance.`
+      `The catalog doesn’t give an exact date for ${art.shortName}. I can tell you about its purpose or appearance.`,
+      `「${art.shortName}」の詳しい年代は目録に記載されていません。使い方や形についてはご案内できます。`
     ], lang) };
     const detail = facts[intent] ?? (intent === 'detail' ? facts.purpose : null);
     const text = detail ? pick(detail, lang)
       : intent === 'purpose' || intent === 'detail' ? art.fullDesc
       : pick([
         `Mình chưa có thông tin đủ cụ thể về phần này của ${art.shortName}. Bạn có thể xem nhãn trưng bày hoặc hỏi mình về một chi tiết khác.`,
-        `I don’t have that specific detail about ${art.shortName}. You can check the display label or ask me about another feature.`
+        `I don’t have that specific detail about ${art.shortName}. You can check the display label or ask me about another feature.`,
+        `「${art.shortName}」について、その詳しい情報は確認できていません。展示ラベルを見るか、別の特徴について聞いてみてください。`
       ], lang);
     return { ...base, text };
   }
@@ -2438,7 +2491,8 @@ function createMuseumChat(knowledge) {
       social: true,
       ...(chatMode !== undefined ? { contextPatch: { chatMode, ...patch } } : {})
     });
-    const is = (key, pattern) => conversationPrompts[key].some(text => normalize(text) === query) || pattern.test(query);
+    const is = (key, pattern) => normalize(pick(conversationPrompts[key], lang)) === query
+      || conversationPrompts[key].some(text => normalize(text) === query) || pattern.test(query);
     const breaks = knowledge.chatBreaks;
     const set = breaks[context.quizIndex] ?? breaks[0];
 
@@ -2477,12 +2531,15 @@ function createMuseumChat(knowledge) {
         return reply(set.explanation, 'quiz-done');
       }
       const guess = query.replace(/^(?:minh doan|tui doan|chac la|i guess|i think it s) /, '').replace(/ (?:a|ha|dung khong)$/, '');
-      const matches = words => words.some(word => normalize(word) === guess);
+      const matches = words => words.some(word => normalize(word) === guess
+        || (lang === 'ja' && normalize(japaneseText(word)) === guess));
       if (matches([...set.choices[set.correct], ...set.alsoAccept])) {
-        return reply([`Chuẩn rồi! ${set.explanation[0]}`, `You got it! ${set.explanation[1]}`], 'quiz-done');
+        return reply([`Chuẩn rồi! ${set.explanation[0]}`, `You got it! ${set.explanation[1]}`,
+          `正解です！ ${pick(set.explanation, 'ja')}`], 'quiz-done');
       }
       if (set.choices.some(matches)) {
-        return reply([`Chưa đúng, thử thêm lần nữa nhé. ${set.hint[0]}`, `Good try. Here’s a clue: ${set.hint[1]}`], 'quiz', { quizHint: true });
+        return reply([`Chưa đúng, thử thêm lần nữa nhé. ${set.hint[0]}`, `Good try. Here’s a clue: ${set.hint[1]}`,
+          `もう一度考えてみましょう。${pick(set.hint, 'ja')}`], 'quiz', { quizHint: true });
       }
     }
 
@@ -2490,7 +2547,8 @@ function createMuseumChat(knowledge) {
       .replace(/^(?:(?:minh|tui|toi|tao|to|em|hom nay|nay|dang|thay|cam thay|tu nhien|hoi|rat|qua|i m|i am|i feel|feeling|really|very|so|a bit|kind of) )+/, '');
     const qualifiers = '(?: (?:qua|ghe|lam|lom|vai|qua di|di|nhe|nha|ne|a|luon|that|vay|he|roi|right now|today|so much|really))*';
     const mood = pattern => new RegExp(`^(?:${pattern})${qualifiers}(?: (?:vi|because) .+)?$`).test(casual);
-    const sad = mood('bu+o+n+|bu+n+|tut mood|tam trang te|sad|down|upset|muon khoc|feeling down');
+    const sad = mood('bu+o+n+|bu+n+|tut mood|tam trang te|sad|down|upset|muon khoc|feeling down')
+      || /^(?:今日は)?(?:悲しい|つらい|落ち込んでいる|寂しい)(?:です)?$/.test(query);
     const firstPerson = /\b(minh|tui|toi|to|em|cua (?:minh|tui|toi)|i|my)\b/.test(query);
     const talking = ['listening', 'sad', 'bored', 'tired', 'worried'].includes(context.chatMode);
     const generalQuestion = /^(?:vi sao|tai sao|what is|what are|why|who is|how) /.test(query);
@@ -2525,7 +2583,7 @@ function createMuseumChat(knowledge) {
         'It sounds like today has been a bit rough. If you’d like to talk, I’m here to listen. What’s been weighing on you?'
       ], 'sad');
     }
-    if (mood('chan+|nan+|chan nan|chan hoc|bored|nothing to do')) {
+    if (mood('chan+|nan+|chan nan|chan hoc|bored|nothing to do') || /^(?:退屈|暇)(?:です)?$/.test(query)) {
       return reply([
         'Chán ghê ha. Hay mình đổi không khí một chút? Mình có một câu đố ngắn hoặc một chuyện hay trong bảo tàng.',
         'A change of pace might be nice. How about a quick riddle or a little museum story?'
@@ -2573,19 +2631,20 @@ function createMuseumChat(knowledge) {
     }
 
     const responses = [
-      [/^(?:he lo+|he+lo+|hello+|helo+|hi+|hey+|alo+|xin chao|chao)(?: (?:ban|nha|nhe|nho|a|moi nguoi|bot|there|everyone))*$/, [
+      [/^(?:he lo+|he+lo+|hello+|helo+|hi+|hey+|alo+|xin chao|chao)(?: (?:ban|nha|nhe|nho|a|moi nguoi|bot|there|everyone))*$|^(?:こんにちは|こんばんは|おはよう(?:ございます)?)$/, [
         `Hế lô${name ? ', ' + name : ''}! Rất vui gặp bạn 😊 Hôm nay bạn muốn đi một vòng bảo tàng hay nghe mình kể một chuyện lạ về hiện vật?`,
-        `Hi${name ? ', ' + name : ''}! Lovely to meet you 😊 Fancy a quick tour or a little story about one of the objects?`
+        `Hi${name ? ', ' + name : ''}! Lovely to meet you 😊 Fancy a quick tour or a little story about one of the objects?`,
+        `こんにちは${name ? '、' + name + 'さん' : ''}！ お会いできてうれしいです。館内を少し回りますか？ それとも展示品のお話を聞きますか？`
       ]],
-      [/^(?:cam on|cam on ban|cam on nha|cam on nhieu|thank you|thanks|thank you so much)(?: (?:nhe|a|ban|nha))?$/, [
+      [/^(?:cam on|cam on ban|cam on nha|cam on nhieu|thank you|thanks|thank you so much)(?: (?:nhe|a|ban|nha))?$|^ありがとう(?:ございます)?$/, [
         'Không có gì nha! Cảm ơn bạn đã trò chuyện với mình.',
         'You’re welcome! Thanks for chatting with me.'
       ]],
-      [/^(?:tam biet|bye|goodbye|hen gap lai|see you)(?: (?:nhe|a|ban|later))?$/, [
+      [/^(?:tam biet|bye|goodbye|hen gap lai|see you)(?: (?:nhe|a|ban|later))?$|^(?:さようなら|またね)$/, [
         'Hẹn gặp lại bạn nhé!',
         'See you next time!'
       ]],
-      [/^(?:ban la ai|ban ten gi|ten ban la gi|ban la robot a|who are you|what is your name|are you a bot)$/, [
+      [/^(?:ban la ai|ban ten gi|ten ban la gi|ban la robot a|who are you|what is your name|are you a bot|あなたは誰(?:ですか)?)$/, [
         'Mình là hướng dẫn viên số của Bảo tàng Đà Nẵng. Mình có thể kể chuyện hiện vật, gợi ý đường đi hoặc cùng bạn tìm hiểu một chủ đề mới.',
         'I’m Da Nang Museum’s digital guide. I can tell you about the objects, suggest a route or help you explore another topic.'
       ]],
@@ -2607,11 +2666,12 @@ function createMuseumChat(knowledge) {
   }
 
   function lookupSubject(raw) {
-    const clean = raw.trim().replace(/[?!.]+$/, '').trim();
+    const clean = raw.trim().replace(/[?!.？！。]+$/, '').trim();
     const patterns = [
       /^(.+?)\s+(?:là\s+(?:ai|gì)|la\s+(?:ai|gi))$/iu,
       /^(?:ai\s+(?:là|la)|(?:giải thích|giai thich|kể về|ke ve|tìm hiểu về|tim hieu ve))\s+(.+)$/iu,
       /^(?:what (?:is|are)|who (?:is|was)|tell me about|explain)\s+(.+)$/iu,
+      /^(.+?)(?:とは(?:何ですか)?|って何|について教えて(?:ください)?)$/u,
       /^(.+?)\s+(?:nghĩa là gì|nghia la gi)$/iu
     ];
     const subject = patterns.map(pattern => clean.match(pattern)?.[1]).find(Boolean)?.trim();
@@ -2630,12 +2690,12 @@ function createMuseumChat(knowledge) {
     const explicit = artifactMatches(q, catalog);
     const relatedTopics = topicMatches(q);
     const top = relatedTopics[0];
-    const reference = lang === 'en'
+    const reference = lang === 'ja' ? /^(?:これ|それ)|この(?:展示品|品|資料)|その(?:展示品|品|資料)/.test(q) : lang === 'en'
       ? /\b(it|that one|this one|this artifact|that artifact)\b/.test(q)
       : /\b(no|mon (?:do|nay|kia|ay)|cai (?:do|nay|kia|ay)|hien vat (?:do|nay|ay)|vay|the)\b/.test(q);
     const abbreviated = q.split(' ').length <= 7 && !top;
     const recent = (reference || abbreviated) && intent ? catalog.get(context.artifactId) : null;
-    const compare = /\b(so sanh|khac nhau|vs|compare|difference between)\b/.test(q);
+    const compare = /\b(so sanh|khac nhau|vs|compare|difference between)\b|違い|比較/.test(q);
     if (compare && explicit.length > 1) {
       const [first, second] = explicit.slice(0, 2).map(({ record }) => localized(record, lang));
       return {
@@ -2719,7 +2779,7 @@ function createMuseumChat(knowledge) {
   }
 
   async function searchWikipedia(subject, lang, signal) {
-    const wikiLanguage = lang === 'en' ? 'en' : 'vi';
+    const wikiLanguage = ['en', 'ja'].includes(lang) ? lang : 'vi';
     const endpoint = new URL(`https://${wikiLanguage}.wikipedia.org/w/api.php`);
     endpoint.search = new URLSearchParams({
       action: 'query', prop: 'extracts|pageprops', ppprop: 'disambiguation', exintro: '1',
@@ -2742,7 +2802,7 @@ function createMuseumChat(knowledge) {
   return { answer, suggestions, searchWikipedia };
 }
 
-    const museumGuide = createMuseumChat({"topics":[{"id":"hours","aliases":["giờ mở cửa","mở cửa","mấy giờ đóng","đóng cửa","giờ tham quan","lịch mở cửa","mở lúc mấy giờ","thứ hai có mở","cuối tuần có mở","opening hours","open today","what time does","closing time","open on weekends"],"question":["Bảo tàng mở cửa lúc mấy giờ?","When does the museum open?"],"answer":["Bảo tàng Đà Nẵng mở cửa từ 08:00 đến 17:00 hằng ngày theo thông tin công bố của bảo tàng. Bạn có thể ghé buổi sáng nếu muốn dành nhiều thời gian xem cả ba tầng.","Da Nang Museum lists its opening hours as 8 a.m. to 5 p.m. daily. Aim for the morning if you’d like time to explore all three floors."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["tickets","address","short-tour"]},{"id":"tickets","aliases":["giá vé","vé bao nhiêu","tiền vé","mua vé","miễn phí","vé sinh viên","vé tham quan","có mất tiền","mất phí","phí vào cửa","bao nhiêu tiền","ticket","tickets","admission","entry fee","free entry"],"question":["Vé tham quan tính thế nào?","How does admission work?"],"answer":["Bảo tàng có thông báo vé riêng theo nhóm khách. Bạn xem bảng giá chính thức bên dưới để kiểm tra mức vé và giấy tờ cần mang nếu thuộc diện miễn hoặc giảm.","The museum publishes separate admission rules for different groups. Check the official notice below for current prices and any documents needed for a discount or exemption."],"source":"https://baotangdanang.vn/bao-tang-da-nang-xin-thong-bao-gia-ve-tham-quan-tai-bao-tang-da-nang-ap-dung-tu-ngay-0372025-theo-nghi-quyet-so-102025nq-hdn-cua-thanh-pho-da-nang-cu-the","next":["hours","address","short-tour"]},{"id":"address","aliases":["địa chỉ","bảo tàng ở đâu","bảo tàng đà nẵng ở đâu","đến bảo tàng","đi tới bảo tàng","31 trần phú","museum address","where is the museum","getting to the museum","get to da nang museum"],"question":["Bảo tàng nằm ở đâu?","Where is Da Nang Museum?"],"answer":["Bạn tìm Bảo tàng Đà Nẵng tại số 31 Trần Phú, Đà Nẵng. Khi gọi xe, bạn có thể đọc số nhà hoặc dán nguyên tên “Bảo tàng Đà Nẵng, 31 Trần Phú” để đến đúng cơ sở.","Da Nang Museum is at 31 Tran Phu Street, Da Nang. Use the full address when booking a ride so you’re taken to the right location."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["hours","tickets","short-tour"]},{"id":"contact","aliases":["hotline","số điện thoại","liên hệ","đặt đoàn","đăng ký đoàn","tham quan theo đoàn","đặt hướng dẫn viên","contact","phone number","book a group","group booking","school group"],"question":["Liên hệ bảo tàng bằng cách nào?","How can I contact the museum?"],"answer":["Bạn có thể gọi 0236 388 6236. Nếu đi theo lớp hoặc cần hỗ trợ tại chỗ, nên nói trước số người, ngày đến và nhu cầu của đoàn để nhân viên tư vấn.","You can call 0236 388 6236. For a school group or extra assistance, tell the staff your group size, planned date and what help you need."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["address","hours","access"]},{"id":"short-tour","aliases":["30 phút","nửa tiếng","ít thời gian","tham quan nhanh","15 phút","20 phút","đi đâu trước","bắt đầu ở đâu","30 minutes","half an hour","short visit","quick tour","start the tour"],"question":["Chỉ có 30 phút thì xem gì?","What should I see in 30 minutes?"],"answer":["Nếu chỉ có 30 phút, mình gợi ý dành khoảng 15 phút ở tầng 3 để xem câu chuyện Đà Nẵng năm 1858, rồi xuống tầng 1 dành khoảng 10 phút cho khuyên tai Sa Huỳnh và bình Kendy. Chừa vài phút để di chuyển giữa các tầng.","With 30 minutes, I’d spend about 15 minutes on Floor 3 for Da Nang’s story in 1858, then about 10 minutes on Floor 1 for the Sa Huynh earring and Kendy vessel. Leave a few minutes to move between floors."],"map":true,"next":["tour","floor-3","floor-1"]},{"id":"tour","aliases":["lộ trình","xem gì","tham quan thế nào","bao nhiêu tầng","mấy tầng","mỗi tầng","tham quan bao lâu","tour route","each floor","what to see","what should i see","how many floors","museum highlights","map","bản đồ"],"question":["Nên tham quan ba tầng theo thứ tự nào?","What’s a good route through all three floors?"],"answer":["Mình gợi ý đi từ tầng 3 xuống tầng 1. Tầng 3 kể lịch sử và đời sống Đà Nẵng, tầng 2 có văn hóa các cộng đồng cùng đèn cổ và trầm hương, tầng 1 dành cho bộ sưu tập cổ vật. Nếu mê gốm, bạn có thể bắt đầu ngay ở tầng 1.","I’d start on Floor 3 and work down. Floor 3 covers Da Nang’s history and daily life, Floor 2 features community cultures, antique lamps and agarwood, and Floor 1 houses the antiquities. If ceramics are your main interest, start on Floor 1."],"map":true,"next":["floor-3","floor-2","floor-1"]},{"id":"floor-1","aliases":["tầng 1","tầng một","tầng trệt","tủ cổ vật","khu cổ vật","floor 1","first floor","antiquities gallery"],"question":["Tầng 1 có hiện vật gì?","What’s on Floor 1?"],"answer":["Tầng 1 có sưu tập cổ vật, trong đó có gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ miền Trung. Trong danh mục của web, khuyên tai Sa Huỳnh và bình gốm Kendy cho thấy hai kiểu tạo hình rất khác nhau.","Floor 1 houses the antiquities collection, including Chu Dau ceramics, Nguyen-era porcelain, lime pots and ancient pottery from Central Vietnam. Compare the shapes of the Sa Huynh earring and the Kendy vessel in the guide’s collection."],"floor":1,"source":"https://baotangdanang.vn/khong-gian-suu-tap-co-vat-cua-bao-tang-da-nan","next":["ceramics","betel","floor-2"]},{"id":"floor-2","aliases":["tầng 2","tầng hai","khu văn hóa","floor 2","second floor","ethnic cultures"],"question":["Tầng 2 trưng bày gì?","What’s displayed on Floor 2?"],"answer":["Tầng 2 có đèn cổ, trầm hương xứ Quảng và trưng bày về các cộng đồng Cơ Tu, Xơ Đăng, Giẻ – Triêng và Cor. Mình gợi ý dừng lại ở tượng cổng làng và kèn Tơghêy để để ý cách gỗ và âm nhạc đi vào đời sống cộng đồng.","Floor 2 explores antique lighting, Quang Nam agarwood and the cultures of the Co Tu, Xo Dang, Gie Trieng and Cor communities. Look out for the village-gate figures and the Toghey instrument."],"floor":2,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-2","next":["agarwood","community","floor-3"]},{"id":"floor-3","aliases":["tầng 3","tầng ba","phòng lịch sử","khu chứng tích chiến tranh","floor 3","third floor","resistance history gallery"],"question":["Tầng 3 kể câu chuyện gì?","What story does Floor 3 tell?"],"answer":["Tầng 3 kể về thiên nhiên, con người, lịch sử đô thị và các giai đoạn đấu tranh của Đà Nẵng. Không gian này kết nối câu chuyện Thành Điện Hải với cuộc kháng chiến bắt đầu năm 1858.","Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The gallery connects Dien Hai Citadel with the events of 1858."],"floor":3,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang","next":["history-1858","citadel","liberation"]},{"id":"history-1858","aliases":["năm 1858","sự kiện 1858","chiến sự 1858","1858 xảy ra","tại sao năm 1858","pháp tây ban nha","liên quân pháp","nguyễn tri phương","what happened in 1858","franco spanish","nguyen tri phuong","battle of da nang"],"question":["Chuyện gì xảy ra ở Đà Nẵng năm 1858?","What happened in Da Nang in 1858?"],"answer":["Tháng 9 năm 1858, liên quân Pháp – Tây Ban Nha tiến công Đà Nẵng. Quân dân triều Nguyễn kháng cự và ngăn đối phương nhanh chóng chiếm được mục tiêu. Nguyễn Tri Phương là một trong những người chỉ huy phòng thủ gắn với giai đoạn này.","In September 1858, a combined French and Spanish force attacked Da Nang. Nguyen Dynasty defenders resisted, preventing a quick victory. Nguyen Tri Phuong was one of the commanders associated with the defense."],"source":"https://baotangdanang.vn/168-nam-ngay-da-nang-mo-dau-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-01-9-1858-01-9-2026","next":["citadel","floor-3","liberation"]},{"id":"citadel","aliases":["thành điện hải","điện hải ở đâu","điện hải là gì","thành cổ","dien hai citadel","dien hai fortress"],"question":["Thành Điện Hải có gì đặc biệt?","What makes Dien Hai Citadel significant?"],"answer":["Thành Điện Hải là di tích phòng thủ thời Nguyễn ở Đà Nẵng, gần Bảo tàng Đà Nẵng. Di tích gắn với cuộc phòng thủ trước liên quân Pháp – Tây Ban Nha từ năm 1858. Tại bảo tàng, bạn có thể nối câu chuyện đó với bộ sưu tập súng thần công.","Dien Hai Citadel is a Nguyen-era defensive site near Da Nang Museum. It is associated with the defense against French and Spanish forces beginning in 1858. The museum’s cannon collection connects the site to that history."],"source":"https://baotangdanang.vn/168-nam-ngay-da-nang-mo-dau-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-01-9-1858-01-9-2026","next":["history-1858","floor-3","address"]},{"id":"liberation","aliases":["đà nẵng giải phóng","giải phóng đà nẵng","29 tháng 3","29 3 1975","liberation of da nang","da nang liberated","march 29 1975"],"question":["Đà Nẵng được giải phóng ngày nào?","When was Da Nang liberated?"],"answer":["Đà Nẵng được giải phóng ngày 29 tháng 3 năm 1975. Bạn có thể xem phần Chứng tích chiến tranh ở tầng 3 để đặt những hiện vật như Honda Dame vào bối cảnh giai đoạn đó.","Da Nang was liberated on 29 March 1975. The wartime exhibits on Floor 3 help put objects such as the Honda Dame moped into that period’s context."],"floor":3,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang","next":["floor-3","history-1858","citadel"]},{"id":"ceramics","aliases":["gốm sứ khác","gốm và sứ","men lam","hoa lam","gốm cổ trung bộ","gốm cổ các tỉnh trung bộ","gốm sứ","đồ gốm","blue and white","ceramics and porcelain","central vietnamese ceramics"],"question":["Nhận ra gốm hoa lam bằng cách nào?","How can I recognize blue-and-white ceramics?"],"answer":["Hoa lam thường có họa tiết màu lam trên nền sáng. Khi nhìn qua tủ kính, thử để ý nét bút, sự đậm nhạt của màu và cách họa tiết chạy quanh thân. Ở tầng 1 có gốm Chu Đậu để bạn tìm những chi tiết đó.","Blue-and-white ceramics typically have blue designs on a light background. Look for brushwork, differences in color intensity and how the pattern wraps around the vessel. Floor 1’s Chu Dau ceramics are a good place to look."],"floor":1,"next":["floor-1","betel","tour"]},{"id":"betel","aliases":["trầu cau","ăn trầu","tại sao có vôi","phong tục gì","betel chewing","betel nut","betel leaves"],"question":["Bình vôi liên quan gì đến tục ăn trầu?","What do lime pots have to do with betel chewing?"],"answer":["Bình vôi đựng vôi dùng khi têm trầu. Vôi được quệt một lượng nhỏ lên lá trầu trước khi gói cùng cau. Chiếc bình vì vậy kể được một phần câu chuyện về thói quen tiếp khách và giao tiếp ngày trước.","A lime pot held lime used to prepare betel. A small amount was spread on the leaf before wrapping it with areca nut. The pot is a small object that opens up a story about hospitality and social life."],"next":["ceramics","floor-1","tour"]},{"id":"agarwood","aliases":["trầm hương","gỗ trầm","vì sao trầm thơm","agarwood","oud wood"],"question":["Trầm hương hình thành như thế nào?","How does agarwood form?"],"answer":["Trầm hương là phần gỗ tích nhựa thơm ở một số cây dó bầu, thường liên quan đến phản ứng của cây khi thân bị tổn thương. Ở tầng 2, trầm hương xứ Quảng được giới thiệu cùng bộ sưu tập đèn cổ.","Agarwood is resin-rich wood from certain Aquilaria trees, typically formed in response to injury. On Floor 2, Quang Nam agarwood is presented alongside a collection of antique lamps."],"floor":2,"next":["floor-2","community","tour"]},{"id":"community","aliases":["người cơ tu ở đâu","cơ tu sinh sống","cơ tu ở đà nẵng","người cơ tu sống ở đâu","người cơ tu ở đà nẵng sinh sống ở đâu","dân tộc nào","các dân tộc","where do the co tu live","co tu communities","other ethnic groups"],"question":["Tầng 2 giới thiệu những cộng đồng nào?","Which communities are represented on Floor 2?"],"answer":["Tầng 2 giới thiệu các cộng đồng Cơ Tu, Xơ Đăng, Giẻ – Triêng và Cor. Người Cơ Tu có các cộng đồng ở nhiều vùng miền núi miền Trung, trong đó có khu vực phía tây Đà Nẵng. Hiện vật như tượng gỗ và kèn Tơghêy cho bạn một điểm bắt đầu để tìm hiểu văn hóa Cơ Tu.","Floor 2 features Co Tu, Xo Dang, Gie Trieng and Cor communities. Co Tu communities live in various mountainous areas of Central Vietnam, including west of Da Nang. Wooden figures and the Toghey instrument are a good introduction."],"floor":2,"next":["floor-2","agarwood","tour"]},{"id":"kids","aliases":["trẻ em","đi cùng bé","đi với trẻ","thiếu nhi","tham quan với con","kids","children","family visit"],"question":["Đi cùng trẻ nhỏ thì xem gì?","What can children look for?"],"answer":["Bạn có thể bắt đầu ở tầng 1, nơi bảo tàng giới thiệu khu trưng bày thiếu nhi. Một trò nhỏ là nhờ bé tìm hai đầu thú trên chiếc khuyên tai rồi tìm chiếc vòi trên bình Kendy. Mỗi hiện vật sẽ thành một câu đố quan sát.","Try Floor 1, where the museum lists a children’s exhibition area. For a small game, ask children to spot the two animal heads on the earring and then find the spout on the Kendy vessel."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","floor":1,"next":["floor-1","short-tour","tickets"]},{"id":"access","aliases":["xe lăn","thang máy","lối đi","người khuyết tật","hỗ trợ tiếp cận","gửi xe","bãi đỗ","wheelchair","accessibility","elevator","lift access","car park","parking"],"question":["Có thể hỏi về hỗ trợ tiếp cận ở đâu?","How can I ask about accessibility?"],"answer":["Nếu bạn cần lối đi cho xe lăn, thang máy hoặc chỗ gửi xe, hãy gọi 0236 388 6236 trước khi tới. Nhân viên bảo tàng có thể xác nhận lối vào và phương án phù hợp với chuyến đi của bạn.","If you need wheelchair access, lift access or parking, call 0236 388 6236 before visiting. Staff can confirm the best entrance and arrangements for your visit."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["contact","address","hours"]},{"id":"photos","aliases":["chụp ảnh","quay phim","đèn flash","chạm hiện vật","sờ hiện vật","take photos","flash photography","photography allowed","touch exhibits"],"question":["Khi chụp ảnh hiện vật nên lưu ý gì?","What should I know about photographing artifacts?"],"answer":["Bạn xem biển hướng dẫn của từng phòng hoặc hỏi nhân viên trước khi quay chụp. Nếu được chụp, hãy tắt flash, giữ khoảng cách với tủ kính và nhường lối cho khách khác. Khi chụp vật sau kính, hơi nghiêng máy có thể giảm phản chiếu.","Check the signs in each gallery or ask staff before taking photos or filming. Where photography is allowed, turn off your flash, keep clear of display cases and leave room for others. Angling your phone slightly can reduce reflections."],"next":["scanner","access","tour"]},{"id":"scanner","aliases":["cách quét","quét như thế nào","bật camera","camera không mở","không nhận diện","cấp quyền camera","how to scan","scanner","camera permission","camera not working"],"question":["Quét hiện vật bằng điện thoại thế nào?","How do I scan an artifact with my phone?"],"answer":["Mở web qua HTTPS, bấm Quét và cho phép camera. Đưa hiện vật vào giữa khung, giữ máy ổn định rồi bấm Quét ngay. Nếu có nhiều ánh phản chiếu, bạn thử đổi góc một chút hoặc chọn một ảnh rõ từ điện thoại.","Open the site over HTTPS, tap Scan and allow camera access. Center the artifact, hold the phone steady and tap Scan now. If the glass reflects too much light, change your angle slightly or choose a clear photo."],"next":["photos","tour","short-tour"]},{"id":"nearby","aliases":["gần bảo tàng","đi đâu tiếp","sau khi tham quan","quanh bảo tàng","du lịch đà nẵng","things nearby","nearby attractions","after the museum","around the museum"],"question":["Gần bảo tàng còn có gì để xem?","What else can I visit nearby?"],"answer":["Bạn có thể tìm hiểu tiếp ở Thành Điện Hải hoặc đi dọc bờ sông Hàn. Nếu muốn đào sâu về nghệ thuật Chăm sau khi xem bình Kendy, hãy thêm Bảo tàng Điêu khắc Chăm vào lịch đi.","You can continue at Dien Hai Citadel or take a walk along the Han River. If the Kendy vessel makes you curious about Cham art, consider adding the Museum of Cham Sculpture to your itinerary."],"next":["citadel","cham-museum","dragon-bridge"]},{"id":"cham-museum","aliases":["bảo tàng chăm","bảo tàng chàm","bảo tàng điêu khắc chăm","mỹ sơn","điêu khắc chăm","museum of cham sculpture","cham museum","my son sanctuary"],"question":["Xem thêm nghệ thuật Chăm ở đâu?","Where can I see more Cham art?"],"answer":["Ở Đà Nẵng, Bảo tàng Điêu khắc Chăm trưng bày các tác phẩm điêu khắc Chăm từ nhiều địa điểm khảo cổ miền Trung. Nếu vừa xem bình Kendy, bạn có thể tiếp tục khám phá cách họ thể hiện hình người, thần linh và họa tiết trên đá.","The Museum of Cham Sculpture in Da Nang displays Cham sculpture from archaeological sites around Central Vietnam. After seeing the Kendy vessel, you can explore how figures, deities and patterns were carved in stone."],"source":"https://chammuseum.vn/","next":["nearby","floor-1","ceramics"]},{"id":"dragon-bridge","aliases":["cầu rồng","sông hàn","dragon bridge","han river","han river bridge"],"question":["Cầu Rồng nằm ở đâu?","Where is the Dragon Bridge?"],"answer":["Cầu Rồng bắc qua sông Hàn, nối hai bờ trung tâm Đà Nẵng. Nếu bạn muốn ghé xem cầu phun lửa và nước, hãy xem lịch cập nhật của thành phố trước khi đi.","The Dragon Bridge spans the Han River in central Da Nang. Check the city’s current schedule before planning a visit for the fire and water show."],"source":"https://danangfantasticity.com/","next":["nearby","cham-museum","address"]},{"id":"sky","aliases":["bầu trời xanh","trời màu xanh","sky blue","blue sky"],"question":["Vì sao bầu trời có màu xanh?","Why does the sky look blue?"],"answer":["Ánh sáng Mặt Trời gồm nhiều màu. Khi đi qua khí quyển, ánh sáng xanh có bước sóng ngắn nên bị tán xạ mạnh hơn ánh đỏ. Vì ánh xanh đến mắt mình từ nhiều hướng, bầu trời trông xanh.","Sunlight contains many colors. Air molecules scatter shorter blue wavelengths more strongly than red wavelengths. Blue light reaches your eyes from many directions, making the sky look blue."],"source":"https://spaceplace.nasa.gov/blue-sky/en/","next":["day-night","capital","nearby"]},{"id":"day-night","aliases":["ngày và đêm","ngày đêm","trái đất quay","day and night","earth rotates"],"question":["Vì sao có ngày và đêm?","Why do we have day and night?"],"answer":["Trái Đất quay quanh trục. Khi nơi bạn đang ở quay về phía Mặt Trời thì là ban ngày, còn khi quay sang phía khuất ánh sáng thì là ban đêm. Một vòng quay theo ngày Mặt Trời kéo dài gần 24 giờ.","Earth spins on its axis. When your location faces the Sun it experiences daylight. When it rotates away from the Sun it experiences night. A solar day is about 24 hours."],"next":["sky","capital","nearby"]},{"id":"capital","aliases":["thủ đô việt nam","thủ đô nước mình","thủ đô của việt nam","capital of vietnam","vietnam's capital"],"question":["Thủ đô Việt Nam là thành phố nào?","What is the capital of Vietnam?"],"answer":["Hà Nội là thủ đô của Việt Nam. Khu vực này từng là kinh đô Thăng Long trong nhiều giai đoạn lịch sử.","Hanoi is the capital of Vietnam. The area, historically known as Thang Long, served as an imperial capital during several periods."],"next":["nearby","history-1858","sky"]}],"chatBreaks":[{"story":["Thử tưởng tượng bạn cầm một chiếc bình mà thứ giống mũi ấm lại mọc từ bên hông. Đó là dáng của bình Kendy. Nhờ chiếc vòi ấy, người ta có thể rót nước. Bạn thử tìm chiếc vòi trên ảnh tư liệu trước khi đọc mô tả nhé.","Imagine a vessel with a spout growing out of its side. That is the shape of a Kendy. Its spout was used for pouring. Try finding the spout in the museum photograph before reading the description."],"question":["Trên bình Kendy, chi tiết nào ở bên hông dùng để rót nước?","Which part on the side of a Kendy vessel was used to pour water?"],"choices":[["Cái nắp","The lid"],["Chiếc vòi","The spout"],["Chân bình","The base"]],"correct":1,"alsoAccept":["vòi","vòi rót","cái vòi","spout"],"hint":["Thử tưởng tượng bạn nghiêng bình. Nước sẽ chảy ra qua một phần nhô khỏi thân.","Imagine tilting the vessel. The water flows through a part that sticks out from the body."],"explanation":["Chiếc vòi bên hông là dấu hiệu dễ nhận ra của bình Kendy.","The side spout is one of the easiest ways to recognize a Kendy."]},{"story":["Nhìn chiếc khuyên tai Sa Huỳnh từ xa, bạn có thể chỉ thấy một hình cong. Nhìn gần hơn mới thấy hai đầu thú được tạc đối xứng. Mình thích chi tiết đó vì chỉ cần đổi góc nhìn là đã thấy thêm một điều mới.","From a distance the Sa Huynh earring may look like a simple curved shape. Up close, two symmetrical animal heads appear. A small change in viewing angle reveals something new."],"question":["Chiếc khuyên tai Sa Huỳnh trong bảo tàng có mấy đầu thú?","How many animal heads are on the museum’s Sa Huynh earring?"],"choices":[["Hai đầu","Two"],["Ba đầu","Three"],["Một đầu","One"]],"correct":0,"alsoAccept":["2","hai","hai đầu thú","2 đầu","two heads"],"hint":["Hai phía của chiếc khuyên đối xứng. Bạn thử đếm mỗi phía một lần xem.","The earring is symmetrical. Try counting once on each side."],"explanation":["Hai đầu thú được chạm đối xứng ở hai phía chiếc khuyên.","The two animal heads were carved symmetrically on either side of the earring."]},{"story":["Mô hình ghe bầu trong hồ sơ bảo tàng có một chi tiết dễ bỏ sót là thân ghe nở rộng ở giữa. Các ghe buồm xứ Quảng từng chở người và hàng hóa dọc bờ biển. Nhìn mô hình nhỏ mà tưởng tượng cả một chuyến đi biển cũng thú vị nhỉ?","The museum’s Ghe Bau model has an easy-to-miss detail: its hull widens in the middle. These wooden sailboats carried people and goods along the coast. The little model gives you a lot to imagine."],"question":["Ghe bầu truyền thống căng buồm để đi nhờ sức gì?","What powered a traditional Ghe Bau sailboat when its sails were raised?"],"choices":[["Sức kéo của ngựa","Horses"],["Động cơ điện","An electric motor"],["Sức gió","Wind"]],"correct":2,"alsoAccept":["gió","bằng gió","chạy nhờ gió","the wind","wind power"],"hint":["Hãy nghĩ xem điều gì làm căng một cánh buồm khi ghe ra khơi.","Think about what fills a sail when a boat goes out to sea."],"explanation":["Buồm đón gió để đưa ghe đi. Ghe bầu xứ Quảng từng phục vụ giao thương ven biển.","Sails catch the wind to move the boat. Ghe Bau sailboats were part of the coastal trading network."]}],"artifacts":{"cannon":{"aliases":["súng thần công","khẩu thần công","khẩu súng cổ","cannon","cannons"],"next":["history-1858","citadel"]},"sahuynh":{"aliases":["khuyên tai","hai đầu thú","earring","sa huynh"],"purpose":["Đây là một đồ trang sức. Kiểu hai đầu thú và cách chạm đối xứng giúp nhận ra hiện vật này giữa những loại khuyên tai cổ khác.","This was a piece of jewelry. The two animal heads and their symmetry help distinguish it from other ancient earrings."],"next":["floor-1","ceramics"]},"kendy":{"aliases":["kendy","kendi","bình chăm","bình champa","bình có vòi","bình gốm","cham vessel"],"next":["cham-museum","floor-1"]},"hondadame":{"aliases":["honda dame","xe honda","xe dame","xe biệt động","moped","honda dame moped"],"purpose":["Xe Honda Dame gắn với hoạt động của lực lượng Biệt động Đà Nẵng trong thời chiến. Khi xem ở tầng 3, hãy để ý một phương tiện rất đời thường có thể kể được câu chuyện chiến tranh như thế nào.","The Honda Dame moped is associated with the activities of the Da Nang commandos during wartime. On Floor 3, consider how an ordinary vehicle can tell a wartime story."],"next":["liberation","floor-3"]},"cotu":{"aliases":["tượng cổng làng","người xê đăng","xe dang gate figure"],"next":["community","floor-2"]},"ghebau":{"aliases":["ghe bầu","thuyền ghe bầu","thuyền buồm xứ quảng","sailboat","ghe bau","quang nam boat"],"material":["Mô hình trong danh mục thể hiện thân ghe và hệ buồm. Ghe bầu truyền thống có thân gỗ.","The model shows the boat’s hull and sails. Traditional Ghe Bau boats had wooden hulls."],"purpose":["Ghe bầu chở người và hàng hóa trên các tuyến ven biển. Ở xứ Quảng, loại thuyền buồm này là một phần của mạng lưới giao thương đường biển.","Ghe Bau boats carried people and goods along coastal routes. In the Quang region, they were part of the maritime trading network."],"detail":["Khi nhìn mô hình, để ý thân ghe rộng và phình ở giữa. Đó là nét dễ thấy khi phân biệt ghe bầu với những thuyền có thân thon hẹp.","Look at how broad the middle of the model’s hull is. It’s a useful way to distinguish this type from narrow-bodied boats."],"next":["floor-2","nearby"]},"chudau":{"aliases":["chu đậu","gốm chu đậu","bình vôi","gốm thời nguyễn","chu dau","lime pot","nguyen porcelain"],"material":["Nhóm này gồm các hiện vật gốm và sứ, có những món trang trí hoa lam. Chất đất, men và họa tiết khác nhau theo từng món nên bạn có thể đọc thêm trên nhãn trưng bày.","This group includes ceramic and porcelain objects, some with blue-and-white decoration. Clay, glaze and patterns vary by item, so check each display label."],"purpose":["Các bình, đĩa gốm và bình vôi có công dụng khác nhau. Bình vôi đựng vôi để têm trầu, còn các đồ gốm khác có thể là đồ đựng, đồ dùng hoặc vật trang trí tùy kiểu dáng.","Ceramic vessels, dishes and lime pots served different purposes. Lime pots stored lime for preparing betel, while other items were containers, tableware or decorative pieces depending on shape."],"next":["betel","ceramics"]},"denco":{"aliases":["đèn cổ","đèn măng xông","đèn dầu","oil lamp","antique lamp","antique lighting"],"next":["agarwood","floor-2"]}}});
+    const museumGuide = createMuseumChat({"topics":[{"id":"hours","aliases":["giờ mở cửa","mở cửa","mấy giờ đóng","đóng cửa","giờ tham quan","lịch mở cửa","mở lúc mấy giờ","thứ hai có mở","cuối tuần có mở","opening hours","open today","what time does","closing time","open on weekends"],"question":["Bảo tàng mở cửa lúc mấy giờ?","When does the museum open?"],"answer":["Bảo tàng Đà Nẵng mở cửa từ 08:00 đến 17:00 hằng ngày theo thông tin công bố của bảo tàng. Bạn có thể ghé buổi sáng nếu muốn dành nhiều thời gian xem cả ba tầng.","Da Nang Museum lists its opening hours as 8 a.m. to 5 p.m. daily. Aim for the morning if you’d like time to explore all three floors."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["tickets","address","short-tour"]},{"id":"tickets","aliases":["giá vé","vé bao nhiêu","tiền vé","mua vé","miễn phí","vé sinh viên","vé tham quan","có mất tiền","mất phí","phí vào cửa","bao nhiêu tiền","ticket","tickets","admission","entry fee","free entry"],"question":["Vé tham quan tính thế nào?","How does admission work?"],"answer":["Bảo tàng có thông báo vé riêng theo nhóm khách. Bạn xem bảng giá chính thức bên dưới để kiểm tra mức vé và giấy tờ cần mang nếu thuộc diện miễn hoặc giảm.","The museum publishes separate admission rules for different groups. Check the official notice below for current prices and any documents needed for a discount or exemption."],"source":"https://baotangdanang.vn/bao-tang-da-nang-xin-thong-bao-gia-ve-tham-quan-tai-bao-tang-da-nang-ap-dung-tu-ngay-0372025-theo-nghi-quyet-so-102025nq-hdn-cua-thanh-pho-da-nang-cu-the","next":["hours","address","short-tour"]},{"id":"address","aliases":["địa chỉ","bảo tàng ở đâu","bảo tàng đà nẵng ở đâu","đến bảo tàng","đi tới bảo tàng","31 trần phú","museum address","where is the museum","getting to the museum","get to da nang museum"],"question":["Bảo tàng nằm ở đâu?","Where is Da Nang Museum?"],"answer":["Bạn tìm Bảo tàng Đà Nẵng tại số 31 Trần Phú, Đà Nẵng. Khi gọi xe, bạn có thể đọc số nhà hoặc dán nguyên tên “Bảo tàng Đà Nẵng, 31 Trần Phú” để đến đúng cơ sở.","Da Nang Museum is at 31 Tran Phu Street, Da Nang. Use the full address when booking a ride so you’re taken to the right location."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["hours","tickets","short-tour"]},{"id":"contact","aliases":["hotline","số điện thoại","liên hệ","đặt đoàn","đăng ký đoàn","tham quan theo đoàn","đặt hướng dẫn viên","contact","phone number","book a group","group booking","school group"],"question":["Liên hệ bảo tàng bằng cách nào?","How can I contact the museum?"],"answer":["Bạn có thể gọi 0236 388 6236. Nếu đi theo lớp hoặc cần hỗ trợ tại chỗ, nên nói trước số người, ngày đến và nhu cầu của đoàn để nhân viên tư vấn.","You can call 0236 388 6236. For a school group or extra assistance, tell the staff your group size, planned date and what help you need."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["address","hours","access"]},{"id":"short-tour","aliases":["30 phút","nửa tiếng","ít thời gian","tham quan nhanh","15 phút","20 phút","đi đâu trước","bắt đầu ở đâu","30 minutes","half an hour","short visit","quick tour","start the tour"],"question":["Chỉ có 30 phút thì xem gì?","What should I see in 30 minutes?"],"answer":["Nếu chỉ có 30 phút, mình gợi ý dành khoảng 15 phút ở tầng 3 để xem câu chuyện Đà Nẵng năm 1858, rồi xuống tầng 1 dành khoảng 10 phút cho khuyên tai Sa Huỳnh và bình Kendy. Chừa vài phút để di chuyển giữa các tầng.","With 30 minutes, I’d spend about 15 minutes on Floor 3 for Da Nang’s story in 1858, then about 10 minutes on Floor 1 for the Sa Huynh earring and Kendy vessel. Leave a few minutes to move between floors."],"map":true,"next":["tour","floor-3","floor-1"]},{"id":"tour","aliases":["lộ trình","xem gì","tham quan thế nào","bao nhiêu tầng","mấy tầng","mỗi tầng","tham quan bao lâu","tour route","each floor","what to see","what should i see","how many floors","museum highlights","map","bản đồ"],"question":["Nên tham quan ba tầng theo thứ tự nào?","What’s a good route through all three floors?"],"answer":["Mình gợi ý đi từ tầng 3 xuống tầng 1. Tầng 3 kể lịch sử và đời sống Đà Nẵng, tầng 2 có văn hóa các cộng đồng cùng đèn cổ và trầm hương, tầng 1 dành cho bộ sưu tập cổ vật. Nếu mê gốm, bạn có thể bắt đầu ngay ở tầng 1.","I’d start on Floor 3 and work down. Floor 3 covers Da Nang’s history and daily life, Floor 2 features community cultures, antique lamps and agarwood, and Floor 1 houses the antiquities. If ceramics are your main interest, start on Floor 1."],"map":true,"next":["floor-3","floor-2","floor-1"]},{"id":"floor-1","aliases":["tầng 1","tầng một","tầng trệt","tủ cổ vật","khu cổ vật","floor 1","first floor","antiquities gallery"],"question":["Tầng 1 có hiện vật gì?","What’s on Floor 1?"],"answer":["Tầng 1 có sưu tập cổ vật, trong đó có gốm Chu Đậu, gốm sứ thời Nguyễn, bình vôi và gốm cổ miền Trung. Trong danh mục của web, khuyên tai Sa Huỳnh và bình gốm Kendy cho thấy hai kiểu tạo hình rất khác nhau.","Floor 1 houses the antiquities collection, including Chu Dau ceramics, Nguyen-era porcelain, lime pots and ancient pottery from Central Vietnam. Compare the shapes of the Sa Huynh earring and the Kendy vessel in the guide’s collection."],"floor":1,"source":"https://baotangdanang.vn/khong-gian-suu-tap-co-vat-cua-bao-tang-da-nan","next":["ceramics","betel","floor-2"]},{"id":"floor-2","aliases":["tầng 2","tầng hai","khu văn hóa","floor 2","second floor","ethnic cultures"],"question":["Tầng 2 trưng bày gì?","What’s displayed on Floor 2?"],"answer":["Tầng 2 có đèn cổ, trầm hương xứ Quảng và trưng bày về các cộng đồng Cơ Tu, Xơ Đăng, Giẻ – Triêng và Cor. Mình gợi ý dừng lại ở tượng cổng làng và kèn Tơghêy để để ý cách gỗ và âm nhạc đi vào đời sống cộng đồng.","Floor 2 explores antique lighting, Quang Nam agarwood and the cultures of the Co Tu, Xo Dang, Gie Trieng and Cor communities. Look out for the village-gate figures and the Toghey instrument."],"floor":2,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-2","next":["agarwood","community","floor-3"]},{"id":"floor-3","aliases":["tầng 3","tầng ba","phòng lịch sử","khu chứng tích chiến tranh","floor 3","third floor","resistance history gallery"],"question":["Tầng 3 kể câu chuyện gì?","What story does Floor 3 tell?"],"answer":["Tầng 3 kể về thiên nhiên, con người, lịch sử đô thị và các giai đoạn đấu tranh của Đà Nẵng. Không gian này kết nối câu chuyện Thành Điện Hải với cuộc kháng chiến bắt đầu năm 1858.","Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The gallery connects Dien Hai Citadel with the events of 1858."],"floor":3,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang","next":["history-1858","citadel","liberation"]},{"id":"history-1858","aliases":["năm 1858","sự kiện 1858","chiến sự 1858","1858 xảy ra","tại sao năm 1858","pháp tây ban nha","liên quân pháp","nguyễn tri phương","what happened in 1858","franco spanish","nguyen tri phuong","battle of da nang"],"question":["Chuyện gì xảy ra ở Đà Nẵng năm 1858?","What happened in Da Nang in 1858?"],"answer":["Tháng 9 năm 1858, liên quân Pháp – Tây Ban Nha tiến công Đà Nẵng. Quân dân triều Nguyễn kháng cự và ngăn đối phương nhanh chóng chiếm được mục tiêu. Nguyễn Tri Phương là một trong những người chỉ huy phòng thủ gắn với giai đoạn này.","In September 1858, a combined French and Spanish force attacked Da Nang. Nguyen Dynasty defenders resisted, preventing a quick victory. Nguyen Tri Phuong was one of the commanders associated with the defense."],"source":"https://baotangdanang.vn/168-nam-ngay-da-nang-mo-dau-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-01-9-1858-01-9-2026","next":["citadel","floor-3","liberation"]},{"id":"citadel","aliases":["thành điện hải","điện hải ở đâu","điện hải là gì","thành cổ","dien hai citadel","dien hai fortress"],"question":["Thành Điện Hải có gì đặc biệt?","What makes Dien Hai Citadel significant?"],"answer":["Thành Điện Hải là di tích phòng thủ thời Nguyễn ở Đà Nẵng, gần Bảo tàng Đà Nẵng. Di tích gắn với cuộc phòng thủ trước liên quân Pháp – Tây Ban Nha từ năm 1858. Tại bảo tàng, bạn có thể nối câu chuyện đó với bộ sưu tập súng thần công.","Dien Hai Citadel is a Nguyen-era defensive site near Da Nang Museum. It is associated with the defense against French and Spanish forces beginning in 1858. The museum’s cannon collection connects the site to that history."],"source":"https://baotangdanang.vn/168-nam-ngay-da-nang-mo-dau-cuoc-khang-chien-chong-lien-quan-phap-tay-ban-nha-01-9-1858-01-9-2026","next":["history-1858","floor-3","address"]},{"id":"liberation","aliases":["đà nẵng giải phóng","giải phóng đà nẵng","29 tháng 3","29 3 1975","liberation of da nang","da nang liberated","march 29 1975"],"question":["Đà Nẵng được giải phóng ngày nào?","When was Da Nang liberated?"],"answer":["Đà Nẵng được giải phóng ngày 29 tháng 3 năm 1975. Bạn có thể xem phần Chứng tích chiến tranh ở tầng 3 để đặt những hiện vật như Honda Dame vào bối cảnh giai đoạn đó.","Da Nang was liberated on 29 March 1975. The wartime exhibits on Floor 3 help put objects such as the Honda Dame moped into that period’s context."],"floor":3,"source":"https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang","next":["floor-3","history-1858","citadel"]},{"id":"ceramics","aliases":["gốm sứ khác","gốm và sứ","men lam","hoa lam","gốm cổ trung bộ","gốm cổ các tỉnh trung bộ","gốm sứ","đồ gốm","blue and white","ceramics and porcelain","central vietnamese ceramics"],"question":["Nhận ra gốm hoa lam bằng cách nào?","How can I recognize blue-and-white ceramics?"],"answer":["Hoa lam thường có họa tiết màu lam trên nền sáng. Khi nhìn qua tủ kính, thử để ý nét bút, sự đậm nhạt của màu và cách họa tiết chạy quanh thân. Ở tầng 1 có gốm Chu Đậu để bạn tìm những chi tiết đó.","Blue-and-white ceramics typically have blue designs on a light background. Look for brushwork, differences in color intensity and how the pattern wraps around the vessel. Floor 1’s Chu Dau ceramics are a good place to look."],"floor":1,"next":["floor-1","betel","tour"]},{"id":"betel","aliases":["trầu cau","ăn trầu","tại sao có vôi","phong tục gì","betel chewing","betel nut","betel leaves"],"question":["Bình vôi liên quan gì đến tục ăn trầu?","What do lime pots have to do with betel chewing?"],"answer":["Bình vôi đựng vôi dùng khi têm trầu. Vôi được quệt một lượng nhỏ lên lá trầu trước khi gói cùng cau. Chiếc bình vì vậy kể được một phần câu chuyện về thói quen tiếp khách và giao tiếp ngày trước.","A lime pot held lime used to prepare betel. A small amount was spread on the leaf before wrapping it with areca nut. The pot is a small object that opens up a story about hospitality and social life."],"next":["ceramics","floor-1","tour"]},{"id":"agarwood","aliases":["trầm hương","gỗ trầm","vì sao trầm thơm","agarwood","oud wood"],"question":["Trầm hương hình thành như thế nào?","How does agarwood form?"],"answer":["Trầm hương là phần gỗ tích nhựa thơm ở một số cây dó bầu, thường liên quan đến phản ứng của cây khi thân bị tổn thương. Ở tầng 2, trầm hương xứ Quảng được giới thiệu cùng bộ sưu tập đèn cổ.","Agarwood is resin-rich wood from certain Aquilaria trees, typically formed in response to injury. On Floor 2, Quang Nam agarwood is presented alongside a collection of antique lamps."],"floor":2,"next":["floor-2","community","tour"]},{"id":"community","aliases":["người cơ tu ở đâu","cơ tu sinh sống","cơ tu ở đà nẵng","người cơ tu sống ở đâu","người cơ tu ở đà nẵng sinh sống ở đâu","dân tộc nào","các dân tộc","where do the co tu live","co tu communities","other ethnic groups"],"question":["Tầng 2 giới thiệu những cộng đồng nào?","Which communities are represented on Floor 2?"],"answer":["Tầng 2 giới thiệu các cộng đồng Cơ Tu, Xơ Đăng, Giẻ – Triêng và Cor. Người Cơ Tu có các cộng đồng ở nhiều vùng miền núi miền Trung, trong đó có khu vực phía tây Đà Nẵng. Hiện vật như tượng gỗ và kèn Tơghêy cho bạn một điểm bắt đầu để tìm hiểu văn hóa Cơ Tu.","Floor 2 features Co Tu, Xo Dang, Gie Trieng and Cor communities. Co Tu communities live in various mountainous areas of Central Vietnam, including west of Da Nang. Wooden figures and the Toghey instrument are a good introduction."],"floor":2,"next":["floor-2","agarwood","tour"]},{"id":"kids","aliases":["trẻ em","đi cùng bé","đi với trẻ","thiếu nhi","tham quan với con","kids","children","family visit"],"question":["Đi cùng trẻ nhỏ thì xem gì?","What can children look for?"],"answer":["Bạn có thể bắt đầu ở tầng 1, nơi bảo tàng giới thiệu khu trưng bày thiếu nhi. Một trò nhỏ là nhờ bé tìm hai đầu thú trên chiếc khuyên tai rồi tìm chiếc vòi trên bình Kendy. Mỗi hiện vật sẽ thành một câu đố quan sát.","Try Floor 1, where the museum lists a children’s exhibition area. For a small game, ask children to spot the two animal heads on the earring and then find the spout on the Kendy vessel."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","floor":1,"next":["floor-1","short-tour","tickets"]},{"id":"access","aliases":["xe lăn","thang máy","lối đi","người khuyết tật","hỗ trợ tiếp cận","gửi xe","bãi đỗ","wheelchair","accessibility","elevator","lift access","car park","parking"],"question":["Có thể hỏi về hỗ trợ tiếp cận ở đâu?","How can I ask about accessibility?"],"answer":["Nếu bạn cần lối đi cho xe lăn, thang máy hoặc chỗ gửi xe, hãy gọi 0236 388 6236 trước khi tới. Nhân viên bảo tàng có thể xác nhận lối vào và phương án phù hợp với chuyến đi của bạn.","If you need wheelchair access, lift access or parking, call 0236 388 6236 before visiting. Staff can confirm the best entrance and arrangements for your visit."],"source":"https://baotangdanang.vn/bao-tang-da-nang-1","next":["contact","address","hours"]},{"id":"photos","aliases":["chụp ảnh","quay phim","đèn flash","chạm hiện vật","sờ hiện vật","take photos","flash photography","photography allowed","touch exhibits"],"question":["Khi chụp ảnh hiện vật nên lưu ý gì?","What should I know about photographing artifacts?"],"answer":["Bạn xem biển hướng dẫn của từng phòng hoặc hỏi nhân viên trước khi quay chụp. Nếu được chụp, hãy tắt flash, giữ khoảng cách với tủ kính và nhường lối cho khách khác. Khi chụp vật sau kính, hơi nghiêng máy có thể giảm phản chiếu.","Check the signs in each gallery or ask staff before taking photos or filming. Where photography is allowed, turn off your flash, keep clear of display cases and leave room for others. Angling your phone slightly can reduce reflections."],"next":["scanner","access","tour"]},{"id":"scanner","aliases":["cách quét","quét như thế nào","bật camera","camera không mở","không nhận diện","cấp quyền camera","how to scan","scanner","camera permission","camera not working"],"question":["Quét hiện vật bằng điện thoại thế nào?","How do I scan an artifact with my phone?"],"answer":["Mở web qua HTTPS, bấm Quét và cho phép camera. Đưa hiện vật vào giữa khung, giữ máy ổn định rồi bấm Quét ngay. Nếu có nhiều ánh phản chiếu, bạn thử đổi góc một chút hoặc chọn một ảnh rõ từ điện thoại.","Open the site over HTTPS, tap Scan and allow camera access. Center the artifact, hold the phone steady and tap Scan now. If the glass reflects too much light, change your angle slightly or choose a clear photo."],"next":["photos","tour","short-tour"]},{"id":"nearby","aliases":["gần bảo tàng","đi đâu tiếp","sau khi tham quan","quanh bảo tàng","du lịch đà nẵng","things nearby","nearby attractions","after the museum","around the museum"],"question":["Gần bảo tàng còn có gì để xem?","What else can I visit nearby?"],"answer":["Bạn có thể tìm hiểu tiếp ở Thành Điện Hải hoặc đi dọc bờ sông Hàn. Nếu muốn đào sâu về nghệ thuật Chăm sau khi xem bình Kendy, hãy thêm Bảo tàng Điêu khắc Chăm vào lịch đi.","You can continue at Dien Hai Citadel or take a walk along the Han River. If the Kendy vessel makes you curious about Cham art, consider adding the Museum of Cham Sculpture to your itinerary."],"next":["citadel","cham-museum","dragon-bridge"]},{"id":"cham-museum","aliases":["bảo tàng chăm","bảo tàng chàm","bảo tàng điêu khắc chăm","mỹ sơn","điêu khắc chăm","museum of cham sculpture","cham museum","my son sanctuary"],"question":["Xem thêm nghệ thuật Chăm ở đâu?","Where can I see more Cham art?"],"answer":["Ở Đà Nẵng, Bảo tàng Điêu khắc Chăm trưng bày các tác phẩm điêu khắc Chăm từ nhiều địa điểm khảo cổ miền Trung. Nếu vừa xem bình Kendy, bạn có thể tiếp tục khám phá cách họ thể hiện hình người, thần linh và họa tiết trên đá.","The Museum of Cham Sculpture in Da Nang displays Cham sculpture from archaeological sites around Central Vietnam. After seeing the Kendy vessel, you can explore how figures, deities and patterns were carved in stone."],"source":"https://chammuseum.vn/","next":["nearby","floor-1","ceramics"]},{"id":"dragon-bridge","aliases":["cầu rồng","sông hàn","dragon bridge","han river","han river bridge"],"question":["Cầu Rồng nằm ở đâu?","Where is the Dragon Bridge?"],"answer":["Cầu Rồng bắc qua sông Hàn, nối hai bờ trung tâm Đà Nẵng. Nếu bạn muốn ghé xem cầu phun lửa và nước, hãy xem lịch cập nhật của thành phố trước khi đi.","The Dragon Bridge spans the Han River in central Da Nang. Check the city’s current schedule before planning a visit for the fire and water show."],"source":"https://danangfantasticity.com/","next":["nearby","cham-museum","address"]},{"id":"sky","aliases":["bầu trời xanh","trời màu xanh","sky blue","blue sky"],"question":["Vì sao bầu trời có màu xanh?","Why does the sky look blue?"],"answer":["Ánh sáng Mặt Trời gồm nhiều màu. Khi đi qua khí quyển, ánh sáng xanh có bước sóng ngắn nên bị tán xạ mạnh hơn ánh đỏ. Vì ánh xanh đến mắt mình từ nhiều hướng, bầu trời trông xanh.","Sunlight contains many colors. Air molecules scatter shorter blue wavelengths more strongly than red wavelengths. Blue light reaches your eyes from many directions, making the sky look blue."],"source":"https://spaceplace.nasa.gov/blue-sky/en/","next":["day-night","capital","nearby"]},{"id":"day-night","aliases":["ngày và đêm","ngày đêm","trái đất quay","day and night","earth rotates"],"question":["Vì sao có ngày và đêm?","Why do we have day and night?"],"answer":["Trái Đất quay quanh trục. Khi nơi bạn đang ở quay về phía Mặt Trời thì là ban ngày, còn khi quay sang phía khuất ánh sáng thì là ban đêm. Một vòng quay theo ngày Mặt Trời kéo dài gần 24 giờ.","Earth spins on its axis. When your location faces the Sun it experiences daylight. When it rotates away from the Sun it experiences night. A solar day is about 24 hours."],"next":["sky","capital","nearby"]},{"id":"capital","aliases":["thủ đô việt nam","thủ đô nước mình","thủ đô của việt nam","capital of vietnam","vietnam's capital"],"question":["Thủ đô Việt Nam là thành phố nào?","What is the capital of Vietnam?"],"answer":["Hà Nội là thủ đô của Việt Nam. Khu vực này từng là kinh đô Thăng Long trong nhiều giai đoạn lịch sử.","Hanoi is the capital of Vietnam. The area, historically known as Thang Long, served as an imperial capital during several periods."],"next":["nearby","history-1858","sky"]}],"chatBreaks":[{"story":["Thử tưởng tượng bạn cầm một chiếc bình mà thứ giống mũi ấm lại mọc từ bên hông. Đó là dáng của bình Kendy. Nhờ chiếc vòi ấy, người ta có thể rót nước. Bạn thử tìm chiếc vòi trên ảnh tư liệu trước khi đọc mô tả nhé.","Imagine a vessel with a spout growing out of its side. That is the shape of a Kendy. Its spout was used for pouring. Try finding the spout in the museum photograph before reading the description."],"question":["Trên bình Kendy, chi tiết nào ở bên hông dùng để rót nước?","Which part on the side of a Kendy vessel was used to pour water?"],"choices":[["Cái nắp","The lid"],["Chiếc vòi","The spout"],["Chân bình","The base"]],"correct":1,"alsoAccept":["vòi","vòi rót","cái vòi","spout"],"hint":["Thử tưởng tượng bạn nghiêng bình. Nước sẽ chảy ra qua một phần nhô khỏi thân.","Imagine tilting the vessel. The water flows through a part that sticks out from the body."],"explanation":["Chiếc vòi bên hông là dấu hiệu dễ nhận ra của bình Kendy.","The side spout is one of the easiest ways to recognize a Kendy."]},{"story":["Nhìn chiếc khuyên tai Sa Huỳnh từ xa, bạn có thể chỉ thấy một hình cong. Nhìn gần hơn mới thấy hai đầu thú được tạc đối xứng. Mình thích chi tiết đó vì chỉ cần đổi góc nhìn là đã thấy thêm một điều mới.","From a distance the Sa Huynh earring may look like a simple curved shape. Up close, two symmetrical animal heads appear. A small change in viewing angle reveals something new."],"question":["Chiếc khuyên tai Sa Huỳnh trong bảo tàng có mấy đầu thú?","How many animal heads are on the museum’s Sa Huynh earring?"],"choices":[["Hai đầu","Two"],["Ba đầu","Three"],["Một đầu","One"]],"correct":0,"alsoAccept":["2","hai","hai đầu thú","2 đầu","two heads"],"hint":["Hai phía của chiếc khuyên đối xứng. Bạn thử đếm mỗi phía một lần xem.","The earring is symmetrical. Try counting once on each side."],"explanation":["Hai đầu thú được chạm đối xứng ở hai phía chiếc khuyên.","The two animal heads were carved symmetrically on either side of the earring."]},{"story":["Mô hình ghe bầu trong hồ sơ bảo tàng có một chi tiết dễ bỏ sót là thân ghe nở rộng ở giữa. Các ghe buồm xứ Quảng từng chở người và hàng hóa dọc bờ biển. Nhìn mô hình nhỏ mà tưởng tượng cả một chuyến đi biển cũng thú vị nhỉ?","The museum’s Ghe Bau model has an easy-to-miss detail: its hull widens in the middle. These wooden sailboats carried people and goods along the coast. The little model gives you a lot to imagine."],"question":["Ghe bầu truyền thống căng buồm để đi nhờ sức gì?","What powered a traditional Ghe Bau sailboat when its sails were raised?"],"choices":[["Sức kéo của ngựa","Horses"],["Động cơ điện","An electric motor"],["Sức gió","Wind"]],"correct":2,"alsoAccept":["gió","bằng gió","chạy nhờ gió","the wind","wind power"],"hint":["Hãy nghĩ xem điều gì làm căng một cánh buồm khi ghe ra khơi.","Think about what fills a sail when a boat goes out to sea."],"explanation":["Buồm đón gió để đưa ghe đi. Ghe bầu xứ Quảng từng phục vụ giao thương ven biển.","Sails catch the wind to move the boat. Ghe Bau sailboats were part of the coastal trading network."]}],"artifacts":{"cannon":{"aliases":["súng thần công","khẩu thần công","khẩu súng cổ","cannon","cannons"],"next":["history-1858","citadel"]},"sahuynh":{"aliases":["khuyên tai","hai đầu thú","earring","sa huynh"],"purpose":["Đây là một đồ trang sức. Kiểu hai đầu thú và cách chạm đối xứng giúp nhận ra hiện vật này giữa những loại khuyên tai cổ khác.","This was a piece of jewelry. The two animal heads and their symmetry help distinguish it from other ancient earrings."],"next":["floor-1","ceramics"]},"kendy":{"aliases":["kendy","kendi","bình chăm","bình champa","bình có vòi","bình gốm","cham vessel"],"next":["cham-museum","floor-1"]},"hondadame":{"aliases":["honda dame","xe honda","xe dame","xe biệt động","moped","honda dame moped"],"purpose":["Xe Honda Dame gắn với hoạt động của lực lượng Biệt động Đà Nẵng trong thời chiến. Khi xem ở tầng 3, hãy để ý một phương tiện rất đời thường có thể kể được câu chuyện chiến tranh như thế nào.","The Honda Dame moped is associated with the activities of the Da Nang commandos during wartime. On Floor 3, consider how an ordinary vehicle can tell a wartime story."],"next":["liberation","floor-3"]},"cotu":{"aliases":["tượng cổng làng","người xê đăng","xe dang gate figure"],"next":["community","floor-2"]},"ghebau":{"aliases":["ghe bầu","thuyền ghe bầu","thuyền buồm xứ quảng","sailboat","ghe bau","quang nam boat"],"material":["Mô hình trong danh mục thể hiện thân ghe và hệ buồm. Ghe bầu truyền thống có thân gỗ.","The model shows the boat’s hull and sails. Traditional Ghe Bau boats had wooden hulls."],"purpose":["Ghe bầu chở người và hàng hóa trên các tuyến ven biển. Ở xứ Quảng, loại thuyền buồm này là một phần của mạng lưới giao thương đường biển.","Ghe Bau boats carried people and goods along coastal routes. In the Quang region, they were part of the maritime trading network."],"detail":["Khi nhìn mô hình, để ý thân ghe rộng và phình ở giữa. Đó là nét dễ thấy khi phân biệt ghe bầu với những thuyền có thân thon hẹp.","Look at how broad the middle of the model’s hull is. It’s a useful way to distinguish this type from narrow-bodied boats."],"next":["floor-2","nearby"]},"chudau":{"aliases":["chu đậu","gốm chu đậu","bình vôi","gốm thời nguyễn","chu dau","lime pot","nguyen porcelain"],"material":["Nhóm này gồm các hiện vật gốm và sứ, có những món trang trí hoa lam. Chất đất, men và họa tiết khác nhau theo từng món nên bạn có thể đọc thêm trên nhãn trưng bày.","This group includes ceramic and porcelain objects, some with blue-and-white decoration. Clay, glaze and patterns vary by item, so check each display label."],"purpose":["Các bình, đĩa gốm và bình vôi có công dụng khác nhau. Bình vôi đựng vôi để têm trầu, còn các đồ gốm khác có thể là đồ đựng, đồ dùng hoặc vật trang trí tùy kiểu dáng.","Ceramic vessels, dishes and lime pots served different purposes. Lime pots stored lime for preparing betel, while other items were containers, tableware or decorative pieces depending on shape."],"next":["betel","ceramics"]},"denco":{"aliases":["đèn cổ","đèn măng xông","đèn dầu","oil lamp","antique lamp","antique lighting"],"next":["agarwood","floor-2"]}}}, japaneseText);
     // END EMBEDDED MUSEUM CHAT
 
     // BEGIN EMBEDDED CAMERA PREVIEW
@@ -3253,12 +3313,7 @@ const CameraPreview = (() => {
     // 6. INITIALIZATION & ONBOARDING FLOW
     // =========================================================================
     window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      renderFloorsList();
-      renderArtifactsGrid('all');
-      populateWayfindingDropdowns();
-      renderFloorPlanSvg(3);
-      populateQuickLangModal();
+      applyTranslations();
       initWelcomeChatMessage();
     });
 
@@ -3295,16 +3350,36 @@ const CameraPreview = (() => {
       return dict.greeting.replace('{name}', visitorName());
     }
 
-    function ui(vietnamese, english) {
-      return state.lang === 'en' ? english : vietnamese;
+    function japaneseText(english) {
+      return Object.hasOwn(JAPANESE, english) ? JAPANESE[english] : english;
+    }
+
+    function localeText(language, vietnamese, english, japanese) {
+      if (language === 'ja') return japanese ?? japaneseText(english);
+      return language === 'en' ? english : vietnamese;
+    }
+
+    function ui(vietnamese, english, japanese) {
+      return localeText(state.lang, vietnamese, english, japanese);
+    }
+
+    function japaneseFields(value) {
+      if (typeof value === 'string') return japaneseText(value);
+      if (Array.isArray(value)) return value.map(japaneseFields);
+      if (value && typeof value === 'object') {
+        return Object.fromEntries(Object.entries(value).map(([key, entry]) => [key, japaneseFields(entry)]));
+      }
+      return value;
     }
 
     function localizedContent(item) {
-      return item && state.lang === 'en' && item.en ? { ...item, ...item.en } : item;
+      if (!item?.en) return item;
+      if (state.lang === 'ja') return { ...item, ...japaneseFields(item.en) };
+      return state.lang === 'en' ? { ...item, ...item.en } : item;
     }
 
     function visitorName() {
-      return state.visitorName || (state.lang === 'vi' ? 'Quý khách' : 'Guest');
+      return state.visitorName || ui('Quý khách', 'Guest', 'ゲスト');
     }
 
     const originalMarkup = new WeakMap();
@@ -3329,7 +3404,7 @@ const CameraPreview = (() => {
     }
 
     function floorLabel(floor) {
-      return ui(`Tầng ${floor}`, `Floor ${floor}`);
+      return ui(`Tầng ${floor}`, `Floor ${floor}`, `${floor}階`);
     }
 
     function applyTranslations() {
@@ -3457,7 +3532,7 @@ const CameraPreview = (() => {
       }
       textarea.value = '';
       closeSupportModal();
-      showToast(ui(`Cảm ơn ${visitorName()}! Phản hồi đã được gửi tới Bảo tàng.`, `Thank you, ${visitorName()}! Your feedback has been submitted.`));
+      showToast(ui(`Cảm ơn ${visitorName()}! Phản hồi đã được gửi tới Bảo tàng.`, `Thank you, ${visitorName()}! Your feedback has been submitted.`, `${visitorName()}さん、ご意見ありがとうございます。博物館へ送信しました。`));
     }
 
     // =========================================================================
@@ -3925,8 +4000,8 @@ const CameraPreview = (() => {
     function playFrameGreeting() {
       const story = state.demoFrame?.story;
       if (!story) return;
-      if (!story.recording) {
-        playCustomTextAudio(ui(...story.title), ui(...story.greeting), ui('vi', 'en'));
+      if (!story.recording || state.lang === 'ja') {
+        playCustomTextAudio(ui(...story.title), ui(...story.greeting), ui('vi', 'en', 'ja'));
         return;
       }
       const recording = narrationRecording(story.recording + ui('', '-en'));
@@ -3998,9 +4073,9 @@ const CameraPreview = (() => {
       renderFrameStory();
       if (!count && !state.scanNotice) return;
       const status = isAI
-        ? [`Nhận diện được ${count} hiện vật`, `Found ${count} ${count === 1 ? 'artifact' : 'artifacts'}`]
-        : simulated ? [`${count} hiện vật trong khung`, `${count} artifacts in the frame`]
-          : [`${count} hiện vật để chọn`, `${count} ${count === 1 ? 'artifact' : 'artifacts'} to choose from`];
+        ? [`Nhận diện được ${count} hiện vật`, `Found ${count} ${count === 1 ? 'artifact' : 'artifacts'}`, `${count}点の展示品を認識しました`]
+        : simulated ? [`${count} hiện vật trong khung`, `${count} artifacts in the frame`, `ケース内の展示品：${count}点`]
+          : [`${count} hiện vật để chọn`, `${count} ${count === 1 ? 'artifact' : 'artifacts'} to choose from`, `候補：${count}点`];
       document.getElementById('scan-matches-title').textContent = ui(...status);
       list.innerHTML = state.scannedArtifacts.map(localizedContent).map((art, index) => `
         <button type="button" data-scan-id="${art.id}" onclick="selectScannedArtifact('${art.id}')" aria-pressed="${art.id === state.currentScannedArtifact?.id}"
@@ -4033,7 +4108,7 @@ const CameraPreview = (() => {
       document.getElementById('scan-result-title').textContent = art.title;
       const date = document.getElementById('scan-result-era');
       date.classList.toggle('hidden', !art.era);
-      date.textContent = art.era ? ui(`Niên đại: ${art.era}`, `Date: ${art.era}`) : '';
+      date.textContent = art.era ? ui(`Niên đại: ${art.era}`, `Date: ${art.era}`, `年代：${art.era}`) : '';
       document.getElementById('scan-result-short').textContent = art.shortDesc;
       renderArtifactSource('scan-artifact-source', art.source);
 
@@ -4081,10 +4156,12 @@ const CameraPreview = (() => {
     const soldierStoryDialog = document.getElementById('soldier-story');
     const soldierGreetingAudio = document.getElementById('soldier-greeting-audio');
     let activeRoleplay = null;
+    let soldierGreetingUtterance = null;
 
     function findRoleplayTopic(question, topics) {
       const normalized = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
-      return topics.find(topic => topic.keywords?.test(normalized));
+      return topics.find(topic => topic.keywords?.test(normalized)
+        || (state.lang === 'ja' && japaneseText(topic.en.story.question).replace(/？$/, '') === question.replace(/？$/, '')));
     }
 
     function openDemoRoleplay() {
@@ -4113,8 +4190,8 @@ const CameraPreview = (() => {
         return button;
       });
       document.getElementById('soldier-story-questions').replaceChildren(...questions);
-      document.getElementById('soldier-greeting-button').classList.toggle('hidden', !story.recording);
-      if (story.recording) soldierGreetingAudio.src = narrationRecording(story.recording + ui('', '-en'));
+      document.getElementById('soldier-greeting-button').classList.toggle('hidden', !story.recording && state.lang !== 'ja');
+      if (story.recording && state.lang !== 'ja') soldierGreetingAudio.src = narrationRecording(story.recording + ui('', '-en'));
       soldierStoryDialog.showModal();
       updateSoldierGreetingButton();
       lucide.createIcons();
@@ -4134,6 +4211,10 @@ const CameraPreview = (() => {
     soldierStoryDialog.addEventListener('close', () => {
       if (soldierStoryDialog.open) return;
       activeRoleplay = null;
+      if (soldierGreetingUtterance) {
+        soldierGreetingUtterance = null;
+        window.speechSynthesis.cancel();
+      }
       soldierGreetingAudio.pause();
       soldierGreetingAudio.removeAttribute('src');
       soldierGreetingAudio.load();
@@ -4168,6 +4249,34 @@ const CameraPreview = (() => {
     async function toggleSoldierGreeting() {
       const error = document.getElementById('soldier-greeting-error');
       error.classList.add('hidden');
+      if (state.lang === 'ja') {
+        const speech = window.speechSynthesis;
+        if (soldierGreetingUtterance) {
+          if (speech.paused) speech.resume();
+          else speech.pause();
+        } else {
+          const voice = preferredNarrationVoice(speech?.getVoices() || [], 'ja-jp');
+          if (!voice) {
+            error.textContent = 'この端末には日本語の読み上げ音声がありません。';
+            error.classList.remove('hidden');
+            return;
+          }
+          const utterance = new SpeechSynthesisUtterance(ui(...activeRoleplay.greeting));
+          utterance.lang = 'ja-JP';
+          utterance.voice = voice;
+          utterance.onend = () => finishSoldierGreeting(utterance);
+          utterance.onerror = () => {
+            if (soldierGreetingUtterance !== utterance) return;
+            finishSoldierGreeting(utterance);
+            error.textContent = ui('Chưa phát được lời chào.', 'Could not play the greeting.');
+            error.classList.remove('hidden');
+          };
+          soldierGreetingUtterance = utterance;
+          speech.speak(utterance);
+        }
+        updateSoldierGreetingButton();
+        return;
+      }
       if (!soldierGreetingAudio.paused) {
         soldierGreetingAudio.pause();
         return;
@@ -4182,8 +4291,16 @@ const CameraPreview = (() => {
       }
     }
 
+    function finishSoldierGreeting(utterance) {
+      if (soldierGreetingUtterance !== utterance) return;
+      soldierGreetingUtterance = null;
+      updateSoldierGreetingButton();
+    }
+
     function updateSoldierGreetingButton() {
-      document.getElementById('soldier-greeting-label').textContent = soldierGreetingAudio.paused
+      const paused = state.lang === 'ja'
+        ? !soldierGreetingUtterance || window.speechSynthesis.paused : soldierGreetingAudio.paused;
+      document.getElementById('soldier-greeting-label').textContent = paused
         ? ui('Nghe lời chào', 'Play greeting')
         : ui('Tạm dừng lời chào', 'Pause greeting');
     }
@@ -4299,7 +4416,7 @@ const CameraPreview = (() => {
       document.getElementById('modal-art-floor').textContent = art.room;
       document.getElementById('modal-art-svg').innerHTML = getMuseumArtwork(art.photoKey);
       document.getElementById('modal-art-title').textContent = art.title;
-      document.getElementById('modal-art-meta').textContent = ui(`Niên đại: ${art.era}`, `Date: ${art.era}`);
+      document.getElementById('modal-art-meta').textContent = ui(`Niên đại: ${art.era}`, `Date: ${art.era}`, `年代：${art.era}`);
       document.getElementById('modal-art-desc').textContent = art.fullDesc;
       renderArtifactSource('modal-art-source', art.source);
       const hasFloor = [1, 2, 3].includes(art.floor);
@@ -4349,14 +4466,23 @@ const CameraPreview = (() => {
       return Object.hasOwn(EMBEDDED_NARRATIONS, id) ? EMBEDDED_NARRATIONS[id] : null;
     }
 
+    function localizedNarration(translations, fallback) {
+      if (state.lang === 'ja') {
+        const text = translations.ja || JAPANESE[translations.en];
+        if (text) return { language: 'ja', text };
+      }
+      const language = translations[state.lang] ? state.lang : fallback;
+      return { language, text: translations[language] || '' };
+    }
+
     function catalogNarration(translations, recordingId, hasEnglishRecording = false) {
-      const language = translations[state.lang] ? state.lang : 'en';
+      const { language, text } = localizedNarration(translations, 'en');
       const narrator = LANGUAGES.find(item => item.code === language);
       const recordedId = language === 'vi'
         ? recordingId
-        : hasEnglishRecording ? `${recordingId}-en` : null;
+        : language === 'en' && hasEnglishRecording ? `${recordingId}-en` : null;
       return {
-        text: translations[language],
+        text,
         speechLang: narrator.speechLang,
         langName: `${narrator.flag} ${languageName(narrator)}`,
         recording: recordedId ? narrationRecording(recordedId) : null
@@ -4365,7 +4491,7 @@ const CameraPreview = (() => {
 
     function artifactNarration(art) {
       const translations = art.transcript || {};
-      const language = translations[state.lang] ? state.lang : translations.vi ? 'vi' : 'en';
+      const { language, text } = localizedNarration(translations, translations.vi ? 'vi' : 'en');
       const narrator = LANGUAGES.find(item => item.code === language);
       const source = art.audio?.[language];
       let recording = typeof source === 'string' ? narrationRecording(source) : null;
@@ -4373,7 +4499,7 @@ const CameraPreview = (() => {
         recording = source;
       }
       return {
-        text: translations[language] || '',
+        text,
         speechLang: narrator.speechLang,
         langName: `${narrator.flag} ${languageName(narrator)}`,
         recording
@@ -4413,8 +4539,8 @@ const CameraPreview = (() => {
       const langObj = LANGUAGES.find(item => item.code === language) || LANGUAGES[0];
       state.currentAudioConfig = {
         title: title || ui('Thuyết minh Trợ lý AI', 'Guide narration'),
-        subtitle: 'Bảo tàng Đà Nẵng Smart Guide',
-        floorTag: 'AI Audio',
+        subtitle: ui('Hướng dẫn tham quan Bảo tàng Đà Nẵng', 'Da Nang Museum Smart Guide'),
+        floorTag: ui('Thuyết minh AI', 'AI narration'),
         svgKey: 'cannon',
         text: plainText,
         speechLang: langObj.speechLang,
@@ -4427,7 +4553,7 @@ const CameraPreview = (() => {
       const cfg = state.currentAudioConfig;
       if (!cfg) return;
 
-      document.getElementById('audio-lang-badge').textContent = ui(`Ngôn ngữ: ${cfg.langName}`, `Language: ${cfg.langName}`);
+      document.getElementById('audio-lang-badge').textContent = ui(`Ngôn ngữ: ${cfg.langName}`, `Language: ${cfg.langName}`, `言語：${cfg.langName}`);
       document.getElementById('audio-artwork-svg').innerHTML = cfg.simulated || cfg.photoKey
         ? getArtifactArtwork(cfg)
         : getSvgArtwork(cfg.svgKey);
@@ -4519,6 +4645,14 @@ const CameraPreview = (() => {
       }
     }
 
+    function preferredNarrationVoice(voices, locale) {
+      const language = locale.split('-')[0];
+      const normalizeLocale = item => item.lang.toLowerCase().replace('_', '-');
+      return voices.find(item => normalizeLocale(item) === locale && item.localService)
+        || voices.find(item => normalizeLocale(item) === locale)
+        || voices.find(item => normalizeLocale(item).split('-')[0] === language);
+    }
+
     async function speakNarration(cfg) {
       const speech = window.speechSynthesis;
       if (!speech) {
@@ -4543,14 +4677,9 @@ const CameraPreview = (() => {
         }
         if (attempt !== audioPlaybackAttempt) return;
         const locale = cfg.speechLang.toLowerCase();
-        const language = locale.split('-')[0];
-        const voices = speech.getVoices();
-        const normalizeLocale = item => item.lang.toLowerCase().replace('_', '-');
-        const voice = voices.find(item => normalizeLocale(item) === locale && item.localService)
-          || voices.find(item => normalizeLocale(item) === locale)
-          || voices.find(item => normalizeLocale(item).split('-')[0] === language);
+        const voice = preferredNarrationVoice(speech.getVoices(), locale);
         if (!voice) {
-          startRecordedNarration(cfg, ui(`Thiếu giọng đọc ${cfg.langName}`, `No ${cfg.langName} voice is available`));
+          startRecordedNarration(cfg, ui(`Thiếu giọng đọc ${cfg.langName}`, `No ${cfg.langName} voice is available`, `この端末には${cfg.langName}の読み上げ音声がありません。`));
           return;
         }
 
@@ -4788,7 +4917,7 @@ const CameraPreview = (() => {
       const name = state.visitorName;
       const greeting = ui(
         `Chào${name ? ' ' + name : ' bạn'}! Mình là hướng dẫn viên số của Bảo tàng Đà Nẵng. Bạn muốn lên lịch tham quan hay khám phá một hiện vật trước?`,
-        `Hi${name ? ' ' + name : ' there'}! I’m your digital guide to Da Nang Museum. Would you like to plan your visit or explore an artifact first?`
+        `Hi${name ? ' ' + name : ' there'}! I’m your digital guide to Da Nang Museum. Would you like to plan your visit or explore an artifact first?`, `こんにちは${name ? '、' + name + 'さん' : ''}！ ダナン博物館のデジタルガイドです。見学ルートを考えますか？ それとも展示品から見てみますか？`
       );
       appendBotMessage(escapeHtml(greeting), '');
       renderChatSuggestions();
@@ -4804,7 +4933,7 @@ const CameraPreview = (() => {
       cancelChatLookup(session);
       session.context = { artifactId: art.id };
       const title = localizedContent(art).title;
-      appendUserMessage(ui(`Tìm hiểu về ${title}`, `Tell me about ${title}`));
+      appendUserMessage(ui(`Tìm hiểu về ${title}`, `Tell me about ${title}`, `${title}について教えて`));
       appendBotArtifactCard(art);
       renderChatSuggestions();
     }
@@ -4873,26 +5002,27 @@ const CameraPreview = (() => {
     }
 
     function renderGuideReply(reply, language) {
-      const english = language === 'en';
+      const text = (vietnamese, english) => localeText(language, vietnamese, english);
       const buttonClass = 'chat-reply-action';
       const actions = [];
       if (reply.audio && reply.artifactId) {
-        actions.push(`<button type="button" class="${buttonClass}" onclick="openAudioGuideForArtifactById('${reply.artifactId}')">${english ? 'Listen to audio' : 'Nghe audio'}</button>`);
+        actions.push(`<button type="button" class="${buttonClass}" onclick="openAudioGuideForArtifactById('${reply.artifactId}')">${text('Nghe audio', 'Listen to audio')}</button>`);
       }
       if ([1, 2, 3].includes(reply.floor)) {
         const node = /^[a-z0-9_]+$/i.test(reply.mapNodeId || '') ? reply.mapNodeId : '';
-        actions.push(`<button type="button" class="${buttonClass}" onclick="jumpToFloorOnMap(${reply.floor}, '${node}')">${english ? 'Show on map' : 'Xem trên bản đồ'}</button>`);
+        actions.push(`<button type="button" class="${buttonClass}" onclick="jumpToFloorOnMap(${reply.floor}, '${node}')">${text('Xem trên bản đồ', 'Show on map')}</button>`);
       } else if (reply.map) {
-        actions.push(`<button type="button" class="${buttonClass}" onclick="switchTab('map')">${english ? 'Open the map' : 'Mở bản đồ'}</button>`);
+        actions.push(`<button type="button" class="${buttonClass}" onclick="switchTab('map')">${text('Mở bản đồ', 'Open the map')}</button>`);
       }
       if (reply.source) {
         const wiki = reply.source.includes('.wikipedia.org/');
-        const label = wiki ? (english ? 'Read on Wikipedia' : 'Đọc trên Wikipedia') : (english ? 'View source' : 'Xem nguồn');
+        const label = wiki ? text('Đọc trên Wikipedia', 'Read on Wikipedia') : text('Xem nguồn', 'View source');
         actions.push(`<a class="${buttonClass}" href="${escapeHtml(reply.source)}" target="_blank" rel="noopener noreferrer">${label}</a>`);
       }
       const html = escapeHtml(reply.text).replace(/\n/g, '<br>');
       appendBotMessage(html, reply.social || reply.audio ? '' : reply.text,
-        actions.length ? `<div class="flex flex-wrap gap-1.5">${actions.join('')}</div>` : '', english ? 'en' : 'vi', language);
+        actions.length ? `<div class="flex flex-wrap gap-1.5">${actions.join('')}</div>` : '',
+        localeText(language, 'vi', 'en', 'ja'), language);
     }
 
     function appendUserMessage(text) {
@@ -4908,7 +5038,7 @@ const CameraPreview = (() => {
       container.scrollTop = container.scrollHeight;
     }
 
-    function appendBotMessage(htmlText, plainSpeechText, extraHtml = '', language = ui('vi', 'en'), conversation = state.lang) {
+    function appendBotMessage(htmlText, plainSpeechText, extraHtml = '', language = ui('vi', 'en', 'ja'), conversation = state.lang) {
       const container = chatTarget(conversation);
       const div = document.createElement('div');
       div.className = 'flex items-start gap-2 fade-in';
@@ -4920,7 +5050,7 @@ const CameraPreview = (() => {
           ${plainSpeechText ? `<div class="pt-1 border-t border-museum-border/70 flex items-center justify-between">
             <button type="button" data-chat-audio class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white hover:bg-amber-50 border border-museum-border text-[11px] font-bold text-museum-bronze transition">
               <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
-              <span>${conversation === 'en' ? 'Listen to audio' : 'Nghe audio'}</span>
+              <span>${localeText(conversation, 'Nghe audio', 'Listen to audio')}</span>
             </button>
           </div>` : ''}
         </div>
@@ -4988,8 +5118,8 @@ const CameraPreview = (() => {
       const question = localizedContent(QUIZ_QUESTIONS[state.quizIndex]);
       if (question) {
         document.getElementById('quiz-progress-label').textContent =
-          ui(`Câu ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`, `Question ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`);
-        document.getElementById('quiz-score-label').textContent = ui(`Điểm: ${state.quizScore}`, `Score: ${state.quizScore}`);
+          ui(`Câu ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`, `Question ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`, `第${state.quizIndex + 1}問 / 全${QUIZ_QUESTIONS.length}問`);
+        document.getElementById('quiz-score-label').textContent = ui(`Điểm: ${state.quizScore}`, `Score: ${state.quizScore}`, `スコア：${state.quizScore}点`);
         document.getElementById('quiz-question-text').textContent = question.q;
         question.options.forEach((option, index) => {
           const button = document.getElementById(`quiz-opt-${index}`);
@@ -5000,7 +5130,7 @@ const CameraPreview = (() => {
           document.getElementById('quiz-explanation-text').textContent = prefix + question.explain;
         }
       }
-      document.getElementById('quiz-winner-name').textContent = ui(`Vinh danh: ${visitorName()}`, `Awarded to: ${visitorName()}`);
+      document.getElementById('quiz-winner-name').textContent = ui(`Vinh danh: ${visitorName()}`, `Awarded to: ${visitorName()}`, `${visitorName()} 様`);
     }
 
     function startQuizGame() {
@@ -5022,8 +5152,8 @@ const CameraPreview = (() => {
       state.quizTimer = 15;
 
       const qObj = localizedContent(QUIZ_QUESTIONS[state.quizIndex]);
-      document.getElementById('quiz-progress-label').textContent = ui(`Câu ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`, `Question ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`);
-      document.getElementById('quiz-score-label').textContent = ui(`Điểm: ${state.quizScore}`, `Score: ${state.quizScore}`);
+      document.getElementById('quiz-progress-label').textContent = ui(`Câu ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`, `Question ${state.quizIndex + 1} / ${QUIZ_QUESTIONS.length}`, `第${state.quizIndex + 1}問 / 全${QUIZ_QUESTIONS.length}問`);
+      document.getElementById('quiz-score-label').textContent = ui(`Điểm: ${state.quizScore}`, `Score: ${state.quizScore}`, `スコア：${state.quizScore}点`);
       document.getElementById('quiz-question-text').textContent = qObj.q;
       document.getElementById('quiz-explanation-box').classList.add('hidden');
 
@@ -5050,7 +5180,8 @@ const CameraPreview = (() => {
     }
 
     function updateQuizTimerUi() {
-      document.getElementById('quiz-timer-sec').textContent = `${state.quizTimer}s`;
+      const remaining = state.quizTimer;
+      document.getElementById('quiz-timer-sec').textContent = ui(`${remaining} giây`, `${remaining}s`, `${remaining}秒`);
       document.getElementById('quiz-timer-bar').style.width = `${(state.quizTimer / 15) * 100}%`;
     }
 
@@ -5065,7 +5196,7 @@ const CameraPreview = (() => {
       if (isCorrect) {
         state.quizScore += (100 + state.quizTimer * 4);
         state.quizCorrectCount++;
-        document.getElementById('quiz-score-label').textContent = ui(`Điểm: ${state.quizScore}`, `Score: ${state.quizScore}`);
+        document.getElementById('quiz-score-label').textContent = ui(`Điểm: ${state.quizScore}`, `Score: ${state.quizScore}`, `スコア：${state.quizScore}点`);
       }
 
       qObj.options.forEach((_, idx) => {
@@ -5095,7 +5226,7 @@ const CameraPreview = (() => {
           btn.className = 'w-full p-3 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-left text-sm font-bold text-emerald-950 flex items-center gap-2.5';
         }
       });
-      document.getElementById('quiz-explanation-text').textContent = ui(`Hết giờ! ${qObj.explain}`, `Time is up! ${qObj.explain}`);
+      document.getElementById('quiz-explanation-text').textContent = ui(`Hết giờ! ${qObj.explain}`, `Time is up! ${qObj.explain}`, `時間切れです。${qObj.explain}`);
       document.getElementById('quiz-explanation-box').classList.remove('hidden');
       lucide.createIcons();
     }
@@ -5113,7 +5244,7 @@ const CameraPreview = (() => {
       document.getElementById('quiz-active-screen').classList.add('hidden');
       document.getElementById('quiz-summary-screen').classList.remove('hidden');
 
-      document.getElementById('quiz-winner-name').textContent = ui(`Vinh danh: ${visitorName()}`, `Awarded to: ${visitorName()}`);
+      document.getElementById('quiz-winner-name').textContent = ui(`Vinh danh: ${visitorName()}`, `Awarded to: ${visitorName()}`, `${visitorName()} 様`);
       document.getElementById('quiz-final-score').textContent = state.quizScore;
       document.getElementById('quiz-final-correct').textContent = `${state.quizCorrectCount}/${QUIZ_QUESTIONS.length}`;
       lucide.createIcons();
@@ -5122,7 +5253,7 @@ const CameraPreview = (() => {
     function shareQuizScore() {
       const msg = ui(
         `${visitorName()} vừa đạt ${state.quizScore} điểm (${state.quizCorrectCount}/8 câu đúng) trong thử thách Di sản Đà Nẵng!`,
-        `${visitorName()} scored ${state.quizScore} points (${state.quizCorrectCount}/8 correct) in the Da Nang Heritage Explorer challenge!`
+        `${visitorName()} scored ${state.quizScore} points (${state.quizCorrectCount}/8 correct) in the Da Nang Heritage Explorer challenge!`, `${visitorName()}さんはダナン文化遺産クイズで${state.quizScore}点（8問中${state.quizCorrectCount}問正解）を獲得しました！`
       );
       copyTextToClipboard(msg, ui('Đã sao chép chứng nhận & điểm số!', 'Certificate and score copied!'));
     }
@@ -5208,8 +5339,8 @@ const CameraPreview = (() => {
         ];
         totalDistance = Math.round((Math.abs(origin.x - corridorPt.x) + Math.abs(origin.y - corridorPt.y) + Math.abs(corridorPt.x - dest.x) + Math.abs(corridorPt.y - dest.y)) * 0.22);
 
-        steps.push(ui(`Xuất phát từ <strong>${origin.name}</strong>, tiến ra hành lang trung tâm Tầng ${origin.floor}.`, `Start at <strong>${origin.name}</strong> and walk to the main corridor on Floor ${origin.floor}.`));
-        steps.push(ui(`Đi thẳng theo vạch dẫn đường màu cam tới <strong>${dest.name}</strong>.`, `Follow the orange route to <strong>${dest.name}</strong>.`));
+        steps.push(ui(`Xuất phát từ <strong>${origin.name}</strong>, tiến ra hành lang trung tâm Tầng ${origin.floor}.`, `Start at <strong>${origin.name}</strong> and walk to the main corridor on Floor ${origin.floor}.`, `<strong>${origin.name}</strong>から${origin.floor}階の中央通路へ進んでください。`));
+        steps.push(ui(`Đi thẳng theo vạch dẫn đường màu cam tới <strong>${dest.name}</strong>.`, `Follow the orange route to <strong>${dest.name}</strong>.`, `オレンジ色の経路に沿って<strong>${dest.name}</strong>へ進んでください。`));
       } else {
         const originElevator = MAP_NODES.find(n => n.floor === origin.floor && n.type === 'transit');
         const destElevator = MAP_NODES.find(n => n.floor === dest.floor && n.type === 'transit');
@@ -5228,9 +5359,9 @@ const CameraPreview = (() => {
         const goingUp = dest.floor > origin.floor;
         totalDistance = Math.abs(dest.floor - origin.floor) * 24 + 34;
 
-        steps.push(ui(`<strong>Chặng 1 (Tầng ${origin.floor}):</strong> Từ <strong>${origin.short}</strong>, đi theo lối dẫn tới <strong>Thang máy / Cầu thang bộ</strong>.`, `<strong>Step 1 (Floor ${origin.floor}):</strong> From <strong>${origin.short}</strong>, follow the route to the <strong>elevator or stairs</strong>.`));
-        steps.push(ui(`<strong>Chặng 2 (Chuyển tầng):</strong> Đi thang máy hoặc cầu thang bộ ${goingUp ? 'lên' : 'xuống'} <strong>Tầng ${dest.floor}</strong>.`, `<strong>Step 2 (Change floors):</strong> Take the elevator or stairs ${goingUp ? 'up' : 'down'} to <strong>Floor ${dest.floor}</strong>.`));
-        steps.push(ui(`<strong>Chặng 3 (Tầng ${dest.floor}):</strong> Ra khỏi sảnh thang máy, rẽ vào khu vực <strong>${dest.name}</strong>.`, `<strong>Step 3 (Floor ${dest.floor}):</strong> Leave the elevator lobby and continue to <strong>${dest.name}</strong>.`));
+        steps.push(ui(`<strong>Chặng 1 (Tầng ${origin.floor}):</strong> Từ <strong>${origin.short}</strong>, đi theo lối dẫn tới <strong>Thang máy / Cầu thang bộ</strong>.`, `<strong>Step 1 (Floor ${origin.floor}):</strong> From <strong>${origin.short}</strong>, follow the route to the <strong>elevator or stairs</strong>.`, `<strong>手順1（${origin.floor}階）</strong> ${origin.short}から<strong>エレベーターまたは階段</strong>へ進んでください。`));
+        steps.push(ui(`<strong>Chặng 2 (Chuyển tầng):</strong> Đi thang máy hoặc cầu thang bộ ${goingUp ? 'lên' : 'xuống'} <strong>Tầng ${dest.floor}</strong>.`, `<strong>Step 2 (Change floors):</strong> Take the elevator or stairs ${goingUp ? 'up' : 'down'} to <strong>Floor ${dest.floor}</strong>.`, `<strong>手順2（階の移動）</strong> エレベーターまたは階段で<strong>${dest.floor}階</strong>へ${goingUp ? '上がります' : '下ります'}。`));
+        steps.push(ui(`<strong>Chặng 3 (Tầng ${dest.floor}):</strong> Ra khỏi sảnh thang máy, rẽ vào khu vực <strong>${dest.name}</strong>.`, `<strong>Step 3 (Floor ${dest.floor}):</strong> Leave the elevator lobby and continue to <strong>${dest.name}</strong>.`, `<strong>手順3（${dest.floor}階）</strong> エレベーターホールを出て、<strong>${dest.name}</strong>へ進んでください。`));
       }
 
       state.activeRoute = {
@@ -5244,15 +5375,15 @@ const CameraPreview = (() => {
       if (origin.floor !== dest.floor) {
         switcher.classList.remove('hidden');
         switcher.innerHTML = `
-          <button onclick="selectMapFloor(${origin.floor})" class="px-2 py-1 rounded-lg bg-emerald-100 text-emerald-900 text-[10px] font-extrabold">${ui('T', 'F')}${origin.floor}</button>
-          <button onclick="selectMapFloor(${dest.floor})" class="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 text-[10px] font-extrabold">${ui('T', 'F')}${dest.floor}</button>
+          <button onclick="selectMapFloor(${origin.floor})" class="px-2 py-1 rounded-lg bg-emerald-100 text-emerald-900 text-[10px] font-extrabold">${ui(`T${origin.floor}`, `F${origin.floor}`, `${origin.floor}階`)}</button>
+          <button onclick="selectMapFloor(${dest.floor})" class="px-2 py-1 rounded-lg bg-rose-100 text-rose-900 text-[10px] font-extrabold">${ui(`T${dest.floor}`, `F${dest.floor}`, `${dest.floor}階`)}</button>
         `;
       } else {
         switcher.classList.add('hidden');
       }
 
       const estMins = Math.max(1, Math.round(totalDistance / 35));
-      document.getElementById('route-summary-meta').textContent = ui(`Ước tính: ~${estMins} phút đi bộ • ${totalDistance}m`, `Estimated walk: ~${estMins} min • ${totalDistance} m`);
+      document.getElementById('route-summary-meta').textContent = ui(`Ước tính: ~${estMins} phút đi bộ • ${totalDistance}m`, `Estimated walk: ~${estMins} min • ${totalDistance} m`, `徒歩約${estMins}分・${totalDistance}メートル`);
       document.getElementById('route-steps-list').innerHTML = steps.map((s, idx) => `
         <li class="flex items-start gap-2.5">
           <span class="w-5 h-5 rounded-full bg-museum-bronze text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
@@ -5262,7 +5393,7 @@ const CameraPreview = (() => {
       document.getElementById('route-instructions-panel').classList.remove('hidden');
 
       selectMapFloor(announce ? origin.floor : state.currentMapFloor);
-      if (announce) showToast(ui(`Đã tìm thấy lộ trình tới ${dest.short}!`, `Route to ${dest.short} found.`));
+      if (announce) showToast(ui(`Đã tìm thấy lộ trình tới ${dest.short}!`, `Route to ${dest.short} found.`, `${dest.short}への経路を表示しました。`));
       lucide.createIcons();
     }
 
@@ -5371,6 +5502,7 @@ const CameraPreview = (() => {
     // 14. QUICK LANGUAGE MODAL & UTILITY HELPERS
     // =========================================================================
     function languageName(language) {
+      if (language.code === 'ja') return ui('Tiếng Nhật', 'Japanese', language.name);
       return language.code === 'vi' ? ui(language.name, 'Vietnamese') : language.name;
     }
 
@@ -5380,7 +5512,7 @@ const CameraPreview = (() => {
         <button onclick="selectQuickLanguage('${l.code}')" class="w-full p-2.5 rounded-xl hover:bg-museum-ivory border border-transparent hover:border-museum-border flex items-center justify-between text-left transition">
           <span class="flex items-center gap-2.5 text-sm font-semibold text-museum-navy">
             <span class="text-lg">${l.flag}</span>
-            <span>${languageName(l)}</span>
+            <span lang="${l.code}" translate="no">${l.name}</span>
           </span>
           <span class="text-xs font-extrabold text-museum-bronze uppercase">${l.code}</span>
         </button>
@@ -5405,7 +5537,7 @@ const CameraPreview = (() => {
       applyTranslations();
       closeLangModal();
       const langObj = LANGUAGES.find(l => l.code === code);
-      showToast(ui(`Đã chuyển ngôn ngữ: ${langObj ? langObj.name : code}`, 'Switched to English.'));
+      showToast(ui(`Đã chuyển ngôn ngữ: ${langObj.name}`, 'Switched to English.'));
     }
 
     function copyTextToClipboard(text, successMsg) {
