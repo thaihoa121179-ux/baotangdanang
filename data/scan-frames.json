@@ -123,6 +123,18 @@
         {
           "id": "scan-case-camera",
           "name": ["Máy ảnh trong tủ trưng bày", "Camera in the display case"],
+          "aliases": ["máy ảnh", "camera", "カメラ"],
+          "chatQuestions": {
+            "era": ["Chiếc máy ảnh này ra đời vào năm bao nhiêu vậy?", "What year was this camera made?", "このカメラは何年に作られましたか？"],
+            "otherMuseums": ["Hiện nay còn những bảo tàng nào lưu giữ máy ảnh tương tự?", "Which museums have similar cameras in their collections?", "似たカメラを所蔵している博物館はほかにありますか？"]
+          },
+          "facts": {
+            "era": [
+              "Tư liệu hiện có chưa ghi hãng, mẫu hay năm sản xuất của chiếc máy ảnh trong tủ. Để xác định năm ra đời, cần đối chiếu nhãn hiện vật hoặc ký hiệu trên thân máy với thông tin của nhà sản xuất.",
+              "The available exhibit material does not identify the maker, model or year of the camera in the display case. To date it, we would need the exhibit label or markings on the camera body to check against the maker’s records.",
+              "現在の展示資料では、このカメラのメーカーや型式、製造年を確認できません。年代を特定するには、展示ラベルや本体の刻印をメーカーの資料と照合する必要があります。"
+            ]
+          },
           "icon": "camera",
           "text": ["Chiếc máy ảnh nhỏ gần màn hình màu xanh có thân hộp và ống kính tròn phía trước. Nó nằm thấp hơn các hiện vật trang phục trong tủ kính.", "The small camera near the blue screen has a box-shaped body and a round front lens. It is displayed below the garments."]
         },

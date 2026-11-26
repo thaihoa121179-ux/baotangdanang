@@ -110,7 +110,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
       const intents = [
         ['card', /写真|画像/], ['audio', /音声|読み上げ|聞かせ/], ['material', /材質|素材|何ででき|何で作/],
         ['purpose', /使い方|用途|何に使/], ['history', /出土|発見|見つか|歴史|由来/],
-        ['location', /何階|展示場所|どこ/], ['era', /年代|いつの|何世紀|何年前/], ['maker', /誰が作|製作者/],
+        ['location', /何階|展示場所|どこ/], ['era', /年代|いつの|何世紀|何年前|何年に作|何年製/], ['maker', /誰が作|製作者/],
         ['dimensions', /大きさ|寸法|サイズ|重さ|高さ/], ['detail', /もっと|詳しく|特徴/]
       ];
       return intents.find(([, pattern]) => pattern.test(query))?.[0] ?? null;
@@ -121,7 +121,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
     if (/\b(dung de|cong dung|dung lam gi|de lam gi|vai tro|used for|purpose|what did .+ do|cach dung)\b/.test(query)) return 'purpose';
     if (/\b(?:tim thay (?:o|tai) dau|khai quat (?:o|tai) dau|where (?:was|were) .+ (?:found|excavated))\b/.test(query)) return 'history';
     if (/\b(chi duong|vi tri|o dau|tang nao|tang may|where|which floor|directions|location|nam o)\b/.test(query)) return 'location';
-    if (/\b(nien dai|bao nhieu tuoi|bao nhieu nam|co tu khi nao|co tu bao gio|nam nao|the ky nao|bao lau roi|how old|what century|date from|when was)\b/.test(query)) return 'era';
+    if (/\b(nien dai|bao nhieu tuoi|bao nhieu nam|co tu khi nao|co tu bao gio|nam nao|nam may|nam bao nhieu|ra doi khi nao|the ky nao|bao lau roi|how old|what year|what century|date from|when was)\b/.test(query)) return 'era';
     if (/\b(ai chi huy|ai lanh dao|gan voi (?:vi|ai)|who led|which general|nguon goc|lich su)\b/.test(query)) return 'history';
     if (/\b(tai sao|vi sao|vi vay|the sao|vay sao|tai sao the|why|ke tiep|noi ro|chi tiet|tell me more|more about it)\b/.test(query)) return 'detail';
     if (/\b(ai lam ra|ai duc|ai che tac|ai tao ra|who made|who created)\b/.test(query)) return 'maker';
@@ -150,6 +150,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
       ], lang);
       return { ...base, text, floor: art.floor, mapNodeId: art.mapNodeId };
     }
+    if (intent === 'era' && facts.era) return { ...base, text: pick(facts.era, lang) };
     if (intent === 'era') return { ...base, text: art.era ? pick([
       `${art.shortName} có niên đại theo danh mục là ${art.era}.`,
       `The catalog dates ${art.shortName} to ${art.era}.`, `目録によると、「${art.shortName}」は${art.era}のものです。`
@@ -385,6 +386,17 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
     const social = conversationReply(q, { context, lang, name });
     if (social) return social;
 
+    const currentArtifact = catalog.get(context.artifactId);
+    const otherMuseums = currentArtifact?.chatQuestions?.otherMuseums;
+    if (otherMuseums && (q === normalize(pick(otherMuseums, lang))
+      || /\b(?:bao tang nao|bao tang khac|which museums?|other museums?)\b|(?:どの|他の|ほかの)博物館/u.test(q))) {
+      return { text: pick([
+        'Tư liệu hiện vật chưa có danh sách những bảo tàng khác lưu giữ máy ảnh tương tự. Bạn có thể dùng Gemini để hỏi thêm.',
+        'The exhibit record does not list other museums with similar cameras. You can ask Gemini for suggestions.',
+        '展示資料には、似たカメラを所蔵するほかの博物館の一覧はありません。Geminiに聞くことができます。'
+      ], lang), keepContext: true, unanswered: true };
+    }
+
     const intent = artifactIntent(q);
     const explicit = artifactMatches(q, catalog);
     const relatedTopics = topicMatches(q);
@@ -393,7 +405,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
       ? /\b(it|that one|this one|this artifact|that artifact)\b/.test(q)
       : /\b(no|mon (?:do|nay|kia|ay)|cai (?:do|nay|kia|ay)|hien vat (?:do|nay|ay)|vay|the)\b/.test(q);
     const abbreviated = q.split(' ').length <= 7 && !top;
-    const recent = (reference || abbreviated) && intent ? catalog.get(context.artifactId) : null;
+    const recent = (reference || abbreviated) && intent ? currentArtifact : null;
     const compare = /\b(so sanh|khac nhau|vs|compare|difference between)\b|違い|比較/.test(q);
     if (compare && explicit.length > 1) {
       const [first, second] = explicit.slice(0, 2).map(({ record }) => localized(record, lang));
@@ -470,6 +482,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
 
     const artifact = catalog.get(context.artifactId);
     if (artifact) {
+      if (artifact.chatQuestions) return Object.values(artifact.chatQuestions).map(question => pick(question, lang));
       const result = [];
       const facts = { ...knowledge.artifacts[artifact.id], ...artifact.facts };
       if (facts.purpose) result.push(pick(['Món này dùng để làm gì?', 'What was it used for?'], lang));
