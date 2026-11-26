@@ -5237,12 +5237,13 @@ const CameraPreview = (() => {
 
     function injectArtifactCardToChat(art) {
       const session = chatSession();
+      const showAudio = !state.chatFromScan;
       settleChatReply(session);
       session.context = { artifactId: art.id };
       const title = localizedContent(art).title;
       appendUserMessage(ui(`Tìm hiểu về ${title}`, `Tell me about ${title}`, `${title}について教えて`));
       const pending = beginChatReply(session, state.lang);
-      presentChatReply(session, pending, () => appendBotArtifactCard(art));
+      presentChatReply(session, pending, () => appendBotArtifactCard(art, showAudio));
       renderChatSuggestions();
     }
 
@@ -5261,6 +5262,7 @@ const CameraPreview = (() => {
 
     async function processUserChatQuery(query) {
       const language = state.lang;
+      const showAudio = !state.chatFromScan;
       const session = chatSession(language);
       settleChatReply(session);
       appendUserMessage(query);
@@ -5302,20 +5304,25 @@ const CameraPreview = (() => {
         session.context = { artifactId: reply.artifactId, topicId: reply.topicId, storyIndex, quizIndex };
       }
       if (reply.contextPatch) Object.assign(session.context, reply.contextPatch);
+      if (!showAudio && reply.audio) {
+        reply.text = localeText(language, 'Bạn có thể quay về kết quả quét và chọn Nghe audio ở thẻ hiện vật.',
+          'You can go back to the scan results and choose Listen to audio on the artifact card.',
+          'スキャン結果に戻り、展示品カードの「音声を聞く」を選べます。');
+      }
       const art = catalogById.get(reply.artifactId) || simulationById.get(reply.artifactId);
       const answer = reply.card && art ? localizedContent(art).fullDesc : reply.text;
       if (answer && !reply.geminiError) {
         session.history = [...(session.history || []).slice(-2), { role: 'user', text: query }, { role: 'model', text: answer }];
       }
-      presentChatReply(session, pending, () => reply.card && art ? appendBotArtifactCard(art) : renderGuideReply(reply, language));
+      presentChatReply(session, pending, () => reply.card && art ? appendBotArtifactCard(art, showAudio) : renderGuideReply(reply, language, showAudio));
       if (language === state.lang) renderChatSuggestions();
     }
 
-    function renderGuideReply(reply, language) {
+    function renderGuideReply(reply, language, showAudio) {
       const text = (vietnamese, english) => localeText(language, vietnamese, english);
       const buttonClass = 'chat-reply-action';
       const actions = [];
-      if (reply.audio && reply.artifactId) {
+      if (showAudio && reply.audio && reply.artifactId) {
         actions.push(`<button type="button" class="${buttonClass}" onclick="openAudioGuideForArtifactById('${reply.artifactId}')">${text('Nghe audio', 'Listen to audio')}</button>`);
       }
       if ([1, 2, 3].includes(reply.floor)) {
@@ -5336,7 +5343,7 @@ const CameraPreview = (() => {
           : text('Chưa kết nối được Gemini. Kiểm tra khóa API hoặc URL proxy trong cài đặt.', 'Could not connect to Gemini. Check the API key or proxy URL in settings.');
         actions.push(`<span class="text-museum-muted text-xs">${message}</span>`);
       }
-      return appendBotMessage(reply.text, reply.social || reply.audio ? '' : reply.text,
+      return appendBotMessage(reply.text, showAudio && !reply.social && !reply.audio ? reply.text : '',
         actions.length ? `<div class="flex flex-wrap gap-1.5">${actions.join('')}</div>` : '',
         localeText(language, 'vi', 'en', 'ja'), language);
     }
@@ -5380,9 +5387,10 @@ const CameraPreview = (() => {
       return div;
     }
 
-    function appendBotArtifactCard(artifact) {
+    function appendBotArtifactCard(artifact, showAudio) {
       const art = localizedContent(artifact);
       const node = /^[a-z0-9_]+$/i.test(art.mapNodeId || '') ? art.mapNodeId : null;
+      const hasLocation = node && [1, 2, 3].includes(art.floor);
       const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
       div.className = 'flex items-start gap-2 fade-in';
@@ -5404,17 +5412,16 @@ const CameraPreview = (() => {
           <p data-chat-reply-text class="text-xs text-slate-700 leading-relaxed">${escapeHtml(art.fullDesc)}</p>
           ${art.source ? `<a data-chat-reply-action href="${escapeHtml(art.source)}" class="text-xs font-bold text-museum-bronze underline" target="_blank" rel="noopener noreferrer">${art.simulated ? ui('Video tham chiếu', 'Reference video') : ui('Hồ sơ Bảo tàng Đà Nẵng', 'Da Nang Museum record')}</a>` : ''}
 
-          <!-- "Nghe Audio" & Map Buttons -->
-          <div data-chat-reply-action class="flex gap-1.5 pt-1">
-            <button onclick="openAudioGuideForArtifactById('${art.id}')" class="flex-1 py-2 px-2 rounded-xl bg-museum-bronze hover:bg-[#A34E2F] text-white text-xs font-bold flex items-center justify-center gap-1 transition">
+          ${showAudio || hasLocation ? `<div data-chat-reply-action class="flex gap-1.5 pt-1">
+            ${showAudio ? `<button onclick="openAudioGuideForArtifactById('${art.id}')" class="flex-1 py-2 px-2 rounded-xl bg-museum-bronze hover:bg-[#A34E2F] text-white text-xs font-bold flex items-center justify-center gap-1 transition">
               <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
               <span>${ui('Nghe audio', 'Listen to audio')}</span>
-            </button>
-            ${node && [1, 2, 3].includes(art.floor) ? `<button onclick="jumpToFloorOnMap(${art.floor}, '${node}')" class="flex-1 py-2 px-2 rounded-xl bg-white hover:bg-amber-50 border border-museum-border text-museum-navy text-xs font-bold flex items-center justify-center gap-1 transition">
+            </button>` : ''}
+            ${hasLocation ? `<button onclick="jumpToFloorOnMap(${art.floor}, '${node}')" class="flex-1 py-2 px-2 rounded-xl bg-white hover:bg-amber-50 border border-museum-border text-museum-navy text-xs font-bold flex items-center justify-center gap-1 transition">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-museum-bronze"></i>
               <span>${ui('Vị trí', 'Location')} • ${floorLabel(art.floor)}</span>
             </button>` : ''}
-          </div>
+          </div>` : ''}
 
         </div>
       `;
