@@ -3,7 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = path => readFile(new URL(path, root), 'utf8');
 const pagePath = process.argv[2] || 'filehtml.html';
-const [html, catalog, recognizer, chatKnowledge, chatScript, geminiChat, preview, frames, japanese, displayFont] = await Promise.all([
+const [html, catalog, recognizer, chatKnowledge, chatScript, geminiChat, preview, frames, japanese, displayFont, trophy] = await Promise.all([
   read(pagePath),
   read('data/artifacts.json'),
   read('js/recognize.js'),
@@ -13,7 +13,8 @@ const [html, catalog, recognizer, chatKnowledge, chatScript, geminiChat, preview
   read('js/camera-preview.js'),
   read('data/scan-frames.json'),
   read('data/ja.json'),
-  readFile(new URL('fonts/cormorant-garamond.woff2', root))
+  readFile(new URL('fonts/cormorant-garamond.woff2', root)),
+  readFile(new URL('images/quiz-trophy.webp', root))
 ]);
 
 function inlineSection(page, name, content) {
@@ -30,7 +31,10 @@ const fontUrl = `url(data:font/woff2;base64,${displayFont.toString('base64')})`;
 const fontMarker = /(\/\* DISPLAY FONT \*\/\s+)url\([^)]*\)/;
 if (!fontMarker.test(html)) throw new Error('Missing display font marker');
 const withFont = html.replace(fontMarker, (_, prefix) => prefix + fontUrl);
-const withJapanese = inlineSection(withFont, 'JAPANESE', `    const JAPANESE = ${inlineJson(japanese)};`);
+const trophyMarker = /(<img data-quiz-trophy src=")[^"]*(")/;
+if (!trophyMarker.test(withFont)) throw new Error('Missing quiz trophy marker');
+const withTrophy = withFont.replace(trophyMarker, (_, prefix, suffix) => `${prefix}data:image/webp;base64,${trophy.toString('base64')}${suffix}`);
+const withJapanese = inlineSection(withTrophy, 'JAPANESE', `    const JAPANESE = ${inlineJson(japanese)};`);
 const withCatalog = inlineSection(withJapanese, 'ARTIFACTS', `    const EMBEDDED_ARTIFACTS = ${inlineJson(catalog)};`);
 const photos = await Promise.all(JSON.parse(catalog).filter(record => record.photoFile).map(async record => {
   if (!/^images\/artifacts\/[a-z0-9-]+\.webp$/.test(record.photoFile)) {
