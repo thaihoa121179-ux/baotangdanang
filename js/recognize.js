@@ -87,7 +87,7 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     return url.href;
   }
 
-  function jpegFrame(source) {
+  function jpegFrame(source, zoom = 1) {
     const isCanvas = typeof source.getContext === 'function';
     const width = isCanvas ? source.width : source.videoWidth || source.naturalWidth;
     const height = isCanvas ? source.height : source.videoHeight || source.naturalHeight;
@@ -96,12 +96,14 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     const isLive = isCanvas || source.videoWidth;
     const ratio = isLive && source.clientWidth && source.clientHeight
       ? source.clientWidth / source.clientHeight : width / height;
-    const cropWidth = Math.min(width, height * ratio);
-    const cropHeight = Math.min(height, width / ratio);
-    const scale = Math.min(1, 768 / Math.max(cropWidth, cropHeight));
+    const visibleWidth = Math.min(width, height * ratio);
+    const visibleHeight = Math.min(height, width / ratio);
+    const scale = Math.min(1, 768 / Math.max(visibleWidth, visibleHeight));
+    const cropWidth = visibleWidth / (isLive ? zoom : 1);
+    const cropHeight = visibleHeight / (isLive ? zoom : 1);
     const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(cropWidth * scale));
-    canvas.height = Math.max(1, Math.round(cropHeight * scale));
+    canvas.width = Math.max(1, Math.round(visibleWidth * scale));
+    canvas.height = Math.max(1, Math.round(visibleHeight * scale));
     const context = canvas.getContext('2d');
     context.fillStyle = '#fff';
     context.fillRect(0, 0, canvas.width, canvas.height);

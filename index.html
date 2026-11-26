@@ -299,7 +299,32 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       object-fit: cover;
       pointer-events: none;
     }
+    #frame-camera, #frame-camera-preview { transform: scale(var(--frame-zoom, 1)); }
     #frame-selected-photo { object-fit: contain; }
+    .frame-zoom {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: 44px 48px 44px;
+      align-items: center;
+      justify-items: center;
+      border: 1px solid #fff4df4d;
+      border-radius: 999px;
+      background: #13171ae8;
+      color: #fff1d9;
+    }
+    .frame-zoom.hidden { display: none; }
+    .frame-zoom button {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 50%;
+    }
+    .frame-zoom button:active:not(:disabled) { background: #fff4df26; }
+    .frame-zoom output { font-size: .85rem; font-weight: 800; font-variant-numeric: tabular-nums; }
     .frame-corners {
       position: absolute;
       inset: 17px;
@@ -1343,6 +1368,15 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
               <button type="button" id="frame-retry-camera" class="hidden" onclick="startFrameCamera()" data-en="Enable camera">Bật camera</button>
             </div>
             <div class="frame-sweep" aria-hidden="true"></div>
+            <div id="frame-zoom" class="frame-zoom hidden" role="group" aria-label="Mức zoom camera" data-en-aria-label="Camera zoom">
+              <button type="button" id="frame-zoom-out" onclick="changeFrameZoom(-0.5)" aria-label="Thu nhỏ" data-en-aria-label="Zoom out" disabled>
+                <i data-lucide="minus" class="w-5 h-5" aria-hidden="true"></i>
+              </button>
+              <output id="frame-zoom-value">1×</output>
+              <button type="button" id="frame-zoom-in" onclick="changeFrameZoom(0.5)" aria-label="Phóng to" data-en-aria-label="Zoom in">
+                <i data-lucide="plus" class="w-5 h-5" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
         </div>
         <div class="frame-camera-footer">
@@ -2166,7 +2200,7 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     return url.href;
   }
 
-  function jpegFrame(source) {
+  function jpegFrame(source, zoom = 1) {
     const isCanvas = typeof source.getContext === 'function';
     const width = isCanvas ? source.width : source.videoWidth || source.naturalWidth;
     const height = isCanvas ? source.height : source.videoHeight || source.naturalHeight;
@@ -2175,12 +2209,14 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     const isLive = isCanvas || source.videoWidth;
     const ratio = isLive && source.clientWidth && source.clientHeight
       ? source.clientWidth / source.clientHeight : width / height;
-    const cropWidth = Math.min(width, height * ratio);
-    const cropHeight = Math.min(height, width / ratio);
-    const scale = Math.min(1, 768 / Math.max(cropWidth, cropHeight));
+    const visibleWidth = Math.min(width, height * ratio);
+    const visibleHeight = Math.min(height, width / ratio);
+    const scale = Math.min(1, 768 / Math.max(visibleWidth, visibleHeight));
+    const cropWidth = visibleWidth / (isLive ? zoom : 1);
+    const cropHeight = visibleHeight / (isLive ? zoom : 1);
     const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(cropWidth * scale));
-    canvas.height = Math.max(1, Math.round(cropHeight * scale));
+    canvas.width = Math.max(1, Math.round(visibleWidth * scale));
+    canvas.height = Math.max(1, Math.round(visibleHeight * scale));
     const context = canvas.getContext('2d');
     context.fillStyle = '#fff';
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -3464,8 +3500,9 @@ const CameraPreview = (() => {
     const frameSnapshot = document.getElementById('frame-snapshot');
     const frameGreetingAudio = document.getElementById('frame-greeting-audio');
     const frameFile = document.getElementById('frame-upload');
+    const frameZoomMax = 3;
     const frameCapture = {
-      facing: 'environment', source: null, stream: null, preview: null, previewController: null,
+      facing: 'environment', source: null, stream: null, preview: null, previewController: null, zoom: 1,
       scan: null, cameraRequest: 0, lastStart: -Infinity, photoURL: ''
     };
     const settingsKey = 'museum-recognition-settings';
@@ -3591,9 +3628,22 @@ const CameraPreview = (() => {
       frameCamera.srcObject = null;
       frameCamera.classList.add('hidden');
       frameCanvas.classList.add('hidden');
+      setFrameZoom(1);
       if (frameCapture.photoURL) URL.revokeObjectURL(frameCapture.photoURL);
       frameCapture.photoURL = '';
       frameSelectedPhoto.removeAttribute('src');
+    }
+
+    function setFrameZoom(zoom) {
+      frameCapture.zoom = Math.min(frameZoomMax, Math.max(1, zoom));
+      frameScanner.style.setProperty('--frame-zoom', String(frameCapture.zoom));
+      document.getElementById('frame-zoom-value').textContent = `${frameCapture.zoom}×`;
+      document.getElementById('frame-zoom-out').disabled = frameCapture.zoom === 1;
+      document.getElementById('frame-zoom-in').disabled = frameCapture.zoom === frameZoomMax;
+    }
+
+    function changeFrameZoom(amount) {
+      if (frameCapture.source === 'camera' && !frameCapture.scan) setFrameZoom(frameCapture.zoom + amount);
     }
 
     function switchFrameCamera() {
@@ -3675,6 +3725,7 @@ const CameraPreview = (() => {
 
     function setFrameScanning(scanning) {
       frameScanner.classList.toggle('is-scanning', scanning);
+      document.getElementById('frame-zoom').classList.toggle('hidden', scanning || frameCapture.source !== 'camera');
       for (const id of ['frame-area', 'frame-mode-file', 'frame-switch-camera', 'frame-about']) {
         document.getElementById(id).disabled = scanning;
       }
@@ -3766,7 +3817,7 @@ const CameraPreview = (() => {
         const frame = SIMULATION_FRAMES[area];
         let image;
         if (source === 'camera') {
-          try { image = MuseumRecognition.jpegFrame(frameCapture.preview); } catch { /* The demo also works without a live image. */ }
+          try { image = MuseumRecognition.jpegFrame(frameCapture.preview, frameCapture.zoom); } catch { /* The demo also works without a live image. */ }
         } else if (!source) {
           releaseFrameMedia();
         }
@@ -3783,7 +3834,9 @@ const CameraPreview = (() => {
       let error = null;
       let sweep;
       try {
-        const image = MuseumRecognition.jpegFrame(source === 'camera' ? frameCapture.preview : frameSelectedPhoto);
+        const image = source === 'camera'
+          ? MuseumRecognition.jpegFrame(frameCapture.preview, frameCapture.zoom)
+          : MuseumRecognition.jpegFrame(frameSelectedPhoto);
         sweep = showScanSweep(image, source, scan.signal);
         const result = await MuseumRecognition.recognize(image, [...catalogById.values()], {
           ...recognitionSettings(),
