@@ -3,15 +3,17 @@ import { readFile, writeFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = path => readFile(new URL(path, root), 'utf8');
 const pagePath = process.argv[2] || 'filehtml.html';
-const [html, catalog, recognizer, chatKnowledge, chatScript, preview, frames, japanese] = await Promise.all([
+const [html, catalog, recognizer, chatKnowledge, chatScript, geminiChat, preview, frames, japanese, displayFont] = await Promise.all([
   read(pagePath),
   read('data/artifacts.json'),
   read('js/recognize.js'),
   read('data/museum-chat.json'),
   read('js/museum-chat.js'),
+  read('js/gemini-chat.js'),
   read('js/camera-preview.js'),
   read('data/scan-frames.json'),
-  read('data/ja.json')
+  read('data/ja.json'),
+  readFile(new URL('fonts/cormorant-garamond.woff2', root))
 ]);
 
 function inlineSection(page, name, content) {
@@ -24,7 +26,11 @@ function inlineSection(page, name, content) {
 }
 
 const inlineJson = text => JSON.stringify(JSON.parse(text)).replace(/</g, '\\u003c');
-const withJapanese = inlineSection(html, 'JAPANESE', `    const JAPANESE = ${inlineJson(japanese)};`);
+const fontUrl = `url(data:font/woff2;base64,${displayFont.toString('base64')})`;
+const fontMarker = /(\/\* DISPLAY FONT \*\/\s+)url\([^)]*\)/;
+if (!fontMarker.test(html)) throw new Error('Missing display font marker');
+const withFont = html.replace(fontMarker, (_, prefix) => prefix + fontUrl);
+const withJapanese = inlineSection(withFont, 'JAPANESE', `    const JAPANESE = ${inlineJson(japanese)};`);
 const withCatalog = inlineSection(withJapanese, 'ARTIFACTS', `    const EMBEDDED_ARTIFACTS = ${inlineJson(catalog)};`);
 const photos = await Promise.all(JSON.parse(catalog).filter(record => record.photoFile).map(async record => {
   if (!/^images\/artifacts\/[a-z0-9-]+\.webp$/.test(record.photoFile)) {
@@ -38,7 +44,8 @@ const withPhotos = inlineSection(withCatalog, 'COLLECTION PHOTOS',
 const script = recognizer.trimEnd().replace(/\nexport default MuseumRecognition;$/, '');
 const withRecognition = inlineSection(withPhotos, 'RECOGNITION', script);
 const guide = chatScript.trimEnd().replace(/\nexport \{ createMuseumChat \};$/, '');
-const bundledChat = guide + `\n    const museumGuide = createMuseumChat(${inlineJson(chatKnowledge)}, japaneseText);`;
+const gemini = geminiChat.trimEnd().replace(/\nexport default GeminiChat;$/, '');
+const bundledChat = guide + `\n${gemini}\n    const museumGuide = createMuseumChat(${inlineJson(chatKnowledge)}, japaneseText);`;
 const withChat = inlineSection(withRecognition, 'MUSEUM CHAT', bundledChat);
 const camera = preview.trimEnd().replace(/\nexport default CameraPreview;$/, '');
 const withCamera = inlineSection(withChat, 'CAMERA PREVIEW', camera);

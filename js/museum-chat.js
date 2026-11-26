@@ -1,6 +1,6 @@
 function createMuseumChat(knowledge, japaneseText = text => text) {
   const topics = new Map(knowledge.topics.map(topic => [topic.id, topic]));
-  const defaultTopics = ['hours', 'short-tour', 'floor-1', 'history-1858'];
+  const defaultTopics = ['hours', 'short-tour', 'war-relics', 'sa-huynh-burials'];
   const conversationPrompts = {
     listen: ['Muốn tâm sự', 'I’d like to talk'],
     story: ['Kể chuyện vui', 'Tell me a story'],
@@ -101,7 +101,8 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
     return [...topics.values()].map(topic => ({ topic, score: aliasMatch(query, [
       ...topic.aliases, ...topic.question, japaneseText(topic.question[1]), ...(japaneseTopicAliases[topic.id] || [])
     ]) }))
-      .filter(match => match.score > 0).sort((a, b) => b.score - a.score);
+      .filter(({ score, topic }) => score > 0 && (topic.id !== 'museum-bombs' || !/\bbom (nuoc|xe|lop|hoi|dau)\b/.test(query)))
+      .sort((a, b) => b.score - a.score);
   }
 
   function artifactIntent(query) {
@@ -174,6 +175,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
       text: pick(topic.answer, lang),
       source: topic.source,
       floor: topic.floor,
+      mapNodeId: topic.mapNodeId,
       map: topic.map
     };
   }
@@ -376,7 +378,10 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
   }
 
   function answer(raw, { context, catalog, lang, name }) {
-    const q = normalize(raw);
+    let q = normalize(raw);
+    if (lang === 'vi' && /\b(bao tang|trung bay|la gi|o dau|tang nao|tang may)\b/.test(q)) {
+      q = q.replace(/\b(?:boom+|b0m)\b/g, 'bom');
+    }
     const social = conversationReply(q, { context, lang, name });
     if (social) return social;
 
@@ -398,13 +403,15 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
       };
     }
 
-    const plan = relatedTopics.find(({ topic }) => ['address', 'hours', 'tickets', 'contact'].includes(topic.id));
-    const asksHoursAndTickets = relatedTopics.some(({ topic }) => topic.id === 'hours')
-      && relatedTopics.some(({ topic }) => topic.id === 'tickets');
-    if (asksHoursAndTickets) {
-      const hours = topicReply(topics.get('hours'), lang);
-      const tickets = topicReply(topics.get('tickets'), lang);
-      return { ...tickets, text: `${hours.text}\n${tickets.text}` };
+    const visitIds = ['hours', 'tickets', 'address', 'contact', 'access'];
+    const visit = visitIds.filter(id => relatedTopics.some(({ topic }) => topic.id === id));
+    if (visit.length && !visit.includes('address') && /\b(?:va|con) o dau\b|\band where (?:is it|is the museum)\b/.test(q)) {
+      visit.push('address');
+    }
+    if (visit.length > 1) {
+      const replies = visit.slice(0, 3).map(id => topicReply(topics.get(id), lang));
+      return { ...replies[1], text: replies.map(reply => reply.text).join('\n\n'),
+        sources: [...new Set(replies.map(reply => reply.source).filter(Boolean))] };
     }
 
     const best = explicit[0];
@@ -417,7 +424,12 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
     if (recent && (!top || (top.topic.id === 'tour' && reference))) {
       return artifactReply(recent, intent, lang);
     }
-    if (top) return topicReply(plan?.topic ?? top.topic, lang);
+    const recentTopic = topics.get(context.topicId);
+    const location = !top ? recentTopic : top.topic;
+    if (location?.location && intent === 'location') {
+      return { ...topicReply(location, lang), text: pick(location.location, lang) };
+    }
+    if (top) return topicReply(visit.length ? topics.get(visit[0]) : top.topic, lang);
     if (context.topicId === 'tickets' && /^(?:vay )?(?:bao nhieu|how much|con sinh vien|what about students)/.test(q)) {
       return topicReply(topics.get('tickets'), lang);
     }
@@ -441,7 +453,7 @@ function createMuseumChat(knowledge, japaneseText = text => text) {
       'Mình chưa có thông tin chắc về câu đó. Bạn thử nói rõ tên người, địa điểm hoặc hiện vật đang hỏi nhé.',
       'I don’t have a reliable answer for that yet. Try naming the person, place or object you mean.'
     ], lang);
-    return { text, subject, keepContext: true, social: true };
+    return { text, subject, keepContext: true, social: true, unanswered: true };
   }
 
   function suggestions(context, catalog, lang) {

@@ -601,5 +601,12 @@
   "AI narration": "AI音声解説",
   "15s": "15秒",
   "Back to scan results": "スキャン結果に戻る",
-  "Preparing a reply…": "回答を準備中…"
+  "Preparing a reply…": "回答を準備中…",
+  "Gemini settings": "Geminiの設定",
+  "Use Gemini for other questions": "資料にない質問にGeminiを使う",
+  "The chatbot can ask Gemini when it has no local answer and chat is enabled.": "設定で有効にすると、チャットは資料にない質問をGeminiに問い合わせます。",
+  "When enabled, Gemini receives the question and up to two recent exchanges.": "有効にすると、質問と直近最大2往復のやり取りがGeminiに送信されます。",
+  "Enter a Gemini key or a proxy URL to enable Gemini chat.": "Geminiチャットを使うには、APIキーまたはプロキシURLを入力してください。",
+  "Asking Gemini…": "Geminiに問い合わせ中…",
+  "Could not connect to Gemini. Check the API key or proxy URL in settings.": "Geminiに接続できませんでした。設定でAPIキーまたはプロキシURLを確認してください。"
 }

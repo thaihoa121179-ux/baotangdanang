@@ -6,6 +6,7 @@ compatibility_date = "2026-11-25"
 ALLOWED_ORIGINS = "https://thaihoa121179-ux.github.io"
 CATALOG_URL = "https://thaihoa121179-ux.github.io/baotangdanang/data/artifacts.json"
 # GEMINI_MODEL = "gemini-3.5-flash-lite"
+# GEMINI_CHAT_MODEL = "gemini-3.5-flash-lite"
 
 [[ratelimits]]
 name = "RECOGNITION_LIMIT"

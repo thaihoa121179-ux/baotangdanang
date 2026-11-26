@@ -68,7 +68,7 @@
     },
     {
       "id": "floor-3",
-      "aliases": ["tầng 3", "tầng ba", "phòng lịch sử", "khu chứng tích chiến tranh", "floor 3", "third floor", "resistance history gallery"],
+      "aliases": ["tầng 3", "tầng ba", "phòng lịch sử", "floor 3", "third floor", "resistance history gallery"],
       "question": ["Tầng 3 kể câu chuyện gì?", "What story does Floor 3 tell?"],
       "answer": ["Tầng 3 kể về thiên nhiên, con người, lịch sử đô thị và các giai đoạn đấu tranh của Đà Nẵng. Không gian này kết nối câu chuyện Thành Điện Hải với cuộc kháng chiến bắt đầu năm 1858.", "Floor 3 explores Da Nang’s landscape, people, urban history and struggles for independence. The gallery connects Dien Hai Citadel with the events of 1858."],
       "floor": 3,
@@ -206,6 +206,408 @@
       "question": ["Thủ đô Việt Nam là thành phố nào?", "What is the capital of Vietnam?"],
       "answer": ["Hà Nội là thủ đô của Việt Nam. Khu vực này từng là kinh đô Thăng Long trong nhiều giai đoạn lịch sử.", "Hanoi is the capital of Vietnam. The area, historically known as Thang Long, served as an imperial capital during several periods."],
       "next": ["nearby", "history-1858", "sky"]
+    },
+    {
+      "id": "museum-bombs",
+      "aliases": [
+        "bom là gì",
+        "boom là gì",
+        "có boom",
+        "có bom",
+        "bom ở đâu",
+        "bom ở tầng",
+        "bom để ở đâu",
+        "bom trong bảo tàng",
+        "bom trưng bày",
+        "bom cbu",
+        "cbu 55",
+        "bomb in the museum",
+        "museum display bombs",
+        "bomb on display",
+        "what is a bomb",
+        "爆弾"
+      ],
+      "question": [
+        "Bảo tàng có trưng bày bom hoặc di vật chiến tranh không?",
+        "Does the museum display bombs or war relics?",
+        "博物館に爆弾や戦争資料は展示されていますか？"
+      ],
+      "answer": [
+        "Trong câu hỏi về chiến tranh, “boom” có lẽ là “bom”. Bom là một loại vũ khí nổ. Bảo tàng có khu Chứng tích chiến tranh ở tầng 3. Giới thiệu chính thức xác nhận khu này, còn mẫu bom cụ thể đang trưng bày cần đối chiếu với nhãn hiện vật hoặc hỏi nhân viên tại chỗ.",
+        "In this wartime context, “boom” likely means “bomb,” a type of explosive weapon. The museum lists a War Relics gallery on Floor 3. Its gallery guide confirms the section; ask staff or check the labels to confirm which individual examples are on display.",
+        "この文脈の「boom」は爆弾のことだと思われます。爆弾は爆発する兵器の一種です。公式案内には3階の戦争資料展示が記載されています。個々の展示品はラベルや係員にご確認ください。"
+      ],
+      "source": "https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang",
+      "next": [
+        "war-relics",
+        "war-accounts",
+        "history-1858"
+      ],
+      "floor": 3,
+      "mapNodeId": "f3_war",
+      "location": [
+        "Khu Chứng tích chiến tranh nằm ở tầng 3. Bạn có thể mở bản đồ trong web để tìm khu này.",
+        "The War Relics gallery is on Floor 3. Open the in-app map to find it.",
+        "戦争資料展示は3階にあります。アプリの地図で場所を確認できます。"
+      ]
+    },
+    {
+      "id": "war-relics",
+      "aliases": ["khu chứng tích chiến tranh", "chứng tích chiến tranh", "di vật chiến tranh", "war relics", "戦争の資料"],
+      "question": ["Khu Chứng tích chiến tranh nằm ở đâu?", "Where is the War Relics gallery?", "戦争資料展示はどこにありますか？"],
+      "answer": ["Chứng tích chiến tranh là một khu trưng bày ở tầng 3. Bạn có thể xem khu này cùng các phần về lịch sử Đà Nẵng để hiểu bối cảnh của hiện vật, rồi tìm hiểu riêng những món như xe Honda Dame.", "War Relics is a gallery on Floor 3. Visit it alongside the Da Nang history galleries to see objects such as the Honda Dame in context.", "戦争資料展示は3階にあります。ダナンの歴史展示と合わせて見ると、ホンダ・デイムなどの資料の背景がわかります。"],
+      "source": "https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang",
+      "next": ["war-accounts", "museum-bombs", "history-1858"],
+      "floor": 3,
+      "mapNodeId": "f3_war"
+    },
+    {
+      "id": "war-accounts",
+      "aliases": [
+        "hiện vật thời chiến",
+        "đồ thời chiến",
+        "honda dame và đèn",
+        "hiện vật kể chuyện chiến tranh",
+        "war objects",
+        "wartime objects",
+        "戦時中の展示品"
+      ],
+      "question": [
+        "Có hiện vật thời chiến nào kể về đời sống?",
+        "Which wartime objects tell a personal story?",
+        "戦時中の暮らしを伝える展示品は？"
+      ],
+      "answer": [
+        "Bạn có thể bắt đầu với xe Honda Dame gắn với ông Kiều Thanh Tân. Hồ sơ bảo tàng ghi chiếc xe từng được dùng trong hoạt động liên lạc những ngày cuối tháng 3 năm 1975. Đèn măng xông của ông Huỳnh Trưng là một câu chuyện khác về việc liên lạc trong thời chiến.",
+        "Start with Kieu Thanh Tan’s Honda Dame moped. The museum records its use for communications in late March 1975. Huynh Trung’s pressure lantern offers another wartime communications story.",
+        "キエウ・タイン・タンさんのホンダ・デイムから見てみましょう。1975年3月末の連絡活動に使われたと記録されています。フイン・チュンさんの圧力式ランプからも、戦時中の連絡の工夫がわかります。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/xe-honda-dame",
+      "next": [
+        "war-relics",
+        "liberation",
+        "history-1858"
+      ],
+      "floor": 3,
+      "mapNodeId": "f3_war"
+    },
+    {
+      "id": "urban-history",
+      "aliases": [
+        "lịch sử đô thị",
+        "đà nẵng thời pháp",
+        "đà nẵng thời phong kiến",
+        "đà nẵng thời thuộc địa",
+        "thời pháp thuộc",
+        "urban history",
+        "french colonial period",
+        "ダナンの都市史",
+        "フランス統治期"
+      ],
+      "question": [
+        "Tầng 3 kể gì về lịch sử đô thị Đà Nẵng?",
+        "What can I learn about Da Nang’s urban history?",
+        "3階ではダナンの都市史について何を学べますか？"
+      ],
+      "answer": [
+        "Khu Lịch sử đô thị ở tầng 3 đi qua ba giai đoạn lớn: Đà Nẵng thời phong kiến, thời thuộc Pháp (1888–1945) và thời Quốc gia Việt Nam, chính quyền Sài Gòn (1945–1975). Bạn có thể xem ảnh tư liệu và đồ dùng sinh hoạt để so sánh sự thay đổi qua từng thời kỳ.",
+        "Floor 3 covers three broad periods: precolonial Da Nang, French rule (1888–1945), and the State of Vietnam and Saigon administrations (1945–1975). Compare photographs and everyday objects across the periods.",
+        "3階では、王朝時代、フランス統治期（1888〜1945年）、ベトナム国とサイゴン政権の時代（1945〜1975年）を紹介します。写真や暮らしの道具で変化を見比べられます。"
+      ],
+      "source": "https://baotangdanang.vn/khong-gian-trung-bay-tang-3-cua-bao-tang-da-nang",
+      "next": [
+        "urban-music",
+        "history-1858",
+        "war-relics"
+      ],
+      "floor": 3,
+      "mapNodeId": "f3_history"
+    },
+    {
+      "id": "urban-music",
+      "aliases": [
+        "máy hát đĩa là gì",
+        "máy hát đĩa dùng để",
+        "máy hát loa kèn",
+        "máy quay đĩa",
+        "máy phát đĩa",
+        "horn gramophone",
+        "what is a gramophone",
+        "蓄音機"
+      ],
+      "question": [
+        "Máy hát đĩa loa kèn là gì?",
+        "What is a horn gramophone?",
+        "ラッパ型蓄音機とは何ですか？"
+      ],
+      "answer": [
+        "Máy hát đĩa phát lại âm thanh đã ghi trên đĩa. Trên ảnh tham chiếu của khung Đồ dùng đô thị, bạn dễ nhận ra nó nhờ loa kèn loe, mâm đĩa và đế gỗ. Chiếc máy gợi chuyện người dân đô thị nghe nhạc trước thời thiết bị số.",
+        "A gramophone plays sound recorded on a disc. In the urban-life reference frame, look for the flared horn, turntable and wooden base. It offers a glimpse of how people listened to music before digital players.",
+        "蓄音機はレコードに記録された音を再生します。都市の暮らしの参考画像では、ラッパ型の部分、回転台、木の台が目印です。デジタル機器が普及する前の音楽の楽しみ方が伝わります。"
+      ],
+      "source": "https://www.youtube.com/watch?v=sprWjdlhSJg",
+      "next": [
+        "urban-history",
+        "scanner"
+      ]
+    },
+    {
+      "id": "temporary-exhibitions",
+      "aliases": [
+        "triển lãm định kỳ",
+        "triển lãm ngắn hạn",
+        "trưng bày chuyên đề",
+        "triển lãm tạm thời",
+        "temporary exhibition",
+        "rotating exhibitions",
+        "企画展",
+        "期間限定の展示"
+      ],
+      "question": [
+        "Bảo tàng có khu triển lãm ngắn hạn không?",
+        "Are there temporary exhibitions?",
+        "企画展はありますか？"
+      ],
+      "answer": [
+        "Tầng 1 có khu trưng bày định kỳ dành cho triển lãm ngắn hạn, bên cạnh sưu tập cổ vật và khu thiếu nhi. Chủ đề có thể thay đổi theo thời điểm. Nếu bạn muốn biết triển lãm đang diễn ra, hãy xem thông báo mới của bảo tàng.",
+        "Floor 1 includes a temporary exhibition area in addition to the antiquities and children’s galleries. Themes change, so check the museum’s latest announcements for what is on during your visit.",
+        "1階には古美術と子ども向けの展示のほか、企画展の会場があります。テーマは変わるため、来館前に博物館の最新のお知らせをご確認ください。"
+      ],
+      "source": "https://baotangdanang.vn/khong-gian-suu-tap-co-vat-cua-bao-tang-da-nan",
+      "next": [
+        "kids",
+        "floor-1",
+        "tickets"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "reading-labels",
+      "aliases": [
+        "đọc nhãn hiện vật",
+        "đọc nhãn trưng bày",
+        "nhãn hiện vật",
+        "niên đại nghĩa là gì",
+        "số kiểm kê",
+        "museum labels",
+        "read a display label",
+        "展示ラベル"
+      ],
+      "question": [
+        "Nên đọc gì trên nhãn hiện vật?",
+        "How do I read a museum label?",
+        "展示ラベルのどこを読めばよいですか？"
+      ],
+      "answer": [
+        "Bạn thử đọc theo thứ tự tên, niên đại, chất liệu và nơi phát hiện hoặc sưu tầm. Hai mốc năm trên cùng một nhãn có thể nói về hai việc khác nhau. Chẳng hạn, bình Kendy có niên đại thế kỷ IX–XI và được phục chế năm 2000.",
+        "Start with the name, date, material and where it was found or collected. Two dates can describe different events: the Kendy dates to the ninth to eleventh century and was restored in 2000.",
+        "名前、年代、材質、発見地または収集地の順に見てみましょう。ケンディの場合、9〜11世紀は器の年代で、2000年は修復された年です。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/benh-gom-kendy",
+      "next": [
+        "kendy-shape",
+        "sa-huynh-burials"
+      ]
+    },
+    {
+      "id": "kendy-shape",
+      "aliases": [
+        "nhận ra bình kendy",
+        "nhận biết bình kendy",
+        "đặc điểm bình kendy",
+        "bình kendy có gì đặc biệt",
+        "vòi bình kendy",
+        "recognize a kendy",
+        "kendy spout",
+        "ケンディの特徴"
+      ],
+      "question": [
+        "Nhìn điểm nào để nhận ra bình Kendy?",
+        "How can I recognize a Kendy?",
+        "ケンディはどんな形ですか？"
+      ],
+      "answer": [
+        "Bình gốm Kendy trong hồ sơ có thân tròn, cổ ngắn, miệng hơi loe và một vòi nhô bên hông. Chiếc bình này được tìm thấy tại di chỉ Nam Thổ Sơn, Ngũ Hành Sơn. Bạn có thể nhìn từ vai bình xuống để tìm chỗ vòi nối vào thân.",
+        "Look for a rounded body, short neck, slightly flared rim and a spout projecting from the side. The museum’s vessel came from Nam Tho Son in the Marble Mountains.",
+        "丸い胴、短い首、少し広がる口、横に出た注ぎ口が目印です。博物館の器は五行山のナムトーソン遺跡で見つかりました。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/benh-gom-kendy",
+      "next": [
+        "reading-labels",
+        "ceramics",
+        "cham-museum"
+      ]
+    },
+    {
+      "id": "sa-huynh-burials",
+      "aliases": [
+        "mộ chum là gì",
+        "chôn cất trong chum",
+        "mộ nồi và mộ chum",
+        "mai táng sa huỳnh",
+        "tục chôn cất sa huỳnh",
+        "jar burial",
+        "burial jars",
+        "壺棺",
+        "埋葬習慣"
+      ],
+      "question": [
+        "Vì sao tìm thấy chum trong các di chỉ Sa Huỳnh?",
+        "What is a Sa Huynh jar burial?",
+        "サーフィン文化の壺棺とは何ですか？"
+      ],
+      "answer": [
+        "Ở một số di chỉ Sa Huỳnh, chum đất nung là một phần của mộ táng. Mộ chum Tabhing trong danh mục được khai quật tại Nam Giang năm 1986 và gồm chum cùng nắp. Đây là tư liệu để tìm hiểu tập tục mai táng của cư dân xưa.",
+        "At some Sa Huynh sites, earthenware jars formed part of burials. The Tabhing jar in the collection was excavated at Nam Giang in 1986 and includes a lid. It helps document funerary customs.",
+        "サーフィン文化の遺跡では、土製の壺を使った墓が見つかります。所蔵のタービンの壺棺は1986年にナムザンで発掘され、ふたも残っています。当時の埋葬習慣を知る資料です。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/mo-chum-tabhing",
+      "next": [
+        "sa-huynh-jewelry-types",
+        "reading-labels",
+        "floor-1"
+      ]
+    },
+    {
+      "id": "sa-huynh-jewelry-types",
+      "aliases": [
+        "trang sức sa huỳnh",
+        "các loại khuyên tai",
+        "khuyên tai có mấy loại",
+        "các loại khuyên sa huỳnh",
+        "sa huynh jewelry types",
+        "sa huynh earrings",
+        "サーフィン文化の耳飾りの種類"
+      ],
+      "question": [
+        "Khuyên tai Sa Huỳnh có những hình dáng nào?",
+        "What shapes appear in Sa Huynh earrings?",
+        "サーフィン文化の耳飾りにはどんな形がありますか？"
+      ],
+      "answer": [
+        "Danh mục của bảo tàng có khuyên hai đầu thú, khuyên hình vành khăn có khe hở và khuyên ba mấu. Nhìn phần rìa sẽ dễ phân biệt: hai đầu thú đối xứng, một khe trên vòng dẹt, hoặc ba mấu nhọn.",
+        "The catalog includes two-headed animal earrings, flat slit-ring earrings and earrings with three projections. Compare the outline: paired animal heads, a slit in a flat ring, or three pointed projections.",
+        "目録には双獣頭形、切れ目のある環形、三突起の耳飾りがあります。左右の獣の頭、平たい輪の切れ目、三つの突起に注目して比べてみましょう。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/khuyan-tai-ba-mau",
+      "next": [
+        "sa-huynh-burials",
+        "kendy-shape",
+        "floor-1"
+      ]
+    },
+    {
+      "id": "ghe-bau-trade",
+      "aliases": [
+        "ghe bầu dùng làm gì",
+        "ghe bầu buôn bán",
+        "ghe bầu thật hay mô hình",
+        "mô hình ghe bầu có từ bao giờ",
+        "thuyền buôn xứ quảng",
+        "ghe bau trade",
+        "ghe bau model date",
+        "ゲーバウの用途"
+      ],
+      "question": [
+        "Mô hình ghe bầu kể gì về đường biển xứ Quảng?",
+        "What can the Ghe Bau model tell us about coastal trade?",
+        "ゲーバウの模型から海上交易について何がわかりますか？"
+      ],
+      "answer": [
+        "Hiện vật trong danh mục là mô hình gỗ thế kỷ XXI đặt làm tại Kim Bồng, Hội An. Mẫu thuyền truyền thống mà nó tái hiện từng thịnh hành từ thế kỷ XVI đến XIX, dùng trong vận chuyển và buôn bán ven biển.",
+        "The wooden model was commissioned in Kim Bong, Hoi An in the twenty-first century. The traditional boat type it represents flourished from the sixteenth to nineteenth centuries in coastal transport and trade.",
+        "木製の模型は21世紀にホイアンのキムボンで製作されました。再現された帆船は16〜19世紀に盛んに使われ、沿岸の運輸と交易を支えました。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ghe-bau",
+      "next": [
+        "reading-labels",
+        "floor-2",
+        "urban-history"
+      ]
+    },
+    {
+      "id": "court-decrees",
+      "aliases": [
+        "sắc phong là gì",
+        "sắc phong năm 1840 nói gì",
+        "thự thủ thành điện hải là ai",
+        "royal decree meaning",
+        "1840 decree",
+        "1840年の勅書"
+      ],
+      "question": [
+        "Sắc phong Thành Điện Hải năm 1840 ghi việc gì?",
+        "What does the 1840 decree record?",
+        "1840年のディエンハイ城の勅書には何が書かれていますか？"
+      ],
+      "answer": [
+        "Sắc phong là văn bản do vua ban, có thể dùng để trao chức hoặc phong tặng. Tờ năm 1840 trong danh mục ghi việc ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức, vào năm Minh Mạng thứ 21. Trên giấy có dấu triện đỏ và họa tiết rồng mây.",
+        "A royal decree could record an appointment or honor. This 1840 document records Ton That Truc’s appointment as acting keeper of Dien Hai Citadel in the twenty-first year of Minh Mang’s reign. The paper bears a red seal and dragon-and-cloud designs.",
+        "勅書は国王が任命や称号を記した公文書です。1840年、明命帝の治世21年にトン・タット・チュックがディエンハイ城の守備官代理に任命されたことが記されています。紙面には赤い印と龍や雲の模様があります。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/sac-phong",
+      "next": [
+        "citadel",
+        "history-1858",
+        "reading-labels"
+      ],
+      "floor": 3
+    },
+    {
+      "id": "coat-bark",
+      "aliases": [
+        "vì sao làm áo bằng vỏ cây",
+        "áo vỏ cây cơ tu",
+        "áo khố vỏ cây làm gì",
+        "trang phục vỏ cây",
+        "bark clothing festival",
+        "コトゥ族の樹皮製衣服"
+      ],
+      "question": [
+        "Áo khố vỏ cây người Cơ Tu có câu chuyện gì?",
+        "What is the story of the Co Tu bark clothing?",
+        "コトゥ族の樹皮製衣服にはどんな由来がありますか？"
+      ],
+      "answer": [
+        "Bộ áo khố bằng vỏ cây do ông Bríu-Brăm ở thôn Bhơhôồng, Đông Giang làm và dùng trong dịp lễ hội từ năm 2005. Bộ đồ từng được trưng bày tại Hà Nội năm 2008 và vào bộ sưu tập của bảo tàng năm 2010.",
+        "Briu-Bram of Bhơhôồng village, Dong Giang made this bark outfit for festivals from 2005. It was exhibited in Hanoi in 2008 and entered the museum collection in 2010.",
+        "ドンザンのボホン村のブリウ・ブラムさんが祭りのために作り、2005年から使った衣服です。2008年にハノイで展示され、2010年に博物館の所蔵品となりました。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ao-kho-v-cay",
+      "next": [
+        "community",
+        "floor-2",
+        "reading-labels"
+      ]
+    },
+    {
+      "id": "museum-locations",
+      "aliases": [
+        "bảo tàng cơ sở 1",
+        "bảo tàng có mấy cơ sở",
+        "cơ sở nào",
+        "bảo tàng trần phú",
+        "cơ sở bảo tàng",
+        "main museum site",
+        "museum branches",
+        "ダナン博物館本館"
+      ],
+      "question": [
+        "Muốn xem ba tầng thì đến cơ sở nào?",
+        "Which site has the three-floor exhibition?",
+        "3フロアの展示はどの施設にありますか？"
+      ],
+      "answer": [
+        "Lộ trình ba tầng trong web là ở Bảo tàng Đà Nẵng cơ sở 1, số 31 Trần Phú, phường Hải Châu. Khi tìm đường, bạn nên nhập cả số nhà. Những địa điểm khác trong hệ thống bảo tàng có thông tin riêng trên website chính thức.",
+        "The three-floor route in this guide is for Da Nang Museum’s main site at 31 Tran Phu Street, Hai Chau. Include the street number when looking it up. The official site lists other venues separately.",
+        "このガイドの3フロアの見学ルートは、ハイチャウのチャンフー通り31番地にある本館向けです。ほかの施設の案内は公式ウェブサイトでそれぞれ確認できます。"
+      ],
+      "source": "https://baotangdanang.vn/bao-tang-da-nang-1",
+      "next": [
+        "address",
+        "hours",
+        "tour"
+      ]
     }
   ],
   "chatBreaks": [

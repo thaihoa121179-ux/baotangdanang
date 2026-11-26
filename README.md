@@ -4,7 +4,7 @@
 
 Mở **Quét**, chọn một trong bốn mục ở **Khung mô phỏng** bên dưới, rồi bấm **Quét ngay**. Vạch quét chạy từ trên xuống dưới rồi hiện danh sách theo ảnh tham chiếu. Bấm một thẻ để nghe audio hoặc hỏi chatbot. Các mô tả trong khung mô phỏng nằm ở [data/scan-frames.json](data/scan-frames.json). Bản đọc tiếng Việt đã nhúng trong HTML; tệp gốc ở `audio/scan-frames/` theo ID, dùng giọng Piper dựa trên VAIS 1000.
 
-Mỗi mục mô phỏng có một ảnh minh họa được tạo dựa trên khung tham chiếu. Ảnh WebP nằm ở `images/scan-frames/` theo ID hiện vật và được nhúng cùng audio bằng `node scripts/sync-demo.mjs`.
+Mỗi mục mô phỏng có một ảnh minh họa được tạo dựa trên khung tham chiếu. Ảnh WebP nằm ở `images/scan-frames/` theo ID hiện vật và được nhúng cùng audio bằng `node scripts/sync-demo.mjs`. Bản đọc tiếng Việt phát tên hiện vật, nghỉ 2,25 giây ở tốc độ 1× rồi đọc mô tả.
 
 Để dùng nhận diện thật, mở **Quét → bánh răng → Cài đặt nhận diện và nhật ký**, bật **Bật nhận diện AI thật** và lưu. Trong chế độ này, mỗi lần bấm quét gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini chỉ trả về ID và độ tin cậy. Kết quả được gắn nhãn **AI nhận diện** khi có ít nhất một ID hợp lệ đạt 0,5.
 
@@ -30,11 +30,13 @@ Màn hình chào, danh mục hiện vật và các luồng chính có bản ti�
 
 ## Cập nhật chatbot
 
-Mục **Chatbot** đọc bộ chủ đề Việt–Anh trong [data/museum-chat.json](data/museum-chat.json) và danh mục hiện vật. Bổ sung câu trả lời, cụm từ để nhận biết chủ đề và các câu hỏi liên quan trong dữ liệu này. Chạy `node scripts/sync-demo.mjs` để nhúng thay đổi vào bản HTML mở riêng.
+Mục **Chatbot** đọc bộ chủ đề trong [data/museum-chat.json](data/museum-chat.json) và danh mục hiện vật. Bổ sung câu trả lời, cụm từ nhận biết chủ đề, câu hỏi liên quan và nguồn trong dữ liệu này. Chạy `node scripts/sync-demo.mjs` để nhúng thay đổi vào bản HTML mở riêng.
 
 Chatbot nhận một số cách nói thân mật như “bùn quá” và đổi gợi ý theo mạch trò chuyện. Mục `chatBreaks` chứa chuyện ngắn và câu đố Việt–Anh. Trạng thái trò chuyện ở trong phiên chat của từng ngôn ngữ.
 
-Câu trả lời về bảo tàng tra dữ liệu cục bộ. Với câu hỏi phổ thông có tên chủ đề rõ ràng, web có thể gửi tên chủ đề đến Wikipedia để lấy đoạn giới thiệu và gắn link bài viết. Khi không tìm được bài phù hợp hoặc mất kết nối, chatbot hỏi thêm thay vì đoán. Gemini tiếp tục xử lý phần nhận diện ảnh.
+Câu trả lời tra dữ liệu cục bộ trước. Khi đã bật Gemini cho chatbot, câu chưa có đáp án sẽ gửi câu hỏi và tối đa hai lượt trao đổi gần nhất. Nếu chế độ này chưa bật, web có thể tra Wikipedia khi câu hỏi có tên chủ đề rõ ràng. Câu trả lời tạo bởi mô hình được đánh dấu **Gemini**.
+
+Mở **Chatbot → bánh răng**, bật **Dùng Gemini cho câu hỏi ngoài dữ liệu** rồi nhập URL proxy hoặc key thử. Cài đặt này độc lập với **Bật nhận diện AI thật**. Worker mẫu phục vụ chatbot ở đường dẫn `/chat` trên cùng tên miền với proxy nhận diện. Đặt `GEMINI_CHAT_MODEL` nếu muốn đổi model cho chatbot. Khi triển khai dùng chung, lưu khóa trong secret `GEMINI_API_KEY` của Worker.
 
 ## Cấu hình Gemini
 
