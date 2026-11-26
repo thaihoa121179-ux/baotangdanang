@@ -41,10 +41,19 @@ const withChat = inlineSection(withRecognition, 'MUSEUM CHAT', bundledChat);
 const camera = preview.trimEnd().replace(/\nexport default CameraPreview;$/, '');
 const withCamera = inlineSection(withChat, 'CAMERA PREVIEW', camera);
 const demoFrames = JSON.parse(frames);
-const recordings = await Promise.all(demoFrames.frames.flatMap(frame => frame.items).map(async item => {
+const demos = await Promise.all(demoFrames.frames.flatMap(frame => frame.items).map(async item => {
   if (!/^scan-[a-z0-9-]+$/.test(item.id)) throw new Error(`Invalid simulation id: ${item.id}`);
-  const bytes = await readFile(new URL(`audio/scan-frames/${item.id}.mp3`, root));
-  return [item.id, `data:audio/mpeg;base64,${bytes.toString('base64')}`];
+  const [audio, photo] = await Promise.all([
+    readFile(new URL(`audio/scan-frames/${item.id}.mp3`, root)),
+    readFile(new URL(`images/scan-frames/${item.id}.webp`, root))
+  ]);
+  return {
+    id: item.id,
+    audio: `data:audio/mpeg;base64,${audio.toString('base64')}`,
+    photo: `data:image/webp;base64,${photo.toString('base64')}`
+  };
 }));
+const demoAudio = Object.fromEntries(demos.map(({ id, audio }) => [id, audio]));
+const demoPhotos = Object.fromEntries(demos.map(({ id, photo }) => [id, photo]));
 await writeFile(new URL(pagePath, root), inlineSection(withCamera, 'SIMULATION FRAMES',
-  `    const EMBEDDED_SCAN_FRAMES = ${inlineJson(frames)};\n    const EMBEDDED_SCAN_AUDIO = ${JSON.stringify(Object.fromEntries(recordings))};`));
+  `    const EMBEDDED_SCAN_FRAMES = ${inlineJson(frames)};\n    const EMBEDDED_SCAN_AUDIO = ${JSON.stringify(demoAudio)};\n    const EMBEDDED_SCAN_PHOTOS = ${JSON.stringify(demoPhotos)};`));

@@ -4,6 +4,8 @@
 
 Mở **Quét**, chọn một trong bốn mục ở **Khung mô phỏng** bên dưới, rồi bấm **Quét ngay**. Vạch quét chạy từ trên xuống dưới rồi hiện danh sách theo ảnh tham chiếu. Bấm một thẻ để nghe audio hoặc hỏi chatbot. Các mô tả trong khung mô phỏng nằm ở [data/scan-frames.json](data/scan-frames.json). Bản đọc tiếng Việt đã nhúng trong HTML; tệp gốc ở `audio/scan-frames/` theo ID, dùng giọng Piper dựa trên VAIS 1000.
 
+Mỗi mục mô phỏng có một ảnh minh họa được tạo dựa trên khung tham chiếu. Ảnh WebP nằm ở `images/scan-frames/` theo ID hiện vật và được nhúng cùng audio bằng `node scripts/sync-demo.mjs`.
+
 Để dùng nhận diện thật, mở **Quét → bánh răng → Cài đặt nhận diện và nhật ký**, bật **Bật nhận diện AI thật** và lưu. Trong chế độ này, mỗi lần bấm quét gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini chỉ trả về ID và độ tin cậy. Kết quả được gắn nhãn **AI nhận diện** khi có ít nhất một ID hợp lệ đạt 0,5.
 
 Trên iPhone, web vẽ hình camera vào ô quét để tránh việc trình duyệt bên trong ứng dụng mở trình phát toàn màn hình. Nếu trình duyệt không cung cấp khung hình, web sẽ hiện hướng dẫn mở bằng Safari hoặc chọn ảnh.
