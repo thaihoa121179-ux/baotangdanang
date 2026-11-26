@@ -87,8 +87,9 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     const width = isCanvas ? source.width : source.videoWidth || source.naturalWidth;
     const height = isCanvas ? source.height : source.videoHeight || source.naturalHeight;
     if (!width || !height) throw new Error('invalid_image');
-    // Live video uses object-fit: cover, so crop to the same centered viewfinder.
-    const ratio = source.videoWidth && source.clientHeight
+    // Both live previews use object-fit: cover. Uploaded photos use contain.
+    const isLive = isCanvas || source.videoWidth;
+    const ratio = isLive && source.clientWidth && source.clientHeight
       ? source.clientWidth / source.clientHeight : width / height;
     const cropWidth = Math.min(width, height * ratio);
     const cropHeight = Math.min(height, width / ratio);

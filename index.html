@@ -247,25 +247,30 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       --camera-accent: #e4b677;
       position: fixed;
       inset: 0;
-      width: min(calc(100% - 24px), 430px);
-      height: fit-content;
-      max-height: calc(100% - 24px);
-      max-height: calc(100dvh - max(12px, env(safe-area-inset-top)) - max(12px, env(safe-area-inset-bottom)));
-      margin: auto;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
       padding: 0;
-      border: 1px solid #4b4136;
-      border-radius: 24px;
+      border: 0;
       background: var(--camera-bg);
       color: #fbf6ec;
-      box-shadow: 0 18px 48px #080b10b3;
       overflow: auto;
       overscroll-behavior: contain;
     }
-    #frame-scanner::backdrop { background: #1118219c; }
+    #frame-scanner::backdrop { background: #13171a; }
     .frame-scanner-shell {
       display: grid;
-      gap: clamp(10px, 1.7dvh, 16px);
-      padding: 12px 14px 14px;
+      grid-template-rows: auto minmax(150px, 1fr) auto;
+      width: min(100%, 520px);
+      min-height: 100%;
+      height: 100%;
+      margin-inline: auto;
+      gap: clamp(10px, 1.6dvh, 16px);
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right))
+        max(12px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
     }
     .frame-camera-header {
       display: grid;
@@ -275,22 +280,18 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       text-align: center;
     }
     .frame-camera-title { font-size: 1.15rem; font-weight: 800; }
-    .frame-viewfinder {
-      display: grid;
-      place-items: center;
-    }
+    .frame-viewfinder { min-height: 0; }
     .frame-scan-target {
       position: relative;
       isolation: isolate;
-      width: min(100%, 320px, 46vh);
-      width: min(100%, 320px, 46dvh);
-      aspect-ratio: 1;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       border: 1px solid #564a3a;
-      border-radius: clamp(26px, 8vw, 42px);
+      border-radius: clamp(22px, 6vw, 36px);
       background: #202528;
     }
-    #frame-camera, #frame-camera-preview, #frame-selected-photo {
+    #frame-camera, #frame-camera-preview, #frame-snapshot, #frame-selected-photo {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -336,19 +337,20 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
       font-weight: 750;
     }
     .frame-sweep {
-      display: none;
+      visibility: hidden;
       position: absolute;
-      inset: 0 0 auto;
-      height: 2px;
-      background: #fff3cc;
-      box-shadow: 0 0 14px 4px #eeb468ab;
+      inset: 0;
       pointer-events: none;
     }
-    #frame-scanner.is-scanning .frame-sweep { display: block; animation: viewfinderSweep 1.5s linear infinite; }
-    @keyframes viewfinderSweep {
-      from { top: 0; }
-      to { top: calc(100% - 2px); }
+    .frame-sweep::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 3px;
+      background: #fff1ce;
+      box-shadow: 0 0 5px 1px #f5b96c, 0 -5px 20px 5px #eeb468ae;
     }
+    #frame-scanner.is-sweeping .frame-sweep { visibility: visible; }
     .frame-camera-footer {
       display: grid;
       justify-items: center;
@@ -550,7 +552,6 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
     @keyframes demoEnter { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes demoRise { from { opacity: 0; transform: translateY(24px) scale(.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
     @media (prefers-reduced-motion: reduce) {
-      #frame-scanner.is-scanning .frame-sweep,
       .demo-stagger > button, .demo-story-photo { animation: none; }
     }
   </style>
@@ -1320,6 +1321,7 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
             <canvas id="frame-camera-preview" class="hidden" aria-hidden="true"></canvas>
             <video id="frame-camera" muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback class="hidden" aria-hidden="true"></video>
             <img id="frame-selected-photo" class="hidden" alt="Ảnh hiện vật đã chọn" data-en-alt="Selected artifact photo">
+            <img id="frame-snapshot" class="hidden" alt="" aria-hidden="true">
             <div class="frame-corners" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
             <div id="frame-camera-placeholder" class="frame-camera-placeholder">
               <i data-lucide="camera" class="w-8 h-8" aria-hidden="true"></i>
@@ -2155,8 +2157,9 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
     const width = isCanvas ? source.width : source.videoWidth || source.naturalWidth;
     const height = isCanvas ? source.height : source.videoHeight || source.naturalHeight;
     if (!width || !height) throw new Error('invalid_image');
-    // Live video uses object-fit: cover, so crop to the same centered viewfinder.
-    const ratio = source.videoWidth && source.clientHeight
+    // Both live previews use object-fit: cover. Uploaded photos use contain.
+    const isLive = isCanvas || source.videoWidth;
+    const ratio = isLive && source.clientWidth && source.clientHeight
       ? source.clientWidth / source.clientHeight : width / height;
     const cropWidth = Math.min(width, height * ratio);
     const cropHeight = Math.min(height, width / ratio);
@@ -2729,17 +2732,16 @@ const CameraPreview = (() => {
   function draw(canvas, frame) {
     const width = frame.displayWidth || frame.width;
     const height = frame.displayHeight || frame.height;
-    const side = Math.min(width, height);
-    if (!side) throw new Error('empty_frame');
+    if (!width || !height) throw new Error('empty_frame');
 
-    const size = Math.min(side, 768);
-    if (canvas.width !== size || canvas.height !== size) {
-      canvas.width = size;
-      canvas.height = size;
+    const scale = Math.min(1, 768 / Math.max(width, height));
+    const displayWidth = Math.max(1, Math.round(width * scale));
+    const displayHeight = Math.max(1, Math.round(height * scale));
+    if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+      canvas.width = displayWidth;
+      canvas.height = displayHeight;
     }
-    canvas.getContext('2d', { alpha: false }).drawImage(frame,
-      (width - side) / 2, (height - side) / 2, side, side,
-      0, 0, size, size);
+    canvas.getContext('2d', { alpha: false }).drawImage(frame, 0, 0, displayWidth, displayHeight);
   }
 
   function startFrameLoop(open, canvas, signal, onError) {
@@ -3397,6 +3399,7 @@ const CameraPreview = (() => {
     const frameCamera = document.getElementById('frame-camera');
     const frameCanvas = document.getElementById('frame-camera-preview');
     const frameSelectedPhoto = document.getElementById('frame-selected-photo');
+    const frameSnapshot = document.getElementById('frame-snapshot');
     const frameGreetingAudio = document.getElementById('frame-greeting-audio');
     const frameFile = document.getElementById('frame-upload');
     const frameCapture = {
@@ -3603,6 +3606,9 @@ const CameraPreview = (() => {
       frameCapture.scan?.abort();
       frameCapture.scan = null;
       frameCapture.source = null;
+      frameScanner.classList.remove('is-sweeping');
+      frameSnapshot.classList.add('hidden');
+      frameSnapshot.removeAttribute('src');
       setFrameScanning(false);
       releaseFrameMedia();
       frameScanner.close();
@@ -3631,6 +3637,40 @@ const CameraPreview = (() => {
       return [...ids].map(id => inFrame.find(item => item.id === id)).filter(Boolean).slice(0, 3);
     }
 
+    async function showScanSweep(image, source, signal) {
+      if (source === 'camera') {
+        frameSnapshot.src = `data:${image.mimeType};base64,${image.data}`;
+        try {
+          await frameSnapshot.decode();
+          if (signal.aborted) return;
+          frameSnapshot.classList.remove('hidden');
+          releaseFrameMedia();
+        } catch {
+          if (signal.aborted) return;
+        }
+      }
+
+      const line = frameScanner.querySelector('.frame-sweep');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || !line.animate || signal.aborted) return;
+      let animation;
+      const cancel = () => animation?.cancel();
+      try {
+        frameScanner.classList.add('is-sweeping');
+        animation = line.animate(
+          [{ transform: 'translateY(calc(-100% + 3px))' }, { transform: 'translateY(0)' }],
+          { duration: 1200, easing: 'linear', fill: 'both' }
+        );
+        signal.addEventListener('abort', cancel, { once: true });
+        await animation.finished;
+      } catch {
+        // A canceled sweep does not block scanner cleanup or the recognition result.
+      } finally {
+        signal.removeEventListener('abort', cancel);
+        if (!signal.aborted) frameScanner.classList.remove('is-sweeping');
+        cancel();
+      }
+    }
+
     async function captureFrame() {
       const source = frameCapture.source;
       const now = Date.now();
@@ -3646,8 +3686,10 @@ const CameraPreview = (() => {
       let candidates = [];
       let detections = [];
       let error = null;
+      let sweep;
       try {
         const image = MuseumRecognition.jpegFrame(source === 'camera' ? frameCapture.preview : frameSelectedPhoto);
+        sweep = showScanSweep(image, source, scan.signal);
         const result = await MuseumRecognition.recognize(image, [...catalogById.values()], {
           ...recognitionSettings(),
           signal: scan.signal,
@@ -3659,13 +3701,15 @@ const CameraPreview = (() => {
         error = ['unconfigured', 'timeout', 'quota_or_rate_limit', 'invalid_response', 'invalid_image']
           .includes(failure.message) ? failure.message : 'connection_error';
       }
+      const elapsedMs = Date.now() - now;
+      await sweep;
       if (scan.signal.aborted) return;
 
       const recognized = detections.map(({ id }) => catalogById.get(id)).filter(Boolean);
       const success = recognized.length > 0;
       logRecognition({
         timestamp: new Date(now).toISOString(),
-        elapsedMs: Date.now() - now,
+        elapsedMs,
         source,
         frame: area,
         success,

@@ -2,7 +2,7 @@
 
 [Web trên điện thoại](https://thaihoa121179-ux.github.io/baotangdanang/)
 
-Mở **Quét**, cấp quyền camera, đưa hiện vật vào ô giữa màn hình và bấm **Quét ngay**. Bạn cũng có thể chọn ảnh trong màn hình quét và bấm cùng nút đó. Mỗi lần bấm gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini chỉ trả về ID và độ tin cậy. Web tra tên, mô tả, audio, transcript và nội dung chatbot trong danh mục. Kết quả được gắn nhãn **AI nhận diện** khi có ít nhất một ID hợp lệ đạt 0,5. Web chọn kết quả đầu tiên để mở ngay hai nút nghe và giới thiệu. Bấm một thẻ khác để đổi hiện vật.
+Mở **Quét**, cấp quyền camera, đưa hiện vật vào khung lớn và bấm **Quét ngay**. Web giữ ảnh vừa chụp và chạy một vạch quét từ trên xuống dưới khung. Kết quả hiện sau khi vạch chạy xong và có phản hồi nhận diện. Bạn cũng có thể chọn ảnh trong màn hình quét và bấm cùng nút đó. Mỗi lần bấm gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini chỉ trả về ID và độ tin cậy. Web tra tên, mô tả, audio, transcript và nội dung chatbot trong danh mục. Kết quả được gắn nhãn **AI nhận diện** khi có ít nhất một ID hợp lệ đạt 0,5. Web chọn kết quả đầu tiên để mở ngay hai nút nghe và giới thiệu. Bấm một thẻ khác để đổi hiện vật.
 
 Trên iPhone, web vẽ hình camera vào ô quét để tránh việc trình duyệt bên trong ứng dụng mở trình phát toàn màn hình. Nếu trình duyệt không cung cấp khung hình, web sẽ hiện hướng dẫn mở bằng Safari hoặc chọn ảnh.
 

@@ -43,17 +43,16 @@ const CameraPreview = (() => {
   function draw(canvas, frame) {
     const width = frame.displayWidth || frame.width;
     const height = frame.displayHeight || frame.height;
-    const side = Math.min(width, height);
-    if (!side) throw new Error('empty_frame');
+    if (!width || !height) throw new Error('empty_frame');
 
-    const size = Math.min(side, 768);
-    if (canvas.width !== size || canvas.height !== size) {
-      canvas.width = size;
-      canvas.height = size;
+    const scale = Math.min(1, 768 / Math.max(width, height));
+    const displayWidth = Math.max(1, Math.round(width * scale));
+    const displayHeight = Math.max(1, Math.round(height * scale));
+    if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+      canvas.width = displayWidth;
+      canvas.height = displayHeight;
     }
-    canvas.getContext('2d', { alpha: false }).drawImage(frame,
-      (width - side) / 2, (height - side) / 2, side, side,
-      0, 0, size, size);
+    canvas.getContext('2d', { alpha: false }).drawImage(frame, 0, 0, displayWidth, displayHeight);
   }
 
   function startFrameLoop(open, canvas, signal, onError) {
