@@ -347,11 +347,11 @@
     "era": "Khoảng 2.500–2.000 năm trước",
     "shortDesc": "Trang sức bằng mã não tìm thấy khi khai quật khu mộ chum Gò Đình năm 1980.",
     "fullDesc": "Các món trang sức mã não trong hồ sơ được thu thập ở Gò Đình trong đợt khai quật năm 1980. Người Sa Huỳnh dùng mã não để làm chuỗi hạt và những kiểu trang sức khác. Những vật nhỏ này cho thấy đồ trang sức có vai trò trong đời sống và tập tục của cộng đồng.",
-    "visualDesc": null,
+    "visualDesc": "Chuỗi hạt xếp thành vòng, gồm nhiều hạt nhỏ đỏ cam và nâu bóng xen vài hạt dài, sẫm hoặc trong mờ. Có các hạt rời dạng thoi và dạng trụ ở đoạn dưới vòng. Khác vòng thủy tinh liền khối và khuyên đá bản dẹt.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "agate-jewelry",
     "photoFile": "images/artifacts/agate-jewelry.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/trang-sc-ma-nao",
@@ -381,8 +381,7 @@
       "shortDesc": "Agate jewelry recovered at the Go Dinh burial site in 1980.",
       "fullDesc": "The agate jewelry in this record was recovered at Go Dinh during the 1980 excavation. Sa Huynh people used agate for beads and other jewelry. These small objects help illustrate jewelry’s place in social life and customs.",
       "room": "Collection record"
-    },
-    "visualNotes": "Một nhóm hạt đá nhỏ dùng làm trang sức; nhìn hình dáng, độ bóng và tông màu đá trong ảnh tư liệu."
+    }
   },
   {
     "id": "ring-earring",
@@ -391,11 +390,11 @@
     "era": "Khoảng 2.500–2.000 năm trước",
     "shortDesc": "Khuyên đá dạng vòng dẹt có khe hở, sưu tầm khi khai quật Gò Quảng năm 1983.",
     "fullDesc": "Khuyên tai hình vành khăn là một kiểu trang sức của văn hóa Sa Huỳnh. Mẫu này làm bằng đá, có dạng vòng nhỏ bản rộng và dẹt với một khe hở trên thân. Hiện vật được sưu tầm trong đợt khai quật Gò Quảng năm 1983.",
-    "visualDesc": null,
+    "visualDesc": "Khuyên đá màu xám lục lốm đốm, hình đĩa tròn dẹt có lỗ tròn lớn ở giữa. Vành rộng và có một khe thẳng hẹp nối từ lỗ trung tâm ra mép ngoài. Khác vòng thủy tinh xanh trơn không có khe.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "ring-earring",
     "photoFile": "images/artifacts/ring-earring.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/khuyan-tai-henh-vanh-khan",
@@ -425,8 +424,7 @@
       "shortDesc": "A flat stone ring with an open slit, recovered at Go Quang in 1983.",
       "fullDesc": "The slit-ring earring is a Sa Huynh jewelry form. This stone example has a small, broad, flat ring with a slit. It was collected during the 1983 excavation at Go Quang.",
       "room": "Collection record"
-    },
-    "visualNotes": "Khuyên đá hình vòng dẹt, bản rộng, có khoảng hở cắt qua một bên vành."
+    }
   },
   {
     "id": "three-point-earring",
@@ -435,11 +433,11 @@
     "era": "Khoảng 2.500–2.000 năm trước",
     "shortDesc": "Trang sức thủy tinh có ba mấu nhọn và một móc nhỏ, khai quật tại Gò Đình.",
     "fullDesc": "Khuyên tai ba mấu bằng thủy tinh, có ba mấu nhọn và một móc nhỏ. Hiện vật được tìm thấy tại khu mộ chum Gò Đình năm 1980. Khi xem ảnh, hãy đếm các mấu để phân biệt chiếc khuyên này với khuyên hình vành khăn.",
-    "visualDesc": null,
+    "visualDesc": "Khuyên nhỏ màu xanh lục sẫm, bề mặt bóng. Thân dẹt có ba mấu nhô nhọn sang hai bên và xuống dưới, bên trên có móc cong khoét hở. Khác khuyên vành khăn tròn bằng đá và khuyên có hai đầu thú.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "three-point-earring",
     "photoFile": "images/artifacts/three-point-earring.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/khuyan-tai-ba-mau",
@@ -468,8 +466,7 @@
       "shortDesc": "A glass ornament with three pointed projections and a small hook, excavated at Go Dinh.",
       "fullDesc": "This glass earring has three pointed projections and a small hook. It was recovered at the Go Dinh jar-burial site in 1980. Counting the projections helps distinguish it from a slit-ring earring.",
       "room": "Collection record"
-    },
-    "visualNotes": "Đồ trang sức nhỏ, thân có ba mấu nhọn và một móc nhỏ."
+    }
   },
   {
     "id": "pot-burial",
@@ -478,11 +475,11 @@
     "era": "Thế kỷ II TCN–II SCN",
     "shortDesc": "Hiện vật gốm từ cuộc khai quật Vườn đình Khuê Bắc, Ngũ Hành Sơn, tháng 5 năm 2001.",
     "fullDesc": "Mộ nồi được tìm thấy khi khai quật di chỉ Vườn đình Khuê Bắc, Ngũ Hành Sơn, tháng năm năm 2001. Hồ sơ đặt hiện vật từ thế kỷ hai trước Công nguyên đến thế kỷ hai sau Công nguyên. Nồi cao mười bảy xăng ti mét và đường kính hai mươi chín xăng ti mét.",
-    "visualDesc": null,
+    "visualDesc": "Nồi gốm màu nâu đất, dáng thấp, thân tròn phình và chân đế tròn thấp. Mẫu trong ảnh tư liệu có nhiều đường ghép mảnh vỡ và một khoảng khuyết lớn ở phần thân gần miệng, để lộ lòng nồi. Khác chum Tabhing thân cao có nắp.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "pot-burial",
     "photoFile": "images/artifacts/pot-burial.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/mo-noi",
@@ -512,8 +509,7 @@
       "shortDesc": "A ceramic object excavated at the Khue Bac communal-house garden site in May 2001.",
       "fullDesc": "The burial pot was recovered at the Khue Bac communal-house garden site in May 2001. The museum dates it from the second century BCE to the second century CE. It is 17 cm high and 29 cm in diameter.",
       "room": "Collection record"
-    },
-    "visualNotes": "Nồi gốm thấp, thân phình, miệng rộng, tông đất."
+    }
   },
   {
     "id": "tabhing-jar",
@@ -522,11 +518,11 @@
     "era": "Khoảng 2.500–2.000 năm trước",
     "shortDesc": "Chum và nắp bằng đất nung, khai quật tại Nam Giang năm 1986.",
     "fullDesc": "Mộ chum Tabhing được khai quật ở Nam Giang năm 1986. Chum cao bảy mươi xăng ti mét, đường kính năm mươi hai xăng ti mét. Phần nắp được đo riêng. Chum táng là một trong những loại hiện vật giúp tìm hiểu tập tục mai táng của cư dân Sa Huỳnh.",
-    "visualDesc": null,
+    "visualDesc": "Chum đứng cao bằng đất nung màu nâu xám, thân hình trụ hơi thu về đáy, bề mặt ghép nhiều mảnh. Trên miệng có nắp loe như đĩa, nhô phần núm ngắn màu cam. Khác nồi mộ Khuê Bắc có thân thấp và khuyết lớn.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "tabhing-jar",
     "photoFile": "images/artifacts/tabhing-jar.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/mo-chum-tabhing",
@@ -562,8 +558,7 @@
       "shortDesc": "Earthenware jar and lid from an excavation at Nam Giang in 1986.",
       "fullDesc": "The Tabhing burial jar was excavated at Nam Giang in 1986. The jar is 70 cm high and 52 cm across, with the lid measured separately. Jar burials help researchers study Sa Huynh funerary customs.",
       "room": "Collection record"
-    },
-    "visualNotes": "Chum đất nung thân lớn màu nâu, có nắp riêng."
+    }
   },
   {
     "id": "spindle-whorls",
@@ -572,11 +567,11 @@
     "era": "Khoảng 2.500–2.000 năm trước",
     "shortDesc": "Dụng cụ đất nung dùng khi xe chỉ, được khai quật tại Đại Lãnh năm 1979.",
     "fullDesc": "Các dọi xe chỉ bằng đất nung được khai quật tại Đại Lãnh, Đại Lộc năm 1979. Dọi là dụng cụ dùng trong quá trình xe sợi. Đây là một trong những dấu tích bảo tàng dùng để giới thiệu nghề dệt của cư dân Sa Huỳnh.",
-    "visualDesc": null,
+    "visualDesc": "Nhóm dọi nhỏ màu đất nhạt ngả kem, dạng đĩa tròn hoặc hạt dẹt, có lỗ trục nhỏ ở giữa. Thường thấy nhiều chiếc cùng cỡ đặt thành cụm, không xâu chuỗi. Khác chuỗi hạt đá đỏ cam và đồ trang sức dạng vòng lớn.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "spindle-whorls",
     "photoFile": "images/artifacts/spindle-whorls.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/doi-xe-che",
@@ -611,8 +606,7 @@
       "shortDesc": "Earthenware spinning tools excavated at Dai Lanh in 1979.",
       "fullDesc": "These earthenware spindle whorls were excavated at Dai Lanh, Dai Loc in 1979. They were used in spinning thread and are evidence used by the museum to explain Sa Huynh textile production.",
       "room": "Collection record"
-    },
-    "visualNotes": "Các chi tiết đất nung nhỏ, tròn, có lỗ ở giữa để gắn vào trục xe sợi."
+    }
   },
   {
     "id": "glass-bangle",
@@ -621,11 +615,11 @@
     "era": "Khoảng 2.500–2.000 năm trước",
     "shortDesc": "Vòng thủy tinh xanh lục có dấu mài bóng, khai quật tại Đại Lãnh năm 1980.",
     "fullDesc": "Vòng đeo tay thủy tinh màu xanh lục thuộc văn hóa Sa Huỳnh, tìm thấy tại Đại Lãnh, Đại Lộc năm 1980. Hồ sơ bảo tàng ghi vòng có tiết diện bán nguyệt và còn dấu mài, đánh bóng. Đường kính vòng là sáu phẩy chín xăng ti mét.",
-    "visualDesc": null,
+    "visualDesc": "Một vòng thủy tinh khép kín màu xanh lục đậm, vành nhẵn bóng có tiết diện tròn hoặc bán nguyệt, phản sáng ở mép, không có khe. Lỗ tròn giữa vòng rộng. Khác khuyên đá xám bản dẹt có khe hở.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "glass-bangle",
     "photoFile": "images/artifacts/glass-bangle.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ving-yeo-tay-thuy-tinh",
@@ -659,8 +653,7 @@
       "shortDesc": "A green glass bracelet with traces of polishing, excavated at Dai Lanh in 1980.",
       "fullDesc": "This green Sa Huynh glass bangle was found at Dai Lanh, Dai Loc in 1980. The museum records its semicircular cross-section and traces of grinding and polishing. It is 6.9 cm in diameter.",
       "room": "Collection record"
-    },
-    "visualNotes": "Vòng khép kín màu xanh lục, tiết diện bán nguyệt, bề mặt có dấu mài."
+    }
   },
   {
     "id": "dien-hai-decree",
@@ -669,11 +662,11 @@
     "era": "1840",
     "shortDesc": "Văn bản năm Minh Mạng thứ 21 ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức.",
     "fullDesc": "Sắc phong ghi việc ban chức Thự thủ thành Điện Hải cho Tôn Thất Trức vào năm 1840, năm Minh Mạng thứ hai mươi mốt. Tờ giấy hình chữ nhật màu vàng có chữ đen, dấu triện đỏ và trang trí rồng mây.",
-    "visualDesc": null,
+    "visualDesc": "Tờ giấy dài nằm ngang màu vàng ngả nâu, mép xơ rách và khuyết từng đoạn. Nhiều cột chữ Hán viết dọc ở bên phải và dấu triện đỏ vuông nổi bật lệch về bên trái.",
     "floor": 3,
     "frame": 1,
     "room": "Tầng 3",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "dien-hai-decree",
     "photoFile": "images/artifacts/dien-hai-decree.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/sac-phong",
@@ -709,8 +702,7 @@
       "shortDesc": "An 1840 document appointing Ton That Truc acting keeper of Dien Hai Citadel.",
       "fullDesc": "This 1840 decree records the appointment of Ton That Truc as acting keeper of Dien Hai Citadel in the twenty-first year of Minh Mang’s reign. It is a rectangular yellow paper document with black writing, a red seal and dragon-and-cloud decoration.",
       "room": "Floor 3"
-    },
-    "visualNotes": "Tờ giấy vàng hình chữ nhật dài, nhiều hàng chữ đen, dấu triện đỏ và trang trí rồng mây."
+    }
   },
   {
     "id": "thu-that-dieu",
@@ -719,11 +711,11 @@
     "era": "Bản in năm 1958",
     "shortDesc": "Bản in lại năm 1958 của bức thư Phan Châu Trinh gửi vua Khải Định ở Paris năm 1922.",
     "fullDesc": "Cuốn sách trong hồ sơ là bản in lại Thư thất điều, xuất bản năm 1958. Bức thư gốc được Phan Châu Trinh gửi vua Khải Định ở Paris năm 1922. Bà Lê Thị Kinh, cháu ngoại Phan Châu Trinh, hiến tặng bản in cho bảo tàng năm 1990.",
-    "visualDesc": null,
+    "visualDesc": "Cuốn sách mỏng dựng dọc, bìa giấy màu kem đã ố. Bìa có nhan đề THƯ THẤT ĐIỀU màu đỏ in to ở phần trên, phía dưới là một khung minh họa hình chữ nhật xanh xám. Không nhầm với bìa Tây Hồ – Santé trơn.",
     "floor": null,
     "frame": 1,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "thu-that-dieu",
     "photoFile": "images/artifacts/thu-that-dieu.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/sach-th-that-yiau",
@@ -758,8 +750,7 @@
       "shortDesc": "A 1958 reprint of the letter Phan Chau Trinh sent to Emperor Khai Dinh in Paris in 1922.",
       "fullDesc": "The museum’s copy is a 1958 reprint of the Letter of Seven Charges. Phan Chau Trinh sent the original letter to Emperor Khai Dinh in Paris in 1922. His granddaughter Le Thi Kinh donated the edition to the museum in 1990.",
       "room": "Collection record"
-    },
-    "visualNotes": "Cuốn sách giấy cũ, xem tên nhan đề trên bìa hoặc trang sách trong ảnh tư liệu."
+    }
   },
   {
     "id": "tay-ho-sante",
@@ -768,11 +759,11 @@
     "era": "Bản phát hành năm 1961",
     "shortDesc": "Tập thơ Phan Châu Trinh, được Lê Ấm biên soạn và phát hành lại năm 1961.",
     "fullDesc": "Tập sách gồm các bài thơ gắn với Phan Châu Trinh, trong đó có thơ viết thời gian ông bị giam ở ngục Santé. Hồ sơ bảo tàng ghi Lê Ấm biên soạn và phát hành lại tập thơ năm 1961. Bà Lê Thị Kinh hiến tặng bản sách năm 1990.",
-    "visualDesc": null,
+    "visualDesc": "Tập sách mỏng có bìa giấy xám kem khá trơn, khổ dọc, ít trang trí. Giữa bìa có nhan đề TÂY HỒ – SANTÉ in chữ đen, không có khung minh họa lớn hoặc nhan đề đỏ.",
     "floor": null,
     "frame": 1,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "tay-ho-sante",
     "photoFile": "images/artifacts/tay-ho-sante.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/tay-ho-va-santa-thi-tap",
@@ -803,8 +794,7 @@
       "shortDesc": "Poems by Phan Chau Trinh edited and reissued by Le Am in 1961.",
       "fullDesc": "This volume brings together poems associated with Phan Chau Trinh, including work from his imprisonment at Sante prison. The museum records that Le Am edited and reissued the book in 1961. Le Thi Kinh donated the copy in 1990.",
       "room": "Collection record"
-    },
-    "visualNotes": "Tập sách giấy, đối chiếu nhan đề Tây Hồ và Santé trên ảnh tư liệu."
+    }
   },
   {
     "id": "con-ga-prison-door",
@@ -813,11 +803,11 @@
     "era": "1946–1954",
     "shortDesc": "Cánh cửa sắt từng thuộc nhà lao Con Gà trên đường Hùng Vương, Đà Nẵng.",
     "fullDesc": "Cánh cửa sắt thuộc nhà lao Con Gà ở số tám mươi tám Hùng Vương theo hồ sơ bảo tàng. Hiện vật gắn với lịch sử giam giữ tại Đà Nẵng thời thuộc địa. Trung tâm Văn hóa Triển lãm chuyển giao hiện vật cho bảo tàng vào tháng chín năm 1983.",
-    "visualDesc": null,
+    "visualDesc": "Cửa sắt hai cánh hình chữ nhật đứng. Phần trên mỗi cánh là song sắt đan thành ô chữ nhật, phần dưới là tấm sắt tối liền, bị thủng và bong nhiều mảng, rõ nhất ở cánh trái trong ảnh tư liệu.",
     "floor": null,
     "frame": 1,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "con-ga-prison-door",
     "photoFile": "images/artifacts/con-ga-prison-door.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/canh-ca-nha-to",
@@ -852,8 +842,7 @@
       "shortDesc": "An iron door formerly at Con Ga prison on Hung Vuong Street, Da Nang.",
       "fullDesc": "The iron door came from Con Ga prison at 88 Hung Vuong Street according to the museum. It documents the history of imprisonment in colonial-era Da Nang. The Cultural Exhibition Center transferred the object to the museum in September 1983.",
       "room": "Collection record"
-    },
-    "visualNotes": "Cánh cửa lớn bằng sắt, các thanh dọc và chi tiết ngang tạo thành khung."
+    }
   },
   {
     "id": "to-ghey-horn",
@@ -862,11 +851,11 @@
     "era": "Cuối thế kỷ XX",
     "shortDesc": "Kèn sừng trâu dùng trong lễ hội Cơ Tu, sưu tầm tại Tà Lu năm 2002.",
     "fullDesc": "Kèn Tơghêy làm từ sừng trâu, dùng trong các dịp lễ hội của cộng đồng Cơ Tu. Mẫu trong hồ sơ được sưu tầm ở Tà Lu năm 2002. Theo bảo tàng, kèn là nhạc cụ được trân trọng và gắn với đời sống lễ hội của làng.",
-    "visualDesc": null,
+    "visualDesc": "Nhạc cụ bằng một chiếc sừng trâu tối màu, dáng cong thuôn nhọn về một đầu. Đầu to được cắt ngang, màu nâu vàng nhạt ở vành, cạnh đó nhô một chi tiết ống ngắn. Khác nhạc cụ dây thân gỗ hoặc ống thẳng.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "to-ghey-horn",
     "photoFile": "images/artifacts/to-ghey-horn.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/kan-tghay",
@@ -902,8 +891,7 @@
       "shortDesc": "A buffalo-horn instrument used in Co Tu festivals, collected at Ta Lu in 2002.",
       "fullDesc": "The Toghey is a buffalo-horn instrument used at Co Tu festivals. The museum collected this one at Ta Lu in 2002. The record describes the horn as a valued instrument in village ceremonial life.",
       "room": "Collection record"
-    },
-    "visualNotes": "Thân sừng trâu uốn cong, màu nâu sẫm, một đầu loe, kích thước nhỏ."
+    }
   },
   {
     "id": "bark-clothing",
@@ -912,11 +900,11 @@
     "era": "2005",
     "shortDesc": "Bộ trang phục vỏ cây do ông Bríu-Brăm làm cho các dịp lễ hội ở Bhơhôồng.",
     "fullDesc": "Bộ áo khố vỏ cây do ông Bríu-Brăm ở thôn Bhơhôồng, Đông Giang làm và dùng trong các dịp lễ hội từ năm 2005. Bộ trang phục từng được giới thiệu ở Hà Nội năm 2008. Bảo tàng tiếp nhận hiện vật năm 2010.",
-    "visualDesc": null,
+    "visualDesc": "Trang phục phẳng màu vàng nâu từ vỏ cây, bề mặt xơ thô, không có tay áo dài. Phần trên xòe rộng ở vai và thân dài thu dần, có đường ráp dọc ở giữa; không có túi, khuy hay họa tiết ngụy trang.",
     "floor": null,
     "frame": 2,
     "room": "Hồ sơ bộ sưu tập",
-    "scanReady": false,
+    "scanReady": true,
     "photoKey": "bark-clothing",
     "photoFile": "images/artifacts/bark-clothing.webp",
     "source": "https://baotangdanang.vn/bao-tang-da-nang/hien-vat/ao-kho-v-cay",
@@ -952,7 +940,6 @@
       "shortDesc": "Bark clothing made by Briu-Bram for local festivals in Bhơhôồng village.",
       "fullDesc": "Briu-Bram of Bhơhôồng village, Dong Giang made this bark outfit for local festivals from 2005. It was exhibited in Hanoi in 2008 and entered the museum collection in 2010.",
       "room": "Collection record"
-    },
-    "visualNotes": "Bộ trang phục từ vỏ cây màu vàng nâu, áo cổ tròn, không tay và bề mặt sợi thô."
+    }
   }
 ]

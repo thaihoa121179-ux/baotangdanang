@@ -167,7 +167,9 @@ DANH SÁCH HIỆN VẬT (id | tên | mô tả hình dáng để nhận ra):
       if (!url) return await callGemini(image, catalog, CONFIG.MODEL, key, deadline);
       const eligible = scanRows(catalog);
       if (!eligible.length) throw new Error('catalog_unavailable');
-      const body = await postJSON(url, { image }, deadline);
+      const proxy = new URL(url);
+      if (proxy.pathname === '/chat' || proxy.pathname === '/chat/') proxy.pathname = '/scan';
+      const body = await postJSON(proxy, { image }, deadline);
       return parseDetections(body, eligible);
     } catch (error) {
       if (timeout.aborted) throw new Error('timeout');

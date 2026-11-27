@@ -2,11 +2,9 @@
 
 [Web trên điện thoại](https://thaihoa121179-ux.github.io/baotangdanang/)
 
-Mở **Quét**, chọn một trong bốn mục ở **Khung mô phỏng** bên dưới, rồi bấm **Quét ngay**. Vạch quét chạy từ trên xuống dưới rồi hiện danh sách theo ảnh tham chiếu. Bấm một thẻ để nghe audio hoặc hỏi chatbot. Các mô tả trong khung mô phỏng nằm ở [data/scan-frames.json](data/scan-frames.json). Bản đọc tiếng Việt đã nhúng trong HTML; tệp gốc ở `audio/scan-frames/` theo ID, dùng giọng Piper dựa trên VAIS 1000.
+Mở **Quét** rồi bấm **Quét ngay** khi hiện vật đã nằm trong khung. Camera mặc định dùng Gemini và dùng chung khóa hoặc proxy đã lưu ở chatbot trên trình duyệt đó. Nếu cần cấu hình lần đầu, chọn **Thiết lập Gemini để quét**. Mỗi lần bấm gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini trả ID và độ tin cậy. Web hiện tối đa 5 thẻ từ dữ liệu của 20 hiện vật có ảnh tư liệu, kèm nhãn **AI nhận diện** khi có ID hợp lệ đạt 0,5. Bấm một thẻ để nghe audio hoặc hỏi chatbot.
 
-Mỗi mục mô phỏng có một ảnh minh họa được tạo dựa trên khung tham chiếu. Ảnh WebP nằm ở `images/scan-frames/` theo ID hiện vật và được nhúng cùng audio bằng `node scripts/sync-demo.mjs`. Bản đọc tiếng Việt phát tên hiện vật, nghỉ 2,25 giây ở tốc độ 1× rồi đọc mô tả.
-
-Để dùng nhận diện thật, mở **Quét → bánh răng → Cài đặt nhận diện và nhật ký**, bật **Bật nhận diện AI thật** và lưu. Trong chế độ này, mỗi lần bấm quét gửi một ảnh JPEG có cạnh dài tối đa 768 px. Gemini chỉ trả về ID và độ tin cậy. Kết quả được gắn nhãn **AI nhận diện** khi có ít nhất một ID hợp lệ đạt 0,5.
+Để mở một trong bốn khung mô phỏng, vào **Quét → bánh răng**, bỏ chọn **Bật nhận diện AI thật** rồi lưu. Danh mục mô phỏng trong [data/scan-frames.json](data/scan-frames.json) có ảnh minh họa ở `images/scan-frames/` và bản đọc tiếng Việt ở `audio/scan-frames/`. Cả hai được nhúng bằng `node scripts/sync-demo.mjs`. Bản đọc phát tên hiện vật, nghỉ 2,25 giây ở tốc độ 1× rồi đọc mô tả.
 
 Trên iPhone, web vẽ hình camera vào ô quét để tránh việc trình duyệt bên trong ứng dụng mở trình phát toàn màn hình. Nếu trình duyệt không cung cấp khung hình, web sẽ hiện hướng dẫn mở bằng Safari hoặc chọn ảnh.
 
