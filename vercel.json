@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/museum.mjs": { "includeFiles": "data/artifacts.json", "maxDuration": 15 }
+  },
+  "rewrites": [
+    { "source": "/scan", "destination": "/api/museum?operation=scan" },
+    { "source": "/chat", "destination": "/api/museum?operation=chat" }
+  ]
+}

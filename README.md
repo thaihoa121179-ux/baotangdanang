@@ -38,6 +38,10 @@ Mở **Chatbot → bánh răng**, bật **Dùng Gemini cho câu hỏi ngoài d�
 
 ## Cấu hình Gemini
 
+### Dùng chung trên dự án Vercel
+
+Triển khai thư mục gốc của repo trên dự án `baotangdanang` với Framework Preset **Other**. Trong **Settings → Environment Variables**, thêm biến `GEMINI_API_KEY` cho **Production**. Triển khai lại sau khi lưu biến. Bản chạy trên `baotangdanang.vercel.app` tự gọi `/scan` và `/chat`, đồng thời tự bật Gemini cho các câu hỏi ngoài dữ liệu trong phiên mới. Khóa nằm phía máy chủ. Hàm đọc danh mục `data/artifacts.json` của chính bản triển khai và giới hạn số lượt theo từng phiên máy chủ. Hạn mức dự án Gemini áp dụng trên tất cả phiên máy chủ.
+
 ### Proxy Cloudflare Worker
 
 1. Tạo một API key cho dự án demo trên [Google AI Studio](https://aistudio.google.com/apikey). Giới hạn key vào **Generative Language API** và dùng dự án có hạn mức phù hợp. Kiểm tra [tài liệu Gemini API](https://ai.google.dev/gemini-api/docs/models) hoặc gọi `GET /v1beta/models` trên `generativelanguage.googleapis.com` bằng key của dự án để xác minh model hỗ trợ `generateContent`.

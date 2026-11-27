@@ -71,7 +71,8 @@ export default {
       return reply({ error: 'unsupported_content_type' }, 415);
     }
     const isChat = new URL(request.url).pathname === '/chat';
-    if (!env.GEMINI_API_KEY || !env.RECOGNITION_LIMIT || (!isChat && !env.CATALOG_URL)) return reply({ error: 'unconfigured' }, 503);
+    if (!env.GEMINI_API_KEY || !env.RECOGNITION_LIMIT
+        || (!isChat && !env.CATALOG_URL && !Array.isArray(env.CATALOG))) return reply({ error: 'unconfigured' }, 503);
 
     const client = request.headers.get('CF-Connecting-IP') || 'unknown';
     const { success } = await env.RECOGNITION_LIMIT.limit({ key: isChat ? `chat:${client}` : client });
@@ -88,13 +89,17 @@ export default {
 
     const signal = AbortSignal.timeout(7400);
     try {
-      const catalogURL = new URL(env.CATALOG_URL);
-      if (catalogURL.protocol !== 'https:') return reply({ error: 'unconfigured' }, 503);
-      const response = await fetch(catalogURL, {
-        signal, redirect: 'error', cf: { cacheEverything: true, cacheTtl: 30 }
-      });
-      if (!response.ok) return reply({ error: 'catalog_unavailable' }, 502);
-      const catalog = recognition.scanRows(await response.json());
+      let records = env.CATALOG;
+      if (!Array.isArray(records)) {
+        const catalogURL = new URL(env.CATALOG_URL);
+        if (catalogURL.protocol !== 'https:') return reply({ error: 'unconfigured' }, 503);
+        const response = await fetch(catalogURL, {
+          signal, redirect: 'error', cf: { cacheEverything: true, cacheTtl: 30 }
+        });
+        if (!response.ok) return reply({ error: 'catalog_unavailable' }, 502);
+        records = await response.json();
+      }
+      const catalog = recognition.scanRows(records);
       if (!catalog.length) return reply({ error: 'catalog_unavailable' }, 502);
 
       const model = env.GEMINI_MODEL || recognition.CONFIG.MODEL;

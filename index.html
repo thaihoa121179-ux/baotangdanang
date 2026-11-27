@@ -2241,7 +2241,8 @@ lucide.createIcons({icons});\``);if(typeof d>"u")throw new Error("`createIcons()
 const MuseumRecognition = (() => {
   const CONFIG = Object.freeze({
     MODEL: 'gemini-3.5-flash-lite',
-    PROXY_ENDPOINT: '',
+    PROXY_ENDPOINT: globalThis.location?.origin === 'https://baotangdanang.vercel.app'
+      ? 'https://baotangdanang.vercel.app/scan' : '',
     TIMEOUT_MS: 8000
   });
 
@@ -3851,7 +3852,15 @@ const CameraPreview = (() => {
     }
 
     function hasRecognitionCredentials(settings) {
-      return Boolean((settings.endpoint ?? MuseumRecognition.CONFIG.PROXY_ENDPOINT) || settings.key);
+      return Boolean(recognitionEndpoint(settings) || settings.key);
+    }
+
+    function recognitionEndpoint(settings) {
+      return settings.endpoint || MuseumRecognition.CONFIG.PROXY_ENDPOINT;
+    }
+
+    function chatUsesGemini(settings) {
+      return settings.useGeminiChat ?? Boolean(MuseumRecognition.CONFIG.PROXY_ENDPOINT);
     }
 
     function openProjectAbout(showSettings = false) {
@@ -3860,10 +3869,10 @@ const CameraPreview = (() => {
       const fromCamera = frameScanner.open;
       document.getElementById('camera-ai-options').hidden = !fromCamera;
       document.getElementById('chat-ai-options').hidden = fromCamera;
-      document.getElementById('recognition-endpoint').value = settings.endpoint ?? MuseumRecognition.CONFIG.PROXY_ENDPOINT;
+      document.getElementById('recognition-endpoint').value = settings.endpoint || '';
       document.getElementById('recognition-key').value = settings.key || '';
       document.getElementById('recognition-use-ai').checked = scanUsesAI(settings);
-      document.getElementById('recognition-use-gemini-chat').checked = settings.useGeminiChat === true;
+      document.getElementById('recognition-use-gemini-chat').checked = chatUsesGemini(settings);
       document.getElementById('recognition-settings-status').textContent = '';
       const details = document.getElementById('recognition-settings');
       details.open = showSettings;
@@ -3884,8 +3893,8 @@ const CameraPreview = (() => {
       }
       const fromCamera = frameScanner.open;
       const settings = recognitionSettings();
-      const useGeminiChat = fromCamera ? settings.useGeminiChat === true : document.getElementById('recognition-use-gemini-chat').checked;
-      if (!fromCamera && useGeminiChat && !endpoint && !key) {
+      const useGeminiChat = fromCamera ? chatUsesGemini(settings) : document.getElementById('recognition-use-gemini-chat').checked;
+      if (!fromCamera && useGeminiChat && !hasRecognitionCredentials({ endpoint, key })) {
         status.textContent = ui('Nhập API key Gemini hoặc URL proxy để bật chatbot Gemini.', 'Enter a Gemini key or a proxy URL to enable Gemini chat.');
         return;
       }
@@ -4214,6 +4223,7 @@ const CameraPreview = (() => {
         sweep = showScanSweep(image, source, scan.signal);
         const result = await MuseumRecognition.recognize(image, [...catalogById.values()], {
           ...settings,
+          endpoint: recognitionEndpoint(settings),
           signal: scan.signal,
           onCatalog: useLatestCatalog
         });
@@ -5335,13 +5345,13 @@ const CameraPreview = (() => {
         name: state.visitorName
       });
       const settings = recognitionSettings();
-      const lookup = reply.unanswered && settings.useGeminiChat === true ? 'gemini' : reply.subject ? 'wikipedia' : '';
+      const lookup = reply.unanswered && chatUsesGemini(settings) ? 'gemini' : reply.subject ? 'wikipedia' : '';
       const pending = beginChatReply(session, language, lookup);
       if (lookup === 'gemini') {
         const signal = AbortSignal.any([pending.controller.signal, AbortSignal.timeout(GeminiChat.TIMEOUT_MS)]);
         try {
           const input = { question: query, language: ui('vi', 'en', 'ja'), history: session.history || [] };
-          const text = await GeminiChat.request(input, { ...settings, endpoint: settings.endpoint ?? MuseumRecognition.CONFIG.PROXY_ENDPOINT }, signal);
+          const text = await GeminiChat.request(input, { ...settings, endpoint: recognitionEndpoint(settings) }, signal);
           reply = { text, gemini: true, keepContext: true, contextPatch: { chatMode: null } };
         } catch (error) {
           reply.geminiError = error?.message || 'chat_unavailable';

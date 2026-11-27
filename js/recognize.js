@@ -1,7 +1,8 @@
 const MuseumRecognition = (() => {
   const CONFIG = Object.freeze({
     MODEL: 'gemini-3.5-flash-lite',
-    PROXY_ENDPOINT: '',
+    PROXY_ENDPOINT: globalThis.location?.origin === 'https://baotangdanang.vercel.app'
+      ? 'https://baotangdanang.vercel.app/scan' : '',
     TIMEOUT_MS: 8000
   });
 
